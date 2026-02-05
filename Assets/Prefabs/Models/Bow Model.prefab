@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bow Model
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 5f428f045f400d34a9fe294a297b1778, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e2655e69fd560a44d831f940ee608e95, type: 2}
     - target: {fileID: 8852469722404809889, guid: 5f428f045f400d34a9fe294a297b1778, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

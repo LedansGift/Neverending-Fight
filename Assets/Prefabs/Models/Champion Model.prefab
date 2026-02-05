@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Champion Model
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: cf8d7521098dec844aeaced6be3e1cf1, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 664a8267edea2a84eb030e7d5fc98d6f, type: 2}
     - target: {fileID: 6110576718881730998, guid: cf8d7521098dec844aeaced6be3e1cf1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0

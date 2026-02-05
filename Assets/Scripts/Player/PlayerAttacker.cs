@@ -41,15 +41,85 @@ public class PlayerAttacker : MonoBehaviour
         InputManager.Instance.OnSelectWeaponEvent -= SelectWeapon;
     }
 
-    private void WeaponAttack() { }
+    private void WeaponAttack()
+    {
+        if (!canAttack || !activeWeapon)
+        {
+            return;
+        }
 
-    private void WeaponAttackRelease() { }
+        activeWeapon.WeaponAttackStart();
+    }
 
-    private void WeaponSpecial() { }
+    private void WeaponAttackRelease()
+    {
+        if (!canAttack || !activeWeapon)
+        {
+            return;
+        }
 
-    private void SelectWeapon(object sender, int newWeapon) { }
+        activeWeapon.WeaponAttackEnd();
+    }
 
-    private void SwapWeapon(object sender, float newWeapon) { }
+    private void WeaponSpecial()
+    {
+        if (!canAttack || !activeWeapon)
+        {
+            return;
+        }
+
+        activeWeapon.WeaponSpecial();
+    }
+
+    private void ChangeWeapon(PlayerWeapon newWeapon)
+    {
+        //Add buffer for switching if a weapon is mid-attack?
+
+        if (activeWeapon != null)
+        {
+            activeWeapon.StowWeapon();
+        }
+
+        activeWeapon = newWeapon;
+        activeWeapon.ActivateWeapon();
+    }
+
+    private void SelectWeapon(object sender, int newWeapon)
+    {
+        if (!canAttack)
+        {
+            return;
+        }
+
+        PlayerWeapon weapon = playerWeapons[newWeapon - 1];
+
+        if (weapon != activeWeapon)
+        {
+            ChangeWeapon(weapon);
+        }
+    }
+
+    private void SwapWeapon(object sender, float newWeapon)
+    {
+        if (!canAttack)
+        {
+            return;
+        }
+
+        if (!activeWeapon)
+        {
+            ChangeWeapon(playerWeapons[0]);
+            return;
+        }
+
+        int newWeaponIndex = (int)
+            AdditionalMath.Modulus(
+                Array.IndexOf(playerWeapons, activeWeapon) + (int)newWeapon,
+                playerWeapons.Length
+            );
+
+        ChangeWeapon(playerWeapons[newWeaponIndex]);
+    }
 
     public void ToggleCanAttack(bool toggle)
     {

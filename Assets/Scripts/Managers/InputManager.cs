@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
     private Controls controls;
 
     public Vector2 MovementValue { get; private set; }
+    public Vector2 MousePosition { get; private set; }
     public Action OnAttackEvent;
     public Action OnAttackReleaseEvent;
     public Action OnDashEvent;
@@ -82,6 +83,17 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
         }
 
         MovementValue = context.ReadValue<Vector2>();
+    }
+
+    public void OnMousePosition(InputAction.CallbackContext context)
+    {
+        if (disableInputs)
+        {
+            MousePosition = Vector2.zero;
+            return;
+        }
+
+        MousePosition = context.ReadValue<Vector2>();
     }
 
     public void OnPause(InputAction.CallbackContext context)

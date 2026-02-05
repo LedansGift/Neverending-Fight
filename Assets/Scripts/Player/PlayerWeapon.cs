@@ -2,6 +2,14 @@ using UnityEngine;
 
 public abstract class PlayerWeapon : MonoBehaviour
 {
+    //private bool isBusy = false;
+
+    [SerializeField]
+    protected PlayerStats playerStats;
+
+    [SerializeField]
+    protected Animator weaponAnimator;
+
     public abstract void WeaponAttackStart();
     public abstract void WeaponAttackEnd();
 
@@ -9,13 +17,16 @@ public abstract class PlayerWeapon : MonoBehaviour
 
     public virtual void ActivateWeapon()
     {
-        //play animation
+        weaponAnimator.SetTrigger("draw");
         //set bools
     }
 
     public virtual void StowWeapon()
     {
-        //play animation
+        weaponAnimator.SetTrigger("stow");
         //set bools
     }
+
+    //have a subscribable action that invokes when a busying action is finished.
+    //attacker can subscribe to it so that the weapon switch happens as soon as weapon is unbusied?
 }

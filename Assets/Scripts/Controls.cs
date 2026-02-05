@@ -172,6 +172,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse Position"",
+                    ""type"": ""Value"",
+                    ""id"": ""864401b4-1b96-480c-ba3b-b93c1682533f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -361,6 +370,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Weapon 3 Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ddf79463-d9a0-42e0-87f7-22e65665b4a9"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -378,6 +398,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Weapon1Select = m_Player.FindAction("Weapon 1 Select", throwIfNotFound: true);
         m_Player_Weapon2Select = m_Player.FindAction("Weapon 2 Select", throwIfNotFound: true);
         m_Player_Weapon3Select = m_Player.FindAction("Weapon 3 Select", throwIfNotFound: true);
+        m_Player_MousePosition = m_Player.FindAction("Mouse Position", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -467,6 +488,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Weapon1Select;
     private readonly InputAction m_Player_Weapon2Select;
     private readonly InputAction m_Player_Weapon3Select;
+    private readonly InputAction m_Player_MousePosition;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -514,6 +536,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Weapon3Select".
         /// </summary>
         public InputAction @Weapon3Select => m_Wrapper.m_Player_Weapon3Select;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/MousePosition".
+        /// </summary>
+        public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -567,6 +593,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Weapon3Select.started += instance.OnWeapon3Select;
             @Weapon3Select.performed += instance.OnWeapon3Select;
             @Weapon3Select.canceled += instance.OnWeapon3Select;
+            @MousePosition.started += instance.OnMousePosition;
+            @MousePosition.performed += instance.OnMousePosition;
+            @MousePosition.canceled += instance.OnMousePosition;
         }
 
         /// <summary>
@@ -605,6 +634,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Weapon3Select.started -= instance.OnWeapon3Select;
             @Weapon3Select.performed -= instance.OnWeapon3Select;
             @Weapon3Select.canceled -= instance.OnWeapon3Select;
+            @MousePosition.started -= instance.OnMousePosition;
+            @MousePosition.performed -= instance.OnMousePosition;
+            @MousePosition.canceled -= instance.OnMousePosition;
         }
 
         /// <summary>
@@ -708,5 +740,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnWeapon3Select(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Mouse Position" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMousePosition(InputAction.CallbackContext context);
     }
 }

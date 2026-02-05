@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tome Model
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 61c5b6a61a5ea064c9f2e04694713341, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7f0777daae491624aa9fba89c77ca8c7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
