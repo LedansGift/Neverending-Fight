@@ -8,11 +8,19 @@ public class PlayerAttacker : MonoBehaviour
     private PlayerWeapon activeWeapon = null;
 
     [SerializeField]
+    private LayerMask attackLayerMask;
+
+    [SerializeField]
     private PlayerWeapon[] playerWeapons;
 
     private void Awake()
     {
         ToggleCanAttack(false);
+
+        foreach (PlayerWeapon weapon in playerWeapons)
+        {
+            weapon.SetAttackLayerMask(attackLayerMask);
+        }
     }
 
     private void OnEnable()

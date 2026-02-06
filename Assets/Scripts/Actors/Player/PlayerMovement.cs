@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashTimer = 0f;
     private Vector2 movementDirection;
     private Vector2 movementDashBuffer;
+    private Transform mouseTarget;
 
     private PlayerStats stats;
     private Coroutine dashCoroutine;
@@ -45,19 +46,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
+            if (mouseTarget)
+            {
+                RotateTowardsMouse();
+            }
+
             if (!dashAvailable)
             {
-                dashTimer += Time.deltaTime;
-
-                float dashRechargeTime = stats.GetDashRechargeTime();
-
-                //dashSlider.value = dashTimer / dashRechargeTime;
-
-                if (dashTimer >= dashRechargeTime)
-                {
-                    dashAvailable = true;
-                    dashTimer = 0f;
-                }
+                IncrementDashTimer();
             }
         }
     }
@@ -96,6 +92,26 @@ public class PlayerMovement : MonoBehaviour
         return movementValue;
     }
 
+    private void RotateTowardsMouse()
+    {
+        transform.LookAt(mouseTarget.position, Vector3.up);
+    }
+
+    private void IncrementDashTimer()
+    {
+        dashTimer += Time.deltaTime;
+
+        float dashRechargeTime = stats.GetDashRechargeTime();
+
+        //dashSlider.value = dashTimer / dashRechargeTime;
+
+        if (dashTimer >= dashRechargeTime)
+        {
+            dashAvailable = true;
+            dashTimer = 0f;
+        }
+    }
+
     private void TryDash()
     {
         if (!dashAvailable || !canMove)
@@ -123,6 +139,11 @@ public class PlayerMovement : MonoBehaviour
 
         dashModifier = 1f;
         isDashing = false;
+    }
+
+    public void SetMouseTarget(Transform targetTransform)
+    {
+        mouseTarget = targetTransform;
     }
 
     public void ToggleCanMove(bool enable)

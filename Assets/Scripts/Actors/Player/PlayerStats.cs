@@ -17,10 +17,14 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Weapons")]
     [SerializeField]
-    private float glaiveDamage = 5f;
+    private int glaiveDamage = 5;
 
     [SerializeField]
     private float glaiveAttackRange = 5f;
+
+    [SerializeField]
+    [Range(0, 1)]
+    private float glaiveAttackArc = 0.5f;
 
     [SerializeField]
     private float glaiveAttackCooldown = 1.25f;
@@ -51,7 +55,7 @@ public class PlayerStats : MonoBehaviour
         return dashRecharge;
     }
 
-    public float GetGlaiveDamage()
+    public int GetGlaiveDamage()
     {
         return glaiveDamage;
     }
@@ -59,6 +63,11 @@ public class PlayerStats : MonoBehaviour
     public float GetGlaiveAttackRange()
     {
         return glaiveAttackRange;
+    }
+
+    public float GetGlaiveAttackArc()
+    {
+        return glaiveAttackArc;
     }
 
     public float GetGlaiveAttackCooldown()

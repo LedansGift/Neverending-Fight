@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class PlayerWeapon : MonoBehaviour
 {
     //private bool isBusy = false;
+    protected LayerMask attackLayerMask;
 
     [SerializeField]
     protected PlayerStats playerStats;
@@ -14,6 +15,11 @@ public abstract class PlayerWeapon : MonoBehaviour
     public abstract void WeaponAttackEnd();
 
     public abstract void WeaponSpecial();
+
+    public void SetAttackLayerMask(int layermask)
+    {
+        attackLayerMask = layermask;
+    }
 
     public virtual void ActivateWeapon()
     {

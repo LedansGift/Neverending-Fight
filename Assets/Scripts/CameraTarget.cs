@@ -2,40 +2,50 @@ using UnityEngine;
 
 public class CameraTarget : MonoBehaviour
 {
-    private Transform playerTransform;
     private InputManager input;
-
-    [SerializeField]
-    private float cameraLookaheadRatio;
 
     private void Start()
     {
-        playerTransform = PlayerIdentifier.PlayerTransform;
         input = InputManager.Instance;
 
-        if (!playerTransform)
-        {
-            GameObject standIn = new GameObject("PLAYER TRANSFORM STAND-IN");
-            playerTransform = standIn.transform;
-        }
+        SetPlayerTarget();
     }
 
     private void Update()
     {
-        //Debug.Log(input.MousePosition);
+        SetTargetPosition();
+    }
 
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(
-            new Vector3(input.MousePosition.x, input.MousePosition.y, cameraLookaheadRatio)
+    private void SetPlayerTarget()
+    {
+        Transform playerTransform = PlayerIdentifier.PlayerTransform;
+
+        if (!playerTransform)
+        {
+            Debug.LogError("Player Not Found");
+            return;
+        }
+
+        PlayerMovement playerMovement = playerTransform.GetComponent<PlayerMovement>();
+
+        playerMovement.SetMouseTarget(transform);
+    }
+
+    //Calculation for finding point of intersection of mouse and XZ plane by
+    //Skilled Cookie on https://discussions.unity.com/t/making-the-player-face-the-direction-of-the-cursor/801532/3
+    private void SetTargetPosition()
+    {
+        Vector3 point = Camera.main.ScreenToWorldPoint(
+            new Vector3(input.MousePosition.x, input.MousePosition.y, 1)
         );
 
-        // Vector2 cameraTargetPosition =
-        //     (mousePosition + (cameraLookaheadRatio - 1) * (Vector2)playerTransform.position)
-        //     / cameraLookaheadRatio;
+        float t = Camera.main.transform.position.y / (Camera.main.transform.position.y - point.y);
 
-        Vector3 cameraTargetPosition =
-            playerTransform.position + new Vector3(mousePosition.x, 0f, mousePosition.y);
-
-        //Debug.Log(cameraTargetPosition);
+        Vector3 cameraTargetPosition = new Vector3(
+            t * (point.x - Camera.main.transform.position.x) + Camera.main.transform.position.x,
+            0f,
+            t * (point.z - Camera.main.transform.position.z) + Camera.main.transform.position.z
+        );
 
         transform.position = cameraTargetPosition;
     }
