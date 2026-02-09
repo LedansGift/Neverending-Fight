@@ -99,6 +99,11 @@ public class PlayerAttacker : MonoBehaviour
             return;
         }
 
+        if (!activeWeapon.CanSwap())
+        {
+            return;
+        }
+
         PlayerWeapon weapon = playerWeapons[newWeapon - 1];
 
         if (weapon != activeWeapon)
@@ -117,6 +122,11 @@ public class PlayerAttacker : MonoBehaviour
         if (!activeWeapon)
         {
             ChangeWeapon(playerWeapons[0]);
+            return;
+        }
+
+        if (!activeWeapon.CanSwap())
+        {
             return;
         }
 

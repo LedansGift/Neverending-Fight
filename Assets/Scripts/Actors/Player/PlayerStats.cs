@@ -35,6 +35,21 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private float glaiveRhythmDuration = 0.25f;
 
+    [SerializeField]
+    private int bowDamage = 4;
+
+    [SerializeField]
+    private int bowPerfectDamage = 6;
+
+    [SerializeField]
+    private float bowChargeTime = 1f;
+
+    [SerializeField]
+    private float bowPerfectChargeTime = 0.7f;
+
+    [SerializeField]
+    private float bowPerfectChargeDuration = 0.15f;
+
     public float GetMovementSpeed()
     {
         return movementSpeed;
@@ -83,5 +98,30 @@ public class PlayerStats : MonoBehaviour
     public float GetGlaiveRhythmDuration()
     {
         return glaiveRhythmDuration;
+    }
+
+    public int GetBowDamage()
+    {
+        return bowDamage;
+    }
+
+    public int GetPerfectBowDamage()
+    {
+        return bowPerfectDamage;
+    }
+
+    public float GetBowChargeTime()
+    {
+        return bowChargeTime;
+    }
+
+    public float GetBowPerfectChargeTime()
+    {
+        return bowPerfectChargeTime;
+    }
+
+    public float GetBowPerfectChargeDuration()
+    {
+        return bowPerfectChargeDuration;
     }
 }

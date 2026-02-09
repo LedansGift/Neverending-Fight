@@ -2,7 +2,8 @@ using UnityEngine;
 
 public abstract class PlayerWeapon : MonoBehaviour
 {
-    //private bool isBusy = false;
+    protected bool isBusy = false;
+    protected bool canSwap = true;
     protected LayerMask attackLayerMask;
 
     [SerializeField]
@@ -24,13 +25,23 @@ public abstract class PlayerWeapon : MonoBehaviour
     public virtual void ActivateWeapon()
     {
         weaponAnimator.SetTrigger("draw");
+        isBusy = false;
+        canSwap = true;
         //set bools
     }
 
     public virtual void StowWeapon()
     {
         weaponAnimator.SetTrigger("stow");
+        isBusy = true;
+        canSwap = false;
+
         //set bools
+    }
+
+    public bool CanSwap()
+    {
+        return canSwap;
     }
 
     //have a subscribable action that invokes when a busying action is finished.
