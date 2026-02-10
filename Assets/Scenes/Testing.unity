@@ -242,7 +242,7 @@ Transform:
   m_GameObject: {fileID: 50821499}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.63, y: 0, z: 14.39}
+  m_LocalPosition: {x: -3.63, y: 1, z: 14.39}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -971,6 +971,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 220033456}
+  - {fileID: 1774527107}
   m_Father: {fileID: 1901681931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &531829818
@@ -986,7 +987,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTome
   playerStats: {fileID: 1901681933}
+  playerMovement: {fileID: 1901681934}
   weaponAnimator: {fileID: 220033457}
+  attackVisual: {fileID: 1774527108}
 --- !u!1 &575852596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,7 +1232,7 @@ Transform:
   m_GameObject: {fileID: 588699189}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.87, y: 0, z: 15.41}
+  m_LocalPosition: {x: -9.87, y: 1, z: 15.41}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2556,6 +2559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGlaive
   playerStats: {fileID: 1901681933}
+  playerMovement: {fileID: 1901681934}
   weaponAnimator: {fileID: 926833527}
 --- !u!1 &916978454
 GameObject:
@@ -3490,7 +3494,7 @@ Transform:
   m_GameObject: {fileID: 1407135323}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.66, y: 0, z: 9.69}
+  m_LocalPosition: {x: -8.66, y: 1, z: 9.69}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3603,6 +3607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBow
   playerStats: {fileID: 1901681933}
+  playerMovement: {fileID: 1901681934}
   weaponAnimator: {fileID: 1220784309}
   bowShootTransform: {fileID: 782495486}
   bowProjectilePrefab: {fileID: 4787725567658290501, guid: b74a7fb40e0ae924bb211b7fa4d52d23, type: 3}
@@ -3890,6 +3895,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750970935}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1774527107 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6483666601188601875, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+  m_PrefabInstance: {fileID: 5375908007730329799}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1774527108 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7773737944878346774, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+  m_PrefabInstance: {fileID: 5375908007730329799}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fbb069974671f418f064ad5d00b523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TomeAttackVisual
 --- !u!1 &1901681930
 GameObject:
   m_ObjectHideFlags: 0
@@ -3983,9 +4004,16 @@ MonoBehaviour:
   glaiveRhythmDuration: 0.25
   bowDamage: 4
   bowPerfectDamage: 6
+  bowProjectileSpeed: 40
   bowChargeTime: 1
+  bowShootCooldown: 0.5
   bowPerfectChargeTime: 0.7
   bowPerfectChargeDuration: 0.15
+  tomeMaxDamage: 15
+  tomeMaxRadius: 10
+  tomeMaxMovementModifier: 0.25
+  tomeChargeTime: 2.5
+  tomeAttackCooldown: 0.5
 --- !u!114 &1901681934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4274,6 +4302,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5375908007730329799
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 531829817}
+    m_Modifications:
+    - target: {fileID: 1248885074710776869, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248885074710776869, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248885074710776869, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1248885074710776869, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483666601188601875, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483666601188601875, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483666601188601875, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483666601188601875, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483666601188601875, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483666601188601875, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483666601188601875, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483666601188601875, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483666601188601875, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483666601188601875, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052212090176120596, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
+      propertyPath: m_Name
+      value: Tome Attack Visual
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ee7dcb9e296c9540b14204154404e3b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

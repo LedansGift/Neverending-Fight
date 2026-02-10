@@ -139,6 +139,14 @@ public class PlayerAttacker : MonoBehaviour
         ChangeWeapon(playerWeapons[newWeaponIndex]);
     }
 
+    public void SetMouseTarget(Transform targetTransform)
+    {
+        foreach (PlayerWeapon weapon in playerWeapons)
+        {
+            weapon.SetMouseTarget(targetTransform);
+        }
+    }
+
     public void ToggleCanAttack(bool toggle)
     {
         canAttack = toggle;

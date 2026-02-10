@@ -1,9 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerBow : PlayerWeapon
 {
+    private bool inputHeld = false;
     private bool chargeBow = false;
+
     private float chargeAmount = 0f;
+    private float lowSpeedModifier = 0.75f;
+    private float highSpeedModifier = 1.25f;
+
+    private Coroutine cooldownCoroutine;
 
     [SerializeField]
     private Transform bowShootTransform;
@@ -19,6 +26,13 @@ public class PlayerBow : PlayerWeapon
 
     public override void WeaponAttackStart()
     {
+        inputHeld = true;
+
+        if (isBusy)
+        {
+            return;
+        }
+
         weaponAnimator.SetTrigger("attack");
 
         chargeBow = true;
@@ -29,15 +43,27 @@ public class PlayerBow : PlayerWeapon
 
     public override void WeaponAttackEnd()
     {
+        inputHeld = false;
+
+        if (!chargeBow)
+        {
+            return;
+        }
+
         weaponAnimator.SetTrigger("loose");
 
         chargeBow = false;
         canSwap = true;
 
         ShootArrow();
+
+        cooldownCoroutine = StartCoroutine(ShootCooldown());
     }
 
-    public override void WeaponSpecial() { }
+    public override void WeaponSpecial()
+    {
+        //Physics.OverlapBox(transform.position,);
+    }
 
     private void Update()
     {
@@ -47,9 +73,22 @@ public class PlayerBow : PlayerWeapon
         }
     }
 
+    private IEnumerator ShootCooldown()
+    {
+        isBusy = true;
+        yield return new WaitForSeconds(playerStats.GetBowShootCooldown());
+        isBusy = false;
+
+        if (inputHeld)
+        {
+            WeaponAttackStart();
+        }
+    }
+
     private void ShootArrow()
     {
-        int bowDamage = 0;
+        int bowDamage;
+        float projectileSpeed;
 
         if (
             (chargeAmount > playerStats.GetBowPerfectChargeTime())
@@ -63,20 +102,35 @@ public class PlayerBow : PlayerWeapon
         )
         {
             bowDamage = playerStats.GetPerfectBowDamage();
+            projectileSpeed = playerStats.GetBowProjectileSpeed() * highSpeedModifier;
         }
         else
         {
             bowDamage = Mathf.RoundToInt(chargeAmount * (float)playerStats.GetBowDamage());
+            float speedModifier = Mathf.Lerp(lowSpeedModifier, 1f, chargeAmount);
+            projectileSpeed = playerStats.GetBowProjectileSpeed() * speedModifier;
         }
 
-        //Debug.Log(bowDamage);
+        //Debug.Log(projectileSpeed);
 
         ProjectileManager.SpawnProjectile(
             bowProjectilePrefab,
             bowShootTransform.transform.position,
             bowShootTransform.forward,
             bowDamage,
-            10f
+            projectileSpeed
         );
+    }
+
+    public override void StowWeapon()
+    {
+        base.StowWeapon();
+
+        inputHeld = false;
+
+        if (cooldownCoroutine != null)
+        {
+            StopCoroutine(cooldownCoroutine);
+        }
     }
 }

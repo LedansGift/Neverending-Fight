@@ -26,9 +26,9 @@ public class CameraTarget : MonoBehaviour
             return;
         }
 
-        PlayerMovement playerMovement = playerTransform.GetComponent<PlayerMovement>();
+        PlayerManager playerManager = playerTransform.GetComponent<PlayerManager>();
 
-        playerMovement.SetMouseTarget(transform);
+        playerManager.SetMouseTarget(transform);
     }
 
     //Calculation for finding point of intersection of mouse and XZ plane by

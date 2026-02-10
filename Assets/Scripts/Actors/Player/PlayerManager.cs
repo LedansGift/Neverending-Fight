@@ -37,4 +37,10 @@ public class PlayerManager : MonoBehaviour
         playerMovement.ToggleCanMove(playerActive);
         playerAttacker.ToggleCanAttack(playerActive);
     }
+
+    public void SetMouseTarget(Transform targetTransform)
+    {
+        playerMovement.SetMouseTarget(targetTransform);
+        playerAttacker.SetMouseTarget(targetTransform);
+    }
 }

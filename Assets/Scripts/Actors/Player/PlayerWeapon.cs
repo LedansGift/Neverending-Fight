@@ -5,9 +5,13 @@ public abstract class PlayerWeapon : MonoBehaviour
     protected bool isBusy = false;
     protected bool canSwap = true;
     protected LayerMask attackLayerMask;
+    protected Transform mouseTarget;
 
     [SerializeField]
     protected PlayerStats playerStats;
+
+    [SerializeField]
+    protected PlayerMovement playerMovement;
 
     [SerializeField]
     protected Animator weaponAnimator;
@@ -27,7 +31,7 @@ public abstract class PlayerWeapon : MonoBehaviour
         weaponAnimator.SetTrigger("draw");
         isBusy = false;
         canSwap = true;
-        //set bools
+        playerMovement.SetWeaponModifier();
     }
 
     public virtual void StowWeapon()
@@ -35,8 +39,11 @@ public abstract class PlayerWeapon : MonoBehaviour
         weaponAnimator.SetTrigger("stow");
         isBusy = true;
         canSwap = false;
+    }
 
-        //set bools
+    public void SetMouseTarget(Transform targetTransform)
+    {
+        mouseTarget = targetTransform;
     }
 
     public bool CanSwap()

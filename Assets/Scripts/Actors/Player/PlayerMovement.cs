@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove;
     private bool isDashing = false;
     private bool dashAvailable;
-
+    private float weaponModifier = 1f;
     private float dashModifier = 1f;
     private float dashTimer = 0f;
     private Vector2 movementDirection;
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Rigidbody playerRB;
+
+    public Action OnDash;
 
     private void Awake()
     {
@@ -81,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
                 + new Vector3(movementValue.x, 0f, movementValue.y)
                     * stats.GetMovementSpeed()
                     * dashModifier
+                    * weaponModifier
                     * Time.fixedDeltaTime
         );
 
@@ -134,11 +138,17 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
         movementDashBuffer = movementDirection;
         dashModifier = stats.GetDashSpeedModifier();
+        OnDash?.Invoke();
 
         yield return new WaitForSeconds(stats.GetDashTime());
 
         dashModifier = 1f;
         isDashing = false;
+    }
+
+    public void SetWeaponModifier(float modifier = 1f)
+    {
+        weaponModifier = modifier;
     }
 
     public void SetMouseTarget(Transform targetTransform)

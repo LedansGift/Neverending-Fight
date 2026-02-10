@@ -15,7 +15,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private float dashRecharge = 1.5f;
 
-    [Header("Weapons")]
+    [Header("Glaive")]
     [SerializeField]
     private int glaiveDamage = 5;
 
@@ -35,6 +35,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private float glaiveRhythmDuration = 0.25f;
 
+    [Header("Bow")]
     [SerializeField]
     private int bowDamage = 4;
 
@@ -42,13 +43,35 @@ public class PlayerStats : MonoBehaviour
     private int bowPerfectDamage = 6;
 
     [SerializeField]
+    private float bowProjectileSpeed = 10f;
+
+    [SerializeField]
     private float bowChargeTime = 1f;
+
+    [SerializeField]
+    private float bowShootCooldown = 0.5f;
 
     [SerializeField]
     private float bowPerfectChargeTime = 0.7f;
 
     [SerializeField]
     private float bowPerfectChargeDuration = 0.15f;
+
+    [Header("Tome")]
+    [SerializeField]
+    private int tomeMaxDamage = 15;
+
+    [SerializeField]
+    private float tomeMaxRadius = 10f;
+
+    [SerializeField]
+    private float tomeMaxMovementModifier = 0.4f;
+
+    [SerializeField]
+    private float tomeChargeTime = 2.5f;
+
+    [SerializeField]
+    private float tomeAttackCooldown = 0.5f;
 
     public float GetMovementSpeed()
     {
@@ -110,9 +133,19 @@ public class PlayerStats : MonoBehaviour
         return bowPerfectDamage;
     }
 
+    public float GetBowProjectileSpeed()
+    {
+        return bowProjectileSpeed;
+    }
+
     public float GetBowChargeTime()
     {
         return bowChargeTime;
+    }
+
+    public float GetBowShootCooldown()
+    {
+        return bowShootCooldown;
     }
 
     public float GetBowPerfectChargeTime()
@@ -123,5 +156,30 @@ public class PlayerStats : MonoBehaviour
     public float GetBowPerfectChargeDuration()
     {
         return bowPerfectChargeDuration;
+    }
+
+    public int GetTomeMaxDamage()
+    {
+        return tomeMaxDamage;
+    }
+
+    public float GetTomeMaxRadius()
+    {
+        return tomeMaxRadius;
+    }
+
+    public float GetTomeMaxMovementModifier()
+    {
+        return tomeMaxMovementModifier;
+    }
+
+    public float GetTomeChargeTime()
+    {
+        return tomeChargeTime;
+    }
+
+    public float GetTomeAttackCooldown()
+    {
+        return tomeAttackCooldown;
     }
 }
