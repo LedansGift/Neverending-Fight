@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    [SerializeField]
+    private int playerHealth = 100;
+
     [Header("Movement")]
     [SerializeField]
     private float movementSpeed = 7.5f;
@@ -57,6 +60,21 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private float bowPerfectChargeDuration = 0.15f;
 
+    [SerializeField]
+    private int bowSpecialDamage = 10;
+
+    [SerializeField]
+    private float bowSpecialShootTime = 0.5f;
+
+    [SerializeField]
+    private float bowSpecialMovementModifier = 0.5f;
+
+    [SerializeField]
+    private float bowSpecialChargeThreshold = 10f;
+
+    [SerializeField]
+    private float bowSpecialPerfectCharge = 2f;
+
     [Header("Tome")]
     [SerializeField]
     private int tomeMaxDamage = 15;
@@ -72,6 +90,11 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField]
     private float tomeAttackCooldown = 0.5f;
+
+    public int GetHealth()
+    {
+        return playerHealth;
+    }
 
     public float GetMovementSpeed()
     {
@@ -156,6 +179,31 @@ public class PlayerStats : MonoBehaviour
     public float GetBowPerfectChargeDuration()
     {
         return bowPerfectChargeDuration;
+    }
+
+    public int GetBowSpecialDamage()
+    {
+        return bowSpecialDamage;
+    }
+
+    public float GetBowSpecialShootTime()
+    {
+        return bowSpecialShootTime;
+    }
+
+    public float GetBowSpecialMovementModifier()
+    {
+        return bowSpecialMovementModifier;
+    }
+
+    public float GetBowSpecialChargeThreshold()
+    {
+        return bowSpecialChargeThreshold;
+    }
+
+    public float GetBowSpecialPerfectCharge()
+    {
+        return bowSpecialPerfectCharge;
     }
 
     public int GetTomeMaxDamage()

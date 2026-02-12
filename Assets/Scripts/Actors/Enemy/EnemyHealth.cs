@@ -13,7 +13,7 @@ public class EnemyHealth : Health
 
     private void Start()
     {
-        SetMaxHealth();
+        HealToFull();
     }
 
     public override void TakeDamage(int damage)

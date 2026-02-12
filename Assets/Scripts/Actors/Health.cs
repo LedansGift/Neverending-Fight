@@ -14,7 +14,17 @@ public abstract class Health : MonoBehaviour
 
     public abstract void TakeDamage(int damageAmount);
 
-    protected void SetMaxHealth()
+    protected void SetMaxHealth(int newHealth, bool healToFull = true)
+    {
+        maxHealth = newHealth;
+
+        if (healToFull)
+        {
+            HealToFull();
+        }
+    }
+
+    protected void HealToFull()
     {
         health = maxHealth;
     }

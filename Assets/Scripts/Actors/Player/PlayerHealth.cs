@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class PlayerHealth : Health
 
     //private float impulseStrength = 1f;
 
-    //private PlayerManager playerManager;
+    private PlayerStats playerStats;
 
     // [SerializeField]
     // private AudioClip playerDamageSFX;
@@ -20,9 +21,13 @@ public class PlayerHealth : Health
     [SerializeField]
     private CinemachineImpulseSource impulseSource;
 
+    public static EventHandler<int> OnChangePlayerHealth;
+
     private void Start()
     {
-        //playerManager = GetComponent<PlayerManager>();
+        playerStats = GetComponent<PlayerStats>();
+        SetMaxHealth(playerStats.GetHealth());
+        OnChangePlayerHealth?.Invoke(this, health);
     }
 
     private IEnumerator DamageInvincibility()
@@ -44,6 +49,8 @@ public class PlayerHealth : Health
         //impulseSource.GenerateImpulse(impulseStrength);
 
         health = Mathf.Max(0, health - damage);
+
+        OnChangePlayerHealth?.Invoke(this, health);
 
         if (health == 0)
         {
