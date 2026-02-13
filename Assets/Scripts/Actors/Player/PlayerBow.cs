@@ -79,6 +79,8 @@ public class PlayerBow : PlayerWeapon
             return;
         }
 
+        weaponAnimator.SetTrigger("special");
+
         StartCoroutine(SpecialShoot());
 
         specialCharge = 0f;

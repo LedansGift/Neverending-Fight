@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,15 @@ public class PlayerTome : PlayerWeapon
 {
     private bool inputHeld = false;
     private bool chargeTome = false;
+    private bool specialAvailable = true;
 
     private float chargeAmount = 0f;
 
-    private Coroutine cooldownCoroutine;
+    private Coroutine attackCooldownCoroutine;
+    private Coroutine specialCoroutine;
+
+    [SerializeField]
+    private TomeAbsorber tomeAbsorber;
 
     [SerializeField]
     private TomeAttackVisual attackVisual;
@@ -54,10 +60,25 @@ public class PlayerTome : PlayerWeapon
 
         StartExplosion();
 
-        cooldownCoroutine = StartCoroutine(ShootCooldown());
+        attackCooldownCoroutine = StartCoroutine(ShootCooldown());
     }
 
-    public override void WeaponSpecial() { }
+    public override void WeaponSpecial()
+    {
+        if (!specialAvailable)
+        {
+            return;
+        }
+
+        if (isBusy)
+        {
+            return;
+        }
+
+        weaponAnimator.SetTrigger("special");
+
+        specialCoroutine = StartCoroutine(SpecialCast());
+    }
 
     private void Update()
     {
@@ -72,6 +93,44 @@ public class PlayerTome : PlayerWeapon
 
             attackVisual.transform.position = mouseTarget.position;
         }
+    }
+
+    private IEnumerator SpecialCast()
+    {
+        canSwap = false;
+        isBusy = true;
+        tomeAbsorber.ToggleAbsorber(true);
+
+        yield return new WaitForSeconds(playerStats.GetTomeSpecialCastDuration());
+
+        canSwap = true;
+        isBusy = false;
+        tomeAbsorber.ToggleAbsorber(false);
+
+        StartCoroutine(BuffCoroutine(tomeAbsorber.GetAbsorbedDamage()));
+
+        if (inputHeld)
+        {
+            WeaponAttackStart();
+        }
+    }
+
+    private IEnumerator BuffCoroutine(int absorbedDamage)
+    {
+        specialAvailable = false;
+
+        int damageBuff = Mathf.Min(absorbedDamage, playerStats.GetTomeSpecialMaxBuff());
+
+        playerStats.SetAttackBuff(damageBuff);
+
+        yield return new WaitForSeconds(playerStats.GetTomeSpecialBuffDuration());
+
+        playerStats.SetAttackBuff(0);
+
+        yield return new WaitForSeconds(
+            playerStats.GetTomeSpecialCooldown() - playerStats.GetTomeSpecialBuffDuration()
+        );
+        specialAvailable = true;
     }
 
     private IEnumerator ShootCooldown()
@@ -150,7 +209,7 @@ public class PlayerTome : PlayerWeapon
 
         playerMovement.SetWeaponModifier();
 
-        cooldownCoroutine = StartCoroutine(ShootCooldown());
+        attackCooldownCoroutine = StartCoroutine(ShootCooldown());
     }
 
     public override void ActivateWeapon()
@@ -168,9 +227,14 @@ public class PlayerTome : PlayerWeapon
 
         playerMovement.OnDash -= CancelAttack;
 
-        if (cooldownCoroutine != null)
+        if (attackCooldownCoroutine != null)
         {
-            StopCoroutine(cooldownCoroutine);
+            StopCoroutine(attackCooldownCoroutine);
+        }
+
+        if (specialCoroutine != null)
+        {
+            StopCoroutine(specialCoroutine);
         }
     }
 }

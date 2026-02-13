@@ -1010,6 +1010,7 @@ Transform:
   m_Children:
   - {fileID: 220033456}
   - {fileID: 1774527107}
+  - {fileID: 1701078165}
   m_Father: {fileID: 1901681931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &531829818
@@ -1027,6 +1028,7 @@ MonoBehaviour:
   playerStats: {fileID: 1901681933}
   playerMovement: {fileID: 1901681934}
   weaponAnimator: {fileID: 220033457}
+  tomeAbsorber: {fileID: 0}
   attackVisual: {fileID: 1774527108}
 --- !u!1 &575852596
 GameObject:
@@ -3851,6 +3853,103 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthUI
   healthSlider: {fileID: 1111201278}
+--- !u!1 &1701078164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1701078165}
+  - component: {fileID: 1701078168}
+  - component: {fileID: 1701078167}
+  - component: {fileID: 1701078166}
+  m_Layer: 6
+  m_Name: Tome Absorb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1701078165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701078164}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 531829817}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1701078166
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701078164}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!135 &1701078167
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701078164}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 1, z: 0.5}
+--- !u!114 &1701078168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701078164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7f101d989f5ad4dac7256d4afb1ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TomeAbsorber
+  isPlayer: 1
+  maxHealth: 0
+  absorberCollider: {fileID: 1701078167}
 --- !u!1 &1729519980
 GameObject:
   m_ObjectHideFlags: 0
@@ -4068,6 +4167,7 @@ GameObject:
   - component: {fileID: 1901681934}
   - component: {fileID: 1901681935}
   - component: {fileID: 1901681933}
+  - component: {fileID: 1901681939}
   - component: {fileID: 1901681932}
   - component: {fileID: 1901681937}
   - component: {fileID: 1901681938}
@@ -4147,6 +4247,11 @@ MonoBehaviour:
   glaiveAttackCooldown: 1.25
   glaiveRhythmStart: 0.5
   glaiveRhythmDuration: 0.25
+  glaiveSpecialDamage: 15
+  glaiveSpecialJumpTime: 2.5
+  glaiveSpecialSpeedModifier: 0.75
+  glaiveSpecialChargeThreshold: 10
+  glaiveSpecialPerfectCharge: 2
   bowDamage: 4
   bowPerfectDamage: 6
   bowProjectileSpeed: 40
@@ -4164,6 +4269,10 @@ MonoBehaviour:
   tomeMaxMovementModifier: 0.25
   tomeChargeTime: 2.5
   tomeAttackCooldown: 0.5
+  tomeSpecialMaxBuff: 10
+  tomeSpecialCastDuration: 2.5
+  tomeSpecialBuffDuration: 10
+  tomeSpecialCooldown: 30
 --- !u!114 &1901681934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4236,6 +4345,29 @@ MonoBehaviour:
   isPlayer: 1
   maxHealth: 100
   impulseSource: {fileID: 0}
+--- !u!136 &1901681939
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901681930}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!1 &2060923033
 GameObject:
   m_ObjectHideFlags: 0

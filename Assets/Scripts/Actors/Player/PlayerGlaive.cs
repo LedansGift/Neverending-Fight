@@ -32,7 +32,10 @@ public class PlayerGlaive : PlayerWeapon
 
     public override void WeaponAttackEnd() { }
 
-    public override void WeaponSpecial() { }
+    public override void WeaponSpecial()
+    {
+        weaponAnimator.SetTrigger("special");
+    }
 
     private void FollowupSlash()
     {

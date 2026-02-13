@@ -38,6 +38,21 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private float glaiveRhythmDuration = 0.25f;
 
+    [SerializeField]
+    private int glaiveSpecialDamage = 15;
+
+    [SerializeField]
+    private float glaiveSpecialJumpTime = 2.5f;
+
+    [SerializeField]
+    private float glaiveSpecialSpeedModifier = 0.75f;
+
+    [SerializeField]
+    private float glaiveSpecialChargeThreshold = 10f;
+
+    [SerializeField]
+    private float glaiveSpecialPerfectCharge = 2f;
+
     [Header("Bow")]
     [SerializeField]
     private int bowDamage = 4;
@@ -91,6 +106,25 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]
     private float tomeAttackCooldown = 0.5f;
 
+    [SerializeField]
+    private int tomeSpecialMaxBuff = 10;
+
+    [SerializeField]
+    private float tomeSpecialCastDuration = 2.5f;
+
+    [SerializeField]
+    private float tomeSpecialBuffDuration = 10f;
+
+    [SerializeField]
+    private float tomeSpecialCooldown = 30f;
+
+    private int attackDamageBuff = 0;
+
+    private void Awake()
+    {
+        attackDamageBuff = 0;
+    }
+
     public int GetHealth()
     {
         return playerHealth;
@@ -118,7 +152,7 @@ public class PlayerStats : MonoBehaviour
 
     public int GetGlaiveDamage()
     {
-        return glaiveDamage;
+        return glaiveDamage + attackDamageBuff;
     }
 
     public float GetGlaiveAttackRange()
@@ -146,9 +180,34 @@ public class PlayerStats : MonoBehaviour
         return glaiveRhythmDuration;
     }
 
+    public int GetGlaiveSpecialDamage()
+    {
+        return glaiveSpecialDamage + attackDamageBuff;
+    }
+
+    public float GetGlaiveSpecialJumpTime()
+    {
+        return glaiveSpecialJumpTime;
+    }
+
+    public float GetGlaiveSpecialMovementModifier()
+    {
+        return glaiveSpecialSpeedModifier;
+    }
+
+    public float GetGlaiveSpecialChargeThreshold()
+    {
+        return glaiveSpecialChargeThreshold;
+    }
+
+    public float GetGlaiveSpecialPerfectCharge()
+    {
+        return glaiveSpecialPerfectCharge;
+    }
+
     public int GetBowDamage()
     {
-        return bowDamage;
+        return bowDamage + attackDamageBuff;
     }
 
     public int GetPerfectBowDamage()
@@ -183,7 +242,7 @@ public class PlayerStats : MonoBehaviour
 
     public int GetBowSpecialDamage()
     {
-        return bowSpecialDamage;
+        return bowSpecialDamage + attackDamageBuff;
     }
 
     public float GetBowSpecialShootTime()
@@ -208,7 +267,7 @@ public class PlayerStats : MonoBehaviour
 
     public int GetTomeMaxDamage()
     {
-        return tomeMaxDamage;
+        return tomeMaxDamage + attackDamageBuff;
     }
 
     public float GetTomeMaxRadius()
@@ -229,5 +288,30 @@ public class PlayerStats : MonoBehaviour
     public float GetTomeAttackCooldown()
     {
         return tomeAttackCooldown;
+    }
+
+    public int GetTomeSpecialMaxBuff()
+    {
+        return tomeSpecialMaxBuff;
+    }
+
+    public float GetTomeSpecialCastDuration()
+    {
+        return tomeSpecialCastDuration;
+    }
+
+    public float GetTomeSpecialBuffDuration()
+    {
+        return tomeSpecialBuffDuration;
+    }
+
+    public float GetTomeSpecialCooldown()
+    {
+        return tomeSpecialCooldown;
+    }
+
+    public void SetAttackBuff(int attackBuff)
+    {
+        attackDamageBuff = attackBuff;
     }
 }
