@@ -42,6 +42,9 @@ public class PlayerStats : MonoBehaviour
     private int glaiveSpecialDamage = 15;
 
     [SerializeField]
+    private float glaiveSpecialDamageRange = 10f;
+
+    [SerializeField]
     private float glaiveSpecialJumpTime = 2.5f;
 
     [SerializeField]
@@ -51,7 +54,7 @@ public class PlayerStats : MonoBehaviour
     private float glaiveSpecialChargeThreshold = 10f;
 
     [SerializeField]
-    private float glaiveSpecialPerfectCharge = 2f;
+    private float glaiveSpecialPerfectCharge = 2.5f;
 
     [Header("Bow")]
     [SerializeField]
@@ -183,6 +186,11 @@ public class PlayerStats : MonoBehaviour
     public int GetGlaiveSpecialDamage()
     {
         return glaiveSpecialDamage + attackDamageBuff;
+    }
+
+    public float GetGlaiveSpecialDamageRange()
+    {
+        return glaiveSpecialDamageRange;
     }
 
     public float GetGlaiveSpecialJumpTime()

@@ -12,8 +12,13 @@ public class TomeAbsorber : Health
         ToggleAbsorber(false);
     }
 
-    public override void TakeDamage(int damageAmount)
+    public override void TakeDamage(int damageAmount, bool arenaWideDamage = false)
     {
+        if (arenaWideDamage)
+        {
+            return;
+        }
+
         absorbedDamage += damageAmount;
     }
 

@@ -16,7 +16,7 @@ public class EnemyHealth : Health
         HealToFull();
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, bool arenaWideDamage = false)
     {
         if (isInvincible)
         {

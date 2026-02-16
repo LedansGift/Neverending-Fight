@@ -15,6 +15,8 @@ public class PlayerBow : PlayerWeapon
 
     private float specialCharge = 0f;
 
+    private const int BOW_WEAPON_INDEX = 1;
+
     private Vector3 specialHitbox = new Vector3(2f, 3f, 200f);
 
     private Coroutine cooldownCoroutine;
@@ -170,6 +172,11 @@ public class PlayerBow : PlayerWeapon
             specialCharge = playerStats.GetBowSpecialChargeThreshold();
             specialReady = true;
         }
+
+        OnWeaponAbilityCharge?.Invoke(
+            this,
+            new WeaponAbilityCharge(BOW_WEAPON_INDEX, specialCharge)
+        );
     }
 
     private void ShootArrow()

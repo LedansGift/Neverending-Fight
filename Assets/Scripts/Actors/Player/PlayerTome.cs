@@ -11,6 +11,8 @@ public class PlayerTome : PlayerWeapon
 
     private float chargeAmount = 0f;
 
+    private const int TOME_WEAPON_INDEX = 2;
+
     private Coroutine attackCooldownCoroutine;
     private Coroutine specialCoroutine;
 
@@ -131,6 +133,8 @@ public class PlayerTome : PlayerWeapon
             playerStats.GetTomeSpecialCooldown() - playerStats.GetTomeSpecialBuffDuration()
         );
         specialAvailable = true;
+
+        //update special ability UI
     }
 
     private IEnumerator ShootCooldown()

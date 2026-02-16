@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerHealth : Health
 {
     private bool invincible = false;
-    private float invincibilityDuration = 2f;
+    private float invincibilityDuration = 1f;
 
     //private float impulseStrength = 1f;
 
@@ -18,6 +18,8 @@ public class PlayerHealth : Health
     // [SerializeField]
     // private AudioClip playerDeathSFX;
 
+    private Coroutine iFrameCoroutine;
+
     [SerializeField]
     private CinemachineImpulseSource impulseSource;
 
@@ -25,9 +27,20 @@ public class PlayerHealth : Health
 
     private void Start()
     {
+        invincible = false;
         playerStats = GetComponent<PlayerStats>();
         SetMaxHealth(playerStats.GetHealth());
         OnChangePlayerHealth?.Invoke(this, health);
+    }
+
+    private void OnEnable()
+    {
+        PlayerGlaive.OnGlaiveSpecial += SetJumpInvincibility;
+    }
+
+    private void OnDisable()
+    {
+        PlayerGlaive.OnGlaiveSpecial -= SetJumpInvincibility;
     }
 
     private IEnumerator DamageInvincibility()
@@ -39,9 +52,9 @@ public class PlayerHealth : Health
         invincible = false;
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, bool arenaWideDamage = false)
     {
-        if (invincible)
+        if (invincible && !arenaWideDamage)
         {
             return;
         }
@@ -60,7 +73,17 @@ public class PlayerHealth : Health
         else
         {
             //AudioManager.PlaySFX(playerDamageSFX, 1f, 0, transform.position);
-            StartCoroutine(DamageInvincibility());
+            iFrameCoroutine = StartCoroutine(DamageInvincibility());
         }
+    }
+
+    private void SetJumpInvincibility(object sender, bool toggle)
+    {
+        if (iFrameCoroutine != null)
+        {
+            StopCoroutine(iFrameCoroutine);
+        }
+
+        invincible = toggle;
     }
 }

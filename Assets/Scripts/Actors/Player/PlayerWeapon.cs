@@ -1,4 +1,17 @@
+using System;
 using UnityEngine;
+
+public struct WeaponAbilityCharge
+{
+    public WeaponAbilityCharge(int weaponIndex, float weaponCharge)
+    {
+        this.weaponIndex = weaponIndex;
+        this.weaponCharge = weaponCharge;
+    }
+
+    public int weaponIndex;
+    public float weaponCharge;
+}
 
 public abstract class PlayerWeapon : MonoBehaviour
 {
@@ -15,6 +28,8 @@ public abstract class PlayerWeapon : MonoBehaviour
 
     [SerializeField]
     protected Animator weaponAnimator;
+
+    public static EventHandler<WeaponAbilityCharge> OnWeaponAbilityCharge;
 
     public abstract void WeaponAttackStart();
     public abstract void WeaponAttackEnd();

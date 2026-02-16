@@ -12,7 +12,7 @@ public abstract class Health : MonoBehaviour
     public Action OnTakeDamage;
     public Action OnDeath;
 
-    public abstract void TakeDamage(int damageAmount);
+    public abstract void TakeDamage(int damageAmount, bool arenaWideDamage = false);
 
     protected void SetMaxHealth(int newHealth, bool healToFull = true)
     {
