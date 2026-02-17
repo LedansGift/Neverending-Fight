@@ -125,6 +125,11 @@ public class PlayerTome : PlayerWeapon
 
         playerStats.SetAttackBuff(damageBuff);
 
+        OnWeaponAbilityCharge?.Invoke(
+            this,
+            new WeaponAbilityCharge(TOME_WEAPON_INDEX, playerStats.GetTomeSpecialCooldown())
+        );
+
         yield return new WaitForSeconds(playerStats.GetTomeSpecialBuffDuration());
 
         playerStats.SetAttackBuff(0);
@@ -240,5 +245,10 @@ public class PlayerTome : PlayerWeapon
         {
             StopCoroutine(specialCoroutine);
         }
+    }
+
+    public override int GetWeaponIndex()
+    {
+        return TOME_WEAPON_INDEX;
     }
 }

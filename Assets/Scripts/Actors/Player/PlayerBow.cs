@@ -30,9 +30,19 @@ public class PlayerBow : PlayerWeapon
     [SerializeField]
     private GameObject bowProjectilePrefab;
 
+    [SerializeField]
+    private Renderer shootPointerRenderer;
+    private Material shootPointerShader;
+
+    [SerializeField]
+    private GameObject shootPointerPerfect;
+
     private void Start()
     {
+        shootPointerShader = shootPointerRenderer.material;
+        shootPointerShader.SetFloat("_YReveal", 0f);
         bowSpecialVisual.SetParent(null);
+        ChargeSpecial(999f);
 
         //Initialise bow projectiles in projectile manager
         ProjectileManager.InitialiseProjectileSet(bowProjectilePrefab, 5);
@@ -53,6 +63,8 @@ public class PlayerBow : PlayerWeapon
         canSwap = false;
 
         chargeAmount = 0f;
+
+        shootPointerPerfect.SetActive(true);
     }
 
     public override void WeaponAttackEnd()
@@ -72,6 +84,9 @@ public class PlayerBow : PlayerWeapon
         ShootArrow();
 
         cooldownCoroutine = StartCoroutine(ShootCooldown());
+
+        shootPointerPerfect.SetActive(false);
+        shootPointerShader.SetFloat("_YReveal", 0f);
     }
 
     public override void WeaponSpecial()
@@ -87,6 +102,11 @@ public class PlayerBow : PlayerWeapon
 
         specialCharge = 0f;
         specialReady = false;
+
+        OnWeaponAbilityCharge?.Invoke(
+            this,
+            new WeaponAbilityCharge(BOW_WEAPON_INDEX, specialCharge)
+        );
     }
 
     private IEnumerator SpecialShoot()
@@ -122,6 +142,7 @@ public class PlayerBow : PlayerWeapon
         if (chargeBow)
         {
             chargeAmount = Mathf.Min(chargeAmount + Time.deltaTime, playerStats.GetBowChargeTime());
+            shootPointerShader.SetFloat("_YReveal", chargeAmount);
         }
     }
 
@@ -175,7 +196,10 @@ public class PlayerBow : PlayerWeapon
 
         OnWeaponAbilityCharge?.Invoke(
             this,
-            new WeaponAbilityCharge(BOW_WEAPON_INDEX, specialCharge)
+            new WeaponAbilityCharge(
+                BOW_WEAPON_INDEX,
+                specialCharge / playerStats.GetBowSpecialChargeThreshold()
+            )
         );
     }
 
@@ -197,19 +221,18 @@ public class PlayerBow : PlayerWeapon
         {
             bowDamage = playerStats.GetPerfectBowDamage();
             projectileSpeed = playerStats.GetBowProjectileSpeed() * highSpeedModifier;
-            specialCharge += playerStats.GetBowSpecialPerfectCharge();
+
+            ChargeSpecial(playerStats.GetBowSpecialPerfectCharge());
         }
         else
         {
             bowDamage = Mathf.RoundToInt(chargeAmount * (float)playerStats.GetBowDamage());
             float speedModifier = Mathf.Lerp(lowSpeedModifier, 1f, chargeAmount);
             projectileSpeed = playerStats.GetBowProjectileSpeed() * speedModifier;
-            specialCharge += chargeAmount;
+            ChargeSpecial(chargeAmount);
         }
 
         //Debug.Log(projectileSpeed);
-
-        CheckSpecialStatus();
 
         ProjectileManager.SpawnProjectile(
             bowProjectilePrefab,
@@ -218,6 +241,13 @@ public class PlayerBow : PlayerWeapon
             bowDamage,
             projectileSpeed
         );
+    }
+
+    private void ChargeSpecial(float chargeAmount)
+    {
+        specialCharge += chargeAmount;
+
+        CheckSpecialStatus();
     }
 
     public override void StowWeapon()
@@ -230,5 +260,10 @@ public class PlayerBow : PlayerWeapon
         {
             StopCoroutine(cooldownCoroutine);
         }
+    }
+
+    public override int GetWeaponIndex()
+    {
+        return BOW_WEAPON_INDEX;
     }
 }

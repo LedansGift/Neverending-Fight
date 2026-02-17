@@ -66,6 +66,8 @@ public abstract class PlayerWeapon : MonoBehaviour
         return canSwap;
     }
 
+    public abstract int GetWeaponIndex();
+
     //have a subscribable action that invokes when a busying action is finished.
     //attacker can subscribe to it so that the weapon switch happens as soon as weapon is unbusied?
 }

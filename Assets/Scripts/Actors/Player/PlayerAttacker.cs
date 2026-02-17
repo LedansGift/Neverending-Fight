@@ -13,6 +13,8 @@ public class PlayerAttacker : MonoBehaviour
     [SerializeField]
     private PlayerWeapon[] playerWeapons;
 
+    public static EventHandler<int> OnSwitchWeapon;
+
     private void Awake()
     {
         ToggleCanAttack(false);
@@ -90,6 +92,8 @@ public class PlayerAttacker : MonoBehaviour
 
         activeWeapon = newWeapon;
         activeWeapon.ActivateWeapon();
+
+        OnSwitchWeapon?.Invoke(this, activeWeapon.GetWeaponIndex());
     }
 
     private void SelectWeapon(object sender, int newWeapon)

@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Action OnDash;
 
+    public static EventHandler<float> OnDashCooldownStart;
+
     private void Awake()
     {
         stats = GetComponent<PlayerStats>();
@@ -131,6 +133,8 @@ public class PlayerMovement : MonoBehaviour
         dashCoroutine = StartCoroutine(ApplyDash());
 
         dashAvailable = false;
+
+        OnDashCooldownStart?.Invoke(this, stats.GetDashRechargeTime());
     }
 
     private IEnumerator ApplyDash()

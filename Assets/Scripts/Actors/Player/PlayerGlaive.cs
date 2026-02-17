@@ -27,6 +27,11 @@ public class PlayerGlaive : PlayerWeapon
 
     public static EventHandler<bool> OnGlaiveSpecial;
 
+    private void Start()
+    {
+        ChargeSpecial(999f);
+    }
+
     public override void WeaponAttackStart()
     {
         if (perfectWindow && !earlyFollowup)
@@ -71,6 +76,11 @@ public class PlayerGlaive : PlayerWeapon
 
         specialCharge = 0f;
         specialReady = false;
+
+        OnWeaponAbilityCharge?.Invoke(
+            this,
+            new WeaponAbilityCharge(GLAIVE_WEAPON_INDEX, specialCharge)
+        );
     }
 
     private void FollowupSlash()
@@ -188,7 +198,10 @@ public class PlayerGlaive : PlayerWeapon
 
         OnWeaponAbilityCharge?.Invoke(
             this,
-            new WeaponAbilityCharge(GLAIVE_WEAPON_INDEX, specialCharge)
+            new WeaponAbilityCharge(
+                GLAIVE_WEAPON_INDEX,
+                specialCharge / playerStats.GetGlaiveSpecialChargeThreshold()
+            )
         );
     }
 
@@ -232,5 +245,10 @@ public class PlayerGlaive : PlayerWeapon
         }
 
         return healths.ToArray();
+    }
+
+    public override int GetWeaponIndex()
+    {
+        return GLAIVE_WEAPON_INDEX;
     }
 }
