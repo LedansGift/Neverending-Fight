@@ -35,6 +35,11 @@ public class CameraTarget : MonoBehaviour
     //Skilled Cookie on https://discussions.unity.com/t/making-the-player-face-the-direction-of-the-cursor/801532/3
     private void SetTargetPosition()
     {
+        if (input.MousePosition == Vector2.zero)
+        {
+            return;
+        }
+
         Vector3 point = Camera.main.ScreenToWorldPoint(
             new Vector3(input.MousePosition.x, input.MousePosition.y, 1)
         );

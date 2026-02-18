@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour, Controls.IPlayerActions
 {
-    private bool playerControlActive = false;
+    private bool playerControlActive = true;
     public static InputManager Instance { get; private set; }
     public static bool disableInputs = false;
     private Controls controls;
@@ -177,7 +177,7 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
         }
     }
 
-    private void ToggleDisableInputs(object sender, bool toggle)
+    public void ToggleDisableInputs(object sender, bool toggle)
     {
         if (!playerControlActive)
         {
