@@ -28,7 +28,12 @@ public class Projectile : MonoBehaviour
         DeactivateProjectile();
     }
 
-    public void ActivateProjectile(int damage, float speed)
+    public virtual void ActivateProjectile(
+        int damage,
+        float speed,
+        Transform target = null,
+        float homingStrength = 1f
+    )
     {
         projectileActive = true;
         lifetimeTimer = 0f;
@@ -45,7 +50,7 @@ public class Projectile : MonoBehaviour
         projectileVisual.SetActive(false);
     }
 
-    private void MoveProjectile()
+    protected virtual void MoveProjectile()
     {
         projectileRb.MovePosition(
             projectileRb.position + transform.forward * speed * Time.fixedDeltaTime

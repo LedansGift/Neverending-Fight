@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerHealth : Health
 {
+    private bool isDead = false;
     private bool invincible = false;
     private float invincibilityDuration = 1f;
 
@@ -54,7 +55,7 @@ public class PlayerHealth : Health
 
     public override void TakeDamage(int damage, bool arenaWideDamage = false)
     {
-        if (invincible && !arenaWideDamage)
+        if (isDead || (invincible && !arenaWideDamage))
         {
             return;
         }
@@ -68,6 +69,7 @@ public class PlayerHealth : Health
         if (health == 0)
         {
             //AudioManager.PlaySFX(playerDeathSFX, 1f, 0, transform.position);
+            isDead = true;
             Die();
         }
         else
@@ -75,6 +77,19 @@ public class PlayerHealth : Health
             //AudioManager.PlaySFX(playerDamageSFX, 1f, 0, transform.position);
             iFrameCoroutine = StartCoroutine(DamageInvincibility());
         }
+    }
+
+    public void RevivePlayer()
+    {
+        isDead = false;
+        HealToFull();
+
+        if (iFrameCoroutine != null)
+        {
+            StopCoroutine(iFrameCoroutine);
+        }
+
+        invincible = false;
     }
 
     private void SetJumpInvincibility(object sender, bool toggle)

@@ -22,20 +22,6 @@ public class AudioManager : MonoBehaviour
     private AudioSource[] localSfxPool;
     private static AudioSource[] sfxPool;
 
-    private enum PitchEnum
-    {
-        normal,
-        twentyFive,
-        fifty,
-        seventyFive,
-        onetwentyfive,
-        onefifty,
-        oneSeventyFive,
-        twohundred
-    }
-
-    private static Dictionary<PitchEnum, float> enumToPitch = new Dictionary<PitchEnum, float>();
-
     private void OnEnable()
     {
         OptionsUI.OnMasterVolumeUpdated += UpdateMasterVolume;
@@ -57,18 +43,6 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        if (enumToPitch.Count == 0)
-        {
-            enumToPitch.Add(PitchEnum.normal, 1f);
-            enumToPitch.Add(PitchEnum.twentyFive, 0.25f);
-            enumToPitch.Add(PitchEnum.fifty, 0.5f);
-            enumToPitch.Add(PitchEnum.seventyFive, 0.75f);
-            enumToPitch.Add(PitchEnum.onetwentyfive, 1.25f);
-            enumToPitch.Add(PitchEnum.onefifty, 1.5f);
-            enumToPitch.Add(PitchEnum.oneSeventyFive, 1.75f);
-            enumToPitch.Add(PitchEnum.twohundred, 2f);
-        }
-
         UpdateMasterVolume(this, PlayerOptions.GetMasterVolume());
         UpdateMusicVolume(this, PlayerOptions.GetMusicVolume());
         UpdateSFXVolume(this, PlayerOptions.GetSFXVolume());
@@ -103,7 +77,7 @@ public class AudioManager : MonoBehaviour
     public static AudioSource PlaySFX(
         AudioClip clip,
         float volume,
-        int pitchEnum,
+        float pitch,
         Vector3 originPosition,
         bool varyPitch = true
     )
@@ -120,12 +94,7 @@ public class AudioManager : MonoBehaviour
             pitchVariance = Random.Range(MIN_PITCH_VARIATION, MAX_PITCH_VARIATION);
         }
 
-        return PlaySFXClip(
-            clip,
-            originPosition,
-            volume * PlayerOptions.GetMasterVolume() * PlayerOptions.GetSFXVolume(),
-            enumToPitch[(PitchEnum)pitchEnum] * pitchVariance
-        );
+        return PlaySFXClip(clip, originPosition, volume, pitch * pitchVariance);
     }
 
     private void UpdateMasterVolume(object sender, float newVolume)

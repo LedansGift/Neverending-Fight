@@ -1,0 +1,13 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "Projectile Pattern", menuName = "Projectile Pattern", order = 2)]
+public class ProjectilePattern : ScriptableObject
+{
+    public int projectileNumber = 5;
+    public float initialSpawnDelay = 0.5f;
+    public float timeBetweenSpawns = 0.5f;
+    public float startingAngle = 0f;
+    public float angleChangePerSpawn = 0f;
+    public Vector3 startingPosition = Vector3.zero;
+    public Vector3 positionChangePerSpawn = Vector3.zero;
+}

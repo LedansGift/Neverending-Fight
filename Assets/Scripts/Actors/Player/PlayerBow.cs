@@ -45,7 +45,7 @@ public class PlayerBow : PlayerWeapon
         ChargeSpecial(999f);
 
         //Initialise bow projectiles in projectile manager
-        ProjectileManager.InitialiseProjectileSet(bowProjectilePrefab, 5);
+        ProjectileManager.Instance.InitialiseProjectileSet(bowProjectilePrefab, 5);
     }
 
     public override void WeaponAttackStart()
@@ -234,7 +234,7 @@ public class PlayerBow : PlayerWeapon
 
         //Debug.Log(projectileSpeed);
 
-        ProjectileManager.SpawnProjectile(
+        ProjectileManager.Instance.SpawnProjectile(
             bowProjectilePrefab,
             bowShootTransform.transform.position,
             bowShootTransform.forward,

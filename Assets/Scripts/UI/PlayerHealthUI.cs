@@ -8,19 +8,34 @@ public class PlayerHealthUI : MonoBehaviour
     [SerializeField]
     private Slider healthSlider;
 
+    [SerializeField]
+    private Image[] retryImages;
+
     private void OnEnable()
     {
         PlayerHealth.OnChangePlayerHealth += ChangeHealth;
+        PlayerManager.OnNewPlayerRetries += UpdateRetries;
     }
 
     private void OnDisable()
     {
         PlayerHealth.OnChangePlayerHealth -= ChangeHealth;
+        PlayerManager.OnNewPlayerRetries -= UpdateRetries;
     }
 
     private void ChangeHealth(object sender, int newHealth)
     {
         float health = (float)newHealth / playerMaxHealth;
         healthSlider.value = health;
+    }
+
+    private void UpdateRetries(object sender, int newRetries)
+    {
+        if ((newRetries < 0) || (newRetries >= 2))
+        {
+            return;
+        }
+
+        retryImages[newRetries].enabled = false;
     }
 }

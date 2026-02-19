@@ -1,24 +1,52 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileManager : MonoBehaviour
 {
-    private static Transform managerTransform;
-    private static int mapperIndex = 0;
-    private static List<int> projectileIndeces;
-    private static List<List<Projectile>> projectileSets;
-    private static Dictionary<GameObject, int> projectileMapper;
+    public static ProjectileManager Instance { get; private set; }
+
+    private int mapperIndex = 0;
+    private List<int> projectileIndeces;
+    private List<List<Projectile>> projectileSets;
+    private Dictionary<GameObject, int> projectileMapper;
 
     private void Awake()
     {
-        managerTransform = transform;
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         mapperIndex = 0;
         projectileIndeces = new List<int>();
         projectileSets = new List<List<Projectile>>();
         projectileMapper = new Dictionary<GameObject, int>();
     }
 
-    public static void InitialiseProjectileSet(GameObject newProjectilePrefab, int amount)
+    private bool CheckAreProjectilesInitialised(
+        GameObject projectileType,
+        out int projectileIndex,
+        out int projectileSetIndex
+    )
+    {
+        if (!projectileMapper.TryGetValue(projectileType, out int outProjectileSetIndex))
+        {
+            Debug.Log("Projectile type has not been instantiated");
+            projectileIndex = -1;
+            projectileSetIndex = outProjectileSetIndex;
+            return false;
+        }
+
+        projectileIndex = projectileIndeces[outProjectileSetIndex];
+        projectileSetIndex = outProjectileSetIndex;
+        return true;
+    }
+
+    public void InitialiseProjectileSet(GameObject newProjectilePrefab, int amount)
     {
         projectileMapper.Add(newProjectilePrefab, mapperIndex);
         mapperIndex++;
@@ -27,7 +55,7 @@ public class ProjectileManager : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
-            Projectile newProjectile = Instantiate(newProjectilePrefab, managerTransform)
+            Projectile newProjectile = Instantiate(newProjectilePrefab, transform)
                 .GetComponent<Projectile>();
 
             newProjectileSet.Add(newProjectile);
@@ -37,34 +65,141 @@ public class ProjectileManager : MonoBehaviour
         projectileIndeces.Add(0);
     }
 
-    public static void SpawnProjectile(
+    public void SpawnProjectile(
         GameObject projectileType,
         Vector3 spawnPosition,
         Vector3 flightDirection,
         int projectileDamage,
-        float projectileSpeed
+        float projectileSpeed,
+        Transform homingTarget = null,
+        float homingStrength = 0f
     )
     {
-        if (!projectileMapper.TryGetValue(projectileType, out int projectileSetIndex))
+        if (
+            !CheckAreProjectilesInitialised(
+                projectileType,
+                out int projectileIndex,
+                out int projectileSetIndex
+            )
+        )
         {
-            Debug.Log("Projectile type has not been instantiated");
             return;
         }
 
-        int projectileIndex = projectileIndeces[projectileSetIndex];
+        ResolveProjectileSpawn(
+            projectileSetIndex,
+            projectileIndex,
+            spawnPosition,
+            flightDirection,
+            projectileDamage,
+            projectileSpeed,
+            homingTarget,
+            homingStrength
+        );
+    }
 
+    private void ResolveProjectileSpawn(
+        int projectileSetIndex,
+        int projectileIndex,
+        Vector3 spawnPosition,
+        Vector3 flightDirection,
+        int projectileDamage,
+        float projectileSpeed,
+        Transform homingTarget,
+        float homingStrength
+    )
+    {
         Projectile projectile = projectileSets[projectileSetIndex][projectileIndex];
 
         projectile.transform.position = spawnPosition;
         projectile.transform.forward = flightDirection;
 
-        projectile.ActivateProjectile(projectileDamage, projectileSpeed);
+        projectile.ActivateProjectile(
+            projectileDamage,
+            projectileSpeed,
+            homingTarget,
+            homingStrength
+        );
 
         projectileIndeces[projectileSetIndex]++;
 
         if (projectileIndeces[projectileSetIndex] >= projectileSets[projectileSetIndex].Count)
         {
             projectileIndeces[projectileSetIndex] = 0;
+        }
+    }
+
+    public void SpawnProjectilePattern(
+        GameObject projectileType,
+        ProjectilePattern pattern,
+        Transform spawnTransform,
+        int projectileDamage,
+        float projectileSpeed,
+        Transform homingTarget = null,
+        float homingStrength = 0f
+    )
+    {
+        if (
+            !CheckAreProjectilesInitialised(
+                projectileType,
+                out int projectileIndex,
+                out int projectileSetIndex
+            )
+        )
+        {
+            return;
+        }
+
+        StartCoroutine(
+            ProjectilePatternSpawner(
+                pattern,
+                projectileSetIndex,
+                spawnTransform,
+                projectileDamage,
+                projectileSpeed,
+                homingTarget,
+                homingStrength
+            )
+        );
+    }
+
+    private IEnumerator ProjectilePatternSpawner(
+        ProjectilePattern pattern,
+        int projectileSet,
+        Transform spawnTransform,
+        int projectileDamage,
+        float projectileSpeed,
+        Transform homingTarget = null,
+        float homingStrength = 0f
+    )
+    {
+        yield return new WaitForSeconds(pattern.initialSpawnDelay);
+
+        Vector3 positionOffset = pattern.startingPosition;
+        float angleOffset = pattern.startingAngle;
+
+        for (int i = 0; i < pattern.projectileNumber; i++)
+        {
+            Vector3 flightDirection = spawnTransform.forward;
+            flightDirection = Quaternion.Euler(0f, angleOffset, 0f) * flightDirection;
+
+            int projectileIndex = projectileIndeces[projectileSet];
+
+            ResolveProjectileSpawn(
+                projectileSet,
+                projectileIndex,
+                spawnTransform.position + positionOffset,
+                flightDirection,
+                projectileDamage,
+                projectileSpeed,
+                homingTarget,
+                homingStrength
+            );
+
+            positionOffset += pattern.positionChangePerSpawn;
+            angleOffset += pattern.angleChangePerSpawn;
+
+            yield return new WaitForSeconds(pattern.timeBetweenSpawns);
         }
     }
 }

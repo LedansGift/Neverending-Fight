@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class TimeManager : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class TimeManager : MonoBehaviour
     private bool alteringTimescale = false;
     private float alterTimer = 0f;
     private float alterDuration = 1.5f;
+
+    [SerializeField]
+    private Volume timeStopVolume;
 
     public EventHandler<bool> OnAlteringTimescale;
 
@@ -18,6 +22,13 @@ public class TimeManager : MonoBehaviour
             return;
         }
         Instance = this;
+    }
+
+    private void Start()
+    {
+        Time.timeScale = 1f;
+        timeStopVolume.weight = 0f;
+        alteringTimescale = false;
     }
 
     private void Update()
@@ -38,7 +49,9 @@ public class TimeManager : MonoBehaviour
         alterTimer += Time.unscaledDeltaTime;
 
         float alterLerp = alterTimer / alterDuration;
-        Time.timeScale = Mathf.Clamp01(Mathf.Lerp(1f, 0f, alterLerp));
+        float lerpProgression = Mathf.Clamp01(Mathf.Lerp(1f, 0f, alterLerp));
+        Time.timeScale = lerpProgression;
+        timeStopVolume.weight = 1f - lerpProgression;
     }
 
     public void PauseGame()
@@ -64,6 +77,7 @@ public class TimeManager : MonoBehaviour
     public void GradualPause()
     {
         Time.timeScale = 1f;
+        alterTimer = 0f;
         alteringTimescale = true;
 
         OnAlteringTimescale?.Invoke(this, alteringTimescale);
@@ -72,6 +86,7 @@ public class TimeManager : MonoBehaviour
     public void RestartTimeAfterGradualPause()
     {
         Time.timeScale = 1f;
+        timeStopVolume.weight = 0f;
         alteringTimescale = false;
         OnAlteringTimescale?.Invoke(this, alteringTimescale);
     }
