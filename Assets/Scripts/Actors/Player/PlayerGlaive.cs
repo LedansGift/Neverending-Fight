@@ -247,6 +247,18 @@ public class PlayerGlaive : PlayerWeapon
         return healths.ToArray();
     }
 
+    public override void ResetWeapon()
+    {
+        perfectWindow = false;
+        earlyFollowup = false;
+        followupSlash = false;
+        specialReady = false;
+
+        ChargeSpecial(999f);
+        StowWeapon();
+        StopAllCoroutines();
+    }
+
     public override int GetWeaponIndex()
     {
         return GLAIVE_WEAPON_INDEX;

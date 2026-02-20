@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2752330772444210150, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_Height
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2752330772444210150, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3155734954612681449, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       propertyPath: m_Name
       value: Bow Projectile Variant
@@ -59,6 +67,10 @@ PrefabInstance:
     - target: {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       propertyPath: enemyProjectile
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: invincibleProjectile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

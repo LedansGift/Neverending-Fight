@@ -27,6 +27,16 @@ public class ProjectileManager : MonoBehaviour
         projectileMapper = new Dictionary<GameObject, int>();
     }
 
+    private void OnEnable()
+    {
+        RestartManager.OnResetPhase += DeactivateAllProjectiles;
+    }
+
+    private void OnDisable()
+    {
+        RestartManager.OnResetPhase -= DeactivateAllProjectiles;
+    }
+
     private bool CheckAreProjectilesInitialised(
         GameObject projectileType,
         out int projectileIndex,
@@ -69,8 +79,8 @@ public class ProjectileManager : MonoBehaviour
         GameObject projectileType,
         Vector3 spawnPosition,
         Vector3 flightDirection,
-        int projectileDamage,
-        float projectileSpeed,
+        int projectileDamage = -1,
+        float projectileSpeed = -1f,
         Transform homingTarget = null,
         float homingStrength = 0f
     )
@@ -133,8 +143,8 @@ public class ProjectileManager : MonoBehaviour
         GameObject projectileType,
         ProjectilePattern pattern,
         Transform spawnTransform,
-        int projectileDamage,
-        float projectileSpeed,
+        int projectileDamage = -1,
+        float projectileSpeed = -1f,
         Transform homingTarget = null,
         float homingStrength = 0f
     )
@@ -200,6 +210,19 @@ public class ProjectileManager : MonoBehaviour
             angleOffset += pattern.angleChangePerSpawn;
 
             yield return new WaitForSeconds(pattern.timeBetweenSpawns);
+        }
+    }
+
+    private void DeactivateAllProjectiles()
+    {
+        StopAllCoroutines();
+
+        foreach (List<Projectile> set in projectileSets)
+        {
+            foreach (Projectile projectile in set)
+            {
+                projectile.DeactivateProjectile();
+            }
         }
     }
 }

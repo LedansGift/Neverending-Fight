@@ -51,6 +51,7 @@ public class TimeManager : MonoBehaviour
         float alterLerp = alterTimer / alterDuration;
         float lerpProgression = Mathf.Clamp01(Mathf.Lerp(1f, 0f, alterLerp));
         Time.timeScale = lerpProgression;
+
         timeStopVolume.weight = 1f - lerpProgression;
     }
 

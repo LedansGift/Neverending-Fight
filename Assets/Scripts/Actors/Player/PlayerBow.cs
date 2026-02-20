@@ -262,6 +262,23 @@ public class PlayerBow : PlayerWeapon
         }
     }
 
+    public override void ResetWeapon()
+    {
+        chargeBow = false;
+        specialReady = false;
+        chargeAmount = 0f;
+
+        shootPointerPerfect.SetActive(false);
+
+        shootPointerShader.SetFloat("_YReveal", 0f);
+
+        ChargeSpecial(999f);
+
+        StopAllCoroutines();
+
+        StowWeapon();
+    }
+
     public override int GetWeaponIndex()
     {
         return BOW_WEAPON_INDEX;

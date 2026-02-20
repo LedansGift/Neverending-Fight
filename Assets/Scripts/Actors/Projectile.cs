@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -9,6 +10,9 @@ public class Projectile : MonoBehaviour
     private bool enemyProjectile = false;
 
     [SerializeField]
+    private bool invincibleProjectile = false;
+
+    [SerializeField]
     private int damage;
 
     [SerializeField]
@@ -17,15 +21,30 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float lifetime = 4f;
 
+    private Health projectileHealth;
+
     [SerializeField]
     private GameObject projectileVisual;
+
+    [SerializeField]
+    private Collider projectileCollider;
 
     [SerializeField]
     private Rigidbody projectileRb;
 
     private void Awake()
     {
+        projectileHealth = GetComponent<Health>();
+
+        projectileHealth.OnDeath += TryDestroyProjectile;
+
+        projectileHealth.SetInvincibility(invincibleProjectile);
         DeactivateProjectile();
+    }
+
+    private void OnDisable()
+    {
+        projectileHealth.OnDeath -= TryDestroyProjectile;
     }
 
     public virtual void ActivateProjectile(
@@ -38,22 +57,33 @@ public class Projectile : MonoBehaviour
         projectileActive = true;
         lifetimeTimer = 0f;
 
-        this.damage = damage;
-        this.speed = speed;
+        if (damage >= 0)
+        {
+            this.damage = damage;
+        }
+
+        if (speed >= 0)
+        {
+            this.speed = speed;
+        }
 
         projectileVisual.SetActive(true);
+        projectileCollider.enabled = true;
     }
 
-    private void DeactivateProjectile()
+    public void DeactivateProjectile()
     {
         projectileActive = false;
         projectileVisual.SetActive(false);
+        projectileCollider.enabled = false;
     }
 
     protected virtual void MoveProjectile()
     {
+        //Debug.Log(Time.fixedDeltaTime);
+
         projectileRb.MovePosition(
-            projectileRb.position + transform.forward * speed * Time.fixedDeltaTime
+            projectileRb.position + transform.forward * speed * Time.fixedDeltaTime * Time.timeScale
         );
     }
 
@@ -80,8 +110,18 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    private void TryDestroyProjectile()
+    {
+        DeactivateProjectile();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        if (!projectileActive)
+        {
+            return;
+        }
+
         if (other.TryGetComponent<Health>(out Health health))
         {
             if (enemyProjectile != health.GetIsPlayer())

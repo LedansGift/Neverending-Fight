@@ -17,7 +17,7 @@ public class Test : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
 
-        ProjectileManager.Instance.SpawnProjectilePattern(projectile, pattern, transform, 5, 10f);
+        ProjectileManager.Instance.SpawnProjectilePattern(projectile, pattern, transform);
         StartCoroutine(Shoot());
     }
 }

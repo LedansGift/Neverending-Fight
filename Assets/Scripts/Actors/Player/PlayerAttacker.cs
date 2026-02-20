@@ -17,8 +17,6 @@ public class PlayerAttacker : MonoBehaviour
 
     private void Awake()
     {
-        ToggleCanAttack(false);
-
         foreach (PlayerWeapon weapon in playerWeapons)
         {
             weapon.SetAttackLayerMask(attackLayerMask);
@@ -39,6 +37,8 @@ public class PlayerAttacker : MonoBehaviour
 
         InputManager.Instance.OnSwapWeaponEvent += SwapWeapon;
         InputManager.Instance.OnSelectWeaponEvent += SelectWeapon;
+
+        ToggleCanAttack(false);
     }
 
     private void OnDisable()
@@ -143,6 +143,17 @@ public class PlayerAttacker : MonoBehaviour
         ChangeWeapon(playerWeapons[newWeaponIndex]);
     }
 
+    public void ResetWeapons()
+    {
+        foreach (PlayerWeapon weapon in playerWeapons)
+        {
+            weapon.ResetWeapon();
+        }
+
+        activeWeapon = null;
+        OnSwitchWeapon?.Invoke(this, -1);
+    }
+
     public void SetMouseTarget(Transform targetTransform)
     {
         foreach (PlayerWeapon weapon in playerWeapons)
@@ -154,6 +165,10 @@ public class PlayerAttacker : MonoBehaviour
     public void ToggleCanAttack(bool toggle)
     {
         canAttack = toggle;
-        //Set glaive as weapon?
+
+        if (toggle)
+        {
+            //Set glaive as weapon?
+        }
     }
 }

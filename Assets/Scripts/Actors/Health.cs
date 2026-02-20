@@ -7,6 +7,9 @@ public abstract class Health : MonoBehaviour
     private bool isPlayer = false;
 
     [SerializeField]
+    protected bool isInvincible = false;
+
+    [SerializeField]
     private int maxHealth = 100;
     protected int health;
     public Action OnTakeDamage;
@@ -37,5 +40,10 @@ public abstract class Health : MonoBehaviour
     public bool GetIsPlayer()
     {
         return isPlayer;
+    }
+
+    public void SetInvincibility(bool invincible)
+    {
+        isInvincible = invincible;
     }
 }

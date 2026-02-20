@@ -6,8 +6,7 @@ using UnityEngine;
 public class PlayerHealth : Health
 {
     private bool isDead = false;
-    private bool invincible = false;
-    private float invincibilityDuration = 1f;
+    private float iFrameDuration = 1f;
 
     //private float impulseStrength = 1f;
 
@@ -24,14 +23,16 @@ public class PlayerHealth : Health
     [SerializeField]
     private CinemachineImpulseSource impulseSource;
 
+    public static EventHandler<int> OnInitialisePlayerHealth;
     public static EventHandler<int> OnChangePlayerHealth;
 
     private void Start()
     {
-        invincible = false;
+        SetInvincibility(false);
         playerStats = GetComponent<PlayerStats>();
         SetMaxHealth(playerStats.GetHealth());
-        OnChangePlayerHealth?.Invoke(this, health);
+
+        OnInitialisePlayerHealth?.Invoke(this, playerStats.GetHealth());
     }
 
     private void OnEnable()
@@ -46,16 +47,16 @@ public class PlayerHealth : Health
 
     private IEnumerator DamageInvincibility()
     {
-        invincible = true;
+        SetInvincibility(true);
 
-        yield return new WaitForSeconds(invincibilityDuration);
+        yield return new WaitForSeconds(iFrameDuration);
 
-        invincible = false;
+        SetInvincibility(false);
     }
 
     public override void TakeDamage(int damage, bool arenaWideDamage = false)
     {
-        if (isDead || (invincible && !arenaWideDamage))
+        if (isDead || (isInvincible && !arenaWideDamage))
         {
             return;
         }
@@ -84,12 +85,14 @@ public class PlayerHealth : Health
         isDead = false;
         HealToFull();
 
+        OnChangePlayerHealth?.Invoke(this, health);
+
         if (iFrameCoroutine != null)
         {
             StopCoroutine(iFrameCoroutine);
         }
 
-        invincible = false;
+        SetInvincibility(false);
     }
 
     private void SetJumpInvincibility(object sender, bool toggle)
@@ -99,6 +102,6 @@ public class PlayerHealth : Health
             StopCoroutine(iFrameCoroutine);
         }
 
-        invincible = toggle;
+        SetInvincibility(toggle);
     }
 }

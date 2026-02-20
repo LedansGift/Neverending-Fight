@@ -15,6 +15,8 @@ public struct WeaponAbilityCharge
 
 public abstract class PlayerWeapon : MonoBehaviour
 {
+    private bool weaponActive = false;
+
     protected bool isBusy = false;
     protected bool canSwap = true;
     protected LayerMask attackLayerMask;
@@ -43,17 +45,31 @@ public abstract class PlayerWeapon : MonoBehaviour
 
     public virtual void ActivateWeapon()
     {
+        if (weaponActive)
+        {
+            return;
+        }
+
         weaponAnimator.SetTrigger("draw");
         isBusy = false;
         canSwap = true;
         playerMovement.SetWeaponModifier();
+
+        weaponActive = true;
     }
 
     public virtual void StowWeapon()
     {
+        if (!weaponActive)
+        {
+            return;
+        }
+
         weaponAnimator.SetTrigger("stow");
         isBusy = true;
         canSwap = false;
+
+        weaponActive = false;
     }
 
     public void SetMouseTarget(Transform targetTransform)
@@ -65,6 +81,8 @@ public abstract class PlayerWeapon : MonoBehaviour
     {
         return canSwap;
     }
+
+    public abstract void ResetWeapon();
 
     public abstract int GetWeaponIndex();
 

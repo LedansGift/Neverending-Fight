@@ -100,6 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 401100569383145374}
   - component: {fileID: 5552972026594335306}
+  - component: {fileID: 4845943519755525537}
   - component: {fileID: 2752330772444210150}
   - component: {fileID: 486680396932667366}
   m_Layer: 7
@@ -142,7 +143,23 @@ MonoBehaviour:
   speed: 10
   lifetime: 10
   projectileVisual: {fileID: 2713035987089654362}
+  projectileCollider: {fileID: 2752330772444210150}
   projectileRb: {fileID: 486680396932667366}
+--- !u!114 &4845943519755525537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155734954612681449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43a443b371325f944b0f33574c5d8211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  isPlayer: 0
+  maxHealth: 1
+  isInvincible: 0
 --- !u!136 &2752330772444210150
 CapsuleCollider:
   m_ObjectHideFlags: 0

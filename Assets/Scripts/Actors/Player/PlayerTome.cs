@@ -247,6 +247,23 @@ public class PlayerTome : PlayerWeapon
         }
     }
 
+    public override void ResetWeapon()
+    {
+        CancelAttack();
+
+        inputHeld = false;
+        chargeTome = false;
+        specialAvailable = true;
+
+        playerStats.SetAttackBuff(0);
+        tomeAbsorber.ToggleAbsorber(false);
+
+        OnWeaponAbilityCharge?.Invoke(this, new WeaponAbilityCharge(TOME_WEAPON_INDEX, 0.01f));
+
+        StowWeapon();
+        StopAllCoroutines();
+    }
+
     public override int GetWeaponIndex()
     {
         return TOME_WEAPON_INDEX;

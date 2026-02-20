@@ -65,6 +65,7 @@ public class WeaponUIManager : MonoBehaviour
         if (activeWeaponUI >= 0)
         {
             weaponUIs[activeWeaponUI].SetUIActive(false);
+            activeWeaponUI = -1;
         }
 
         if ((weaponType < 0) || (weaponType > 2))

@@ -14,13 +14,21 @@ public class PlayerHealthUI : MonoBehaviour
     private void OnEnable()
     {
         PlayerHealth.OnChangePlayerHealth += ChangeHealth;
+        PlayerHealth.OnInitialisePlayerHealth += InitialiseHealth;
         PlayerManager.OnNewPlayerRetries += UpdateRetries;
     }
 
     private void OnDisable()
     {
         PlayerHealth.OnChangePlayerHealth -= ChangeHealth;
+        PlayerHealth.OnInitialisePlayerHealth -= InitialiseHealth;
         PlayerManager.OnNewPlayerRetries -= UpdateRetries;
+    }
+
+    private void InitialiseHealth(object sender, int maxHealth)
+    {
+        playerMaxHealth = maxHealth;
+        ChangeHealth(this, maxHealth);
     }
 
     private void ChangeHealth(object sender, int newHealth)

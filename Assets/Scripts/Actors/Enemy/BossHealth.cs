@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class EnemyHealth : Health
+public class BossHealth : Health
 {
     // [SerializeField]
     // private AudioClip enemyHitSFX;
@@ -8,9 +9,18 @@ public class EnemyHealth : Health
     // [SerializeField]
     // private AudioClip enemyDeathSFX;
 
+    public static EventHandler<int> OnInitialiseBossHealth;
+    public static EventHandler<int> OnChangeBossHealth;
+
     private void Start()
     {
         HealToFull();
+    }
+
+    public void InitialiseHealth(int bossHealth)
+    {
+        SetMaxHealth(bossHealth);
+        OnInitialiseBossHealth?.Invoke(this, health);
     }
 
     public override void TakeDamage(int damage, bool arenaWideDamage = false)
@@ -21,6 +31,8 @@ public class EnemyHealth : Health
         }
 
         health = Mathf.Max(0, health - damage);
+
+        OnChangeBossHealth?.Invoke(this, health);
 
         if (health == 0f)
         {

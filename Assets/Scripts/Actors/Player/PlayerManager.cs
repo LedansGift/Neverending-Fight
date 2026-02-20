@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerAttacker playerAttacker;
 
+    public static Action OnNoMoreRetries;
     public static EventHandler<int> OnNewPlayerRetries;
 
     private void Awake()
@@ -26,12 +27,14 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         BattleManager.OnPlayerToggle += TogglePlayer;
+        RestartManager.OnResetPhase += ResetPlayer;
         playerHealth.OnDeath += HandlePlayerDeath;
     }
 
     private void OnDisable()
     {
         BattleManager.OnPlayerToggle -= TogglePlayer;
+        RestartManager.OnResetPhase -= ResetPlayer;
         playerHealth.OnDeath -= HandlePlayerDeath;
     }
 
@@ -46,6 +49,7 @@ public class PlayerManager : MonoBehaviour
 
         playerMovement.ToggleCanMove(playerActive);
         playerAttacker.ToggleCanAttack(playerActive);
+        playerMovement.SetWeaponModifier();
     }
 
     public void SetMouseTarget(Transform targetTransform)
@@ -61,19 +65,18 @@ public class PlayerManager : MonoBehaviour
         if (playerRetries <= 0)
         {
             Debug.Log("GAME OVER");
+            OnNoMoreRetries?.Invoke();
             return;
         }
 
         playerRetries--;
         OnNewPlayerRetries?.Invoke(this, playerRetries);
+    }
 
+    private void ResetPlayer()
+    {
+        playerAttacker.ResetWeapons();
+        playerHealth.RevivePlayer();
         TogglePlayer(this, true);
-
-        // Else reset to beginning of phase (event invoke, below handled by various script)
-        //Gradual time stop
-        //Clock graphic rewinds
-        //Reset everything necessary
-        //Toggle Player on by battle manager
-        //Revive player by battle manager
     }
 }
