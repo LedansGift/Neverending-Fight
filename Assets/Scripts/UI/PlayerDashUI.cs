@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,7 @@ public class PlayerDashUI : MonoBehaviour
     private void Start()
     {
         playerTransform = PlayerIdentifier.PlayerTransform;
+        CinemachineCore.CameraUpdatedEvent.AddListener(OnCameraUpdated);
     }
 
     private void OnEnable()
@@ -32,6 +34,7 @@ public class PlayerDashUI : MonoBehaviour
 
     private void OnDisable()
     {
+        CinemachineCore.CameraUpdatedEvent.RemoveListener(OnCameraUpdated);
         PlayerMovement.OnDashCooldownStart -= ActivateDashCooldown;
     }
 
@@ -41,7 +44,6 @@ public class PlayerDashUI : MonoBehaviour
         {
             UpdateDashUI();
         }
-        SetUIPosition();
     }
 
     private void UpdateDashUI()
@@ -78,5 +80,10 @@ public class PlayerDashUI : MonoBehaviour
         dashCooldown = true;
 
         fader.ToggleFade(true);
+    }
+
+    private void OnCameraUpdated(CinemachineBrain arg0)
+    {
+        SetUIPosition();
     }
 }

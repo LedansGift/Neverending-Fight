@@ -9,7 +9,7 @@ public class PlayerHealthUI : MonoBehaviour
     private Slider healthSlider;
 
     [SerializeField]
-    private Image[] retryImages;
+    private GameObject[] retryImages;
 
     private void OnEnable()
     {
@@ -44,6 +44,6 @@ public class PlayerHealthUI : MonoBehaviour
             return;
         }
 
-        retryImages[newRetries].enabled = false;
+        retryImages[newRetries].SetActive(false);
     }
 }

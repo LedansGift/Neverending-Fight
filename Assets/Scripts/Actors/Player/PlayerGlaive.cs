@@ -23,6 +23,9 @@ public class PlayerGlaive : PlayerWeapon
     [SerializeField]
     private AnimationCurve jumpHeightCurve;
 
+    [SerializeField]
+    private GlaiveSlashFX glaiveSlashFX;
+
     private Coroutine slashCoroutine;
 
     public static EventHandler<bool> OnGlaiveSpecial;
@@ -50,6 +53,8 @@ public class PlayerGlaive : PlayerWeapon
         weaponAnimator.SetTrigger("attack");
 
         ChargeSpecial(slashCharge);
+
+        glaiveSlashFX.GlaiveSlash();
 
         slashCoroutine = StartCoroutine(GlaiveSlash());
     }
@@ -98,10 +103,12 @@ public class PlayerGlaive : PlayerWeapon
         if (followupSlash)
         {
             weaponAnimator.SetTrigger("follow");
+            glaiveSlashFX.GlaiveFollowSlash();
         }
         else
         {
             weaponAnimator.SetTrigger("attack");
+            glaiveSlashFX.GlaiveSlash();
         }
 
         slashCoroutine = StartCoroutine(GlaiveSlash());

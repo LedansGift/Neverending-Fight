@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class CameraTarget : MonoBehaviour
@@ -9,11 +10,12 @@ public class CameraTarget : MonoBehaviour
         input = InputManager.Instance;
 
         SetPlayerTarget();
+        CinemachineCore.CameraUpdatedEvent.AddListener(OnCameraUpdated);
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        SetTargetPosition();
+        CinemachineCore.CameraUpdatedEvent.RemoveListener(OnCameraUpdated);
     }
 
     private void SetPlayerTarget()
@@ -53,5 +55,10 @@ public class CameraTarget : MonoBehaviour
         );
 
         transform.position = cameraTargetPosition;
+    }
+
+    private void OnCameraUpdated(CinemachineBrain arg0)
+    {
+        SetTargetPosition();
     }
 }
