@@ -27,6 +27,9 @@ public class Projectile : MonoBehaviour
     private GameObject projectileVisual;
 
     [SerializeField]
+    private TrailRenderer trail;
+
+    [SerializeField]
     private Collider projectileCollider;
 
     [SerializeField]
@@ -69,6 +72,12 @@ public class Projectile : MonoBehaviour
 
         projectileVisual.SetActive(true);
         projectileCollider.enabled = true;
+
+        if (trail)
+        {
+            trail.Clear();
+            trail.emitting = true;
+        }
     }
 
     public void DeactivateProjectile()
@@ -76,6 +85,11 @@ public class Projectile : MonoBehaviour
         projectileActive = false;
         projectileVisual.SetActive(false);
         projectileCollider.enabled = false;
+
+        if (trail)
+        {
+            trail.emitting = false;
+        }
     }
 
     protected virtual void MoveProjectile()

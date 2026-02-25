@@ -24,6 +24,9 @@ public class PlayerGlaive : PlayerWeapon
     private AnimationCurve jumpHeightCurve;
 
     [SerializeField]
+    private GlaiveFlame glaiveFlame;
+
+    [SerializeField]
     private GlaiveSlashFX glaiveSlashFX;
 
     private Coroutine slashCoroutine;
@@ -252,6 +255,18 @@ public class PlayerGlaive : PlayerWeapon
         }
 
         return healths.ToArray();
+    }
+
+    public override void ActivateWeapon()
+    {
+        base.ActivateWeapon();
+        glaiveFlame.StartFlameChange(true);
+    }
+
+    public override void StowWeapon()
+    {
+        base.StowWeapon();
+        glaiveFlame.StartFlameChange(false);
     }
 
     public override void ResetWeapon()

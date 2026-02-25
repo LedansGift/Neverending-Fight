@@ -22,10 +22,10 @@ public class PlayerBow : PlayerWeapon
     private Coroutine cooldownCoroutine;
 
     [SerializeField]
-    private Transform bowShootTransform;
+    private BowShootFX shootFX;
 
     [SerializeField]
-    private Transform bowSpecialVisual;
+    private Transform bowShootTransform;
 
     [SerializeField]
     private GameObject bowProjectilePrefab;
@@ -41,7 +41,7 @@ public class PlayerBow : PlayerWeapon
     {
         shootPointerShader = shootPointerRenderer.material;
         shootPointerShader.SetFloat("_YReveal", 0f);
-        bowSpecialVisual.SetParent(null);
+
         ChargeSpecial(999f);
 
         //Initialise bow projectiles in projectile manager
@@ -65,6 +65,9 @@ public class PlayerBow : PlayerWeapon
         chargeAmount = 0f;
 
         shootPointerPerfect.SetActive(true);
+        shootFX.StartCharge(
+            playerStats.GetBowPerfectChargeTime() + (playerStats.GetBowPerfectChargeDuration() / 2f)
+        );
     }
 
     public override void WeaponAttackEnd()
@@ -87,6 +90,7 @@ public class PlayerBow : PlayerWeapon
 
         shootPointerPerfect.SetActive(false);
         shootPointerShader.SetFloat("_YReveal", 0f);
+        shootFX.FinishCharge();
     }
 
     public override void WeaponSpecial()
@@ -115,11 +119,9 @@ public class PlayerBow : PlayerWeapon
         canSwap = false;
         playerMovement.SetWeaponModifier(playerStats.GetBowSpecialMovementModifier());
 
-        bowSpecialVisual.gameObject.SetActive(true);
+        shootFX.StartSpecialVisual();
 
         yield return new WaitForSeconds(playerStats.GetBowSpecialShootTime());
-
-        bowSpecialVisual.gameObject.SetActive(false);
 
         Health[] hitTargets = GetSpecialShootTargets();
 
@@ -135,10 +137,6 @@ public class PlayerBow : PlayerWeapon
 
     private void Update()
     {
-        //Temp
-        bowSpecialVisual.position = mouseTarget.position;
-        bowSpecialVisual.rotation = transform.rotation;
-
         if (chargeBow)
         {
             chargeAmount = Mathf.Min(chargeAmount + Time.deltaTime, playerStats.GetBowChargeTime());
@@ -226,7 +224,10 @@ public class PlayerBow : PlayerWeapon
         }
         else
         {
-            bowDamage = Mathf.RoundToInt(chargeAmount * (float)playerStats.GetBowDamage());
+            bowDamage = Mathf.Max(
+                1,
+                Mathf.RoundToInt(chargeAmount * (float)playerStats.GetBowDamage())
+            );
             float speedModifier = Mathf.Lerp(lowSpeedModifier, 1f, chargeAmount);
             projectileSpeed = playerStats.GetBowProjectileSpeed() * speedModifier;
             ChargeSpecial(chargeAmount);
@@ -255,6 +256,8 @@ public class PlayerBow : PlayerWeapon
         base.StowWeapon();
 
         inputHeld = false;
+
+        shootFX.ResetFX();
 
         if (cooldownCoroutine != null)
         {
