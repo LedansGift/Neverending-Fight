@@ -10,6 +10,7 @@ public class PlayerGlaive : PlayerWeapon
     private bool followupSlash = false;
     private bool specialReady = false;
     private bool jumping = false;
+
     private float slashCharge = 0.5f;
     private float slashHitDelay = 0.15f;
     private float specialCharge = 0f;
@@ -222,6 +223,8 @@ public class PlayerGlaive : PlayerWeapon
         foreach (Health health in hitObjects)
         {
             health.TakeDamage(attackDamage);
+
+            glaiveSlashFX.SpawnHitParticles(health.transform.position);
         }
     }
 

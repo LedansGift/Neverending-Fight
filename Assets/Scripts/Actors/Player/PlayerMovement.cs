@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody playerRB;
 
+    [SerializeField]
+    private DashTrail dashTrail;
+
     public Action OnDash;
 
     public static EventHandler<float> OnDashCooldownStart;
@@ -131,6 +134,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         dashCoroutine = StartCoroutine(ApplyDash());
+
+        dashTrail.ActivateDashTrail(movementDirection);
 
         dashAvailable = false;
 

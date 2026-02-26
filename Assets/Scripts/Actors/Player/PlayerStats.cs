@@ -82,6 +82,12 @@ public class PlayerStats : MonoBehaviour
     private int bowSpecialDamage = 10;
 
     [SerializeField]
+    private int bowSpecialShotHitNumber = 4;
+
+    [SerializeField]
+    private float bowSpecialShootDelay = 0.5f;
+
+    [SerializeField]
     private float bowSpecialShootTime = 0.5f;
 
     [SerializeField]
@@ -251,6 +257,16 @@ public class PlayerStats : MonoBehaviour
     public int GetBowSpecialDamage()
     {
         return bowSpecialDamage + attackDamageBuff;
+    }
+
+    public int GetBowSpecialShotHitNumber()
+    {
+        return bowSpecialShotHitNumber;
+    }
+
+    public float GetBowSpecialShootDelay()
+    {
+        return bowSpecialShootDelay;
     }
 
     public float GetBowSpecialShootTime()

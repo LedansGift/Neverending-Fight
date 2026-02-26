@@ -120,14 +120,16 @@ public class BowShootFX : MonoBehaviour
 
         specialShotVisual.transform.localScale = new Vector3(
             curveLerp * 1.5f,
-            curveYLerp * 100f,
-            curveLerp * 1.5f
+            curveLerp * 1.5f,
+            curveYLerp * 100f
         );
         specialShotVolume.weight = curveLerp;
     }
 
     public void StartSpecialVisual()
     {
+        specialShotVisual.transform.SetParent(transform);
+        specialShotVisual.transform.localPosition = new Vector3(0f, 0f, 1.25f);
         specialShotVisual.transform.localScale = Vector3.zero;
         specialShotVisual.SetActive(true);
         specialParticle.Play();
@@ -135,6 +137,12 @@ public class BowShootFX : MonoBehaviour
         specialTimer = 0f;
 
         specialShot = true;
+    }
+
+    public void EndSpecialVisual()
+    {
+        specialShotVisual.transform.SetParent(null);
+        specialShotVisual.transform.rotation = transform.rotation;
     }
 
     public void StartCharge(float chargeDuration)

@@ -30,6 +30,9 @@ public class Projectile : MonoBehaviour
     private TrailRenderer trail;
 
     [SerializeField]
+    private ParticleSystem hitParticles;
+
+    [SerializeField]
     private Collider projectileCollider;
 
     [SerializeField]
@@ -42,6 +45,7 @@ public class Projectile : MonoBehaviour
         projectileHealth.OnDeath += TryDestroyProjectile;
 
         projectileHealth.SetInvincibility(invincibleProjectile);
+
         DeactivateProjectile();
     }
 
@@ -82,6 +86,15 @@ public class Projectile : MonoBehaviour
 
     public void DeactivateProjectile()
     {
+        if (projectileActive)
+        {
+            if (hitParticles)
+            {
+                hitParticles.gameObject.SetActive(false);
+                hitParticles.gameObject.SetActive(true);
+            }
+        }
+
         projectileActive = false;
         projectileVisual.SetActive(false);
         projectileCollider.enabled = false;
@@ -94,8 +107,6 @@ public class Projectile : MonoBehaviour
 
     protected virtual void MoveProjectile()
     {
-        //Debug.Log(Time.fixedDeltaTime);
-
         projectileRb.MovePosition(
             projectileRb.position + transform.forward * speed * Time.fixedDeltaTime * Time.timeScale
         );

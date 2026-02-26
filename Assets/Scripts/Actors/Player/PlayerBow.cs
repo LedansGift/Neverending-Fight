@@ -121,7 +121,9 @@ public class PlayerBow : PlayerWeapon
 
         shootFX.StartSpecialVisual();
 
-        yield return new WaitForSeconds(playerStats.GetBowSpecialShootTime());
+        yield return new WaitForSeconds(playerStats.GetBowSpecialShootDelay());
+
+        shootFX.EndSpecialVisual();
 
         Health[] hitTargets = GetSpecialShootTargets();
 
@@ -129,6 +131,8 @@ public class PlayerBow : PlayerWeapon
         {
             target.TakeDamage(playerStats.GetBowSpecialDamage());
         }
+
+        yield return new WaitForSeconds(playerStats.GetBowSpecialShootTime());
 
         playerMovement.SetWeaponModifier();
         isBusy = false;

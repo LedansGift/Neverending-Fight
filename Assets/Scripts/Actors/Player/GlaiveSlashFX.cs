@@ -4,6 +4,7 @@ public class GlaiveSlashFX : MonoBehaviour
 {
     private bool slashing = false;
     private bool followSlashing = false;
+    private int particleIndex = 0;
     private float slashTimer = 0f;
     private float followSlashTimer = 0f;
     private float slashSpeed = 1.5f;
@@ -12,13 +13,16 @@ public class GlaiveSlashFX : MonoBehaviour
     private GameObject slashFX;
 
     [SerializeField]
-    private ParticleSystem slashParticles;
+    private ParticleSystem slashParticleSpray;
 
     [SerializeField]
     private GameObject slashFollowFX;
 
     [SerializeField]
     private ParticleSystem slashFollowParticles;
+
+    [SerializeField]
+    private ParticleSystem[] slashParticles;
 
     [SerializeField]
     private AnimationCurve slashDissolve;
@@ -32,6 +36,12 @@ public class GlaiveSlashFX : MonoBehaviour
         slashFollowShader = slashFollowFX.GetComponent<MeshRenderer>().material;
         slashFX.SetActive(false);
         slashFollowFX.SetActive(false);
+
+        particleIndex = 0;
+        foreach (ParticleSystem particle in slashParticles)
+        {
+            particle.transform.SetParent(null);
+        }
     }
 
     private void Update()
@@ -78,7 +88,7 @@ public class GlaiveSlashFX : MonoBehaviour
         slashFX.SetActive(true);
         slashing = true;
         slashTimer = 0f;
-        slashParticles.Play();
+        slashParticleSpray.Play();
     }
 
     public void GlaiveFollowSlash()
@@ -88,5 +98,18 @@ public class GlaiveSlashFX : MonoBehaviour
         followSlashing = true;
         followSlashTimer = 0f;
         slashFollowParticles.Play();
+    }
+
+    public void SpawnHitParticles(Vector3 hitPosition)
+    {
+        slashParticles[particleIndex].transform.position = hitPosition;
+        slashParticles[particleIndex].gameObject.SetActive(false);
+        slashParticles[particleIndex].gameObject.SetActive(true);
+        particleIndex++;
+
+        if (particleIndex >= slashParticles.Length)
+        {
+            particleIndex = 0;
+        }
     }
 }
