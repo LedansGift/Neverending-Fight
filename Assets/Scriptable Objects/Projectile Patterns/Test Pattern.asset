@@ -16,6 +16,6 @@ MonoBehaviour:
   initialSpawnDelay: 0.25
   timeBetweenSpawns: 0.075
   startingAngle: -90
-  angleChangePerSpawn: 18
+  angleChangePerSpawn: 0
   startingPosition: {x: 0, y: 0, z: 0}
   positionChangePerSpawn: {x: 0, y: 0, z: 0}

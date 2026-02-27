@@ -17,10 +17,18 @@ public class PlayerTome : PlayerWeapon
     private Coroutine specialCoroutine;
 
     [SerializeField]
+    private ParticleSystem explosionFX;
+
+    [SerializeField]
     private TomeAbsorber tomeAbsorber;
 
     [SerializeField]
     private TomeAttackVisual attackVisual;
+
+    private void Start()
+    {
+        explosionFX.transform.SetParent(null);
+    }
 
     public override void WeaponAttackStart()
     {
@@ -38,8 +46,9 @@ public class PlayerTome : PlayerWeapon
 
         chargeAmount = 0f;
 
-        attackVisual.ActivateVisual(
+        attackVisual.ActivateZone(
             playerStats.GetTomeMaxRadius(),
+            0f,
             playerStats.GetTomeChargeTime()
         );
     }
@@ -58,7 +67,7 @@ public class PlayerTome : PlayerWeapon
         chargeTome = false;
         canSwap = true;
 
-        attackVisual.DeactivateVisual();
+        attackVisual.DeactivateZone(0.15f);
 
         StartExplosion();
 
@@ -101,7 +110,7 @@ public class PlayerTome : PlayerWeapon
     {
         canSwap = false;
         isBusy = true;
-        tomeAbsorber.ToggleAbsorber(true);
+        tomeAbsorber.ToggleAbsorber(true, playerStats.GetTomeSpecialMaxBuff());
 
         yield return new WaitForSeconds(playerStats.GetTomeSpecialCastDuration());
 
@@ -109,7 +118,9 @@ public class PlayerTome : PlayerWeapon
         isBusy = false;
         tomeAbsorber.ToggleAbsorber(false);
 
-        StartCoroutine(BuffCoroutine(tomeAbsorber.GetAbsorbedDamage()));
+        StartCoroutine(
+            BuffCoroutine(tomeAbsorber.GetAbsorbedDamage(playerStats.GetTomeSpecialBuffDuration()))
+        );
 
         if (inputHeld)
         {
@@ -121,9 +132,7 @@ public class PlayerTome : PlayerWeapon
     {
         specialAvailable = false;
 
-        int damageBuff = Mathf.Min(absorbedDamage, playerStats.GetTomeSpecialMaxBuff());
-
-        playerStats.SetAttackBuff(damageBuff);
+        playerStats.SetAttackBuff(absorbedDamage);
 
         OnWeaponAbilityCharge?.Invoke(
             this,
@@ -175,7 +184,15 @@ public class PlayerTome : PlayerWeapon
             Mathf.Lerp(0f, (float)playerStats.GetTomeMaxDamage(), chargeLerp)
         );
 
-        //Debug.Log("Damage dealt: " + damage);
+        explosionFX.transform.position = mouseTarget.position;
+        float explosionFXScale = explosionRange * 0.1f;
+        explosionFX.transform.localScale = new Vector3(
+            explosionFXScale,
+            explosionFXScale,
+            explosionFXScale
+        );
+        explosionFX.gameObject.SetActive(false);
+        explosionFX.gameObject.SetActive(true);
 
         foreach (Health health in hitObjects)
         {
@@ -214,7 +231,7 @@ public class PlayerTome : PlayerWeapon
         chargeTome = false;
         canSwap = true;
 
-        attackVisual.DeactivateVisual();
+        attackVisual.DeactivateZone(0.15f);
 
         playerMovement.SetWeaponModifier();
 

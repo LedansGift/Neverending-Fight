@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     private InputManager inputManager;
 
     [SerializeField]
+    private Transform rotateTransform;
+
+    [SerializeField]
     private Rigidbody playerRB;
 
     [SerializeField]
@@ -103,7 +106,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void RotateTowardsMouse()
     {
-        transform.LookAt(mouseTarget.position, Vector3.up);
+        Vector3 lookPosition = new Vector3(
+            mouseTarget.position.x,
+            rotateTransform.position.y,
+            mouseTarget.position.z
+        );
+
+        rotateTransform.LookAt(lookPosition, Vector3.up);
     }
 
     private void IncrementDashTimer()

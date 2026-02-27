@@ -1,4 +1,5 @@
 using Unity.Mathematics;
+using UnityEngine;
 
 public static class AdditionalMath
 {
@@ -11,5 +12,10 @@ public static class AdditionalMath
     {
         float remappedValue = C + (x - A) / (B - A) * (D - C);
         return remappedValue;
+    }
+
+    public static float EaseOutCubic(float lerp)
+    {
+        return 1f - Mathf.Pow(1f - lerp, 3);
     }
 }

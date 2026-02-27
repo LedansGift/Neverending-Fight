@@ -27,6 +27,15 @@ public class GlaiveSlashFX : MonoBehaviour
     [SerializeField]
     private AnimationCurve slashDissolve;
 
+    [SerializeField]
+    private DamageZone specialDamageZone;
+
+    [SerializeField]
+    private ParticleSystem specialJumpBurst;
+
+    [SerializeField]
+    private ParticleSystem specialLandBurst;
+
     private Material slashShader;
     private Material slashFollowShader;
 
@@ -80,6 +89,19 @@ public class GlaiveSlashFX : MonoBehaviour
 
             slashFollowShader.SetFloat("_Dissolve", slashDissolve.Evaluate(followSlashTimer));
         }
+    }
+
+    public void StartSpecialAttack(float zoneRadius, float zoneLifetime, float growDuration)
+    {
+        specialJumpBurst.gameObject.SetActive(false);
+        specialJumpBurst.gameObject.SetActive(true);
+        specialDamageZone.ActivateZone(zoneRadius, zoneLifetime, growDuration);
+    }
+
+    public void FinishSpecialAttack()
+    {
+        specialLandBurst.gameObject.SetActive(false);
+        specialLandBurst.gameObject.SetActive(true);
     }
 
     public void GlaiveSlash()

@@ -146,6 +146,12 @@ public class PlayerGlaive : PlayerWeapon
 
         OnGlaiveSpecial?.Invoke(this, true);
 
+        glaiveSlashFX.StartSpecialAttack(
+            playerStats.GetGlaiveSpecialDamageRange(),
+            playerStats.GetGlaiveSpecialJumpTime(),
+            1f
+        );
+
         yield return new WaitForSeconds(playerStats.GetGlaiveSpecialJumpTime());
 
         OnGlaiveSpecial?.Invoke(this, false);
@@ -157,6 +163,8 @@ public class PlayerGlaive : PlayerWeapon
         );
 
         playerMovement.SetWeaponModifier();
+
+        glaiveSlashFX.FinishSpecialAttack();
 
         HitEnemies(playerStats.GetGlaiveSpecialDamage(), playerStats.GetGlaiveSpecialDamageRange());
 
