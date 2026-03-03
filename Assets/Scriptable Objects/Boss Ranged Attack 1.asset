@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bdb1d63ab535e24a992127ec5ca3c7c, type: 3}
+  m_Name: Boss Ranged Attack 1
+  m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
+  projectile: {fileID: 5388639131738190698, guid: 3904e9399dbb6fc4c8690c77cf9d1a5e, type: 3}
+  pattern: {fileID: 11400000, guid: 05854d747b749f34084d6e7cf10ed88a, type: 2}

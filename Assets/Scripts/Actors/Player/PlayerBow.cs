@@ -237,15 +237,12 @@ public class PlayerBow : PlayerWeapon
             ChargeSpecial(chargeAmount);
         }
 
-        //Debug.Log(projectileSpeed);
-
-        ProjectileManager.Instance.SpawnProjectile(
+        Projectile bowProjectile = ProjectileManager.Instance.SpawnProjectile(
             bowProjectilePrefab,
             bowShootTransform.transform.position,
-            bowShootTransform.forward,
-            bowDamage,
-            projectileSpeed
+            bowShootTransform.forward
         );
+        bowProjectile.SetSpeedAndDamage(projectileSpeed, bowDamage);
     }
 
     private void ChargeSpecial(float chargeAmount)

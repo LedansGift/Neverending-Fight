@@ -54,25 +54,10 @@ public class Projectile : MonoBehaviour
         projectileHealth.OnDeath -= TryDestroyProjectile;
     }
 
-    public virtual void ActivateProjectile(
-        int damage,
-        float speed,
-        Transform target = null,
-        float homingStrength = 1f
-    )
+    public virtual void ActivateProjectile()
     {
         projectileActive = true;
         lifetimeTimer = 0f;
-
-        if (damage >= 0)
-        {
-            this.damage = damage;
-        }
-
-        if (speed >= 0)
-        {
-            this.speed = speed;
-        }
 
         projectileVisual.SetActive(true);
         projectileCollider.enabled = true;
@@ -103,6 +88,12 @@ public class Projectile : MonoBehaviour
         {
             trail.emitting = false;
         }
+    }
+
+    public void SetSpeedAndDamage(float speed, int damage)
+    {
+        this.speed = speed;
+        this.damage = damage;
     }
 
     protected virtual void MoveProjectile()

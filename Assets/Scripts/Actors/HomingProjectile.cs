@@ -2,20 +2,15 @@ using UnityEngine;
 
 public class HomingProjectile : Projectile
 {
+    [SerializeField]
     private float homingStrength = 1f;
     private Transform homingTarget;
 
-    public override void ActivateProjectile(
-        int damage,
-        float speed,
-        Transform target = null,
-        float homingStrength = 1f
-    )
+    public override void ActivateProjectile()
     {
-        base.ActivateProjectile(damage, speed, target);
+        base.ActivateProjectile();
 
-        homingTarget = target;
-        this.homingStrength = homingStrength;
+        homingTarget = PlayerIdentifier.PlayerTransform;
     }
 
     protected override void MoveProjectile()

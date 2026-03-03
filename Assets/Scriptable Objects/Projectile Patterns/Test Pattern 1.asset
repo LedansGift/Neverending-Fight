@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 000b95db25f0b474d9c0fae7d815c991, type: 3}
-  m_Name: Test Pattern
+  m_Name: Test Pattern 1
   m_EditorClassIdentifier: Assembly-CSharp::ProjectilePattern
-  projectileNumber: 10
-  initialSpawnDelay: 0
-  timeBetweenSpawns: 0
+  projectileNumber: 20
+  initialSpawnDelay: 0.25
+  timeBetweenSpawns: 0.075
   startingAngle: 0
-  angleChangePerSpawn: 36
+  angleChangePerSpawn: 18
   startingPosition: {x: 0, y: 0, z: 0}
   positionChangePerSpawn: {x: 0, y: 0, z: 0}
-  patternWaves: 3
-  timeBetweenWaves: 0.15
-  additionalWaves: []
+  patternWaves: 2
+  timeBetweenWaves: 0.5
+  additionalWaves:
+  - {fileID: 11400000, guid: cfa6b7e05921d534e8728d8cf50f4244, type: 2}
