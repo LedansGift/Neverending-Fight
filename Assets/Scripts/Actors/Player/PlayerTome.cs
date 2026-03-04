@@ -47,7 +47,7 @@ public class PlayerTome : PlayerWeapon
         chargeAmount = 0f;
 
         attackVisual.ActivateZone(
-            playerStats.GetTomeMaxRadius(),
+            new Vector2(playerStats.GetTomeMaxRadius(), playerStats.GetTomeMaxRadius()),
             0f,
             playerStats.GetTomeChargeTime()
         );

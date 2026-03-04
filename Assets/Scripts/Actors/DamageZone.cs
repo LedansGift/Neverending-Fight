@@ -2,18 +2,19 @@ using UnityEngine;
 
 public class DamageZone : MonoBehaviour
 {
-    private bool sizeChange = false;
-    private float zoneRadius = 1f;
-    private float zoneGrowTimer = 0f;
-    private float zoneGrowDuration = 0.35f;
-    private float lifeTime = 0f;
-    private float zoneTarget = 0f;
+    protected bool sizeChange = false;
+
+    protected Vector2 zoneSize = Vector2.one;
+    protected float zoneGrowTimer = 0f;
+    protected float zoneGrowDuration = 0.35f;
+    protected float lifeTime = 0f;
+    protected float zoneTarget = 0f;
 
     [SerializeField]
-    private bool easeGrowth = true;
+    protected bool easeGrowth = true;
 
     [SerializeField]
-    private Transform zoneVisual;
+    protected Transform zoneVisual;
 
     private void Awake()
     {
@@ -38,7 +39,7 @@ public class DamageZone : MonoBehaviour
         }
     }
 
-    private void ChangeSize()
+    protected virtual void ChangeSize()
     {
         zoneGrowTimer += Time.deltaTime;
 
@@ -61,16 +62,22 @@ public class DamageZone : MonoBehaviour
             growLerp = AdditionalMath.EaseOutCubic(growLerp);
         }
 
-        float zoneScale = Mathf.Lerp(1f - zoneTarget, zoneTarget, growLerp) * zoneRadius;
+        float zoneScaleX = Mathf.Lerp(1f - zoneTarget, zoneTarget, growLerp) * zoneSize.x;
+        float zoneScaleZ = Mathf.Lerp(1f - zoneTarget, zoneTarget, growLerp) * zoneSize.y;
 
-        zoneVisual.localScale = new Vector3(zoneScale, zoneVisual.localScale.y, zoneScale);
+        zoneVisual.localScale = new Vector3(zoneScaleX, zoneVisual.localScale.y, zoneScaleZ);
     }
 
-    public void ActivateZone(float targetRadius, float lifeTime = 0f, float growDuration = 0.35f)
+    public virtual void ActivateZone(
+        Vector2 targetRadius,
+        float lifeTime = 0f,
+        float growDuration = 0.35f
+    )
     {
         this.lifeTime = lifeTime;
         zoneGrowDuration = growDuration;
-        zoneRadius = targetRadius;
+        zoneSize = targetRadius;
+
         zoneTarget = 1f;
         zoneGrowTimer = 0f;
         zoneVisual.localScale = new Vector3(0f, zoneVisual.localScale.y, 0f);
@@ -84,7 +91,7 @@ public class DamageZone : MonoBehaviour
         zoneTarget = 0f;
         zoneGrowDuration = growDuration;
         zoneGrowTimer = 0f;
-        zoneRadius = zoneVisual.localScale.x;
+        zoneSize = new Vector2(zoneVisual.localScale.x, zoneVisual.localScale.z);
         sizeChange = true;
     }
 }

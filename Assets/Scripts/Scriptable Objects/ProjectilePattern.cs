@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectilePattern : ScriptableObject
 {
     public int projectileNumber = 5;
-    public float initialSpawnDelay = 0.5f;
+
     public float timeBetweenSpawns = 0.5f;
     public float startingAngle = 0f;
     public float angleChangePerSpawn = 0f;
@@ -14,4 +14,5 @@ public class ProjectilePattern : ScriptableObject
     public int patternWaves = 1;
     public float timeBetweenWaves = 0.25f;
     public List<ProjectilePattern> additionalWaves = new List<ProjectilePattern>();
+    public List<float> additionalWaveDelay = new List<float>();
 }

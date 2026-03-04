@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectilePattern
   projectileNumber: 20
   initialSpawnDelay: 0.25
+  patternEndDelay: 0.5
   timeBetweenSpawns: 0.075
   startingAngle: 0
   angleChangePerSpawn: 18
@@ -23,3 +24,5 @@ MonoBehaviour:
   timeBetweenWaves: 0.5
   additionalWaves:
   - {fileID: 11400000, guid: cfa6b7e05921d534e8728d8cf50f4244, type: 2}
+  additionalWaveDelay:
+  - 1

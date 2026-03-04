@@ -161,6 +161,8 @@ public class ProjectileManager : MonoBehaviour
     public void SpawnProjectilePattern(
         GameObject projectileType,
         ProjectilePattern pattern,
+        float patternStartDelay,
+        float patternEndDelay,
         Transform spawnTransform,
         Action OnPatternFinished = null
     )
@@ -177,18 +179,27 @@ public class ProjectileManager : MonoBehaviour
         }
 
         StartCoroutine(
-            ProjectilePatternSpawner(pattern, projectileSetIndex, spawnTransform, OnPatternFinished)
+            ProjectilePatternSpawner(
+                pattern,
+                patternStartDelay,
+                patternEndDelay,
+                projectileSetIndex,
+                spawnTransform,
+                OnPatternFinished
+            )
         );
     }
 
     private IEnumerator ProjectilePatternSpawner(
         ProjectilePattern pattern,
+        float patternStartDelay,
+        float patternEndDelay,
         int projectileSet,
         Transform spawnTransform,
         Action OnPatternFinished
     )
     {
-        yield return new WaitForSeconds(pattern.initialSpawnDelay);
+        yield return new WaitForSeconds(patternStartDelay);
 
         ProjectilePattern activePattern = pattern;
 
@@ -217,15 +228,24 @@ public class ProjectileManager : MonoBehaviour
                 yield return new WaitForSeconds(activePattern.timeBetweenSpawns);
             }
 
+            float waveDelay = pattern.timeBetweenWaves;
+
             if (pattern.additionalWaves.Count > 0)
             {
-                activePattern = pattern.additionalWaves[
-                    (int)AdditionalMath.Modulus(j, pattern.additionalWaves.Count)
-                ];
+                int waveIndex = (int)AdditionalMath.Modulus(j, pattern.additionalWaves.Count);
+
+                activePattern = pattern.additionalWaves[waveIndex];
+
+                if (pattern.additionalWaveDelay.Count > waveIndex)
+                {
+                    waveDelay = pattern.additionalWaveDelay[waveIndex];
+                }
             }
 
-            yield return new WaitForSeconds(pattern.timeBetweenWaves);
+            yield return new WaitForSeconds(waveDelay);
         }
+
+        yield return new WaitForSeconds(patternEndDelay);
 
         if (OnPatternFinished != null)
         {

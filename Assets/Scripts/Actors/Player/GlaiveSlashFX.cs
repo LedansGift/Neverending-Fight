@@ -95,7 +95,11 @@ public class GlaiveSlashFX : MonoBehaviour
     {
         specialJumpBurst.gameObject.SetActive(false);
         specialJumpBurst.gameObject.SetActive(true);
-        specialDamageZone.ActivateZone(zoneRadius, zoneLifetime, growDuration);
+        specialDamageZone.ActivateZone(
+            new Vector2(zoneRadius, zoneRadius),
+            zoneLifetime,
+            growDuration
+        );
     }
 
     public void FinishSpecialAttack()
