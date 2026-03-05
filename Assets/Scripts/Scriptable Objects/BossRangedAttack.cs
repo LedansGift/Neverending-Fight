@@ -20,10 +20,11 @@ public class BossRangedAttack : BossAttackNode
     [SerializeField]
     private ProjectilePattern pattern;
 
-    [SerializeField]
-    private string animationTrigger;
-
-    public override void PerformAttack(Transform attackTransform, Action OnAttackFinished)
+    public override void PerformAttack(
+        BossAttackManager attacker,
+        Action OnAttackFinished,
+        float damageMultiplier = 1f
+    )
     {
         CheckAvailableProjectiles();
 
@@ -32,10 +33,15 @@ public class BossRangedAttack : BossAttackNode
             pattern,
             patternStartDelay,
             patternEndDelay,
-            attackTransform,
-            ProjectilePatternFinished
+            attacker.transform,
+            FinishProjectilePattern
         );
         this.OnAttackFinished = OnAttackFinished;
+    }
+
+    private void FinishProjectilePattern()
+    {
+        FinishAttack(this, false);
     }
 
     private void CheckAvailableProjectiles()
@@ -52,15 +58,5 @@ public class BossRangedAttack : BossAttackNode
                 pattern.projectileNumber * pattern.patternWaves
             );
         }
-    }
-
-    private void ProjectilePatternFinished()
-    {
-        FinishAttack();
-    }
-
-    public int GetAnimationTrigger()
-    {
-        return Animator.StringToHash(animationTrigger);
     }
 }

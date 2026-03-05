@@ -16,6 +16,9 @@ public class DamageZone : MonoBehaviour
     [SerializeField]
     protected Transform zoneVisual;
 
+    //Include the default material that it uses when being activated
+    //Allow input of a material that it changes to when an attack happens
+
     private void Awake()
     {
         zoneVisual.gameObject.SetActive(false);

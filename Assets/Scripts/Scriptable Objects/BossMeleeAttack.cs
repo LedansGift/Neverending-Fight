@@ -1,10 +1,10 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 [Serializable]
 public struct MeleeAttack
 {
+    public int attackDamage;
     public DamageZoneType damageZoneType;
     public Vector2 damageZoneArea;
     public float zoneWarningTime;
@@ -20,16 +20,28 @@ public class BossMeleeAttack : BossAttackNode
     [SerializeField]
     private MeleeAttack[] attacks;
 
-    [SerializeField]
-    private string animationTrigger;
-
-    public override void PerformAttack(Transform attackTransform, Action OnAttackFinished)
+    public override void PerformAttack(
+        BossAttackManager attacker,
+        Action OnAttackFinished,
+        float damageMultiplier = 1f
+    )
     {
         this.OnAttackFinished = OnAttackFinished;
 
-        MeleeAttackManager.Instance.StartAttackPattern(attacks, attackTransform, 1, FinishAttack);
+        BossMeleeAttacker meleeAttacker = attacker.GetBossMeleeAttacker();
+        meleeAttacker.PerformMeleeAttacks(attacks, damageMultiplier, FinishAttack);
     }
 
-    //Both this and Ranged attack need to have variable damage based on how many times its been failed
-    //This melee attack needs to be performed by the BossAttacker to account for hit layer mask, player health, etc
+    public override void FinishAttack(object sender, bool attackFailed)
+    {
+        // tell attack manager that a this attack was failed
+        OnAttackFailCheck?.Invoke(this, attackFailed);
+
+        base.FinishAttack(sender, attackFailed);
+    }
+
+    public MeleeAttack[] GetAttacks()
+    {
+        return attacks;
+    }
 }

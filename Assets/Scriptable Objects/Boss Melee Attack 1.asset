@@ -10,16 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbfc2a9137d3b404f9ba2daf00c56a77, type: 3}
-  m_Name: Boss Melee Attack
+  m_Name: Boss Melee Attack 1
   m_EditorClassIdentifier: Assembly-CSharp::BossMeleeAttack
   animationTrigger: 
-  empoweredAttack: {fileID: 11400000, guid: 9419a9153346899488160e95f6bb141b, type: 2}
+  empoweredAttack: {fileID: 0}
   attacks:
   - attackDamage: 10
     damageZoneType: 0
-    damageZoneArea: {x: 10, y: 0.25}
+    damageZoneArea: {x: 10, y: 0.15}
     zoneWarningTime: 3
     attackPosition: {x: 0, y: 0, z: 0}
     attackYRotation: 0
+    relativePosition: 1
+    delayToNextAttack: 0
+  - attackDamage: 10
+    damageZoneType: 0
+    damageZoneArea: {x: 10, y: 0.15}
+    zoneWarningTime: 3
+    attackPosition: {x: 0, y: 0, z: 0}
+    attackYRotation: -135
+    relativePosition: 1
+    delayToNextAttack: 0
+  - attackDamage: 10
+    damageZoneType: 0
+    damageZoneArea: {x: 10, y: 0.15}
+    zoneWarningTime: 3
+    attackPosition: {x: 0, y: 0, z: 0}
+    attackYRotation: 135
     relativePosition: 1
     delayToNextAttack: 2
