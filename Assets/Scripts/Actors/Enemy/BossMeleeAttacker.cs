@@ -1,14 +1,24 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossMeleeAttacker : MonoBehaviour
 {
-    private bool currentAttackFail = false;
-    private EventHandler<bool> onAttacksFinished;
+    private List<bool> currentAttackFails = new List<bool>();
 
     [SerializeField]
     private LayerMask attackLayerMask;
+
+    private void OnEnable()
+    {
+        RestartManager.OnResetPhase += ResetAttacker;
+    }
+
+    private void OnDisable()
+    {
+        RestartManager.OnResetPhase -= ResetAttacker;
+    }
 
     public void PerformMeleeAttacks(
         MeleeAttack[] meleeAttacks,
@@ -18,27 +28,39 @@ public class BossMeleeAttacker : MonoBehaviour
     {
         AttackTelegraphManager.Instance.StartAttackPattern(transform, meleeAttacks);
 
-        currentAttackFail = false;
-        this.onAttacksFinished = onAttacksFinished;
-
+        EventHandler<bool> finalAttackEvent = null;
+        currentAttackFails.Add(false);
+        int attackFailIndex = currentAttackFails.Count - 1;
         bool finalAttack = false;
 
         for (int i = 0; i < meleeAttacks.Length; i++)
         {
             if (i >= (meleeAttacks.Length - 1))
             {
+                finalAttackEvent = onAttacksFinished;
                 finalAttack = true;
             }
 
-            StartCoroutine(SetupMeleeAttack(meleeAttacks, i, damageMultiplier, finalAttack));
+            StartCoroutine(
+                SetupMeleeAttack(
+                    meleeAttacks,
+                    i,
+                    attackFailIndex,
+                    damageMultiplier,
+                    finalAttack,
+                    finalAttackEvent
+                )
+            );
         }
     }
 
     private IEnumerator SetupMeleeAttack(
         MeleeAttack[] attacks,
         int attackIndex,
+        int attackFailsIndex,
         float damageMult,
-        bool finalAttack
+        bool finalAttack,
+        EventHandler<bool> onAttacksFinished
     )
     {
         MeleeAttack attack = attacks[attackIndex];
@@ -67,23 +89,23 @@ public class BossMeleeAttacker : MonoBehaviour
             Debug.Log("Unknown Damage Zone");
         }
 
-        if (!currentAttackFail)
+        if (!currentAttackFails[attackFailsIndex])
         {
-            currentAttackFail = attackFail;
+            currentAttackFails[attackFailsIndex] = attackFail;
         }
 
         if (finalAttack)
         {
             yield return new WaitForSeconds(attack.delayToNextAttack);
-            FinishAttacks();
+            FinishAttacks(currentAttackFails[attackFailsIndex], onAttacksFinished);
         }
     }
 
-    private void FinishAttacks()
+    private void FinishAttacks(bool attackFail, EventHandler<bool> onAttacksFinished)
     {
         if (onAttacksFinished != null)
         {
-            onAttacksFinished(this, currentAttackFail);
+            onAttacksFinished(this, attackFail);
         }
     }
 
@@ -174,5 +196,11 @@ public class BossMeleeAttacker : MonoBehaviour
         }
 
         return targetHit;
+    }
+
+    private void ResetAttacker()
+    {
+        StopAllCoroutines();
+        currentAttackFails = new List<bool>();
     }
 }

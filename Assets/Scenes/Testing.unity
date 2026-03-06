@@ -182,7 +182,7 @@ MonoBehaviour:
   bossTransform: {fileID: 509494495}
   bossAttacker: {fileID: 509494501}
   bossAttackPattern:
-  - {fileID: 11400000, guid: e1369db2900708b4784f6ab7eae34982, type: 2}
+  - {fileID: 11400000, guid: a27c665dffbc6d040912d778a6c43640, type: 2}
   - {fileID: 11400000, guid: bef629aa79adf6840af5d77f71728db8, type: 2}
 --- !u!1 &33036023
 GameObject:
@@ -13896,7 +13896,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &509494499
 MonoBehaviour:
@@ -13925,6 +13925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6535d986c4937408dfbe5eb3f65531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossMover
+  bossRB: {fileID: 509494498}
 --- !u!114 &509494501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13938,6 +13939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossMeleeAttacker
   meleeAttacker: {fileID: 509494502}
+  mover: {fileID: 509494500}
 --- !u!114 &509494502
 MonoBehaviour:
   m_ObjectHideFlags: 0

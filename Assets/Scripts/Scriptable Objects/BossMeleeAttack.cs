@@ -32,6 +32,16 @@ public class BossMeleeAttack : BossAttackNode
         meleeAttacker.PerformMeleeAttacks(attacks, damageMultiplier, FinishAttack);
     }
 
+    public void PerformAttack(
+        BossAttackManager attacker,
+        EventHandler<bool> OnAttackFinished,
+        float damageMultiplier = 1f
+    )
+    {
+        BossMeleeAttacker meleeAttacker = attacker.GetBossMeleeAttacker();
+        meleeAttacker.PerformMeleeAttacks(attacks, damageMultiplier, OnAttackFinished);
+    }
+
     public override void FinishAttack(object sender, bool attackFailed)
     {
         // tell attack manager that a this attack was failed

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ public class BossAttackManager : MonoBehaviour
 
     [SerializeField]
     private BossMeleeAttacker meleeAttacker;
+
+    [SerializeField]
+    private BossMover mover;
 
     private void OnEnable()
     {
@@ -102,6 +106,22 @@ public class BossAttackManager : MonoBehaviour
     public BossMeleeAttacker GetBossMeleeAttacker()
     {
         return meleeAttacker;
+    }
+
+    public BossMover GetBossMover()
+    {
+        return mover;
+    }
+
+    public void StartBossIdle(float idleTime, Action onIdleFinished)
+    {
+        StartCoroutine(IdleBoss(idleTime, onIdleFinished));
+    }
+
+    private IEnumerator IdleBoss(float idleTime, Action onIdleFinished)
+    {
+        yield return new WaitForSeconds(idleTime);
+        onIdleFinished();
     }
 
     private void CheckAttackFailure(object sender, bool attackFailed)

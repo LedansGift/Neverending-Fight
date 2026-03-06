@@ -19,7 +19,10 @@ public abstract class BossAttackNode : ScriptableObject
 
     public virtual void FinishAttack(object sender, bool attackFailed)
     {
-        OnAttackFinished();
+        if (OnAttackFinished != null)
+        {
+            OnAttackFinished();
+        }
     }
 
     public int GetAnimationTrigger()
