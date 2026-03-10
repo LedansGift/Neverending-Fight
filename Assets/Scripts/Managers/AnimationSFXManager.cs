@@ -8,6 +8,6 @@ public class AnimationSFXManager : MonoBehaviour
     public void PlaySFX(SFXObject sfx)
     {
         Vector3 outputPosition = transform.position + new Vector3(0f, audioOutputHeight, 0f);
-        AudioManager.PlaySFX(sfx.sfxClip, sfx.volume, sfx.pitch, outputPosition);
+        AudioManager.PlaySFX(sfx, outputPosition);
     }
 }

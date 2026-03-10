@@ -75,9 +75,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public static AudioSource PlaySFX(
-        AudioClip clip,
-        float volume,
-        float pitch,
+        SFXObject sfxObj,
         Vector3 originPosition,
         bool varyPitch = true
     )
@@ -94,7 +92,12 @@ public class AudioManager : MonoBehaviour
             pitchVariance = Random.Range(MIN_PITCH_VARIATION, MAX_PITCH_VARIATION);
         }
 
-        return PlaySFXClip(clip, originPosition, volume, pitch * pitchVariance);
+        return PlaySFXClip(
+            sfxObj.sfxClip,
+            originPosition,
+            sfxObj.volume,
+            sfxObj.pitch * pitchVariance
+        );
     }
 
     private void UpdateMasterVolume(object sender, float newVolume)
