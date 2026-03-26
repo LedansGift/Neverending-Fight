@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class DamageZoneCircle : DamageZone
 {
@@ -12,7 +13,7 @@ public class DamageZoneCircle : DamageZone
     private Renderer borderRenderer;
 
     [SerializeField]
-    private Renderer innerRenderer;
+    private DecalProjector innerRenderer;
 
     protected override void ChangeSize()
     {
@@ -40,6 +41,7 @@ public class DamageZoneCircle : DamageZone
         float zoneScale = Mathf.Lerp(1f - zoneTarget, zoneTarget, growLerp) * zoneSize.x;
 
         zoneVisual.localScale = new Vector3(zoneScale, zoneVisual.localScale.y, zoneScale);
+        decalProjector.size = new Vector3(zoneScale * 2f, zoneScale * 2f, zoneVisual.localScale.y);
     }
 
     private void SetupArc(float arc)
@@ -57,8 +59,8 @@ public class DamageZoneCircle : DamageZone
 
         float innerBorderRotation = Mathf.Lerp(0f, 180f, arc);
 
-        innerBorder1.eulerAngles = new Vector3(0f, innerBorderRotation, 0f);
-        innerBorder2.eulerAngles = new Vector3(0f, -innerBorderRotation, 0f);
+        innerBorder1.localEulerAngles = new Vector3(0f, innerBorderRotation, 0f);
+        innerBorder2.localEulerAngles = new Vector3(0f, -innerBorderRotation, 0f);
 
         innerBorder1.gameObject.SetActive(true);
         innerBorder2.gameObject.SetActive(true);

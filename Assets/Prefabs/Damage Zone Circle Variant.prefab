@@ -304,6 +304,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1345343291316146497, guid: cc5ad2b44a9f12a4f9549a52f66db9ae, type: 3}
+    - target: {fileID: 5885099170882046206, guid: 8fb91a95813b2ad46b606c06d6be9353, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: c12712782f5add64bb6e32c599587fec, type: 2}
     m_RemovedComponents:
     - {fileID: 9154107211175936414, guid: 8fb91a95813b2ad46b606c06d6be9353, type: 3}
     m_RemovedGameObjects: []
@@ -319,11 +323,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3110443272812972757}
   m_SourcePrefab: {fileID: 100100000, guid: 8fb91a95813b2ad46b606c06d6be9353, type: 3}
---- !u!23 &2554648829053607805 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2656688868491561410, guid: 8fb91a95813b2ad46b606c06d6be9353, type: 3}
-  m_PrefabInstance: {fileID: 553269715891852991}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3646794056469929200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3833012155835370063, guid: 8fb91a95813b2ad46b606c06d6be9353, type: 3}
@@ -343,15 +342,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageZoneCircle
   easeGrowth: 1
   zoneVisual: {fileID: 9045044246221436772}
+  decalProjector: {fileID: 6197385624776465985}
   innerBorder1: {fileID: 3476826517463430742}
   innerBorder2: {fileID: 2942776913874454116}
   borderRenderer: {fileID: 5137890190178000521}
-  innerRenderer: {fileID: 2554648829053607805}
+  innerRenderer: {fileID: 6197385624776465985}
 --- !u!23 &5137890190178000521 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4674991534539606070, guid: 8fb91a95813b2ad46b606c06d6be9353, type: 3}
   m_PrefabInstance: {fileID: 553269715891852991}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6197385624776465985 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5885099170882046206, guid: 8fb91a95813b2ad46b606c06d6be9353, type: 3}
+  m_PrefabInstance: {fileID: 553269715891852991}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
 --- !u!4 &9045044246221436772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8803385196613149147, guid: 8fb91a95813b2ad46b606c06d6be9353, type: 3}

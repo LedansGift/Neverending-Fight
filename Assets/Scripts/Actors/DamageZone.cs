@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class DamageZone : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class DamageZone : MonoBehaviour
 
     [SerializeField]
     protected Transform zoneVisual;
+
+    [SerializeField]
+    protected DecalProjector decalProjector;
 
     //Include the default material that it uses when being activated
     //Allow input of a material that it changes to when an attack happens
@@ -69,6 +73,11 @@ public class DamageZone : MonoBehaviour
         float zoneScaleZ = Mathf.Lerp(1f - zoneTarget, zoneTarget, growLerp) * zoneSize.y;
 
         zoneVisual.localScale = new Vector3(zoneScaleX, zoneVisual.localScale.y, zoneScaleZ);
+        decalProjector.size = new Vector3(
+            zoneScaleX * 2f,
+            zoneScaleZ * 2f,
+            zoneVisual.localScale.y
+        );
     }
 
     public virtual void ActivateZone(
