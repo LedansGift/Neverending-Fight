@@ -54853,6 +54853,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.DecalProjector
+--- !u!4 &1781365716 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3090652956009000080, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+  m_PrefabInstance: {fileID: 1943653976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1782369424
 GameObject:
   m_ObjectHideFlags: 0
@@ -56951,11 +56956,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
   m_PrefabInstance: {fileID: 1943653976}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1943653978 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2835517998932725731, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
-  m_PrefabInstance: {fileID: 1943653976}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1943653979 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7513051557798208631, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
@@ -56974,7 +56974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TomeAttackVisual
   easeGrowth: 1
-  zoneVisual: {fileID: 1943653978}
+  zoneVisual: {fileID: 1781365716}
   decalProjector: {fileID: 1781365714}
 --- !u!1 &1951339716
 GameObject:

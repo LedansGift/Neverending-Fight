@@ -1,20 +1,7 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class DamageZoneCircle : DamageZone
 {
-    [SerializeField]
-    private Transform innerBorder1;
-
-    [SerializeField]
-    private Transform innerBorder2;
-
-    [SerializeField]
-    private Renderer borderRenderer;
-
-    [SerializeField]
-    private DecalProjector innerRenderer;
-
     protected override void ChangeSize()
     {
         zoneGrowTimer += Time.deltaTime;
@@ -46,30 +33,13 @@ public class DamageZoneCircle : DamageZone
 
     private void SetupArc(float arc)
     {
-        borderRenderer.material.SetFloat("_Border_Arc", arc);
-        innerRenderer.material.SetFloat("_Border_Arc", arc);
-
-        if (arc >= 1f)
-        {
-            innerBorder1.gameObject.SetActive(false);
-            innerBorder2.gameObject.SetActive(false);
-
-            return;
-        }
-
-        float innerBorderRotation = Mathf.Lerp(0f, 180f, arc);
-
-        innerBorder1.localEulerAngles = new Vector3(0f, innerBorderRotation, 0f);
-        innerBorder2.localEulerAngles = new Vector3(0f, -innerBorderRotation, 0f);
-
-        innerBorder1.gameObject.SetActive(true);
-        innerBorder2.gameObject.SetActive(true);
+        decalProjector.material.SetFloat("_Border_Arc", arc);
     }
 
     public override void ActivateZone(
         Vector2 targetRadius,
         float lifeTime = 0,
-        float growDuration = 0.35F
+        float growDuration = 0.35f
     )
     {
         base.ActivateZone(targetRadius, lifeTime, growDuration);
