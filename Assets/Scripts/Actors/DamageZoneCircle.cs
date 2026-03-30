@@ -25,6 +25,17 @@ public class DamageZoneCircle : DamageZone
             growLerp = AdditionalMath.EaseOutCubic(growLerp);
         }
 
+        if (fadeOut)
+        {
+            decalProjector.fadeFactor = 1f - growLerp;
+
+            return;
+        }
+        else
+        {
+            decalProjector.fadeFactor = growLerp;
+        }
+
         float zoneScale = Mathf.Lerp(1f - zoneTarget, zoneTarget, growLerp) * zoneSize.x;
 
         zoneVisual.localScale = new Vector3(zoneScale, zoneVisual.localScale.y, zoneScale);

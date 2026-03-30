@@ -17,8 +17,13 @@ public class BossHealth : Health
         HealToFull();
     }
 
-    public void InitialiseHealth(int bossHealth)
+    public void InitialiseHealth(int bossHealth = -1)
     {
+        if (bossHealth < 0)
+        {
+            bossHealth = maxHealth;
+        }
+
         SetMaxHealth(bossHealth);
         OnInitialiseBossHealth?.Invoke(this, health);
     }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de1ff2f4f889ac49af1ffa911caa65c, type: 3}
+  m_Name: Boss Full Arena Attack
+  m_EditorClassIdentifier: Assembly-CSharp::BossComplexAttack
+  animationTrigger: 
+  empoweredAttack: {fileID: 0}
+  attackNodes:
+  - {fileID: 11400000, guid: fee3c0632ba9d4b4498d8685327a7304, type: 2}
+  - {fileID: 11400000, guid: 08e3935fc88f5d346b12bdc67c7a9530, type: 2}
+  - {fileID: 11400000, guid: 691570220c675e14c986383cb6eab5c3, type: 2}
+  - {fileID: 11400000, guid: 08e3935fc88f5d346b12bdc67c7a9530, type: 2}
+  - {fileID: 11400000, guid: 8b25783da538c6a45bb69ddebd894999, type: 2}
+  - {fileID: 11400000, guid: 4f6a039f1569665459b067014b77dd78, type: 2}
+  finalNode: {fileID: 11400000, guid: e783c246f738b3143b9a4f335de4f56c, type: 2}

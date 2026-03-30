@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RestartManager : MonoBehaviour
 {
@@ -56,6 +57,8 @@ public class RestartManager : MonoBehaviour
     private IEnumerator DelayedLevelReset()
     {
         yield return new WaitForSecondsRealtime(levelResetVisualDuration);
-        // Reset level
+        // Reset level via LevelManager that handles all necessary load screens and the like
+        //Temp
+        SceneManager.LoadScene(0);
     }
 }

@@ -10,7 +10,7 @@ public enum DamageZoneType
 
 public class DamageZoneManager : MonoBehaviour
 {
-    private const int DEFAULT_INITIAL_ZONE_COUNT = 10;
+    private const int DEFAULT_INITIAL_ZONE_COUNT = 20;
     private const float DEFAULT_ZONE_GROW_DURATION = 0.35f;
 
     [SerializeField]

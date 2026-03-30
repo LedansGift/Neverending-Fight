@@ -4,10 +4,11 @@ using UnityEngine.Rendering.Universal;
 public class DamageZone : MonoBehaviour
 {
     protected bool sizeChange = false;
+    protected bool fadeOut = false;
 
     protected Vector2 zoneSize = Vector2.one;
     protected float zoneGrowTimer = 0f;
-    protected float zoneGrowDuration = 0.35f;
+    protected float zoneGrowDuration = 0.6f;
     protected float lifeTime = 0f;
     protected float zoneTarget = 0f;
 
@@ -69,6 +70,17 @@ public class DamageZone : MonoBehaviour
             growLerp = AdditionalMath.EaseOutCubic(growLerp);
         }
 
+        if (fadeOut)
+        {
+            decalProjector.fadeFactor = 1f - growLerp;
+
+            return;
+        }
+        else
+        {
+            decalProjector.fadeFactor = growLerp;
+        }
+
         float zoneScaleX = Mathf.Lerp(1f - zoneTarget, zoneTarget, growLerp) * zoneSize.x;
         float zoneScaleZ = Mathf.Lerp(1f - zoneTarget, zoneTarget, growLerp) * zoneSize.y;
 
@@ -95,6 +107,7 @@ public class DamageZone : MonoBehaviour
         zoneVisual.localScale = new Vector3(0f, zoneVisual.localScale.y, 0f);
         zoneVisual.gameObject.SetActive(true);
 
+        fadeOut = false;
         sizeChange = true;
     }
 
@@ -104,6 +117,7 @@ public class DamageZone : MonoBehaviour
         zoneGrowDuration = growDuration;
         zoneGrowTimer = 0f;
         zoneSize = new Vector2(zoneVisual.localScale.x, zoneVisual.localScale.z);
+        fadeOut = true;
         sizeChange = true;
     }
 }

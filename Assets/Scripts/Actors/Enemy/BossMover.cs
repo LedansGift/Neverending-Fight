@@ -17,6 +17,14 @@ public class BossMover : MonoBehaviour
     [SerializeField]
     private Rigidbody bossRB;
 
+    [SerializeField]
+    private Transform bossSpawnTransform;
+
+    private void Awake()
+    {
+        bossSpawnTransform.SetParent(null);
+    }
+
     public void HandleMoveNode(
         Vector3 newPosition,
         Quaternion newRotation,
@@ -91,5 +99,25 @@ public class BossMover : MonoBehaviour
         {
             onMovementFinished();
         }
+    }
+
+    public Vector3 GetBossPosition()
+    {
+        return bossRB.position;
+    }
+
+    public Quaternion GetBossRotation()
+    {
+        return bossRB.rotation;
+    }
+
+    public void ResetMover()
+    {
+        StopAllCoroutines();
+        moveBoss = false;
+        onMovementFinished = null;
+
+        bossRB.position = bossSpawnTransform.position;
+        bossRB.rotation = bossSpawnTransform.rotation;
     }
 }

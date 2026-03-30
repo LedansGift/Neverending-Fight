@@ -30,10 +30,11 @@ public class BossMoveNode : BossAttackNode
     {
         this.OnAttackFinished = OnAttackFinished;
 
-        Vector3 movement = ResolvePosition(attacker.transform);
-        Quaternion rotation = ResolvedRotation(attacker.transform);
-
         BossMover mover = attacker.GetBossMover();
+
+        Vector3 movement = ResolvePosition(mover.GetBossPosition(), mover.GetBossRotation());
+        Quaternion rotation = ResolvedRotation(mover.GetBossRotation());
+
         mover.HandleMoveNode(
             movement,
             rotation,
@@ -49,24 +50,25 @@ public class BossMoveNode : BossAttackNode
         FinishAttack(this, false);
     }
 
-    private Vector3 ResolvePosition(Transform bossTransform)
+    private Vector3 ResolvePosition(Vector3 bossPosition, Quaternion bossRotation)
     {
         if (!relativeMovement)
         {
             return newPosition;
         }
 
-        Vector3 resolvedPosition = bossTransform.position + bossTransform.rotation * newPosition;
+        Vector3 resolvedPosition = bossPosition + bossRotation * newPosition;
+
         return resolvedPosition;
     }
 
-    private Quaternion ResolvedRotation(Transform bossTransform)
+    private Quaternion ResolvedRotation(Quaternion bossRotation)
     {
         if (!relativeMovement)
         {
             return Quaternion.Euler(0f, newRotation, 0f);
         }
 
-        return Quaternion.Euler(0f, bossTransform.eulerAngles.y + newRotation, 0f);
+        return Quaternion.Euler(0f, bossRotation.eulerAngles.y + newRotation, 0f);
     }
 }

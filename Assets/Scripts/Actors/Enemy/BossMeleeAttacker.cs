@@ -161,15 +161,19 @@ public class BossMeleeAttacker : MonoBehaviour
         if (attack.relativePosition)
         {
             zoneSpawnLocation = transform.position + attack.attackPosition;
-            zoneSpawnForward = Quaternion.Euler(0f, attack.attackYRotation, 0f) * transform.forward;
+            zoneSpawnForward = (
+                Quaternion.Euler(0f, attack.attackYRotation, 0f) * transform.forward
+            ).normalized;
         }
         else
         {
             zoneSpawnLocation = attack.attackPosition;
-            zoneSpawnForward = Quaternion.Euler(0f, attack.attackYRotation, 0f) * Vector3.forward;
+            zoneSpawnForward = (
+                Quaternion.Euler(0f, attack.attackYRotation, 0f) * Vector3.forward
+            ).normalized;
         }
 
-        float attackDotArc = Mathf.Lerp(-1f, 1f, 1f - attack.damageZoneArea.y);
+        float attackDotArc = 1f - attack.damageZoneArea.y;
 
         Collider[] hitTargets = Physics.OverlapSphere(
             zoneSpawnLocation,
@@ -181,15 +185,36 @@ public class BossMeleeAttacker : MonoBehaviour
 
         foreach (Collider target in hitTargets)
         {
-            Vector3 colliderDirection = (target.transform.position - transform.position).normalized;
+            Vector3 targetPosition = new Vector3(
+                target.transform.position.x,
+                zoneSpawnLocation.y,
+                target.transform.position.z
+            );
+            Vector3 colliderDirection = (targetPosition - zoneSpawnLocation).normalized;
 
-            if (Vector3.Dot(zoneSpawnForward, colliderDirection) < attackDotArc)
+            float dot = Vector3.Dot(zoneSpawnForward, colliderDirection);
+            float dotDivision =
+                dot
+                / Mathf.Clamp(
+                    zoneSpawnForward.magnitude * colliderDirection.magnitude,
+                    0.0001f,
+                    1f
+                );
+            float dotArc = 1f - Mathf.Acos(dotDivision) / Mathf.PI;
+
+            if (dotArc < attackDotArc)
             {
+                // Debug.Log("Not Hit DOT: " + dotArc);
+                // Debug.Log("Collider Direction" + colliderDirection);
+                // Debug.Log("Zone Forward" + zoneSpawnForward);
                 continue;
             }
 
             if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
             {
+                // Debug.Log("Hit DOT: " + dotArc);
+                // Debug.Log("Collider Direction" + colliderDirection);
+
                 hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
                 targetHit = true;
             }
