@@ -77,6 +77,7 @@ public class PlayerManager : MonoBehaviour
     {
         playerAttacker.ResetWeapons();
         playerHealth.RevivePlayer();
+        playerMovement.ResetToSavedPosition();
         TogglePlayer(this, true);
     }
 }

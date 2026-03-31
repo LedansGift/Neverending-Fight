@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
     private Transform rotateTransform;
 
     [SerializeField]
+    private Transform positionSaveTransform;
+
+    [SerializeField]
     private Rigidbody playerRB;
 
     [SerializeField]
@@ -34,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         stats = GetComponent<PlayerStats>();
+        positionSaveTransform.SetParent(null);
         ToggleCanMove(false);
     }
 
@@ -177,5 +181,27 @@ public class PlayerMovement : MonoBehaviour
     public void ToggleCanMove(bool enable)
     {
         canMove = enable;
+    }
+
+    public void ResetToSavedPosition()
+    {
+        if (!positionSaveTransform)
+        {
+            return;
+        }
+
+        playerRB.position = positionSaveTransform.position;
+        playerRB.rotation = positionSaveTransform.rotation;
+    }
+
+    public void SaveCurrentPosition()
+    {
+        if (!positionSaveTransform)
+        {
+            return;
+        }
+
+        positionSaveTransform.position = playerRB.position;
+        positionSaveTransform.rotation = playerRB.rotation;
     }
 }

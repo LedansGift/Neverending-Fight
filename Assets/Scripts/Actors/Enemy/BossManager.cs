@@ -12,6 +12,9 @@ public class BossManager : MonoBehaviour
     [SerializeField]
     private BossCombatManager bossCombatManager;
 
+    [SerializeField]
+    private BossPhaseManager bossPhaseManager;
+
     private void Start()
     {
         //Temp
@@ -32,7 +35,13 @@ public class BossManager : MonoBehaviour
     {
         bossHealth.InitialiseHealth();
         bossMover.ResetMover();
-        bossCombatManager.StartBossCombat();
+
+        if (!bossPhaseManager.TryGetPhase(out BossPhase phase))
+        {
+            return;
+        }
+
+        bossCombatManager.StartBossCombat(phase.GetAttackPattern());
     }
 
     private IEnumerator DelayedBossReset()

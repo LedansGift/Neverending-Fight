@@ -4,24 +4,30 @@ public class BossCombatManager : MonoBehaviour
 {
     private int attackPatternIndex = 0;
 
-    [SerializeField]
-    private Transform bossTransform;
+    private BossAttackNode[] activeAttackPattern;
+
+    // [SerializeField]
+    // private Transform bossTransform;
 
     [SerializeField]
     private BossAttackManager bossAttacker;
 
-    [SerializeField]
-    private BossAttackNode[] bossAttackPattern;
-
-    public void StartBossCombat()
+    public void StartBossCombat(BossAttackNode[] newAttackPattern)
     {
         attackPatternIndex = 0;
+        activeAttackPattern = newAttackPattern;
+
+        if (activeAttackPattern == null)
+        {
+            return;
+        }
+
         PerformNextAttack();
     }
 
     private void PerformNextAttack()
     {
-        BossAttackNode currentAttack = bossAttackPattern[attackPatternIndex];
+        BossAttackNode currentAttack = activeAttackPattern[attackPatternIndex];
         //currentAttack.PerformAttack(bossAttacker, ResolveAttack);
         bossAttacker.PerformAttackNode(currentAttack, ResolveAttack);
     }
@@ -32,7 +38,7 @@ public class BossCombatManager : MonoBehaviour
 
         attackPatternIndex++;
 
-        if (attackPatternIndex >= bossAttackPattern.Length)
+        if (attackPatternIndex >= activeAttackPattern.Length)
         {
             attackPatternIndex = 0;
         }
