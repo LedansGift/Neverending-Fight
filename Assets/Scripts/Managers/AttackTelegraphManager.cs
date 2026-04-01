@@ -19,11 +19,13 @@ public class AttackTelegraphManager : MonoBehaviour
     private void OnEnable()
     {
         RestartManager.OnResetPhase += StopAllTelegraphs;
+        BossFormManager.OnPhaseFinished += StopAllTelegraphs;
     }
 
     private void OnDisable()
     {
         RestartManager.OnResetPhase -= StopAllTelegraphs;
+        BossFormManager.OnPhaseFinished -= StopAllTelegraphs;
     }
 
     private IEnumerator TelegraphAttacks(Transform attacker, MeleeAttack[] attacks)

@@ -40,11 +40,13 @@ public class DamageZoneManager : MonoBehaviour
     private void OnEnable()
     {
         RestartManager.OnResetPhase += DeactivateAllZones;
+        BossFormManager.OnPhaseFinished += DeactivateAllZones;
     }
 
     private void OnDisable()
     {
         RestartManager.OnResetPhase -= DeactivateAllZones;
+        BossFormManager.OnPhaseFinished -= DeactivateAllZones;
     }
 
     private void InitialiseDamageZones(GameObject zonePrefab)

@@ -30,11 +30,13 @@ public class ProjectileManager : MonoBehaviour
     private void OnEnable()
     {
         RestartManager.OnResetPhase += DeactivateAllProjectiles;
+        BossFormManager.OnPhaseFinished += DeactivateAllProjectiles;
     }
 
     private void OnDisable()
     {
         RestartManager.OnResetPhase -= DeactivateAllProjectiles;
+        BossFormManager.OnPhaseFinished -= DeactivateAllProjectiles;
     }
 
     private bool CheckAreProjectilesInitialised(

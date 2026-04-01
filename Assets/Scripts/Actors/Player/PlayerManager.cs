@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
     {
         BattleManager.OnPlayerToggle += TogglePlayer;
         RestartManager.OnResetPhase += ResetPlayer;
+        BossFormManager.OnPhaseFinished += HandlePlayerFinishPhase;
         playerHealth.OnDeath += HandlePlayerDeath;
     }
 
@@ -35,6 +36,7 @@ public class PlayerManager : MonoBehaviour
     {
         BattleManager.OnPlayerToggle -= TogglePlayer;
         RestartManager.OnResetPhase -= ResetPlayer;
+        BossFormManager.OnPhaseFinished -= HandlePlayerFinishPhase;
         playerHealth.OnDeath -= HandlePlayerDeath;
     }
 
@@ -79,5 +81,11 @@ public class PlayerManager : MonoBehaviour
         playerHealth.RevivePlayer();
         playerMovement.ResetToSavedPosition();
         TogglePlayer(this, true);
+    }
+
+    private void HandlePlayerFinishPhase()
+    {
+        //Make player invincible
+        //Relinquish playere control
     }
 }

@@ -12,12 +12,12 @@ public class BossMeleeAttacker : MonoBehaviour
 
     private void OnEnable()
     {
-        RestartManager.OnResetPhase += ResetAttacker;
+        RestartManager.OnResetPhase += ResetMeleeAttacker;
     }
 
     private void OnDisable()
     {
-        RestartManager.OnResetPhase -= ResetAttacker;
+        RestartManager.OnResetPhase -= ResetMeleeAttacker;
     }
 
     public void PerformMeleeAttacks(
@@ -223,7 +223,7 @@ public class BossMeleeAttacker : MonoBehaviour
         return targetHit;
     }
 
-    private void ResetAttacker()
+    public void ResetMeleeAttacker()
     {
         StopAllCoroutines();
         currentAttackFails = new List<bool>();

@@ -129,7 +129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5505113}
   - component: {fileID: 5505112}
-  - component: {fileID: 5505114}
   m_Layer: 0
   m_Name: BOSS MANAGER
   m_TagString: Untagged
@@ -149,10 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: befcc66e34ae9d5449025e703286e2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossManager
-  bossHealth: {fileID: 509494499}
-  bossMover: {fileID: 509494500}
-  bossCombatManager: {fileID: 5505114}
-  bossPhaseManager: {fileID: 509494503}
+  bossForms:
+  - {fileID: 509494504}
 --- !u!4 &5505113
 Transform:
   m_ObjectHideFlags: 0
@@ -169,19 +166,6 @@ Transform:
   - {fileID: 509494495}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5505114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5505111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f953915783fa47b4cb4e5f7ca733ea05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossCombatManager
-  bossAttacker: {fileID: 509494501}
 --- !u!1 &23970680
 GameObject:
   m_ObjectHideFlags: 0
@@ -13978,7 +13962,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 509494495}
+  - component: {fileID: 509494504}
   - component: {fileID: 509494499}
+  - component: {fileID: 509494505}
   - component: {fileID: 509494501}
   - component: {fileID: 509494502}
   - component: {fileID: 509494500}
@@ -14131,6 +14117,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossPhaseManager
   bossPhases:
   - {fileID: 11400000, guid: cb839e10cb970734f98dce8014e531b7, type: 2}
+  - {fileID: 11400000, guid: f7a64b845be33c74181535c779200ac2, type: 2}
+--- !u!114 &509494504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509494494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3913e3167451266489a666a3d06403a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossFormManager
+  bossHealth: {fileID: 509494499}
+  bossMover: {fileID: 509494500}
+  bossPhaseManager: {fileID: 509494503}
+  bossCombatManager: {fileID: 509494505}
+  bossAttackManager: {fileID: 509494501}
+--- !u!114 &509494505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509494494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f953915783fa47b4cb4e5f7ca733ea05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossCombatManager
+  bossAttacker: {fileID: 509494501}
 --- !u!1 &519912613
 GameObject:
   m_ObjectHideFlags: 0

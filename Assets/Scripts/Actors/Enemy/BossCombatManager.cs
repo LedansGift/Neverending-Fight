@@ -6,18 +6,16 @@ public class BossCombatManager : MonoBehaviour
 
     private BossAttackNode[] activeAttackPattern;
 
-    // [SerializeField]
-    // private Transform bossTransform;
-
     [SerializeField]
     private BossAttackManager bossAttacker;
 
-    public void StartBossCombat(BossAttackNode[] newAttackPattern)
+    public void StartBossCombat(BossAttackManager bossAttacker, BossAttackNode[] newAttackPattern)
     {
         attackPatternIndex = 0;
         activeAttackPattern = newAttackPattern;
+        this.bossAttacker = bossAttacker;
 
-        if (activeAttackPattern == null)
+        if (!this.bossAttacker || (activeAttackPattern == null))
         {
             return;
         }
@@ -28,7 +26,6 @@ public class BossCombatManager : MonoBehaviour
     private void PerformNextAttack()
     {
         BossAttackNode currentAttack = activeAttackPattern[attackPatternIndex];
-        //currentAttack.PerformAttack(bossAttacker, ResolveAttack);
         bossAttacker.PerformAttackNode(currentAttack, ResolveAttack);
     }
 

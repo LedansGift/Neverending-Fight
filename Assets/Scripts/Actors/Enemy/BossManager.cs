@@ -1,58 +1,51 @@
-using System.Collections;
 using UnityEngine;
+
+public enum BossForm
+{
+    CROSSROADS,
+    MAGPIE,
+    BARD,
+    HAWK,
+    MAGUS,
+    DIVINE
+}
 
 public class BossManager : MonoBehaviour
 {
-    [SerializeField]
-    private BossHealth bossHealth;
+    private BossForm activeBossForm;
 
     [SerializeField]
-    private BossMover bossMover;
-
-    [SerializeField]
-    private BossCombatManager bossCombatManager;
-
-    [SerializeField]
-    private BossPhaseManager bossPhaseManager;
+    private BossFormManager[] bossForms;
 
     private void Start()
     {
         //Temp
-        InitialiseBoss();
+        ActivateBossForm(BossForm.CROSSROADS);
     }
 
-    private void OnEnable()
+    public void ActivateBossForm(BossForm bossForm)
     {
-        RestartManager.OnResetPhase += ResetBossPhase;
+        // if (activeBossForm == bossForm)
+        // {
+        //     Debug.Log("New Boss Form Activation Failed. Form Already Active");
+        //     return;
+        // }
+
+        activeBossForm = bossForm;
+
+        BossFormManager activeFormManager = bossForms[(int)activeBossForm];
+        activeFormManager.OnFinalPhaseFinished += EvaluateNewBossForm;
+        activeFormManager.InitialiseBoss();
     }
 
-    private void OnDisable()
+    public void DeactivateBossForm()
     {
-        RestartManager.OnResetPhase -= ResetBossPhase;
+        BossFormManager activeFormManager = bossForms[(int)activeBossForm];
+        activeFormManager.OnFinalPhaseFinished -= EvaluateNewBossForm;
     }
 
-    public void InitialiseBoss()
+    private void EvaluateNewBossForm()
     {
-        bossHealth.InitialiseHealth();
-        bossMover.ResetMover();
-
-        if (!bossPhaseManager.TryGetPhase(out BossPhase phase))
-        {
-            return;
-        }
-
-        bossCombatManager.StartBossCombat(phase.GetAttackPattern());
-    }
-
-    private IEnumerator DelayedBossReset()
-    {
-        yield return null;
-
-        InitialiseBoss();
-    }
-
-    private void ResetBossPhase()
-    {
-        StartCoroutine(DelayedBossReset());
+        //Various shit to decide form change
     }
 }

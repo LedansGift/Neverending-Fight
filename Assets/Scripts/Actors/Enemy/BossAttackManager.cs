@@ -118,6 +118,13 @@ public class BossAttackManager : MonoBehaviour
         StartCoroutine(IdleBoss(idleTime, onIdleFinished));
     }
 
+    public void PhaseEndCleanup()
+    {
+        savedAttacks.AddRange(currentAttacks);
+        ResetAttacker();
+        meleeAttacker.ResetMeleeAttacker();
+    }
+
     private IEnumerator IdleBoss(float idleTime, Action onIdleFinished)
     {
         yield return new WaitForSeconds(idleTime);
