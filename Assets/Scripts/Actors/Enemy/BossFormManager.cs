@@ -23,6 +23,7 @@ public class BossFormManager : MonoBehaviour
 
     public Action OnFinalPhaseFinished;
     public static Action OnPhaseFinished;
+    public static EventHandler<bool> OnPhaseChange;
 
     private void OnEnable()
     {
@@ -72,6 +73,7 @@ public class BossFormManager : MonoBehaviour
         {
             //Start phase change cutscene that callbacks to Initialise Boss
             InitialiseBoss();
+            //OnPhaseChange?.Invoke(this, false);
         }
         else
         {
@@ -80,6 +82,11 @@ public class BossFormManager : MonoBehaviour
             OnFinalPhaseFinished?.Invoke();
         }
     }
+
+    // private void FinalizePhaseChange()
+    // {
+
+    // }
 
     private IEnumerator DelayedBossReset()
     {

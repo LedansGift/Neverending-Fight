@@ -62,6 +62,11 @@ public class PlayerManager : MonoBehaviour
 
     private void HandlePlayerDeath()
     {
+        if (!playerActive)
+        {
+            return;
+        }
+
         TogglePlayer(this, false);
 
         if (playerRetries <= 0)
@@ -85,7 +90,14 @@ public class PlayerManager : MonoBehaviour
 
     private void HandlePlayerFinishPhase()
     {
-        //Make player invincible
-        //Relinquish playere control
+        TogglePlayer(this, false);
+    }
+
+    private void HandlePlayerPhaseStart()
+    {
+        playerMovement.TryResolveGroundCheck();
+        playerMovement.SaveCurrentPosition();
+
+        ResetPlayer();
     }
 }

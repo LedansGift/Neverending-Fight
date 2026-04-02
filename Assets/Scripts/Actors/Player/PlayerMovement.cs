@@ -28,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody playerRB;
 
     [SerializeField]
+    private PlayerGroundCheck groundChecker;
+
+    [SerializeField]
     private DashTrail dashTrail;
 
     public Action OnDash;
@@ -203,5 +206,16 @@ public class PlayerMovement : MonoBehaviour
 
         positionSaveTransform.position = playerRB.position;
         positionSaveTransform.rotation = playerRB.rotation;
+    }
+
+    public void TryResolveGroundCheck()
+    {
+        if (groundChecker.GetIsGroundBelow())
+        {
+            return;
+        }
+
+        Vector3 safePlayerPosition = groundChecker.GetSafeGroundTransform().position;
+        playerRB.position = safePlayerPosition;
     }
 }
