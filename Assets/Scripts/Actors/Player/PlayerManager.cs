@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
         BattleManager.OnPlayerToggle += TogglePlayer;
         RestartManager.OnResetPhase += ResetPlayer;
         BossFormManager.OnPhaseFinished += HandlePlayerFinishPhase;
+        BossFormManager.OnNewPhaseStart += HandlePlayerPhaseStart;
         playerHealth.OnDeath += HandlePlayerDeath;
     }
 
@@ -37,6 +38,7 @@ public class PlayerManager : MonoBehaviour
         BattleManager.OnPlayerToggle -= TogglePlayer;
         RestartManager.OnResetPhase -= ResetPlayer;
         BossFormManager.OnPhaseFinished -= HandlePlayerFinishPhase;
+        BossFormManager.OnNewPhaseStart -= HandlePlayerPhaseStart;
         playerHealth.OnDeath -= HandlePlayerDeath;
     }
 
