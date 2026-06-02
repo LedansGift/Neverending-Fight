@@ -80,6 +80,18 @@ public class PlayerHealth : Health
         }
     }
 
+    public void Heal(int healAmount)
+    {
+        if (isDead)
+        {
+            return;
+        }
+
+        health = Mathf.Min(health + healAmount, maxHealth);
+
+        OnChangePlayerHealth?.Invoke(this, health);
+    }
+
     public void RevivePlayer()
     {
         isDead = false;

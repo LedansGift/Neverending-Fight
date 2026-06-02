@@ -5,6 +5,7 @@ public class PlayerManager : MonoBehaviour
 {
     private bool playerActive = false;
     private int playerRetries = 2;
+    private Collider playerCollider;
 
     private PlayerHealth playerHealth;
     private PlayerMovement playerMovement;
@@ -15,6 +16,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        playerCollider = GetComponent<Collider>();
         playerHealth = GetComponent<PlayerHealth>();
         playerMovement = GetComponent<PlayerMovement>();
         playerAttacker = GetComponent<PlayerAttacker>();
@@ -27,6 +29,7 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         BattleManager.OnPlayerToggle += TogglePlayer;
+        PlayerGlaive.OnGlaiveSpecial += TryToggleCollider;
         RestartManager.OnResetPhase += ResetPlayer;
         BossFormManager.OnPhaseFinished += HandlePlayerFinishPhase;
         BossFormManager.OnNewPhaseStart += HandlePlayerPhaseStart;
@@ -36,6 +39,7 @@ public class PlayerManager : MonoBehaviour
     private void OnDisable()
     {
         BattleManager.OnPlayerToggle -= TogglePlayer;
+        PlayerGlaive.OnGlaiveSpecial -= TryToggleCollider;
         RestartManager.OnResetPhase -= ResetPlayer;
         BossFormManager.OnPhaseFinished -= HandlePlayerFinishPhase;
         BossFormManager.OnNewPhaseStart -= HandlePlayerPhaseStart;
@@ -51,6 +55,7 @@ public class PlayerManager : MonoBehaviour
 
         playerActive = toggle;
 
+        playerCollider.enabled = playerActive;
         playerMovement.ToggleCanMove(playerActive);
         playerAttacker.ToggleCanAttack(playerActive);
         playerMovement.SetWeaponModifier();
@@ -80,6 +85,16 @@ public class PlayerManager : MonoBehaviour
 
         playerRetries--;
         OnNewPlayerRetries?.Invoke(this, playerRetries);
+    }
+
+    private void TryToggleCollider(object sender, bool specialActive)
+    {
+        if (!playerActive)
+        {
+            return;
+        }
+
+        playerCollider.enabled = !specialActive;
     }
 
     private void ResetPlayer()
