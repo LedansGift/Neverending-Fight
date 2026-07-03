@@ -47,7 +47,7 @@ public class BossMoveNode : BossAttackNode
 
     private void FinishMovement()
     {
-        FinishAttack(this, false);
+        FinishAttack();
     }
 
     private Vector3 ResolvePosition(Vector3 bossPosition, Quaternion bossRotation)

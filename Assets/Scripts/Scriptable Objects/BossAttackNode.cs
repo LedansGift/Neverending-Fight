@@ -10,14 +10,14 @@ public abstract class BossAttackNode : ScriptableObject
     private BossAttackNode empoweredAttack;
 
     protected Action OnAttackFinished;
-    public static EventHandler<bool> OnAttackFailCheck;
+    public static EventHandler OnAttackFailCheck;
     public abstract void PerformAttack(
         BossAttackManager attacker,
         Action OnAttackFinished,
         float damageMultiplier = 1f
     );
 
-    public virtual void FinishAttack(object sender, bool attackFailed)
+    public virtual void FinishAttack()
     {
         if (OnAttackFinished != null)
         {

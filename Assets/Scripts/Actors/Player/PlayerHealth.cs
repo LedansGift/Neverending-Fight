@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerHealth : Health
 {
     private bool isDead = false;
+    private bool attackFailTracker = false;
     private float iFrameDuration = 1f;
 
     //private float impulseStrength = 1f;
@@ -65,6 +66,8 @@ public class PlayerHealth : Health
 
         health = Mathf.Max(0, health - damage);
 
+        attackFailTracker = true;
+
         OnChangePlayerHealth?.Invoke(this, health);
 
         if (health == 0)
@@ -95,6 +98,7 @@ public class PlayerHealth : Health
     public void RevivePlayer()
     {
         isDead = false;
+        ResetAttackFailStatus();
         HealToFull();
 
         OnChangePlayerHealth?.Invoke(this, health);
@@ -105,6 +109,16 @@ public class PlayerHealth : Health
         }
 
         SetInvincibility(false);
+    }
+
+    public bool GetAttackFailStatus()
+    {
+        return attackFailTracker;
+    }
+
+    public void ResetAttackFailStatus()
+    {
+        attackFailTracker = false;
     }
 
     private void SetJumpInvincibility(object sender, bool toggle)

@@ -19,6 +19,6 @@ public class BossIdleNode : BossAttackNode
 
     private void FinishIdle()
     {
-        FinishAttack(this, false);
+        FinishAttack();
     }
 }

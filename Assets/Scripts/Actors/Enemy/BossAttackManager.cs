@@ -9,11 +9,21 @@ public class BossAttackManager : MonoBehaviour
     private List<AttackFailTracker> savedAttacks = new List<AttackFailTracker>();
     private List<AttackFailTracker> currentAttacks = new List<AttackFailTracker>();
 
+    private PlayerHealth playerHealth;
+
     [SerializeField]
     private BossMeleeAttacker meleeAttacker;
 
     [SerializeField]
     private BossMover mover;
+
+    private void Start()
+    {
+        if (PlayerIdentifier.PlayerTransform != null)
+        {
+            playerHealth = PlayerIdentifier.PlayerTransform.GetComponent<PlayerHealth>();
+        }
+    }
 
     private void OnEnable()
     {
@@ -131,11 +141,19 @@ public class BossAttackManager : MonoBehaviour
         onIdleFinished();
     }
 
-    private void CheckAttackFailure(object sender, bool attackFailed)
+    private void CheckAttackFailure(object sender, EventArgs eventArgs)
     {
-        if (attackFailed)
+        if (!playerHealth)
         {
+            Debug.Log("No Player health Set");
+            return;
+        }
+
+        if (playerHealth.GetAttackFailStatus())
+        {
+            Debug.Log("Attack failed: " + sender);
             RegisterAttackFailure(sender as BossAttackNode);
+            playerHealth.ResetAttackFailStatus();
         }
     }
 

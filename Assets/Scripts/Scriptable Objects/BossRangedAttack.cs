@@ -41,7 +41,7 @@ public class BossRangedAttack : BossAttackNode
 
     private void FinishProjectilePattern()
     {
-        FinishAttack(this, false);
+        FinishAttack();
     }
 
     private void CheckAvailableProjectiles()

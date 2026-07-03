@@ -8,7 +8,6 @@ using UnityEngine;
 )]
 public class BossComplexAttack : BossAttackNode
 {
-    private bool attackFailed = false;
     private int nodeIndex = 0;
 
     [SerializeField]
@@ -28,7 +27,6 @@ public class BossComplexAttack : BossAttackNode
     {
         this.OnAttackFinished = OnAttackFinished;
         nodeIndex = 0;
-        attackFailed = false;
 
         TryPerformNode(attacker, damageMultiplier);
     }
@@ -53,7 +51,7 @@ public class BossComplexAttack : BossAttackNode
         else if (activeNode.GetType() == typeof(BossMeleeAttack))
         {
             BossMeleeAttack meleeNode = activeNode as BossMeleeAttack;
-            meleeNode.PerformAttack(attacker, FinishAttack, damageMultiplier);
+            meleeNode.PerformAttackPart(attacker, FinishAttack, damageMultiplier);
             TryPerformNode(attacker, damageMultiplier);
         }
         else
@@ -63,17 +61,11 @@ public class BossComplexAttack : BossAttackNode
         }
     }
 
-    public override void FinishAttack(object sender, bool attackFailed)
-    {
-        if (!this.attackFailed)
-        {
-            this.attackFailed = attackFailed;
-        }
-    }
+    public override void FinishAttack() { }
 
     private void FinishComplexAttack()
     {
-        OnAttackFailCheck?.Invoke(this, attackFailed);
+        OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
 
         OnAttackFinished();
     }
