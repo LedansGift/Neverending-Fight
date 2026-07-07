@@ -15,6 +15,9 @@ public class BossAttackManager : MonoBehaviour
     private BossMeleeAttacker meleeAttacker;
 
     [SerializeField]
+    private StateDictionary stateDictionary;
+
+    [SerializeField]
     private BossMover mover;
 
     private void Start()
@@ -121,6 +124,11 @@ public class BossAttackManager : MonoBehaviour
     public BossMover GetBossMover()
     {
         return mover;
+    }
+
+    public StateDictionary GetStateDictionary()
+    {
+        return stateDictionary;
     }
 
     public void StartBossIdle(float idleTime, Action onIdleFinished)

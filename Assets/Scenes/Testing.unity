@@ -14068,6 +14068,8 @@ GameObject:
   - component: {fileID: 509494502}
   - component: {fileID: 509494500}
   - component: {fileID: 509494503}
+  - component: {fileID: 509494507}
+  - component: {fileID: 509494506}
   - component: {fileID: 509494496}
   - component: {fileID: 509494498}
   m_Layer: 6
@@ -14186,6 +14188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossMeleeAttacker
   meleeAttacker: {fileID: 509494502}
+  stateDictionary: {fileID: 509494506}
   mover: {fileID: 509494500}
 --- !u!114 &509494502
 MonoBehaviour:
@@ -14247,6 +14250,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossCombatManager
   bossAttacker: {fileID: 509494501}
+--- !u!114 &509494506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509494494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71191dbad5a0bb42af89b82956b8b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagpieStateDictionary
+  stateMachine: {fileID: 509494507}
+--- !u!114 &509494507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509494494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1763f19e2d52442bab1eb6a2938aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossStateMachine
+  animator: {fileID: 1577731710}
 --- !u!1 &519912613
 GameObject:
   m_ObjectHideFlags: 0
@@ -53876,6 +53905,11 @@ PrefabInstance:
 --- !u!4 &1577731709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3701568038975655834, guid: fbc76939d9eea3443b78115292edd6e0, type: 3}
+  m_PrefabInstance: {fileID: 1577731708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1577731710 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7331491107733804512, guid: fbc76939d9eea3443b78115292edd6e0, type: 3}
   m_PrefabInstance: {fileID: 1577731708}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1578118725
