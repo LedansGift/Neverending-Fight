@@ -7,6 +7,9 @@ public abstract class BossAttackNode : ScriptableObject
     private string animationTrigger;
 
     [SerializeField]
+    private string attackName = "DefaultName";
+
+    [SerializeField]
     private BossAttackNode empoweredAttack;
 
     protected Action OnAttackFinished;
@@ -28,6 +31,11 @@ public abstract class BossAttackNode : ScriptableObject
     public int GetAnimationTrigger()
     {
         return Animator.StringToHash(animationTrigger);
+    }
+
+    public string GetAttackName()
+    {
+        return attackName;
     }
 
     public bool TryGetEmpoweredAttack(out BossAttackNode empoweredAttack)

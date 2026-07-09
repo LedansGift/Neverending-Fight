@@ -20,6 +20,18 @@ public class BossMover : MonoBehaviour
     [SerializeField]
     private Transform bossSpawnTransform;
 
+    [SerializeField]
+    private Animator bossAnimator;
+
+    [SerializeField]
+    private DashTrail bossTeleportStartEffect;
+
+    [SerializeField]
+    private DashTrail bossTeleportEndEffect;
+
+    [SerializeField]
+    private TransformShrinkScaler bossShrinker;
+
     private void Awake()
     {
         bossSpawnTransform.SetParent(null);
@@ -74,10 +86,10 @@ public class BossMover : MonoBehaviour
 
     private IEnumerator StartMovement(float initialDelay)
     {
-        yield return new WaitForSeconds(initialDelay);
-
         if (moveSpeed > 0f)
         {
+            yield return new WaitForSeconds(initialDelay);
+
             moveProgress = 0f;
             startPosition = transform.position;
             startRotation = transform.rotation;
@@ -85,10 +97,27 @@ public class BossMover : MonoBehaviour
         }
         else
         {
-            bossRB.position = movementTarget;
-            bossRB.rotation = rotationTarget;
-            StartCoroutine(FinishMovement());
+            StartCoroutine(TeleportBoss(initialDelay));
         }
+    }
+
+    private IEnumerator TeleportBoss(float initialDelay)
+    {
+        bossTeleportStartEffect.ActivateDashTrail(Vector2.up);
+        bossAnimator.SetTrigger("teleport");
+        bossShrinker.ShrinkTransform();
+
+        yield return new WaitForSeconds(initialDelay);
+
+        bossShrinker.UnshrinkTransform();
+        bossRB.position = movementTarget;
+        bossRB.rotation = rotationTarget;
+
+        yield return new WaitForFixedUpdate();
+
+        bossTeleportEndEffect.ActivateDashTrail(Vector2.up);
+
+        StartCoroutine(FinishMovement());
     }
 
     private IEnumerator FinishMovement()

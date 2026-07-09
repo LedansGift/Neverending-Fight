@@ -5,9 +5,18 @@ public class DashTrail : MonoBehaviour
     private bool trailFade = false;
     private bool meshFade = false;
 
+    [SerializeField]
+    private bool worldSpaceMeshes = true;
+
     private float fadeTimer = 0f;
+
+    [SerializeField]
     private float fadeSpeed = 25f;
+
+    [SerializeField]
     private float fadeTrailGoal = 10f;
+
+    [SerializeField]
     private float fadeGoal = 25f;
 
     [SerializeField]
@@ -27,7 +36,10 @@ public class DashTrail : MonoBehaviour
 
     private void Start()
     {
-        meshHolder.transform.SetParent(null);
+        if (worldSpaceMeshes)
+        {
+            meshHolder.transform.SetParent(null);
+        }
     }
 
     private void Update()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -14,13 +15,13 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
-        Vector3 playerDirection = (bossTransform.position - playerTransform.position).normalized;
-        float dot = Vector3.Dot(bossTransform.forward, playerDirection);
-        float dotDivision =
-            dot
-            / Mathf.Clamp(bossTransform.forward.magnitude * playerDirection.magnitude, 0.0001f, 1f);
-        float angle = Mathf.Acos(dotDivision) / Mathf.PI;
-        Debug.Log(angle);
+        // Vector3 playerDirection = (bossTransform.position - playerTransform.position).normalized;
+        // float dot = Vector3.Dot(bossTransform.forward, playerDirection);
+        // float dotDivision =
+        //     dot
+        //     / Mathf.Clamp(bossTransform.forward.magnitude * playerDirection.magnitude, 0.0001f, 1f);
+        // float angle = Mathf.Acos(dotDivision) / Mathf.PI;
+        // Debug.Log(angle);
     }
 
     private void Start()
@@ -28,6 +29,8 @@ public class Test : MonoBehaviour
         //ProjectileManager.Instance.InitialiseProjectileSet(projectile, 10);
 
         // StartCoroutine(Shoot());
+
+        //BossCastBarUI.InitiateCastEvent(new CastInfo("X-Slash", 5f));
     }
 
     // private IEnumerator Shoot()
