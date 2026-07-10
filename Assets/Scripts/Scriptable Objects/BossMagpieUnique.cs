@@ -30,7 +30,7 @@ public class BossMagpieUnique : BossAttackNode
             // {
             //     Debug.Log("Boss State Recognised");
             BossState bossState = state as BossState;
-            bossState.SetStateFinished(FinishAttack);
+            bossState.SetStateFinished(FinishAttack, damageMultiplier);
             //}
 
             stateMachine.SwitchState(state);

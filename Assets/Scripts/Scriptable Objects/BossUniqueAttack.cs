@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(
-    fileName = "Boss Unique Attack",
-    menuName = "Boss Attack/Unique Attack",
-    order = 6
-)]
+// [CreateAssetMenu(
+//     fileName = "Boss Unique Attack",
+//     menuName = "Boss Attack/Unique Attack",
+//     order = 6
+// )]
 public class BossUniqueAttack : BossAttackNode
 {
     [SerializeField]

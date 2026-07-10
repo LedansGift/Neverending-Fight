@@ -3,17 +3,20 @@ using UnityEngine;
 
 public abstract class BossState : State
 {
+    protected float damageMult = 1f;
     protected Action OnStateFinished;
+    protected BossStateMachine bossStateMachine;
 
     protected BossState(BossStateMachine stateMachine)
         : base(stateMachine)
     {
-        this.stateMachine = stateMachine;
+        bossStateMachine = stateMachine;
     }
 
-    public void SetStateFinished(Action OnStateFinished)
+    public void SetStateFinished(Action OnStateFinished, float damageMult = 1f)
     {
         this.OnStateFinished = OnStateFinished;
+        this.damageMult = damageMult;
 
         Debug.Log("StateFinished Set for ");
     }

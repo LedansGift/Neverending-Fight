@@ -3,7 +3,8 @@ using UnityEngine;
 public enum MagpieUniqueAttacks
 {
     XSlash,
-    InescapablePinions
+    InescapablePinions,
+    Whirlwind
 }
 
 public class MagpieStateDictionary : StateDictionary
@@ -18,6 +19,11 @@ public class MagpieStateDictionary : StateDictionary
         stateDictionary.Add(
             (int)MagpieUniqueAttacks.InescapablePinions,
             new BossStateTest2(stateMachine as BossStateMachine)
+        );
+
+        stateDictionary.Add(
+            (int)MagpieUniqueAttacks.Whirlwind,
+            new BossWhirlwindState(stateMachine as BossStateMachine)
         );
     }
 }

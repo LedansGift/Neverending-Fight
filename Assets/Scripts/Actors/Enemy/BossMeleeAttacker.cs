@@ -29,8 +29,6 @@ public class BossMeleeAttacker : MonoBehaviour
         AttackTelegraphManager.Instance.StartAttackPattern(transform, meleeAttacks);
 
         Action finalAttackEvent = null;
-        //currentAttackFails.Add(false);
-        //int attackFailIndex = currentAttackFails.Count - 1;
         bool finalAttack = false;
 
         for (int i = 0; i < meleeAttacks.Length; i++)
@@ -42,14 +40,7 @@ public class BossMeleeAttacker : MonoBehaviour
             }
 
             StartCoroutine(
-                SetupMeleeAttack(
-                    meleeAttacks,
-                    i,
-                    //attackFailIndex,
-                    damageMultiplier,
-                    finalAttack,
-                    finalAttackEvent
-                )
+                SetupMeleeAttack(meleeAttacks, i, damageMultiplier, finalAttack, finalAttackEvent)
             );
         }
     }
@@ -57,7 +48,6 @@ public class BossMeleeAttacker : MonoBehaviour
     private IEnumerator SetupMeleeAttack(
         MeleeAttack[] attacks,
         int attackIndex,
-        //int attackFailsIndex,
         float damageMult,
         bool finalAttack,
         Action onAttacksFinished
@@ -74,30 +64,39 @@ public class BossMeleeAttacker : MonoBehaviour
 
         yield return new WaitForSeconds(attackDelayTime);
 
-        bool attackFail = false;
-
         if (attack.damageZoneType == DamageZoneType.box)
         {
-            attackFail = HitBoxArea(attack, damageMult);
+            HitBoxArea(attack, damageMult);
         }
         else if (attack.damageZoneType == DamageZoneType.circle)
         {
-            attackFail = HitCircleArea(attack, damageMult);
+            HitCircleArea(attack, damageMult);
         }
         else
         {
             Debug.Log("Unknown Damage Zone");
         }
 
-        // if (!currentAttackFails[attackFailsIndex])
-        // {
-        //     currentAttackFails[attackFailsIndex] = attackFail;
-        // }
-
         if (finalAttack)
         {
             yield return new WaitForSeconds(attack.delayToNextAttack);
             FinishAttacks(onAttacksFinished);
+        }
+    }
+
+    public void PerformAttackUntelegraphed(MeleeAttack attack, float damageMult)
+    {
+        if (attack.damageZoneType == DamageZoneType.box)
+        {
+            HitBoxArea(attack, damageMult);
+        }
+        else if (attack.damageZoneType == DamageZoneType.circle)
+        {
+            HitCircleArea(attack, damageMult);
+        }
+        else
+        {
+            Debug.Log("Unknown Damage Zone");
         }
     }
 
@@ -212,8 +211,10 @@ public class BossMeleeAttacker : MonoBehaviour
 
             if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
             {
-                // Debug.Log("Hit DOT: " + dotArc);
+                Debug.Log("Damage dealt");
                 // Debug.Log("Collider Direction" + colliderDirection);
+
+
 
                 hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
                 targetHit = true;

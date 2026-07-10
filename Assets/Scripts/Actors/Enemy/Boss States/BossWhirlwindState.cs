@@ -1,0 +1,85 @@
+using System;
+using System.Collections;
+using UnityEngine;
+
+public class BossWhirlwindState : BossState
+{
+    private bool castActive = false;
+
+    private int damage = 25;
+    private float attackRadius = 50f;
+    private float castTimer = 0f;
+    private float castDuration = 6f;
+    private float attackPreHitDelay = 0.5f;
+    private float attackPostHitDelay = 2f;
+
+    private MeleeAttack whirlwindAttack;
+
+    public BossWhirlwindState(BossStateMachine stateMachine)
+        : base(stateMachine)
+    {
+        whirlwindAttack = new MeleeAttack(
+            damage,
+            DamageZoneType.circle,
+            new Vector2(attackRadius, 1f),
+            castDuration
+        );
+    }
+
+    public override void Enter()
+    {
+        //Start whirwind animation
+
+        BossCastBarUI.InitiateCastEvent(new CastInfo("Whirlwind", castDuration));
+        PlayerGlaive.OnGlaiveSpecial += PlayerGlaive_OnGlaiveSpecial;
+        AttackTelegraphManager.Instance.StartAttack(bossStateMachine.transform, whirlwindAttack);
+        castTimer = 0f;
+        castActive = true;
+    }
+
+    public override void Exit()
+    {
+        PlayerGlaive.OnGlaiveSpecial -= PlayerGlaive_OnGlaiveSpecial;
+
+        OnStateFinished();
+    }
+
+    public override void Tick(float deltaTime)
+    {
+        if (!castActive)
+        {
+            return;
+        }
+
+        castTimer += deltaTime;
+
+        if (castTimer >= castDuration)
+        {
+            bossStateMachine.StartCoroutine(PerformAttack());
+            castActive = false;
+        }
+    }
+
+    private IEnumerator PerformAttack()
+    {
+        AttackTelegraphManager.Instance.EndAttackEarly(whirlwindAttack);
+        BossCastBarUI.CancelCast();
+
+        yield return new WaitForSeconds(attackPreHitDelay);
+
+        bossStateMachine.GetMeleeAttacker().PerformAttackUntelegraphed(whirlwindAttack, damageMult);
+
+        yield return new WaitForSeconds(attackPostHitDelay);
+
+        stateMachine.SwitchState(null);
+    }
+
+    private void PlayerGlaive_OnGlaiveSpecial(object sender, bool specialStart)
+    {
+        if (specialStart && castActive)
+        {
+            bossStateMachine.StartCoroutine(PerformAttack());
+            castActive = false;
+        }
+    }
+}

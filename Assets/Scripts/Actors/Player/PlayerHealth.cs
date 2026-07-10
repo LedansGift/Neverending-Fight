@@ -55,6 +55,25 @@ public class PlayerHealth : Health
         SetInvincibility(false);
     }
 
+    public void TakeTickDamage(int damage)
+    {
+        if (isDead || isInvincible)
+        {
+            return;
+        }
+
+        health = Mathf.Max(0, health - damage);
+
+        OnChangePlayerHealth?.Invoke(this, health);
+
+        if (health == 0)
+        {
+            //AudioManager.PlaySFX(playerDeathSFX, 1f, 0, transform.position);
+            isDead = true;
+            Die();
+        }
+    }
+
     public override void TakeDamage(int damage, bool arenaWideDamage = false)
     {
         if (isDead || (isInvincible && !arenaWideDamage))

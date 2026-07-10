@@ -30,6 +30,7 @@ public class BossCastBarUI : MonoBehaviour
     [SerializeField]
     private CanvasGroupFader fader;
 
+    private static Action OnCancelCast;
     private static EventHandler<CastInfo> OnBossCast;
 
     private void Awake()
@@ -40,11 +41,13 @@ public class BossCastBarUI : MonoBehaviour
     private void OnEnable()
     {
         OnBossCast += StartCast;
+        OnCancelCast += FinishCast;
     }
 
     private void OnDisable()
     {
         OnBossCast -= StartCast;
+        OnCancelCast = FinishCast;
     }
 
     private void Update()
@@ -93,5 +96,10 @@ public class BossCastBarUI : MonoBehaviour
     public static void InitiateCastEvent(CastInfo castInfo)
     {
         OnBossCast?.Invoke(null, castInfo);
+    }
+
+    public static void CancelCast()
+    {
+        OnCancelCast?.Invoke();
     }
 }

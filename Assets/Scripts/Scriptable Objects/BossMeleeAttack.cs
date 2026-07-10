@@ -4,6 +4,27 @@ using UnityEngine;
 [Serializable]
 public struct MeleeAttack
 {
+    public MeleeAttack(
+        int attackDamage,
+        DamageZoneType damageZoneType,
+        Vector2 damageZoneArea,
+        float zoneWarningTime,
+        Vector3 attackPosition = new Vector3(),
+        float attackYRotation = 0f,
+        bool relativePosition = true,
+        float delayToNextAttack = 0f
+    )
+    {
+        this.attackDamage = attackDamage;
+        this.damageZoneType = damageZoneType;
+        this.damageZoneArea = damageZoneArea;
+        this.zoneWarningTime = zoneWarningTime;
+        this.attackPosition = attackPosition;
+        this.attackYRotation = attackYRotation;
+        this.relativePosition = relativePosition;
+        this.delayToNextAttack = delayToNextAttack;
+    }
+
     public int attackDamage;
     public DamageZoneType damageZoneType;
     public Vector2 damageZoneArea;

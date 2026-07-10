@@ -1,8 +1,21 @@
+using System;
 using UnityEngine;
 
 public abstract class StateMachine : MonoBehaviour
 {
     private State currentState;
+
+    protected virtual void OnEnable()
+    {
+        RestartManager.OnResetPhase += ResetStatemachine;
+    }
+
+    protected virtual void OnDisable()
+    {
+        RestartManager.OnResetPhase -= ResetStatemachine;
+
+        StopAllCoroutines();
+    }
 
     void Update()
     {
@@ -25,5 +38,12 @@ public abstract class StateMachine : MonoBehaviour
     protected State GetCurrentState()
     {
         return currentState;
+    }
+
+    private void ResetStatemachine()
+    {
+        SwitchState(null);
+
+        StopAllCoroutines();
     }
 }

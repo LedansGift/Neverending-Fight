@@ -3,6 +3,8 @@ using UnityEngine.Rendering.Universal;
 
 public class DamageZone : MonoBehaviour
 {
+    private bool zoneActive = false;
+
     protected bool sizeChange = false;
     protected bool fadeOut = false;
 
@@ -109,15 +111,26 @@ public class DamageZone : MonoBehaviour
 
         fadeOut = false;
         sizeChange = true;
+
+        zoneActive = true;
     }
 
     public void DeactivateZone(float growDuration = 0.35f)
     {
+        lifeTime = 0f;
+
         zoneTarget = 0f;
         zoneGrowDuration = growDuration;
         zoneGrowTimer = 0f;
         zoneSize = new Vector2(zoneVisual.localScale.x, zoneVisual.localScale.z);
         fadeOut = true;
         sizeChange = true;
+
+        zoneActive = false;
+    }
+
+    public bool GetIsZoneActive()
+    {
+        return zoneActive;
     }
 }

@@ -184,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
     public void ToggleCanMove(bool enable)
     {
         canMove = enable;
+        groundChecker.SetCheckActive(canMove);
     }
 
     public void ResetToSavedPosition()
