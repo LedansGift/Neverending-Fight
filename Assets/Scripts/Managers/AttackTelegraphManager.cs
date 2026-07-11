@@ -1,14 +1,9 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackTelegraphManager : MonoBehaviour
 {
     public static AttackTelegraphManager Instance { get; private set; }
-
-    private Dictionary<MeleeAttack, DamageZone> activeTelegraphs =
-        new Dictionary<MeleeAttack, DamageZone>();
 
     private void Awake()
     {
@@ -44,7 +39,7 @@ public class AttackTelegraphManager : MonoBehaviour
         }
     }
 
-    public void StartAttack(Transform attacker, MeleeAttack attack)
+    public DamageZone StartAttack(Transform attacker, MeleeAttack attack)
     {
         Vector3 zoneSpawnLocation;
         Vector3 zoneSpawnRotation;
@@ -68,38 +63,16 @@ public class AttackTelegraphManager : MonoBehaviour
             attack.zoneWarningTime
         );
 
-        activeTelegraphs.Add(attack, damageZone);
-    }
-
-    public void EndAttackEarly(MeleeAttack attack)
-    {
-        if (
-            activeTelegraphs.TryGetValue(attack, out DamageZone damageZone)
-            && damageZone.GetIsZoneActive()
-        )
-        {
-            damageZone.DeactivateZone();
-        }
+        return damageZone;
     }
 
     public void StartAttackPattern(Transform attackerTransform, MeleeAttack[] attacks)
     {
-        // var activeKeys = activeTelegraphs.Keys;
-        // foreach (MeleeAttack attack in activeKeys)
-        // {
-        //     if (!activeTelegraphs[attack].GetIsZoneActive())
-        //     {
-        //         activeTelegraphs.Remove(attack);
-        //     }
-        // }
-
         StartCoroutine(TelegraphAttacks(attackerTransform, attacks));
     }
 
     private void StopAllTelegraphs()
     {
         StopAllCoroutines();
-
-        activeTelegraphs = new Dictionary<MeleeAttack, DamageZone>();
     }
 }

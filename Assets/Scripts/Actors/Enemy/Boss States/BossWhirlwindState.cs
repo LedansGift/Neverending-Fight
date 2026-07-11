@@ -14,6 +14,7 @@ public class BossWhirlwindState : BossState
     private float attackPostHitDelay = 2f;
 
     private MeleeAttack whirlwindAttack;
+    private DamageZone whirlwindDamageZone;
 
     public BossWhirlwindState(BossStateMachine stateMachine)
         : base(stateMachine)
@@ -32,7 +33,10 @@ public class BossWhirlwindState : BossState
 
         BossCastBarUI.InitiateCastEvent(new CastInfo("Whirlwind", castDuration));
         PlayerGlaive.OnGlaiveSpecial += PlayerGlaive_OnGlaiveSpecial;
-        AttackTelegraphManager.Instance.StartAttack(bossStateMachine.transform, whirlwindAttack);
+        whirlwindDamageZone = AttackTelegraphManager.Instance.StartAttack(
+            bossStateMachine.transform,
+            whirlwindAttack
+        );
         castTimer = 0f;
         castActive = true;
     }
@@ -62,7 +66,8 @@ public class BossWhirlwindState : BossState
 
     private IEnumerator PerformAttack()
     {
-        AttackTelegraphManager.Instance.EndAttackEarly(whirlwindAttack);
+        whirlwindDamageZone?.DeactivateZone();
+
         BossCastBarUI.CancelCast();
 
         yield return new WaitForSeconds(attackPreHitDelay);

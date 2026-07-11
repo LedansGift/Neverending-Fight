@@ -10,13 +10,13 @@ public class Projectile : MonoBehaviour
     private bool enemyProjectile = false;
 
     [SerializeField]
+    private bool damagingProjectile = true;
+
+    [SerializeField]
     private bool invincibleProjectile = false;
 
     [SerializeField]
     private int damage;
-
-    [SerializeField]
-    private float speed;
 
     [SerializeField]
     private float lifetime = 4f;
@@ -35,8 +35,8 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private Collider projectileCollider;
 
-    [SerializeField]
-    private Rigidbody projectileRb;
+    public EventHandler<bool> OnProjectileActivated;
+    public EventHandler<float> OnSetProjectileSpeed;
 
     private void Awake()
     {
@@ -67,6 +67,8 @@ public class Projectile : MonoBehaviour
             trail.Clear();
             trail.emitting = true;
         }
+
+        OnProjectileActivated?.Invoke(this, true);
     }
 
     public void DeactivateProjectile()
@@ -88,19 +90,14 @@ public class Projectile : MonoBehaviour
         {
             trail.emitting = false;
         }
+
+        OnProjectileActivated?.Invoke(this, false);
     }
 
     public void SetSpeedAndDamage(float speed, int damage)
     {
-        this.speed = speed;
         this.damage = damage;
-    }
-
-    protected virtual void MoveProjectile()
-    {
-        projectileRb.MovePosition(
-            projectileRb.position + transform.forward * speed * Time.fixedDeltaTime * Time.timeScale
-        );
+        OnSetProjectileSpeed?.Invoke(this, speed);
     }
 
     private void Update()
@@ -118,14 +115,6 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (projectileActive)
-        {
-            MoveProjectile();
-        }
-    }
-
     private void TryDestroyProjectile()
     {
         DeactivateProjectile();
@@ -133,7 +122,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!projectileActive)
+        if (!projectileActive || !damagingProjectile)
         {
             return;
         }

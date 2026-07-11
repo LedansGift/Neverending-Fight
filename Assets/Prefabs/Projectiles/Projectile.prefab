@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1910107161935360340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7062402356313507813}
+  m_Layer: 7
+  m_Name: Visual Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7062402356313507813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910107161935360340}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3410060234149096412}
+  m_Father: {fileID: 401100569383145374}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2713035987089654362
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,7 +63,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 1, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 401100569383145374}
+  m_Father: {fileID: 7062402356313507813}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &2849844634800078433
 MeshFilter:
@@ -100,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 401100569383145374}
   - component: {fileID: 5552972026594335306}
+  - component: {fileID: 2316955518011580880}
   - component: {fileID: 4845943519755525537}
   - component: {fileID: 2752330772444210150}
   - component: {fileID: 486680396932667366}
@@ -123,7 +156,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3410060234149096412}
+  - {fileID: 7062402356313507813}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5552972026594335306
@@ -139,12 +172,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   enemyProjectile: 1
+  damagingProjectile: 1
+  invincibleProjectile: 0
   damage: 10
-  speed: 10
   lifetime: 10
-  projectileVisual: {fileID: 2713035987089654362}
+  projectileVisual: {fileID: 1910107161935360340}
+  trail: {fileID: 0}
+  hitParticles: {fileID: 0}
   projectileCollider: {fileID: 2752330772444210150}
+--- !u!114 &2316955518011580880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155734954612681449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7afa2bbbc1a6e41881fcfb49905e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileMover
+  speed: 10
+  zRotationSpeed: 0
   projectileRb: {fileID: 486680396932667366}
+  rotatingElement: {fileID: 7062402356313507813}
+  projectile: {fileID: 5552972026594335306}
 --- !u!114 &4845943519755525537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,8 +210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   isPlayer: 0
-  maxHealth: 1
   isInvincible: 0
+  maxHealth: 1
 --- !u!136 &2752330772444210150
 CapsuleCollider:
   m_ObjectHideFlags: 0

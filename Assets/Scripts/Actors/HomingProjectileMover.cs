@@ -1,15 +1,13 @@
 using UnityEngine;
 
-public class HomingProjectile : Projectile
+public class HomingProjectileMover : ProjectileMover
 {
     [SerializeField]
     private float homingStrength = 1f;
     private Transform homingTarget;
 
-    public override void ActivateProjectile()
+    private void Start()
     {
-        base.ActivateProjectile();
-
         homingTarget = PlayerIdentifier.PlayerTransform;
     }
 

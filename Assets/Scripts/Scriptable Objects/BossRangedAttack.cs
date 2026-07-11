@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu(
@@ -8,6 +9,12 @@ using UnityEngine;
 )]
 public class BossRangedAttack : BossAttackNode
 {
+    [SerializeField]
+    private bool waitForSpawnsToFinish = true;
+
+    [SerializeField]
+    private bool worldPositionPattern = false;
+
     [SerializeField]
     private float patternStartDelay = 0.5f;
 
@@ -28,20 +35,44 @@ public class BossRangedAttack : BossAttackNode
     {
         CheckAvailableProjectiles();
 
+        Action patternFinish = null;
+        Transform spawnTransform = attacker.transform;
+
+        if (waitForSpawnsToFinish)
+        {
+            patternFinish = FinishProjectilePattern;
+        }
+        else
+        {
+            ProjectileManager.Instance.StartCoroutine(PatternFinishDelay());
+        }
+
+        if (worldPositionPattern)
+        {
+            spawnTransform = ProjectileManager.Instance.transform;
+        }
+
         ProjectileManager.Instance.SpawnProjectilePattern(
             projectile,
             pattern,
             patternStartDelay,
             patternEndDelay,
-            attacker.transform,
-            FinishProjectilePattern
+            spawnTransform,
+            patternFinish
         );
+
         this.OnAttackFinished = OnAttackFinished;
     }
 
     private void FinishProjectilePattern()
     {
         FinishAttack();
+    }
+
+    private IEnumerator PatternFinishDelay()
+    {
+        yield return new WaitForSeconds(patternEndDelay);
+        FinishProjectilePattern();
     }
 
     private void CheckAvailableProjectiles()
