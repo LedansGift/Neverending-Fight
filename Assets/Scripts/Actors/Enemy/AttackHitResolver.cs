@@ -125,4 +125,59 @@ public class AttackHitResolver
 
         return targetHit;
     }
+
+    public static bool HitDonutArea(
+        Transform attackTransform,
+        MeleeAttack attack,
+        LayerMask attackLayerMask,
+        float damageMult = 1f
+    )
+    {
+        Vector3 zoneSpawnLocation;
+
+        if (attack.relativePosition)
+        {
+            zoneSpawnLocation = attackTransform.position + attack.attackPosition;
+        }
+        else
+        {
+            zoneSpawnLocation = attack.attackPosition;
+        }
+
+        float donutHoleSize = attack.damageZoneArea.y;
+
+        Collider[] hitTargets = Physics.OverlapSphere(
+            zoneSpawnLocation,
+            attack.damageZoneArea.x,
+            attackLayerMask
+        );
+
+        bool targetHit = false;
+
+        foreach (Collider target in hitTargets)
+        {
+            Vector3 targetPosition = new Vector3(
+                target.transform.position.x,
+                zoneSpawnLocation.y,
+                target.transform.position.z
+            );
+            float colliderDistance = Vector3.Distance(zoneSpawnLocation, targetPosition);
+
+            if (colliderDistance < (donutHoleSize * attack.damageZoneArea.x))
+            {
+                continue;
+            }
+
+            if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
+            {
+                Debug.Log("Damage dealt");
+                // Debug.Log("Collider Direction" + colliderDirection);
+
+                hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
+                targetHit = true;
+            }
+        }
+
+        return targetHit;
+    }
 }

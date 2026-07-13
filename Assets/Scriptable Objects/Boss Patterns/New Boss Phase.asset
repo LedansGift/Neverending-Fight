@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern:
   - {fileID: 11400000, guid: 2f593cca358ff9d4da218f69dfecec6e, type: 2}
+  - {fileID: 11400000, guid: b1c29cea609616640831f570008e8e39, type: 2}
   - {fileID: 11400000, guid: 7a914c595efe1634f9a0289a7f9a08f3, type: 2}
   - {fileID: 11400000, guid: fee3c0632ba9d4b4498d8685327a7304, type: 2}
   - {fileID: 11400000, guid: 96dc936e7adb42d4bb672d596f6b6835, type: 2}
-  - {fileID: 11400000, guid: b1c29cea609616640831f570008e8e39, type: 2}
   - {fileID: 11400000, guid: 1f18b4494b47ebf499b39d323f8889ab, type: 2}

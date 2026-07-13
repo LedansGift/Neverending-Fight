@@ -55840,6 +55840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageZoneManager
   damageCircleZonePrefab: {fileID: 3646794056469929200, guid: ba7ae7f8a6f7d5647b32e0e9fcbbf96b, type: 3}
   damageBoxZonePrefab: {fileID: 3833012155835370063, guid: 8fb91a95813b2ad46b606c06d6be9353, type: 3}
+  damageDonutZonePrefab: {fileID: 1166644773218829775, guid: 965970f425ce56f43a4673e9f7469d9b, type: 3}
 --- !u!1 &1664255575
 GameObject:
   m_ObjectHideFlags: 0

@@ -74,6 +74,10 @@ public class BossMeleeAttacker : MonoBehaviour
             //HitCircleArea(attack, damageMult);
             AttackHitResolver.HitCircleArea(transform, attack, attackLayerMask, damageMult);
         }
+        else if (attack.damageZoneType == DamageZoneType.donut)
+        {
+            AttackHitResolver.HitDonutArea(transform, attack, attackLayerMask, damageMult);
+        }
         else
         {
             Debug.Log("Unknown Damage Zone");

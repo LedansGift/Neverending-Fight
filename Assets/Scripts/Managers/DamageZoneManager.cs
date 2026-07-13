@@ -5,7 +5,8 @@ using UnityEngine;
 public enum DamageZoneType
 {
     circle,
-    box
+    box,
+    donut
 }
 
 public class DamageZoneManager : MonoBehaviour
@@ -18,6 +19,9 @@ public class DamageZoneManager : MonoBehaviour
 
     [SerializeField]
     private GameObject damageBoxZonePrefab;
+
+    [SerializeField]
+    private GameObject damageDonutZonePrefab;
 
     public static DamageZoneManager Instance { get; private set; }
 
@@ -35,6 +39,7 @@ public class DamageZoneManager : MonoBehaviour
 
         InitialiseDamageZones(damageCircleZonePrefab);
         InitialiseDamageZones(damageBoxZonePrefab);
+        InitialiseDamageZones(damageDonutZonePrefab);
     }
 
     private void OnEnable()

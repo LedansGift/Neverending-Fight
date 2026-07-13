@@ -45,6 +45,7 @@ public class DamageZoneCircle : DamageZone
     private void SetupArc(float arc)
     {
         decalProjector.material.SetFloat("_Border_Arc", arc);
+        decalProjector.material.SetFloat("_Donut_Size", 0f);
     }
 
     public override void ActivateZone(

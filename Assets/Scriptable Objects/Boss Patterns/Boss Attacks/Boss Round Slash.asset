@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Boss Round Slash
   m_EditorClassIdentifier: Assembly-CSharp::BossComplexAttack
   animationTrigger: 
+  attackName: DefaultName
   empoweredAttack: {fileID: 0}
   attackNodes:
   - {fileID: 11400000, guid: dd84bdffb37966641aa088d4914f0873, type: 2}
@@ -22,4 +23,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e406293f434c26c45bf5ba346568aacc, type: 2}
   - {fileID: 11400000, guid: e783c246f738b3143b9a4f335de4f56c, type: 2}
   - {fileID: 11400000, guid: 247377043d8ad344b8f379ea469663ce, type: 2}
+  - {fileID: 11400000, guid: 08e3935fc88f5d346b12bdc67c7a9530, type: 2}
+  - {fileID: 11400000, guid: 49eed129e11dfac42be862bdaabb9451, type: 2}
   finalNode: {fileID: 11400000, guid: 08e3935fc88f5d346b12bdc67c7a9530, type: 2}
