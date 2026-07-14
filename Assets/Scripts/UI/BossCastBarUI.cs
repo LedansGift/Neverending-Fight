@@ -73,7 +73,7 @@ public class BossCastBarUI : MonoBehaviour
         castText.text = castName;
         castTimeTarget = castTime;
 
-        castTime = 0f;
+        this.castTime = 0f;
         castSlider.value = 0f;
 
         fader.ToggleFade(true);

@@ -12,6 +12,7 @@ public class PlayerHealth : Health
     //private float impulseStrength = 1f;
 
     private PlayerStats playerStats;
+    private PlayerMovement playerMovement;
 
     // [SerializeField]
     // private AudioClip playerDamageSFX;
@@ -31,6 +32,7 @@ public class PlayerHealth : Health
     {
         SetInvincibility(false);
         playerStats = GetComponent<PlayerStats>();
+        playerMovement = GetComponent<PlayerMovement>();
         SetMaxHealth(playerStats.GetHealth());
 
         OnInitialisePlayerHealth?.Invoke(this, playerStats.GetHealth());
@@ -85,7 +87,10 @@ public class PlayerHealth : Health
 
         health = Mathf.Max(0, health - damage);
 
-        attackFailTracker = true;
+        if (!arenaWideDamage)
+        {
+            attackFailTracker = true;
+        }
 
         OnChangePlayerHealth?.Invoke(this, health);
 
@@ -101,6 +106,9 @@ public class PlayerHealth : Health
             iFrameCoroutine = StartCoroutine(DamageInvincibility());
         }
     }
+
+    public void Knockback(Vector3 knockbackDirection, float knockbackStrength) =>
+        playerMovement.ApplyKnockback(knockbackDirection, knockbackStrength);
 
     public void Heal(int healAmount)
     {

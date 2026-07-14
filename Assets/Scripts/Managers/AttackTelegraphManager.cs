@@ -33,7 +33,15 @@ public class AttackTelegraphManager : MonoBehaviour
         {
             MeleeAttack attack = attacks[i];
 
-            StartAttack(attacker, attack);
+            if (attack.damageZoneType != DamageZoneType.raidwide)
+            {
+                StartAttack(attacker, attack);
+            }
+            else
+            {
+                RaidwideDamageUI.SetDamageValue(attack.attackDamage);
+                RaidwideDamageUI.StartDamageUI(attack.zoneWarningTime);
+            }
 
             yield return new WaitForSeconds(attack.delayToNextAttack);
         }

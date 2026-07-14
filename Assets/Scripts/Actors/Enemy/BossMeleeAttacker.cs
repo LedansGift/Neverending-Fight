@@ -1,12 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossMeleeAttacker : MonoBehaviour
 {
-    //private List<bool> currentAttackFails = new List<bool>();
-
     [SerializeField]
     private LayerMask attackLayerMask;
 
@@ -78,6 +75,10 @@ public class BossMeleeAttacker : MonoBehaviour
         {
             AttackHitResolver.HitDonutArea(transform, attack, attackLayerMask, damageMult);
         }
+        else if (attack.damageZoneType == DamageZoneType.raidwide)
+        {
+            AttackHitResolver.HitRaidwideArea(transform, attack, attackLayerMask, damageMult);
+        }
         else
         {
             Debug.Log("Unknown Damage Zone");
@@ -94,13 +95,19 @@ public class BossMeleeAttacker : MonoBehaviour
     {
         if (attack.damageZoneType == DamageZoneType.box)
         {
-            //HitBoxArea(attack, damageMult);
             AttackHitResolver.HitBoxArea(transform, attack, attackLayerMask, damageMult);
         }
         else if (attack.damageZoneType == DamageZoneType.circle)
         {
-            //HitCircleArea(attack, damageMult);
             AttackHitResolver.HitCircleArea(transform, attack, attackLayerMask, damageMult);
+        }
+        else if (attack.damageZoneType == DamageZoneType.donut)
+        {
+            AttackHitResolver.HitDonutArea(transform, attack, attackLayerMask, damageMult);
+        }
+        else if (attack.damageZoneType == DamageZoneType.raidwide)
+        {
+            AttackHitResolver.HitRaidwideArea(transform, attack, attackLayerMask, damageMult);
         }
         else
         {
@@ -116,125 +123,8 @@ public class BossMeleeAttacker : MonoBehaviour
         }
     }
 
-    //REWORK THIS TO UTILISE A GENERIC TYPED MANAGER FOR TELEGRAPHS AND ATTACKS, a la a gridsystem being used for a map vs world grid
-
-    // private bool HitBoxArea(MeleeAttack attack, float damageMult)
-    // {
-    //     Vector3 zoneSpawnLocation;
-    //     Quaternion zoneSpawnRotation;
-    //     if (attack.relativePosition)
-    //     {
-    //         zoneSpawnLocation = transform.position + attack.attackPosition;
-    //         zoneSpawnRotation = Quaternion.Euler(
-    //             0f,
-    //             transform.eulerAngles.y + attack.attackYRotation,
-    //             0f
-    //         );
-    //     }
-    //     else
-    //     {
-    //         zoneSpawnLocation = attack.attackPosition;
-    //         zoneSpawnRotation = Quaternion.Euler(0f, attack.attackYRotation, 0f);
-    //     }
-
-    //     Vector3 damageZone = new Vector3(attack.damageZoneArea.x, 1f, attack.damageZoneArea.y);
-
-    //     Collider[] hitTargets = Physics.OverlapBox(
-    //         zoneSpawnLocation,
-    //         damageZone,
-    //         zoneSpawnRotation,
-    //         attackLayerMask
-    //     );
-
-    //     bool targetHit = false;
-
-    //     foreach (Collider target in hitTargets)
-    //     {
-    //         if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
-    //         {
-    //             hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
-    //             //Debug.Log("Damage dealt: " + Mathf.RoundToInt(attack.attackDamage * damageMult));
-    //             targetHit = true;
-    //         }
-    //     }
-
-    //     return targetHit;
-    // }
-
-    // private bool HitCircleArea(MeleeAttack attack, float damageMult)
-    // {
-    //     Vector3 zoneSpawnLocation;
-    //     Vector3 zoneSpawnForward;
-    //     if (attack.relativePosition)
-    //     {
-    //         zoneSpawnLocation = transform.position + attack.attackPosition;
-    //         zoneSpawnForward = (
-    //             Quaternion.Euler(0f, attack.attackYRotation, 0f) * transform.forward
-    //         ).normalized;
-    //     }
-    //     else
-    //     {
-    //         zoneSpawnLocation = attack.attackPosition;
-    //         zoneSpawnForward = (
-    //             Quaternion.Euler(0f, attack.attackYRotation, 0f) * Vector3.forward
-    //         ).normalized;
-    //     }
-
-    //     float attackDotArc = 1f - attack.damageZoneArea.y;
-
-    //     Collider[] hitTargets = Physics.OverlapSphere(
-    //         zoneSpawnLocation,
-    //         attack.damageZoneArea.x,
-    //         attackLayerMask
-    //     );
-
-    //     bool targetHit = false;
-
-    //     foreach (Collider target in hitTargets)
-    //     {
-    //         Vector3 targetPosition = new Vector3(
-    //             target.transform.position.x,
-    //             zoneSpawnLocation.y,
-    //             target.transform.position.z
-    //         );
-    //         Vector3 colliderDirection = (targetPosition - zoneSpawnLocation).normalized;
-
-    //         float dot = Vector3.Dot(zoneSpawnForward, colliderDirection);
-    //         float dotDivision =
-    //             dot
-    //             / Mathf.Clamp(
-    //                 zoneSpawnForward.magnitude * colliderDirection.magnitude,
-    //                 0.0001f,
-    //                 1f
-    //             );
-    //         float dotArc = 1f - Mathf.Acos(dotDivision) / Mathf.PI;
-
-    //         if (dotArc < attackDotArc)
-    //         {
-    //             // Debug.Log("Not Hit DOT: " + dotArc);
-    //             // Debug.Log("Collider Direction" + colliderDirection);
-    //             // Debug.Log("Zone Forward" + zoneSpawnForward);
-    //             continue;
-    //         }
-
-    //         if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
-    //         {
-    //             Debug.Log("Damage dealt");
-    //             // Debug.Log("Collider Direction" + colliderDirection);
-
-
-
-    //             hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
-    //             targetHit = true;
-    //         }
-    //     }
-
-    //     return targetHit;
-    // }
-
     public void ResetMeleeAttacker()
     {
         StopAllCoroutines();
-        // currentAttackFails = new List<bool>();
     }
 }

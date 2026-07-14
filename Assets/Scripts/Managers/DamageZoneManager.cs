@@ -6,7 +6,8 @@ public enum DamageZoneType
 {
     circle,
     box,
-    donut
+    donut,
+    raidwide
 }
 
 public class DamageZoneManager : MonoBehaviour

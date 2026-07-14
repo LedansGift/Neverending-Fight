@@ -171,6 +171,16 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
     }
 
+    public void ApplyKnockback(Vector3 knockbackDirection, float knockbackStrength)
+    {
+        if (!canMove)
+        {
+            return;
+        }
+
+        playerRB.AddForce(knockbackDirection * knockbackStrength, ForceMode.Impulse);
+    }
+
     public void SetWeaponModifier(float modifier = 1f)
     {
         weaponModifier = modifier;

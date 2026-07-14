@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AttackHitResolver
 {
+    private const float RAIDWIDE_DAMAGE_AREA = 100f;
+
     public static bool HitBoxArea(
         Transform attackTransform,
         MeleeAttack attack,
@@ -174,6 +176,35 @@ public class AttackHitResolver
                 // Debug.Log("Collider Direction" + colliderDirection);
 
                 hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
+                targetHit = true;
+            }
+        }
+
+        return targetHit;
+    }
+
+    public static bool HitRaidwideArea(
+        Transform attackTransform,
+        MeleeAttack attack,
+        LayerMask attackLayerMask,
+        float damageMult = 1f
+    )
+    {
+        Vector3 zoneSpawnLocation = attackTransform.position;
+
+        Collider[] hitTargets = Physics.OverlapSphere(
+            zoneSpawnLocation,
+            RAIDWIDE_DAMAGE_AREA,
+            attackLayerMask
+        );
+
+        bool targetHit = false;
+
+        foreach (Collider target in hitTargets)
+        {
+            if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
+            {
+                hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult), true);
                 targetHit = true;
             }
         }

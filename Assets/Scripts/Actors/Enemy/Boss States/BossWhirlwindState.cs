@@ -74,9 +74,21 @@ public class BossWhirlwindState : BossState
 
         bossStateMachine.GetMeleeAttacker().PerformAttackUntelegraphed(whirlwindAttack, damageMult);
 
+        KnockbackTest();
+
         yield return new WaitForSeconds(attackPostHitDelay);
 
         stateMachine.SwitchState(null);
+    }
+
+    private void KnockbackTest()
+    {
+        PlayerHealth playerHealth = PlayerIdentifier.PlayerTransform.GetComponent<PlayerHealth>();
+
+        Vector3 knockbackDirection =
+            playerHealth.transform.position - bossStateMachine.transform.position;
+
+        playerHealth.Knockback(knockbackDirection.normalized, 500f);
     }
 
     private void PlayerGlaive_OnGlaiveSpecial(object sender, bool specialStart)
