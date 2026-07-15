@@ -4,7 +4,8 @@ public enum MagpieUniqueAttacks
 {
     XSlash,
     InescapablePinions,
-    Whirlwind
+    Whirlwind,
+    DramaticLunge,
 }
 
 public class MagpieStateDictionary : StateDictionary
@@ -24,6 +25,10 @@ public class MagpieStateDictionary : StateDictionary
         stateDictionary.Add(
             (int)MagpieUniqueAttacks.Whirlwind,
             new BossWhirlwindState(stateMachine as BossStateMachine)
+        );
+        stateDictionary.Add(
+            (int)MagpieUniqueAttacks.DramaticLunge,
+            new BossDramaticLungeState(stateMachine as BossStateMachine)
         );
     }
 }

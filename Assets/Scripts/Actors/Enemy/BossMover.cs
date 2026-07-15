@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossMover : MonoBehaviour
 {
     private bool moveBoss = false;
+    private bool lockOnActive = false;
     private float moveProgress = 0f;
     private float moveSpeed;
     private float endMoveDelay;
@@ -12,6 +13,9 @@ public class BossMover : MonoBehaviour
     private Vector3 movementTarget;
     private Quaternion startRotation;
     private Quaternion rotationTarget;
+
+    private Transform lockOnTarget;
+
     private Action onMovementFinished;
 
     [SerializeField]
@@ -82,6 +86,24 @@ public class BossMover : MonoBehaviour
         {
             MoveBoss();
         }
+        else if (lockOnActive)
+        {
+            RotateTowardsTarget();
+        }
+    }
+
+    private void RotateTowardsTarget()
+    {
+        // Quaternion rotationLerp = Quaternion.Slerp(
+        //     bossRB.rotation,
+        //     ,
+        //     0.5f
+        // );
+        bossRB.MoveRotation(
+            Quaternion.LookRotation(
+                (lockOnTarget.transform.position - bossRB.transform.position).normalized
+            )
+        );
     }
 
     private IEnumerator StartMovement(float initialDelay)
@@ -130,6 +152,22 @@ public class BossMover : MonoBehaviour
         }
     }
 
+    public void LockOnTarget(Transform target)
+    {
+        lockOnTarget = target;
+        lockOnActive = true;
+    }
+
+    public void CancelLockOn()
+    {
+        lockOnActive = false;
+    }
+
+    // public void ResetLookDirection()
+    // {
+
+    // }
+
     public Vector3 GetBossPosition()
     {
         return bossRB.position;
@@ -144,6 +182,7 @@ public class BossMover : MonoBehaviour
     {
         StopAllCoroutines();
         moveBoss = false;
+        lockOnActive = false;
         onMovementFinished = null;
 
         bossRB.position = bossSpawnTransform.position;

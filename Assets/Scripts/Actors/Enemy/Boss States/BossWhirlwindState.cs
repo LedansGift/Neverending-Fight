@@ -72,9 +72,9 @@ public class BossWhirlwindState : BossState
 
         yield return new WaitForSeconds(attackPreHitDelay);
 
-        bossStateMachine.GetMeleeAttacker().PerformAttackUntelegraphed(whirlwindAttack, damageMult);
-
         KnockbackTest();
+
+        bossStateMachine.GetMeleeAttacker().PerformAttackUntelegraphed(whirlwindAttack, damageMult);
 
         yield return new WaitForSeconds(attackPostHitDelay);
 

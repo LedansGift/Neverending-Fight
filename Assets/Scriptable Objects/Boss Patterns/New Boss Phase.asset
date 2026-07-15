@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: New Boss Phase
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern:
+  - {fileID: 11400000, guid: a20ada7d5dc627d4caf60d7b708345b5, type: 2}
+  - {fileID: 11400000, guid: 0c37788eac5752a4fa37f8d854113727, type: 2}
+  - {fileID: 11400000, guid: f4eaf5b72137a74409c5c1f852c41b75, type: 2}
+  - {fileID: 11400000, guid: 4f6a039f1569665459b067014b77dd78, type: 2}
   - {fileID: 11400000, guid: fee3c0632ba9d4b4498d8685327a7304, type: 2}
   - {fileID: 11400000, guid: 96dc936e7adb42d4bb672d596f6b6835, type: 2}
   - {fileID: 11400000, guid: 2f593cca358ff9d4da218f69dfecec6e, type: 2}

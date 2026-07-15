@@ -12,7 +12,8 @@ public struct MeleeAttack
         Vector3 attackPosition = new Vector3(),
         float attackYRotation = 0f,
         bool relativePosition = true,
-        float delayToNextAttack = 0f
+        float delayToNextAttack = 0f,
+        bool relativePositionToForward = false
     )
     {
         this.attackDamage = attackDamage;
@@ -23,6 +24,7 @@ public struct MeleeAttack
         this.attackYRotation = attackYRotation;
         this.relativePosition = relativePosition;
         this.delayToNextAttack = delayToNextAttack;
+        this.relativePositionToForward = relativePositionToForward;
     }
 
     public int attackDamage;
@@ -33,6 +35,7 @@ public struct MeleeAttack
     public float attackYRotation;
     public bool relativePosition;
     public float delayToNextAttack;
+    public bool relativePositionToForward;
 }
 
 [CreateAssetMenu(fileName = "Boss Melee Attack", menuName = "Boss Attack/Melee Attack", order = 1)]

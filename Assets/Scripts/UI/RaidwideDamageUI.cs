@@ -27,6 +27,8 @@ public class RaidwideDamageUI : MonoBehaviour
     {
         lethalDamageVisual.SetActive(false);
         fader.SetCanvasGroupAlpha(0f);
+
+        PlayerHealth.OnInitialisePlayerHealth += SetInitialPlayerHealth;
     }
 
     private void Start()
@@ -41,6 +43,7 @@ public class RaidwideDamageUI : MonoBehaviour
         OnStartUI -= StartUI;
         OnUpdateDamageValue -= UpdateDamageValue;
         PlayerHealth.OnChangePlayerHealth -= UpdatePlayerHealth;
+        PlayerHealth.OnInitialisePlayerHealth -= SetInitialPlayerHealth;
     }
 
     private void Update()
@@ -59,6 +62,7 @@ public class RaidwideDamageUI : MonoBehaviour
 
         if (displayTime >= displayDuration)
         {
+            displayTime = 0f;
             EndUI();
         }
     }
@@ -77,12 +81,21 @@ public class RaidwideDamageUI : MonoBehaviour
     private void UpdateLethalDamageVisual()
     {
         lethalDamageVisual.SetActive(raidwideDamageValue >= playerCurrentHealth);
+        Debug.Log(
+            "Raidwide Damage: " + raidwideDamageValue + " , Player Health: " + playerCurrentHealth
+        );
     }
 
     private void UpdatePlayerHealth(object sender, int newHealth)
     {
         playerCurrentHealth = newHealth;
         UpdateLethalDamageVisual();
+    }
+
+    private void SetInitialPlayerHealth(object sender, int initialHealth)
+    {
+        playerMaxHealth = initialHealth;
+        playerCurrentHealth = initialHealth;
     }
 
     private void UpdateDamageValue(object sender, int newDamage)

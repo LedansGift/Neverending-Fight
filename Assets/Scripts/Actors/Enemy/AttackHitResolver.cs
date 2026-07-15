@@ -15,7 +15,21 @@ public class AttackHitResolver
         Quaternion zoneSpawnRotation;
         if (attack.relativePosition)
         {
-            zoneSpawnLocation = attackTransform.position + attack.attackPosition;
+            if (attack.relativePositionToForward)
+            {
+                Quaternion forwardRotation = Quaternion.FromToRotation(
+                    Vector3.forward,
+                    attackTransform.transform.forward
+                );
+                Vector3 newAttackPosition = forwardRotation * attack.attackPosition;
+
+                zoneSpawnLocation = attackTransform.transform.position + newAttackPosition;
+            }
+            else
+            {
+                zoneSpawnLocation = attackTransform.position + attack.attackPosition;
+            }
+
             zoneSpawnRotation = Quaternion.Euler(
                 0f,
                 attackTransform.eulerAngles.y + attack.attackYRotation,
@@ -63,7 +77,21 @@ public class AttackHitResolver
         Vector3 zoneSpawnForward;
         if (attack.relativePosition)
         {
-            zoneSpawnLocation = attackTransform.position + attack.attackPosition;
+            if (attack.relativePositionToForward)
+            {
+                Quaternion forwardRotation = Quaternion.FromToRotation(
+                    Vector3.forward,
+                    attackTransform.transform.forward
+                );
+                Vector3 newAttackPosition = forwardRotation * attack.attackPosition;
+
+                zoneSpawnLocation = attackTransform.transform.position + newAttackPosition;
+            }
+            else
+            {
+                zoneSpawnLocation = attackTransform.position + attack.attackPosition;
+            }
+
             zoneSpawnForward = (
                 Quaternion.Euler(0f, attack.attackYRotation, 0f) * attackTransform.forward
             ).normalized;
@@ -139,7 +167,20 @@ public class AttackHitResolver
 
         if (attack.relativePosition)
         {
-            zoneSpawnLocation = attackTransform.position + attack.attackPosition;
+            if (attack.relativePositionToForward)
+            {
+                Quaternion forwardRotation = Quaternion.FromToRotation(
+                    Vector3.forward,
+                    attackTransform.transform.forward
+                );
+                Vector3 newAttackPosition = forwardRotation * attack.attackPosition;
+
+                zoneSpawnLocation = attackTransform.transform.position + newAttackPosition;
+            }
+            else
+            {
+                zoneSpawnLocation = attackTransform.position + attack.attackPosition;
+            }
         }
         else
         {

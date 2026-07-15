@@ -51,9 +51,24 @@ public class AttackTelegraphManager : MonoBehaviour
     {
         Vector3 zoneSpawnLocation;
         Vector3 zoneSpawnRotation;
+
         if (attack.relativePosition)
         {
-            zoneSpawnLocation = attacker.transform.position + attack.attackPosition;
+            if (attack.relativePositionToForward)
+            {
+                Quaternion forwardRotation = Quaternion.FromToRotation(
+                    Vector3.forward,
+                    attacker.transform.forward
+                );
+                Vector3 newAttackPosition = forwardRotation * attack.attackPosition;
+
+                zoneSpawnLocation = attacker.transform.position + newAttackPosition;
+            }
+            else
+            {
+                zoneSpawnLocation = attacker.transform.position + attack.attackPosition;
+            }
+
             zoneSpawnRotation =
                 Quaternion.Euler(0f, attack.attackYRotation, 0f) * attacker.transform.forward;
         }

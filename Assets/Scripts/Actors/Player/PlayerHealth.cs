@@ -107,8 +107,21 @@ public class PlayerHealth : Health
         }
     }
 
-    public void Knockback(Vector3 knockbackDirection, float knockbackStrength) =>
+    //KNOCKBACKS NEED TO HAPPEN BEFORE DAMAGE
+
+    public void Knockback(
+        Vector3 knockbackDirection,
+        float knockbackStrength,
+        bool forceKnockback = false
+    )
+    {
+        if (isDead || (isInvincible && !forceKnockback))
+        {
+            return;
+        }
+
         playerMovement.ApplyKnockback(knockbackDirection, knockbackStrength);
+    }
 
     public void Heal(int healAmount)
     {

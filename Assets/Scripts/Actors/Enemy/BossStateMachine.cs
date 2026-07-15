@@ -8,6 +8,9 @@ public class BossStateMachine : StateMachine
     [SerializeField]
     protected BossMeleeAttacker meleeAttacker;
 
+    [SerializeField]
+    protected BossMover mover;
+
     public Animator GetAnimator()
     {
         return animator;
@@ -16,5 +19,10 @@ public class BossStateMachine : StateMachine
     public BossMeleeAttacker GetMeleeAttacker()
     {
         return meleeAttacker;
+    }
+
+    public BossMover GetMover()
+    {
+        return mover;
     }
 }
