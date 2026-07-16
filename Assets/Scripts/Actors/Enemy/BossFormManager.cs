@@ -5,6 +5,10 @@ using UnityEngine;
 public class BossFormManager : MonoBehaviour
 {
     private bool bossActive = false;
+    private bool bossFormActive = false;
+
+    [SerializeField]
+    private Animator bossAnimator;
 
     [SerializeField]
     private BossHealth bossHealth;
@@ -38,7 +42,7 @@ public class BossFormManager : MonoBehaviour
         RestartManager.OnResetPhase -= ResetBossPhase;
     }
 
-    public void InitialiseBoss()
+    private void InitialiseBoss()
     {
         bossHealth.InitialiseHealth();
         bossMover.ResetMover();
@@ -50,6 +54,8 @@ public class BossFormManager : MonoBehaviour
 
         bossCombatManager.StartBossCombat(bossAttackManager, phase.GetAttackPattern());
         bossActive = true;
+
+        OnNewPhaseStart?.Invoke();
     }
 
     private void HandleBossDeath()
@@ -74,7 +80,7 @@ public class BossFormManager : MonoBehaviour
         if (bossPhaseManager.TryGetPhase(out BossPhase phase))
         {
             //Start phase change cutscene that callbacks to Initialise Boss
-            OnNewPhaseStart?.Invoke();
+
             InitialiseBoss();
         }
         else
@@ -83,6 +89,31 @@ public class BossFormManager : MonoBehaviour
             Debug.Log("Final Phase Finished");
             OnFinalPhaseFinished?.Invoke();
         }
+    }
+
+    public void ActivateBossForm()
+    {
+        bossFormActive = true;
+
+        InitialiseBoss();
+    }
+
+    public void DeactivateBossForm()
+    {
+        bossFormActive = false;
+
+        //Definitelt needs changing later
+        gameObject.SetActive(false);
+    }
+
+    public void PlayBossDamagedAnimation()
+    {
+        bossAnimator.SetTrigger("bigdamage");
+    }
+
+    public BossAttackManager GetBossAttackManager()
+    {
+        return bossAttackManager;
     }
 
     // private void FinalizePhaseChange()
@@ -99,6 +130,11 @@ public class BossFormManager : MonoBehaviour
 
     private void ResetBossPhase()
     {
+        if (!bossFormActive)
+        {
+            return;
+        }
+
         StartCoroutine(DelayedBossReset());
     }
 }

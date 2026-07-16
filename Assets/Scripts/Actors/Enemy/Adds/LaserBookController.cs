@@ -9,9 +9,6 @@ public class LaserBookController : MonoBehaviour
     [SerializeField]
     private MeleeAttack laserAttack;
 
-    [SerializeField]
-    private LayerMask attackLayermask;
-
     private Projectile projectile;
     private DamageZone laserDamageZone;
 
@@ -34,7 +31,7 @@ public class LaserBookController : MonoBehaviour
 
         yield return new WaitForSeconds(laserAttack.zoneWarningTime);
 
-        AttackHitResolver.HitBoxArea(transform, laserAttack, attackLayermask);
+        AttackHitResolver.HitBoxArea(transform, laserAttack, LayerMaskManager.GetAttackLayerMask());
     }
 
     private void ToggleBookActive(object sender, bool toggle)

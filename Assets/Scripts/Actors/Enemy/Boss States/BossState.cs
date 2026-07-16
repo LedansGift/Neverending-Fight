@@ -17,7 +17,5 @@ public abstract class BossState : State
     {
         this.OnStateFinished = OnStateFinished;
         this.damageMult = damageMult;
-
-        Debug.Log("StateFinished Set for ");
     }
 }

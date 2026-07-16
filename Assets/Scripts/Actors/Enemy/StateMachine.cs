@@ -8,11 +8,13 @@ public abstract class StateMachine : MonoBehaviour
     protected virtual void OnEnable()
     {
         RestartManager.OnResetPhase += ResetStatemachine;
+        BossFormManager.OnPhaseFinished += ResetStatemachine;
     }
 
     protected virtual void OnDisable()
     {
         RestartManager.OnResetPhase -= ResetStatemachine;
+        BossFormManager.OnPhaseFinished -= ResetStatemachine;
 
         StopAllCoroutines();
     }

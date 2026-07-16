@@ -81,9 +81,9 @@ public class RaidwideDamageUI : MonoBehaviour
     private void UpdateLethalDamageVisual()
     {
         lethalDamageVisual.SetActive(raidwideDamageValue >= playerCurrentHealth);
-        Debug.Log(
-            "Raidwide Damage: " + raidwideDamageValue + " , Player Health: " + playerCurrentHealth
-        );
+        // Debug.Log(
+        //     "Raidwide Damage: " + raidwideDamageValue + " , Player Health: " + playerCurrentHealth
+        // );
     }
 
     private void UpdatePlayerHealth(object sender, int newHealth)

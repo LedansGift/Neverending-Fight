@@ -41,8 +41,6 @@ public class BossMagpieUnique : BossAttackNode
     {
         OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
 
-        Debug.Log("Attack Finished");
-
         base.FinishAttack();
     }
 }

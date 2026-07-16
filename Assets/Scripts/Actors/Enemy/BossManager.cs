@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public enum BossForm
@@ -17,9 +19,17 @@ public class BossManager : MonoBehaviour
     [SerializeField]
     private BossFormManager[] bossForms;
 
+    public static EventHandler<BossFormManager> OnNewBossForm;
+
     private void Start()
     {
         //Temp
+        StartCoroutine(DelayedStartEnable());
+    }
+
+    private IEnumerator DelayedStartEnable()
+    {
+        yield return null;
         ActivateBossForm(BossForm.CROSSROADS);
     }
 
@@ -35,17 +45,23 @@ public class BossManager : MonoBehaviour
 
         BossFormManager activeFormManager = bossForms[(int)activeBossForm];
         activeFormManager.OnFinalPhaseFinished += EvaluateNewBossForm;
-        activeFormManager.InitialiseBoss();
+        activeFormManager.ActivateBossForm();
+
+        OnNewBossForm?.Invoke(this, activeFormManager);
     }
 
     public void DeactivateBossForm()
     {
         BossFormManager activeFormManager = bossForms[(int)activeBossForm];
         activeFormManager.OnFinalPhaseFinished -= EvaluateNewBossForm;
+
+        activeFormManager.DeactivateBossForm();
     }
 
     private void EvaluateNewBossForm()
     {
+        DeactivateBossForm();
         //Various shit to decide form change
+        ActivateBossForm(BossForm.MAGPIE);
     }
 }

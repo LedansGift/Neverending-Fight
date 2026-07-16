@@ -11,6 +11,9 @@ public class PhaseChangeManager : MonoBehaviour
     [SerializeField]
     private CinemachineCamera bossCamera;
 
+    [SerializeField]
+    private BossMoveNode centreMoveNode;
+
     private Action OnPhaseChangeCutsceneEnd;
 
     private void Awake()
@@ -39,23 +42,26 @@ public class PhaseChangeManager : MonoBehaviour
         bossCamera.Target.LookAtTarget = formManager.transform;
         bossCamera.Target.TrackingTarget = formManager.transform;
 
-        StartCoroutine(TimedPhaseChange());
+        bloodEffect.transform.position = formManager.transform.position;
+
+        StartCoroutine(TimedPhaseChange(formManager));
     }
 
-    private IEnumerator TimedPhaseChange()
+    private IEnumerator TimedPhaseChange(BossFormManager formManager)
     {
         yield return new WaitForSecondsRealtime(1.5f);
 
-        //Play Bossform big damage animation
+        formManager.PlayBossDamagedAnimation();
 
         bloodEffect.SetActive(true);
         TimeManager.Instance.RestartTimeAfterGradualPause();
 
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(4f);
 
         //Boss form jumps to centre of screen
+        formManager.GetBossAttackManager().PerformAttackNode(centreMoveNode, null);
 
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(3f);
 
         bossCamera.gameObject.SetActive(false);
 

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class BossMeleeAttacker : MonoBehaviour
 {
-    [SerializeField]
     private LayerMask attackLayerMask;
+
+    private void Start()
+    {
+        attackLayerMask = LayerMaskManager.GetAttackLayerMask();
+    }
 
     private void OnEnable()
     {

@@ -112,9 +112,9 @@ public class PlayerManager : MonoBehaviour
 
     private void HandlePlayerPhaseStart()
     {
-        playerMovement.TryResolveGroundCheck();
-        playerMovement.SaveCurrentPosition();
-
         ResetPlayer();
+
+        //playerMovement.TryResolveGroundCheck();
+        playerMovement.SaveCurrentPosition();
     }
 }

@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53914625710d5de409d4f333e89c1a9d, type: 3}
-  m_Name: New Boss Phase 1
+  m_Name: Magus Phase 1
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern:
-  - {fileID: 11400000, guid: a27c665dffbc6d040912d778a6c43640, type: 2}
-  - {fileID: 11400000, guid: c4a390f2588c03747a996121814aff96, type: 2}
+  - {fileID: 11400000, guid: fee3c0632ba9d4b4498d8685327a7304, type: 2}
+  - {fileID: 11400000, guid: f4eaf5b72137a74409c5c1f852c41b75, type: 2}
+  - {fileID: 11400000, guid: 4f6a039f1569665459b067014b77dd78, type: 2}
+  - {fileID: 11400000, guid: 1f18b4494b47ebf499b39d323f8889ab, type: 2}
+  - {fileID: 11400000, guid: 2f593cca358ff9d4da218f69dfecec6e, type: 2}

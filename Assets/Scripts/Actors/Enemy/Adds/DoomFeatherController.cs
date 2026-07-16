@@ -13,16 +13,11 @@ public class DoomFeatherController : MonoBehaviour
 
     private Projectile projectile;
 
-    //private DamageZone featherDamageZone;
-
     [SerializeField]
     private Rigidbody featherRB;
 
     [SerializeField]
     private MeleeAttack featherAttack;
-
-    [SerializeField]
-    private LayerMask attackLayermask;
 
     private void Awake()
     {
@@ -54,7 +49,11 @@ public class DoomFeatherController : MonoBehaviour
 
     private void PerformAttack()
     {
-        AttackHitResolver.HitCircleArea(transform, featherAttack, attackLayermask);
+        AttackHitResolver.HitCircleArea(
+            transform,
+            featherAttack,
+            LayerMaskManager.GetAttackLayerMask()
+        );
     }
 
     private void ToggleDoomFeather(object sender, bool toggle)
