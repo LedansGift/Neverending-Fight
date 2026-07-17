@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -14,25 +15,28 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     private PlayableDirector introCutsceneDirector;
 
+    [SerializeField]
+    private MusicTrack mainMenuMusic;
+
+    private void Start()
+    {
+        InputManager.Instance.TogglePlayerControlActive(false);
+        AudioManager.SetMusicTrack(mainMenuMusic);
+    }
+
     public void StartGame()
     {
         // Test if tutorial has been played or not. If yes, go straight to gameplay level
 
-
         mainMenuFader.ToggleFade(false);
         mainMenuFader.ToggleBlockRaycasts(false);
 
-        //Play Cutscene
-        introCutsceneDirector.Play();
-        introCutsceneDirector.stopped += OnCutsceneFinished;
+        InputManager.Instance.TogglePlayerControlActive(true);
+
+        CutsceneManager.Instance.StartCutscene(introCutsceneDirector, OnCutsceneFinished);
     }
 
-    private void OnDisable()
-    {
-        introCutsceneDirector.stopped -= OnCutsceneFinished;
-    }
-
-    private void OnCutsceneFinished(PlayableDirector director)
+    private void OnCutsceneFinished()
     {
         LoadGameplayLevel();
     }

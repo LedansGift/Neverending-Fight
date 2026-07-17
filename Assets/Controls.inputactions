@@ -25,6 +25,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Skip Cutscene",
+                    "type": "Button",
+                    "id": "178eb24e-026a-43a3-8188-d080586915c0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "eaa3bc2f-950f-439d-9520-d09d7476efb0",
@@ -293,6 +302,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Mouse Position",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06e33b7c-5496-4cd7-aa5b-bc5034d16451",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip Cutscene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

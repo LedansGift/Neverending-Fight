@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
     public Action OnAttackReleaseEvent;
     public Action OnDashEvent;
     public Action OnDashReleaseEvent;
+    public Action OnSkipEvent;
+    public Action OnSkipReleaseEvent;
     public Action OnSpecialEvent;
 
     public Action OnPauseEvent;
@@ -71,6 +73,18 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
         else if (context.canceled)
         {
             OnDashReleaseEvent?.Invoke();
+        }
+    }
+
+    public void OnSkipCutscene(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            OnSkipEvent?.Invoke();
+        }
+        else if (context.canceled)
+        {
+            OnSkipReleaseEvent?.Invoke();
         }
     }
 
@@ -185,5 +199,10 @@ public class InputManager : MonoBehaviour, Controls.IPlayerActions
         }
 
         disableInputs = toggle;
+    }
+
+    public void TogglePlayerControlActive(bool toggle)
+    {
+        playerControlActive = toggle;
     }
 }

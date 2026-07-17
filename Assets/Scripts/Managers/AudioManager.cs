@@ -1,6 +1,7 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,8 +13,7 @@ public class AudioManager : MonoBehaviour
 
     private static int sfxPoolCounter = 0;
 
-    [SerializeField]
-    private AudioSource musicAudioSource;
+    private MusicPlayer musicPlayer;
 
     [SerializeField]
     private AudioMixer volumeMixer;
@@ -22,12 +22,21 @@ public class AudioManager : MonoBehaviour
     private AudioSource[] localSfxPool;
     private static AudioSource[] sfxPool;
 
+    private static EventHandler<MusicTrack> OnNewMusicTrack;
+
+    private void Awake()
+    {
+        musicPlayer = GetComponent<MusicPlayer>();
+    }
+
     private void OnEnable()
     {
         OptionsUI.OnMasterVolumeUpdated += UpdateMasterVolume;
         OptionsUI.OnMusicVolumeUpdated += UpdateMusicVolume;
         OptionsUI.OnSFXVolumeUpdated += UpdateSFXVolume;
         OptionsUI.OnVoiceVolumeUpdated += UpdateVoiceVolume;
+
+        OnNewMusicTrack += SetNewMusicTrack;
 
         sfxPool = localSfxPool;
         sfxPoolCounter = 0;
@@ -39,6 +48,8 @@ public class AudioManager : MonoBehaviour
         OptionsUI.OnMusicVolumeUpdated -= UpdateMusicVolume;
         OptionsUI.OnSFXVolumeUpdated -= UpdateSFXVolume;
         OptionsUI.OnVoiceVolumeUpdated -= UpdateVoiceVolume;
+
+        OnNewMusicTrack -= SetNewMusicTrack;
     }
 
     private void Start()
@@ -100,6 +111,11 @@ public class AudioManager : MonoBehaviour
         );
     }
 
+    public static void SetMusicTrack(MusicTrack musicTrack)
+    {
+        OnNewMusicTrack?.Invoke(null, musicTrack);
+    }
+
     private void UpdateMasterVolume(object sender, float newVolume)
     {
         volumeMixer.SetFloat(
@@ -130,5 +146,10 @@ public class AudioManager : MonoBehaviour
             "voice",
             Mathf.Log10(Mathf.Clamp(newVolume, logMinThreshold, 1f)) * logMult
         );
+    }
+
+    private void SetNewMusicTrack(object sender, MusicTrack musicTrack)
+    {
+        musicPlayer.SetMusicTrack(musicTrack);
     }
 }

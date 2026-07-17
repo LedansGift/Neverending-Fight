@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PauseMenuUI : MonoBehaviour
 {
+    private bool cutsceneActive = false;
     private bool pauseActive = false;
     private int activeFader;
 
@@ -26,6 +27,12 @@ public class PauseMenuUI : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        CutsceneManager.Instance.OnCutsceneStart += SetCutsceneStarted;
+        CutsceneManager.Instance.OnCutsceneEnd += SetCutsceneEnded;
+    }
+
     private void OnEnable()
     {
         PauseManager.OnPauseGame += ToggleUI;
@@ -34,6 +41,8 @@ public class PauseMenuUI : MonoBehaviour
     private void OnDisable()
     {
         PauseManager.OnPauseGame -= ToggleUI;
+        CutsceneManager.Instance.OnCutsceneStart -= SetCutsceneStarted;
+        CutsceneManager.Instance.OnCutsceneEnd -= SetCutsceneEnded;
     }
 
     public void SwitchSubmenu(int subMenu)
@@ -74,6 +83,11 @@ public class PauseMenuUI : MonoBehaviour
             pauseManager = sender as PauseManager;
         }
 
+        if (cutsceneActive)
+        {
+            return;
+        }
+
         if (toggle == pauseActive)
         {
             return;
@@ -97,5 +111,15 @@ public class PauseMenuUI : MonoBehaviour
 
             ToggleSubMenu(activeFader, false);
         }
+    }
+
+    private void SetCutsceneStarted()
+    {
+        cutsceneActive = true;
+    }
+
+    private void SetCutsceneEnded()
+    {
+        cutsceneActive = false;
     }
 }

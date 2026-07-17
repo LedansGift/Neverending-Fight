@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fd56291caad22442af6ace7eb2b1aa1, type: 3}
-  m_Name: Dirge Track
+  m_Name: Crossroads Track
   m_EditorClassIdentifier: Assembly-CSharp::MusicTrack
-  track: {fileID: 8300000, guid: 1faf978eb96a94b4793ea16c3896b398, type: 3}
+  track: {fileID: 8300000, guid: 1d67e2234f6ab174599d18e3559b5879, type: 3}
   trackVolume: 0.5
   loopTime: 0
