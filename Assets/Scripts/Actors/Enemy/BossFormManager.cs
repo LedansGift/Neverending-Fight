@@ -44,13 +44,14 @@ public class BossFormManager : MonoBehaviour
 
     private void InitialiseBoss()
     {
-        bossHealth.InitialiseHealth();
         bossMover.ResetMover();
 
         if (!bossPhaseManager.TryGetPhase(out BossPhase phase))
         {
             return;
         }
+
+        bossHealth.InitialiseHealth();
 
         bossCombatManager.StartBossCombat(bossAttackManager, phase.GetAttackPattern());
         bossActive = true;

@@ -14,6 +14,8 @@ public enum BossForm
 
 public class BossManager : MonoBehaviour
 {
+    public static BossManager Instance { get; private set; }
+
     private BossForm activeBossForm;
 
     [SerializeField]
@@ -21,17 +23,27 @@ public class BossManager : MonoBehaviour
 
     public static EventHandler<BossFormManager> OnNewBossForm;
 
-    private void Start()
+    private void Awake()
     {
-        //Temp
-        StartCoroutine(DelayedStartEnable());
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
 
-    private IEnumerator DelayedStartEnable()
-    {
-        yield return null;
-        ActivateBossForm(BossForm.CROSSROADS);
-    }
+    // private void Start()
+    // {
+    //     //Temp
+    //     StartCoroutine(DelayedStartEnable());
+    // }
+
+    // private IEnumerator DelayedStartEnable()
+    // {
+    //     yield return null;
+    //     ActivateBossForm(BossForm.CROSSROADS);
+    // }
 
     public void ActivateBossForm(BossForm bossForm)
     {

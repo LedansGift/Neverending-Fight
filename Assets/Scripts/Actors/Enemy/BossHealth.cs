@@ -8,6 +8,7 @@ public class BossHealth : Health
 
     // [SerializeField]
     // private AudioClip enemyDeathSFX;
+    public static Action OnBossDie;
 
     public static EventHandler<int> OnInitialiseBossHealth;
     public static EventHandler<int> OnChangeBossHealth;
@@ -43,6 +44,7 @@ public class BossHealth : Health
         {
             //AudioManager.PlaySFX(enemyDeathSFX, 1f, 0, transform.position);
 
+            OnBossDie?.Invoke();
             Die();
         }
         else
