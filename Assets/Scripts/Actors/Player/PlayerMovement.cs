@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     private float weaponModifier = 1f;
     private float dashModifier = 1f;
     private float dashTimer = 0f;
+
+    [SerializeField]
+    private float dashObstacleDetectDistance = 1f;
     private Vector2 movementDirection;
     private Vector2 movementDashBuffer;
     private Transform mouseTarget;
@@ -26,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Rigidbody playerRB;
+
+    [SerializeField]
+    private LayerMask dashObstacleLayerMask;
 
     [SerializeField]
     private PlayerGroundCheck groundChecker;
@@ -69,6 +75,11 @@ public class PlayerMovement : MonoBehaviour
                 RotateTowardsMouse();
             }
 
+            if (isDashing)
+            {
+                DetectDashObstacle();
+            }
+
             if (!dashAvailable)
             {
                 IncrementDashTimer();
@@ -81,6 +92,21 @@ public class PlayerMovement : MonoBehaviour
         if (canMove)
         {
             MoveRB();
+        }
+    }
+
+    private void DetectDashObstacle()
+    {
+        if (
+            Physics.Raycast(
+                playerRB.position,
+                new Vector3(movementDashBuffer.x, 0f, movementDashBuffer.y),
+                dashObstacleDetectDistance,
+                dashObstacleLayerMask
+            )
+        )
+        {
+            FinishDashEarly();
         }
     }
 
@@ -158,6 +184,21 @@ public class PlayerMovement : MonoBehaviour
         OnDashCooldownStart?.Invoke(this, stats.GetDashRechargeTime());
     }
 
+    private void FinishDashEarly()
+    {
+        if (dashCoroutine != null)
+        {
+            StopCoroutine(dashCoroutine);
+
+            ApplyKnockback(-movementDashBuffer, 150f);
+
+            dashModifier = 1f;
+            isDashing = false;
+
+            dashCoroutine = null;
+        }
+    }
+
     private IEnumerator ApplyDash()
     {
         isDashing = true;
@@ -169,6 +210,8 @@ public class PlayerMovement : MonoBehaviour
 
         dashModifier = 1f;
         isDashing = false;
+
+        dashCoroutine = null;
     }
 
     public void ApplyKnockback(Vector3 knockbackDirection, float knockbackStrength)
@@ -194,6 +237,7 @@ public class PlayerMovement : MonoBehaviour
     public void ToggleCanMove(bool enable)
     {
         canMove = enable;
+        FinishDashEarly();
         groundChecker.SetCheckActive(canMove);
     }
 

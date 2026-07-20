@@ -20,6 +20,7 @@ public class CameraBossFollower : CameraFollower
     {
         if (!activeBossTransform)
         {
+            base.SetTarget();
             return;
         }
 

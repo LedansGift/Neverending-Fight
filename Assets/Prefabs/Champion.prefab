@@ -25347,6 +25347,9 @@ MonoBehaviour:
   rotateTransform: {fileID: 5734084047213677556}
   positionSaveTransform: {fileID: 2228804065163516597}
   playerRB: {fileID: 5030555830869416559}
+  dashObstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
   groundChecker: {fileID: 1584918540438668422}
   dashTrail: {fileID: 7786746253089384083}
 --- !u!114 &1584918540438668422
@@ -25485,7 +25488,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4129597587068436490
 MonoBehaviour:
   m_ObjectHideFlags: 0
