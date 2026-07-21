@@ -33,18 +33,6 @@ public class BossManager : MonoBehaviour
         Instance = this;
     }
 
-    // private void Start()
-    // {
-    //     //Temp
-    //     StartCoroutine(DelayedStartEnable());
-    // }
-
-    // private IEnumerator DelayedStartEnable()
-    // {
-    //     yield return null;
-    //     ActivateBossForm(BossForm.CROSSROADS);
-    // }
-
     public void ActivateBossForm(BossForm bossForm)
     {
         // if (activeBossForm == bossForm)
@@ -74,6 +62,17 @@ public class BossManager : MonoBehaviour
     {
         DeactivateBossForm();
         //Various shit to decide form change
+        ActivateBossForm(BossForm.MAGUS);
+    }
+
+    public BossForm GetActiveBossForm()
+    {
+        return activeBossForm;
+    }
+
+    public void ActivateTutorialBossForm()
+    {
+        DeactivateBossForm();
         ActivateBossForm(BossForm.MAGPIE);
     }
 }

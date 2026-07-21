@@ -21,6 +21,14 @@ public class CutsceneManager : MonoBehaviour
         Instance = this;
     }
 
+    private void OnDisable()
+    {
+        if (activeDirector != null)
+        {
+            activeDirector.stopped -= EndCutscene;
+        }
+    }
+
     private void EndCutscene(PlayableDirector director)
     {
         director.stopped -= EndCutscene;

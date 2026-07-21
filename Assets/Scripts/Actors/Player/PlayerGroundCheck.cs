@@ -7,7 +7,7 @@ public class PlayerGroundCheck : MonoBehaviour
     private int floatingTickDamage = 1;
     private float checkTimer = 0f;
     private const float CHECK_WAIT_DURATION = 0.1f;
-    private const float GROUND_DETECT_RADIUS = 0.1f;
+    private const float GROUND_DETECT_RADIUS = 0.5f;
     private Transform safeGroundTransform;
 
     [SerializeField]

@@ -51,6 +51,13 @@ public class RestartManager : MonoBehaviour
     {
         OnStartLevelResetVisual?.Invoke();
 
+        if (BossManager.Instance.GetActiveBossForm() == BossForm.CROSSROADS)
+        {
+            BossManager.Instance.ActivateTutorialBossForm();
+
+            return;
+        }
+
         StartCoroutine(DelayedLevelReset());
     }
 
@@ -59,6 +66,6 @@ public class RestartManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(levelResetVisualDuration);
         // Reset level via LevelManager that handles all necessary load screens and the like
         //Temp
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
