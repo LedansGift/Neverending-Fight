@@ -44,8 +44,13 @@ public abstract class StateMachine : MonoBehaviour
 
     private void ResetStatemachine()
     {
-        SwitchState(null);
-
         StopAllCoroutines();
+
+        if (currentState != null)
+        {
+            currentState.StateReset();
+        }
+
+        SwitchState(null);
     }
 }

@@ -13,6 +13,8 @@ public abstract class State
 
     public abstract void Exit();
 
+    public virtual void StateReset() { }
+
     public virtual string GetStateName()
     {
         return "State";

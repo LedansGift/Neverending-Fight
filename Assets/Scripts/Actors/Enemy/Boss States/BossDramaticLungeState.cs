@@ -44,7 +44,7 @@ public class BossDramaticLungeState : BossState
 
     public override void Exit()
     {
-        OnStateFinished();
+        TryFinishState();
     }
 
     public override void Tick(float deltaTime)

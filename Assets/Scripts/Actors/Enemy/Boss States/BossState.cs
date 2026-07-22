@@ -13,9 +13,23 @@ public abstract class BossState : State
         bossStateMachine = stateMachine;
     }
 
+    protected void TryFinishState()
+    {
+        if (OnStateFinished != null)
+        {
+            OnStateFinished();
+        }
+    }
+
     public void SetStateFinished(Action OnStateFinished, float damageMult = 1f)
     {
         this.OnStateFinished = OnStateFinished;
         this.damageMult = damageMult;
+    }
+
+    public override void StateReset()
+    {
+        OnStateFinished = null;
+        damageMult = 1f;
     }
 }

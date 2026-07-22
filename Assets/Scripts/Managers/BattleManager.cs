@@ -44,14 +44,14 @@ public class BattleManager : MonoBehaviour
         TogglePlayer(true);
     }
 
-    private void TogglePlayer(bool toggle)
-    {
-        OnPlayerToggle?.Invoke(this, toggle);
-    }
-
     private void EnableWeakenedPlayer()
     {
         TogglePlayer(true);
+    }
+
+    public void TogglePlayer(bool toggle)
+    {
+        OnPlayerToggle?.Invoke(this, toggle);
     }
 
     public void PlayTimepieceCutscene()

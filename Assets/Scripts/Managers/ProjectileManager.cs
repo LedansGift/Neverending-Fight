@@ -180,6 +180,8 @@ public class ProjectileManager : MonoBehaviour
             return;
         }
 
+        Debug.Log("Projectile Pattern Started");
+
         StartCoroutine(
             ProjectilePatternSpawner(
                 pattern,

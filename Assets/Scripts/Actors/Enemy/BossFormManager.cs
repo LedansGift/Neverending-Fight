@@ -52,11 +52,10 @@ public class BossFormManager : MonoBehaviour
         }
 
         bossHealth.InitialiseHealth();
+        BossCastBarUI.CancelCast();
 
         bossCombatManager.StartBossCombat(bossAttackManager, phase.GetAttackPattern());
         bossActive = true;
-
-        OnNewPhaseStart?.Invoke();
     }
 
     private void HandleBossDeath()
@@ -81,7 +80,7 @@ public class BossFormManager : MonoBehaviour
         if (bossPhaseManager.TryGetPhase(out BossPhase phase))
         {
             //Start phase change cutscene that callbacks to Initialise Boss
-
+            OnNewPhaseStart?.Invoke();
             InitialiseBoss();
         }
         else
@@ -95,12 +94,19 @@ public class BossFormManager : MonoBehaviour
     public void ActivateBossForm()
     {
         bossFormActive = true;
-
+        OnNewPhaseStart?.Invoke();
         InitialiseBoss();
     }
 
     public void DeactivateBossForm()
     {
+        if (bossActive)
+        {
+            bossActive = false;
+            bossAttackManager.PhaseEndCleanup();
+            OnPhaseFinished?.Invoke();
+        }
+
         bossFormActive = false;
 
         //Definitelt needs changing later

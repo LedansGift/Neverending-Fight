@@ -56,6 +56,8 @@ public class PhaseChangeManager : MonoBehaviour
         bloodEffect.SetActive(true);
         TimeManager.Instance.RestartTimeAfterGradualPause();
 
+        //Play UI animation of player getting healed up & recovering retries
+
         yield return new WaitForSecondsRealtime(4f);
 
         //Boss form jumps to centre of screen

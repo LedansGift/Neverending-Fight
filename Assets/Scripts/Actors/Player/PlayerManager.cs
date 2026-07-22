@@ -112,7 +112,11 @@ public class PlayerManager : MonoBehaviour
 
     private void HandlePlayerPhaseStart()
     {
+        Debug.Log("Player Phase Started");
+
         playerMovement.SaveCurrentPosition();
+        playerRetries = 2;
+        OnNewPlayerRetries?.Invoke(this, playerRetries);
         ResetPlayer();
 
         //playerMovement.TryResolveGroundCheck();

@@ -168,6 +168,7 @@ public class BossAttackManager : MonoBehaviour
     private void ResetAttacker()
     {
         StopAllCoroutines();
+        BossCastBarUI.CancelCast();
         currentAttacks = new List<AttackFailTracker>();
     }
 }

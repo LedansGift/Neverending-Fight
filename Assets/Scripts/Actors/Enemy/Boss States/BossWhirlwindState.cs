@@ -45,7 +45,7 @@ public class BossWhirlwindState : BossState
     {
         PlayerGlaive.OnGlaiveSpecial -= PlayerGlaive_OnGlaiveSpecial;
 
-        OnStateFinished();
+        TryFinishState();
     }
 
     public override void Tick(float deltaTime)

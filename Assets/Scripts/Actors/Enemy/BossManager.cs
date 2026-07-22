@@ -62,7 +62,8 @@ public class BossManager : MonoBehaviour
     {
         DeactivateBossForm();
         //Various shit to decide form change
-        ActivateBossForm(BossForm.MAGUS);
+        //ActivateBossForm(BossForm.MAGUS);
+        FormChangeManager.Instance.ChangeBossForm(BossForm.MAGUS);
     }
 
     public BossForm GetActiveBossForm()
@@ -73,6 +74,7 @@ public class BossManager : MonoBehaviour
     public void ActivateTutorialBossForm()
     {
         DeactivateBossForm();
-        ActivateBossForm(BossForm.MAGPIE);
+        //ActivateBossForm(BossForm.MAGPIE);
+        FormChangeManager.Instance.ChangeBossForm(BossForm.MAGPIE);
     }
 }

@@ -891,6 +891,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5845c5433c5754a4ab1b2e08195816e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArenaManager
+  arenas: []
+  introColliderSet1: {fileID: 0}
+  introColliderSet2: {fileID: 0}
+  introPlatformSet1: {fileID: 0}
+  introPlatformSet2: {fileID: 0}
 --- !u!1 &4922330337644547675
 GameObject:
   m_ObjectHideFlags: 0
@@ -5822,6 +5827,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeManager
   timeStopVolume: {fileID: 5496862912304284725}
+--- !u!1 &5738097894825774994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9176871821653293647}
+  - component: {fileID: 6231382812462096416}
+  m_Layer: 0
+  m_Name: Form Change Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9176871821653293647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5738097894825774994}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6587318892564367576}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6231382812462096416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5738097894825774994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80c979e5e102f94bba566f69fc77af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FormChangeManager
+  arenaManager: {fileID: 1687476656189893375}
 --- !u!1 &5766746365539336276
 GameObject:
   m_ObjectHideFlags: 0
@@ -6043,6 +6093,7 @@ Transform:
   - {fileID: 105738531908628503}
   - {fileID: 1108735161123403944}
   - {fileID: 2224113999088350861}
+  - {fileID: 9176871821653293647}
   - {fileID: 2002233009409599638}
   - {fileID: 869945443981675614}
   - {fileID: 416654503149248765}
