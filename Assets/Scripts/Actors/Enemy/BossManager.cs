@@ -44,7 +44,9 @@ public class BossManager : MonoBehaviour
         activeBossForm = bossForm;
 
         BossFormManager activeFormManager = bossForms[(int)activeBossForm];
+
         activeFormManager.OnFinalPhaseFinished += EvaluateNewBossForm;
+
         activeFormManager.ActivateBossForm();
 
         OnNewBossForm?.Invoke(this, activeFormManager);
@@ -60,10 +62,18 @@ public class BossManager : MonoBehaviour
 
     private void EvaluateNewBossForm()
     {
+        if (activeBossForm == BossForm.CROSSROADS)
+        {
+            //Various shit to decide form change
+            //ActivateBossForm(BossForm.MAGUS);
+            FormChangeManager.Instance.ChangeBossForm(BossForm.MAGUS);
+        }
+        else
+        {
+            //End fight & reset / end game
+        }
+
         DeactivateBossForm();
-        //Various shit to decide form change
-        //ActivateBossForm(BossForm.MAGUS);
-        FormChangeManager.Instance.ChangeBossForm(BossForm.MAGUS);
     }
 
     public BossForm GetActiveBossForm()

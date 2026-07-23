@@ -51,7 +51,7 @@ public class PauseManager : MonoBehaviour
 
     public void TryPauseGame()
     {
-        if (!canPause)
+        if (!canPause || !TimeManager.Instance.CanPauseGame())
         {
             return;
         }

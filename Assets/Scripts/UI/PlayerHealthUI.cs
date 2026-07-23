@@ -15,14 +15,14 @@ public class PlayerHealthUI : MonoBehaviour
     {
         PlayerHealth.OnChangePlayerHealth += ChangeHealth;
         PlayerHealth.OnInitialisePlayerHealth += InitialiseHealth;
-        PlayerManager.OnNewPlayerRetries += UpdateRetries;
+        PlayerTimepiece.OnNewPlayerRetries += UpdateRetries;
     }
 
     private void OnDisable()
     {
         PlayerHealth.OnChangePlayerHealth -= ChangeHealth;
         PlayerHealth.OnInitialisePlayerHealth -= InitialiseHealth;
-        PlayerManager.OnNewPlayerRetries -= UpdateRetries;
+        PlayerTimepiece.OnNewPlayerRetries -= UpdateRetries;
     }
 
     private void InitialiseHealth(object sender, int maxHealth)
@@ -39,11 +39,9 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void UpdateRetries(object sender, int newRetries)
     {
-        if ((newRetries < 0) || (newRetries >= 2))
+        for (int i = 0; i < retryImages.Length; i++)
         {
-            return;
+            retryImages[i].SetActive(i < newRetries);
         }
-
-        retryImages[newRetries].SetActive(false);
     }
 }

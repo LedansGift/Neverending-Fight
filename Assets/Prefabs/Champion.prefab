@@ -25289,6 +25289,7 @@ GameObject:
   - component: {fileID: 3619797051828649659}
   - component: {fileID: 1584918540438668422}
   - component: {fileID: 4213124399700755139}
+  - component: {fileID: 1879812547942860476}
   - component: {fileID: 2681022547810002137}
   - component: {fileID: 1096607432225362521}
   - component: {fileID: 5030555830869416559}
@@ -25344,6 +25345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8288b4b56885b2b43ad4286c708c06ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  dashObstacleDetectDistance: 1
   rotateTransform: {fileID: 5734084047213677556}
   positionSaveTransform: {fileID: 2228804065163516597}
   playerRB: {fileID: 5030555830869416559}
@@ -25387,6 +25389,18 @@ MonoBehaviour:
   - {fileID: 1292611631284863050}
   - {fileID: 3262438282109782729}
   - {fileID: 7564318279028707670}
+--- !u!114 &1879812547942860476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791151549058068334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3579bfbfaedcea4d9db77b823339ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTimepiece
 --- !u!114 &2681022547810002137
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -91,4 +91,9 @@ public class TimeManager : MonoBehaviour
         alteringTimescale = false;
         OnAlteringTimescale?.Invoke(this, alteringTimescale);
     }
+
+    public bool CanPauseGame()
+    {
+        return !alteringTimescale;
+    }
 }

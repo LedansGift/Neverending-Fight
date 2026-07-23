@@ -13,17 +13,17 @@ public class RestartManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerManager.OnNewPlayerRetries += ResetPhase;
-        PlayerManager.OnNoMoreRetries += ResetLevel;
+        PlayerTimepiece.OnPlayerRetry += ResetPhase;
+        PlayerTimepiece.OnNoMoreRetries += ResetLevel;
     }
 
     private void OnDisable()
     {
-        PlayerManager.OnNewPlayerRetries -= ResetPhase;
-        PlayerManager.OnNoMoreRetries -= ResetLevel;
+        PlayerTimepiece.OnPlayerRetry -= ResetPhase;
+        PlayerTimepiece.OnNoMoreRetries -= ResetLevel;
     }
 
-    private void ResetPhase(object sender, int e)
+    private void ResetPhase()
     {
         OnStartPhaseResetVisual?.Invoke();
         TimeManager.Instance.GradualPause();

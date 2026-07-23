@@ -4,15 +4,13 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     private bool playerActive = false;
-    private int playerRetries = 2;
+
     private Collider playerCollider;
 
     private PlayerHealth playerHealth;
     private PlayerMovement playerMovement;
     private PlayerAttacker playerAttacker;
-
-    public static Action OnNoMoreRetries;
-    public static EventHandler<int> OnNewPlayerRetries;
+    private PlayerTimepiece playerTimepiece;
 
     private void Awake()
     {
@@ -20,8 +18,7 @@ public class PlayerManager : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
         playerMovement = GetComponent<PlayerMovement>();
         playerAttacker = GetComponent<PlayerAttacker>();
-
-        playerRetries = 2;
+        playerTimepiece = GetComponent<PlayerTimepiece>();
 
         TogglePlayer(null, false);
     }
@@ -59,6 +56,8 @@ public class PlayerManager : MonoBehaviour
         playerMovement.ToggleCanMove(playerActive);
         playerAttacker.ToggleCanAttack(playerActive);
         playerMovement.SetWeaponModifier();
+
+        UIFadeController.ToggleUI(playerActive);
     }
 
     public void SetMouseTarget(Transform targetTransform)
@@ -76,15 +75,7 @@ public class PlayerManager : MonoBehaviour
 
         TogglePlayer(this, false);
 
-        if (playerRetries <= 0)
-        {
-            Debug.Log("GAME OVER");
-            OnNoMoreRetries?.Invoke();
-            return;
-        }
-
-        playerRetries--;
-        OnNewPlayerRetries?.Invoke(this, playerRetries);
+        playerTimepiece.DecrementRetries();
     }
 
     private void TryToggleCollider(object sender, bool specialActive)
@@ -115,8 +106,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Player Phase Started");
 
         playerMovement.SaveCurrentPosition();
-        playerRetries = 2;
-        OnNewPlayerRetries?.Invoke(this, playerRetries);
+        playerTimepiece.ResetPlayerRetries();
         ResetPlayer();
 
         //playerMovement.TryResolveGroundCheck();
