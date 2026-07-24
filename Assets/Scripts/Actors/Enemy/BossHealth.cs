@@ -53,4 +53,9 @@ public class BossHealth : Health
             //AudioManager.PlaySFX(enemyHitSFX, 1f, 0, transform.position);
         }
     }
+
+    public float GetHealthPercentage()
+    {
+        return (float)health / (float)maxHealth * 100f;
+    }
 }

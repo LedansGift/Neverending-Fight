@@ -3,17 +3,30 @@ using UnityEngine;
 public class BossCombatManager : MonoBehaviour
 {
     private int attackPatternIndex = 0;
-
+    private BossFormManager bossFormManager;
     private BossAttackNode[] activeAttackPattern;
+    private HealthThresholdPhaseChange activeHealthPhaseChange;
 
     [SerializeField]
     private BossAttackManager bossAttacker;
 
-    public void StartBossCombat(BossAttackManager bossAttacker, BossAttackNode[] newAttackPattern)
+    [SerializeField]
+    private BossHealth bossHealth;
+
+    public void StartBossCombat(
+        BossAttackManager bossAttacker,
+        BossAttackNode[] newAttackPattern,
+        HealthThresholdPhaseChange healthPhaseChange = null
+    )
     {
         attackPatternIndex = 0;
         activeAttackPattern = newAttackPattern;
-        this.bossAttacker = bossAttacker;
+        activeHealthPhaseChange = healthPhaseChange;
+
+        if (bossAttacker)
+        {
+            this.bossAttacker = bossAttacker;
+        }
 
         if (!this.bossAttacker || (activeAttackPattern == null))
         {
@@ -33,6 +46,20 @@ public class BossCombatManager : MonoBehaviour
     {
         //Debug.Log("Attack Finished");
 
+        if (
+            (activeHealthPhaseChange != null)
+            && (bossHealth.GetHealthPercentage() <= activeHealthPhaseChange.GetHealthThreshold())
+        )
+        {
+            activeHealthPhaseChange.GetNewPhase().InitialiseBossPhase(bossFormManager);
+
+            StartBossCombat(
+                bossAttacker,
+                activeHealthPhaseChange.GetNewPhase().GetAttackPattern(),
+                activeHealthPhaseChange.GetNewPhase().GetHealthPhaseChange()
+            );
+        }
+
         attackPatternIndex++;
 
         if (attackPatternIndex >= activeAttackPattern.Length)
@@ -41,5 +68,10 @@ public class BossCombatManager : MonoBehaviour
         }
 
         PerformNextAttack();
+    }
+
+    public void SetFormManager(BossFormManager bossFormManager)
+    {
+        this.bossFormManager = bossFormManager;
     }
 }

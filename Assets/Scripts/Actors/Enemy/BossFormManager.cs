@@ -25,6 +25,9 @@ public class BossFormManager : MonoBehaviour
     [SerializeField]
     private BossAttackManager bossAttackManager;
 
+    [SerializeField]
+    private BossConditionalManager bossConditionalManager;
+
     public Action OnFinalPhaseFinished;
     public static Action OnPhaseFinished;
     public static Action OnNewPhaseStart;
@@ -54,7 +57,14 @@ public class BossFormManager : MonoBehaviour
         bossHealth.InitialiseHealth();
         BossCastBarUI.CancelCast();
 
-        bossCombatManager.StartBossCombat(bossAttackManager, phase.GetAttackPattern());
+        phase.InitialiseBossPhase(this);
+        bossCombatManager.SetFormManager(this);
+
+        bossCombatManager.StartBossCombat(
+            bossAttackManager,
+            phase.GetAttackPattern(),
+            phase.GetHealthPhaseChange()
+        );
         bossActive = true;
     }
 
@@ -123,10 +133,10 @@ public class BossFormManager : MonoBehaviour
         return bossAttackManager;
     }
 
-    // private void FinalizePhaseChange()
-    // {
-
-    // }
+    public BossConditionalManager GetConditionalManager()
+    {
+        return bossConditionalManager;
+    }
 
     private IEnumerator DelayedBossReset()
     {

@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 5943755932644677658}
   - component: {fileID: 8371743262379200458}
   - component: {fileID: 8761823577968525310}
+  - component: {fileID: 6109488810009923894}
   - component: {fileID: 4223425634845952058}
   - component: {fileID: 5181029723768449880}
   m_Layer: 6
@@ -104,6 +105,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 965845195788046185}
+  - {fileID: 1214124684743403272}
   - {fileID: 7296107072413448871}
   - {fileID: 2037283570719149488}
   - {fileID: 7813670293382071833}
@@ -127,6 +129,7 @@ MonoBehaviour:
   bossPhaseManager: {fileID: 5943755932644677658}
   bossCombatManager: {fileID: 6173335375328832987}
   bossAttackManager: {fileID: 2621286475280256505}
+  bossConditionalManager: {fileID: 0}
 --- !u!114 &241299289315752863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossCombatManager
   bossAttacker: {fileID: 2621286475280256505}
+  bossHealth: {fileID: 241299289315752863}
 --- !u!114 &2621286475280256505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +246,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagpieStateDictionary
   stateMachine: {fileID: 8371743262379200458}
+--- !u!114 &6109488810009923894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338314440487284039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e65c561e77ef74cb47643a3817719d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossConditionalManager
 --- !u!136 &4223425634845952058
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -292,6 +308,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!1 &2638869424430881458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1214124684743403272}
+  m_Layer: 6
+  m_Name: Boss Conditionals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1214124684743403272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2638869424430881458}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2049012174118989149}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2717401284974499408
 GameObject:
   m_ObjectHideFlags: 0

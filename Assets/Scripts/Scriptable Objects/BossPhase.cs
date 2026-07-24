@@ -6,10 +6,25 @@ using UnityEngine;
 public class BossPhase : ScriptableObject
 {
     [SerializeField]
-    private BossAttackNode[] bossAttackPattern;
+    protected BossAttackNode[] bossAttackPattern;
 
-    public BossAttackNode[] GetAttackPattern()
+    [SerializeField]
+    protected HealthThresholdPhaseChange healthPhaseChange;
+
+    public virtual BossAttackNode[] GetAttackPattern()
     {
         return bossAttackPattern;
     }
+
+    public virtual HealthThresholdPhaseChange GetHealthPhaseChange()
+    {
+        if (!healthPhaseChange.GetNewPhase())
+        {
+            return null;
+        }
+
+        return healthPhaseChange;
+    }
+
+    public virtual void InitialiseBossPhase(BossFormManager bossFormManager) { }
 }
