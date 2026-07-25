@@ -118,9 +118,6 @@ public class BossFormManager : MonoBehaviour
         }
 
         bossFormActive = false;
-
-        //Definitelt needs changing later
-        gameObject.SetActive(false);
     }
 
     public void PlayBossDamagedAnimation()

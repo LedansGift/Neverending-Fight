@@ -1,12 +1,20 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FormChangeManager : MonoBehaviour
 {
+    private BossForm activeFormChange;
+
     public static FormChangeManager Instance { get; private set; }
+
+    private Dictionary<BossForm, int> formCutsceneMap = new Dictionary<BossForm, int>();
 
     [SerializeField]
     private ArenaManager arenaManager;
+
+    [SerializeField]
+    private FormChangeCutsceneHandler[] formChangeCutscenes;
 
     private void Awake()
     {
@@ -16,11 +24,34 @@ public class FormChangeManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        formCutsceneMap.Add(BossForm.MAGUS, 0);
     }
 
     public void ChangeBossForm(BossForm newForm)
     {
-        StartCoroutine(FormChange(newForm));
+        activeFormChange = newForm;
+
+        if (formCutsceneMap.TryGetValue(newForm, out int cutsceneIndex))
+        {
+            formChangeCutscenes[cutsceneIndex].InitialiseCutsceneHandler(
+                activeFormChange,
+                arenaManager
+            );
+            StartFormChangeCutscene(cutsceneIndex);
+        }
+        else
+        {
+            StartCoroutine(FormChange(newForm));
+        }
+    }
+
+    private void StartFormChangeCutscene(int cutsceneIndex)
+    {
+        CutsceneManager.Instance.StartCutscene(
+            formChangeCutscenes[cutsceneIndex].GetCutsceneDirector(),
+            FinaliseFormChange
+        );
     }
 
     private IEnumerator FormChange(BossForm newForm)
@@ -35,7 +66,12 @@ public class FormChangeManager : MonoBehaviour
         LoadingScreenUI.ToggleLoadingScreen(false);
         yield return new WaitForSeconds(2.5f);
 
-        BossManager.Instance.ActivateBossForm(newForm);
+        FinaliseFormChange();
+    }
+
+    private void FinaliseFormChange()
+    {
+        BossManager.Instance.ActivateBossForm(activeFormChange);
         BattleManager.Instance.TogglePlayer(true);
     }
 }

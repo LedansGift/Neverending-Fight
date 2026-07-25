@@ -129,7 +129,7 @@ MonoBehaviour:
   bossPhaseManager: {fileID: 5943755932644677658}
   bossCombatManager: {fileID: 6173335375328832987}
   bossAttackManager: {fileID: 2621286475280256505}
-  bossConditionalManager: {fileID: 0}
+  bossConditionalManager: {fileID: 6109488810009923894}
 --- !u!114 &241299289315752863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e65c561e77ef74cb47643a3817719d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossConditionalManager
+  conditionals: []
 --- !u!136 &4223425634845952058
 CapsuleCollider:
   m_ObjectHideFlags: 0

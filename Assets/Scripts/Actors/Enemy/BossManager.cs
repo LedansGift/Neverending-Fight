@@ -14,6 +14,8 @@ public enum BossForm
 
 public class BossManager : MonoBehaviour
 {
+    private Vector3 bossHiddenPosition = new Vector3(0f, -10f, 0f);
+
     public static BossManager Instance { get; private set; }
 
     private BossForm activeBossForm;
@@ -86,5 +88,18 @@ public class BossManager : MonoBehaviour
         DeactivateBossForm();
         //ActivateBossForm(BossForm.MAGPIE);
         FormChangeManager.Instance.ChangeBossForm(BossForm.MAGPIE);
+    }
+
+    public void HideAllBosses()
+    {
+        foreach (BossFormManager bossForm in bossForms)
+        {
+            bossForm.transform.position = bossHiddenPosition;
+        }
+    }
+
+    public void ShowBoss(BossForm bossForm)
+    {
+        bossForms[(int)bossForm].transform.position = Vector3.zero;
     }
 }
