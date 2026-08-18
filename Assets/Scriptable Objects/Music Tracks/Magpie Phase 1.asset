@@ -9,6 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6fa2d92fc1b3f34da284357edf89c3b, type: 3}
-  m_Name: ChangebringerMusicSignal
-  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalAsset
+  m_Script: {fileID: 11500000, guid: 9fd56291caad22442af6ace7eb2b1aa1, type: 3}
+  m_Name: Magpie Phase 1
+  m_EditorClassIdentifier: Assembly-CSharp::MusicTrack
+  track: {fileID: 8300000, guid: 33fabd2b8879ddd4ab01490f98112c93, type: 3}
+  trackVolume: 0.5
+  loopTime: 0

@@ -9,6 +9,9 @@ public class FormChangeCutsceneHandler : MonoBehaviour
     [SerializeField]
     private PlayableDirector cutsceneDirector;
 
+    [SerializeField]
+    private MusicTrack formNewMusicTrack;
+
     public PlayableDirector GetCutsceneDirector()
     {
         return cutsceneDirector;
@@ -23,6 +26,16 @@ public class FormChangeCutsceneHandler : MonoBehaviour
     public void SwitchArena()
     {
         arenaManager.SwitchArena(bossFormChange);
+    }
+
+    public void StopCurrentMusicTrack()
+    {
+        AudioManager.SetMusicTrack(null);
+    }
+
+    public void PlayNewMusicTrack()
+    {
+        AudioManager.SetMusicTrack(formNewMusicTrack);
     }
 
     public void ToggleActorCullOverlay(bool toggle)

@@ -28,6 +28,9 @@ public class BossFormManager : MonoBehaviour
     [SerializeField]
     private BossConditionalManager bossConditionalManager;
 
+    [SerializeField]
+    private MusicTrack[] bossMusicTracks;
+
     public Action OnFinalPhaseFinished;
     public static Action OnPhaseFinished;
     public static Action OnNewPhaseStart;
@@ -99,6 +102,16 @@ public class BossFormManager : MonoBehaviour
             Debug.Log("Final Phase Finished");
             OnFinalPhaseFinished?.Invoke();
         }
+    }
+
+    public void TryPlayNewPhaseMusic()
+    {
+        if ((bossPhaseManager.GetCurrentPhaseIndex() + 1) >= bossPhaseManager.GetTotalPhases())
+        {
+            return;
+        }
+
+        AudioManager.SetMusicTrack(bossMusicTracks?[bossPhaseManager.GetCurrentPhaseIndex() + 1]);
     }
 
     public void ActivateBossForm()

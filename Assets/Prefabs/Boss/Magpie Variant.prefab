@@ -64,6 +64,18 @@ PrefabInstance:
       propertyPath: 'bossPhases.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: 09dee56d482c51347bbaaa5f24811a1a, type: 2}
+    - target: {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: bossMusicTracks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: 'bossMusicTracks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c68d98f07cd0ac47a6261329b36acf4, type: 2}
+    - target: {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: 'bossMusicTracks.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 82d71fe7722daf046863b097c2cba330, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

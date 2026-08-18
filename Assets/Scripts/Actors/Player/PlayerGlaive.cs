@@ -28,6 +28,9 @@ public class PlayerGlaive : PlayerWeapon
     private GlaiveFlame glaiveFlame;
 
     [SerializeField]
+    private GlaiveHighlighter glaiveHighlight;
+
+    [SerializeField]
     private GlaiveSlashFX glaiveSlashFX;
 
     private Coroutine slashCoroutine;
@@ -101,6 +104,8 @@ public class PlayerGlaive : PlayerWeapon
 
         earlyFollowup = false;
         perfectWindow = false;
+
+        glaiveHighlight.DeactiveHighlight();
 
         followupSlash = !followupSlash;
 
@@ -188,10 +193,17 @@ public class PlayerGlaive : PlayerWeapon
 
         yield return new WaitForSeconds(playerStats.GetGlaiveRhythmStart() - slashHitDelay);
 
+        if (!earlyFollowup)
+        {
+            glaiveHighlight.ActivateHighlight();
+        }
+
         perfectWindow = true;
         canSwap = true;
 
         yield return new WaitForSeconds(playerStats.GetGlaiveRhythmDuration());
+
+        glaiveHighlight.DeactiveHighlight();
 
         perfectWindow = false;
 

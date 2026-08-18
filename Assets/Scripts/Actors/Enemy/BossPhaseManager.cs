@@ -24,4 +24,14 @@ public class BossPhaseManager : MonoBehaviour
     {
         phaseTracker++;
     }
+
+    public int GetCurrentPhaseIndex()
+    {
+        return phaseTracker;
+    }
+
+    public int GetTotalPhases()
+    {
+        return bossPhases.Length;
+    }
 }

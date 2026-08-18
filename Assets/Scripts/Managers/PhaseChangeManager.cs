@@ -35,7 +35,7 @@ public class PhaseChangeManager : MonoBehaviour
 
     private void StartPhaseChangeCutscene(BossFormManager formManager)
     {
-        //Quickly slow down music
+        AudioManager.SetMusicTrack(null);
         TimeManager.Instance.GradualPause();
 
         bossCamera.gameObject.SetActive(true);
@@ -62,6 +62,8 @@ public class PhaseChangeManager : MonoBehaviour
 
         //Boss form jumps to centre of screen
         formManager.GetBossAttackManager().PerformAttackNode(centreMoveNode, null);
+
+        formManager.TryPlayNewPhaseMusic();
 
         yield return new WaitForSecondsRealtime(3f);
 

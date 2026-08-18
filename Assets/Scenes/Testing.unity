@@ -748,7 +748,7 @@ Transform:
   m_GameObject: {fileID: 1267730553}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.3, y: -0, z: 14.62}
+  m_LocalPosition: {x: 0, y: -0, z: 14.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1385,6 +1385,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4800830736187210442, guid: 900f005c0505b1d4698804244a0e8d36, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4851130881999803314, guid: 900f005c0505b1d4698804244a0e8d36, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1555,6 +1559,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7142646603473914848, guid: 900f005c0505b1d4698804244a0e8d36, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501359109617435356, guid: 900f005c0505b1d4698804244a0e8d36, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7593735129444138631, guid: 900f005c0505b1d4698804244a0e8d36, type: 3}
@@ -1832,6 +1840,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5943755932644677658, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: 'bossPhases.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c449bf3bec7b58b44860d0e790cfaa4d, type: 2}
     - target: {fileID: 7296107072413448871, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

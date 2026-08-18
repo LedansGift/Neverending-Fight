@@ -163,6 +163,26 @@ PrefabInstance:
       propertyPath: bossAnimator
       value: 
       objectReference: {fileID: 5660016080113343175}
+    - target: {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: bossMusicTracks.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: 'bossMusicTracks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 848f65d4cccd5b549a56f48dbf5a26ff, type: 2}
+    - target: {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: 'bossMusicTracks.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d341a1b7d1bd5145a5327c89ad57eb3, type: 2}
+    - target: {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: 'bossMusicTracks.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ea49539f6a00a345bca100a487a9ad4, type: 2}
+    - target: {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: 'bossMusicTracks.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9fb7c62bbdd524544ba707d3e57ec306, type: 2}
     - target: {fileID: 8371743262379200458, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: animator
       value: 

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fd56291caad22442af6ace7eb2b1aa1, type: 3}
-  m_Name: Crossroads Track
+  m_Name: Hawk Phase 2
   m_EditorClassIdentifier: Assembly-CSharp::MusicTrack
-  track: {fileID: 8300000, guid: 1d67e2234f6ab174599d18e3559b5879, type: 3}
+  track: {fileID: 8300000, guid: 317f138158b787849a8c4a2984c19529, type: 3}
   trackVolume: 0.5
-  loopTime: 0.11111111
+  loopTime: 0.33333334
