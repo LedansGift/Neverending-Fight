@@ -57,6 +57,11 @@ public class AttackHitResolver
         {
             if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
             {
+                if (attack.knockbackStrength > 0f)
+                {
+                    KnockbackTarget(attackTransform, hitHealth, attack.knockbackStrength);
+                }
+
                 hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
                 //Debug.Log("Damage dealt: " + Mathf.RoundToInt(attack.attackDamage * damageMult));
                 targetHit = true;
@@ -64,6 +69,20 @@ public class AttackHitResolver
         }
 
         return targetHit;
+    }
+
+    private static void KnockbackTarget(
+        Transform attackTransform,
+        Health hitHealth,
+        float knockbackStrength
+    )
+    {
+        Vector3 knockbackDirection = (
+            hitHealth.transform.position - attackTransform.position
+        ).normalized;
+        knockbackDirection.y = 0;
+
+        hitHealth.Knockback(knockbackDirection, knockbackStrength);
     }
 
     public static bool HitCircleArea(
@@ -143,10 +162,12 @@ public class AttackHitResolver
 
             if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
             {
-                Debug.Log("Damage dealt");
                 // Debug.Log("Collider Direction" + colliderDirection);
 
-
+                if (attack.knockbackStrength > 0f)
+                {
+                    KnockbackTarget(attackTransform, hitHealth, attack.knockbackStrength);
+                }
 
                 hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
                 targetHit = true;
@@ -213,8 +234,12 @@ public class AttackHitResolver
 
             if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
             {
-                Debug.Log("Damage dealt");
                 // Debug.Log("Collider Direction" + colliderDirection);
+
+                if (attack.knockbackStrength > 0f)
+                {
+                    KnockbackTarget(attackTransform, hitHealth, attack.knockbackStrength);
+                }
 
                 hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
                 targetHit = true;
@@ -245,6 +270,11 @@ public class AttackHitResolver
         {
             if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
             {
+                if (attack.knockbackStrength > 0f)
+                {
+                    KnockbackTarget(attackTransform, hitHealth, attack.knockbackStrength);
+                }
+
                 hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult), true);
                 targetHit = true;
             }

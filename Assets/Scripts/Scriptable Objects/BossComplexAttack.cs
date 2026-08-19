@@ -27,6 +27,7 @@ public class BossComplexAttack : BossAttackNode
     {
         this.OnAttackFinished = OnAttackFinished;
         nodeIndex = 0;
+        attackManager = attacker;
 
         TryPerformNode(attacker, damageMultiplier);
     }
@@ -44,20 +45,19 @@ public class BossComplexAttack : BossAttackNode
 
         if (activeNode.GetType() == typeof(BossIdleNode))
         {
-            attackManager = attacker;
             this.damageMultiplier = damageMultiplier;
             activeNode.PerformAttack(attacker, NodeDelay);
         }
         else if (activeNode.GetType() == typeof(BossMeleeAttack))
         {
             BossMeleeAttack meleeNode = activeNode as BossMeleeAttack;
-            meleeNode.PerformAttackPart(attacker, FinishAttack, damageMultiplier);
-            TryPerformNode(attacker, damageMultiplier);
+            meleeNode.PerformAttackPart(attacker, NodeDelay, damageMultiplier);
+            //TryPerformNode(attacker, damageMultiplier);
         }
         else
         {
-            activeNode.PerformAttack(attacker, null, damageMultiplier);
-            TryPerformNode(attacker, damageMultiplier);
+            activeNode.PerformAttack(attacker, NodeDelay, damageMultiplier);
+            //TryPerformNode(attacker, damageMultiplier);
         }
     }
 

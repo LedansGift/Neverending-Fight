@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &97276754141307298
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 486680396932667366, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2752330772444210150, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2752330772444210150, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155734954612681449, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_Name
+      value: Homing Feather Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: lifetime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062402356313507813, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2316955518011580880, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+    - {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3155734954612681449, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 7939606974464844364}
+    - targetCorrespondingSourceObject: {fileID: 3155734954612681449, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 4372545444948958877}
+  m_SourcePrefab: {fileID: 100100000, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+--- !u!54 &547347399521056324 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 486680396932667366, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+  m_PrefabInstance: {fileID: 97276754141307298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2007348583323980022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1910107161935360340, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+  m_PrefabInstance: {fileID: 97276754141307298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &2840547539920814660 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 2752330772444210150, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+  m_PrefabInstance: {fileID: 97276754141307298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3067783169358302027 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3155734954612681449, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+  m_PrefabInstance: {fileID: 97276754141307298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7939606974464844364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3067783169358302027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab382ce53ed8fd74886512e291a7c4d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileReflective
+  enemyProjectile: 1
+  damagingProjectile: 1
+  invincibleProjectile: 0
+  damage: 20
+  lifetime: 6
+  projectileVisual: {fileID: 2007348583323980022}
+  trail: {fileID: 0}
+  hitParticles: {fileID: 0}
+  projectileCollider: {fileID: 2840547539920814660}
+--- !u!114 &4372545444948958877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3067783169358302027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4b81ae549335845b8b3c04de9b2d24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HomingProjectileMover
+  speed: 20
+  zRotationSpeed: 10
+  projectileRb: {fileID: 547347399521056324}
+  rotatingElement: {fileID: 7159361349297645127}
+  projectile: {fileID: 7939606974464844364}
+  speedOverLifetime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0019378662
+      value: 0.50476074
+      inSlope: 1.3560538
+      outSlope: 1.3560538
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.04263566
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.029384082
+      outSlope: 0.029384082
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16085272
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  homingStrength: 75
+--- !u!4 &7159361349297645127 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7062402356313507813, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+  m_PrefabInstance: {fileID: 97276754141307298}
+  m_PrefabAsset: {fileID: 0}

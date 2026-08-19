@@ -25,12 +25,16 @@ public class HomingProjectileMover : ProjectileMover
 
     private void HomeToTarget()
     {
-        Vector3 targetDirection = transform.position - homingTarget.position;
+        Vector3 targetDirection = homingTarget.position - transform.position;
         float radians = Mathf.Atan2(targetDirection.x, targetDirection.z);
         float degrees = radians * Mathf.Rad2Deg;
 
-        float rotationAmount = Mathf.Min(homingStrength * Time.deltaTime, 1f);
+        float rotationAmount = homingStrength * Time.fixedDeltaTime;
+        //float rotationAmount = Mathf.Min(homingStrength * Time.fixedDeltaTime, 1f);
         Quaternion targetRotation = Quaternion.Euler(0f, degrees, 0f);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationAmount);
+        projectileRb.MoveRotation(
+            //Quaternion.Slerp(transform.rotation, targetRotation, rotationAmount)
+            Quaternion.RotateTowards(transform.rotation, targetRotation, rotationAmount)
+        );
     }
 }

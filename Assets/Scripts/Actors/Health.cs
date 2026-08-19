@@ -37,6 +37,12 @@ public abstract class Health : MonoBehaviour
         OnDeath?.Invoke();
     }
 
+    public virtual void Knockback(
+        Vector3 knockbackDirection,
+        float knockbackStrength,
+        bool forceKnockback = false
+    ) { }
+
     public bool GetIsPlayer()
     {
         return isPlayer;

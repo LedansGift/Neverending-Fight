@@ -23,7 +23,13 @@ public class BossWhirlwindState : BossState
             damage,
             DamageZoneType.circle,
             new Vector2(attackRadius, 1f),
-            castDuration
+            castDuration,
+            default,
+            default,
+            default,
+            default,
+            default,
+            500f
         );
     }
 
@@ -72,23 +78,11 @@ public class BossWhirlwindState : BossState
 
         yield return new WaitForSeconds(attackPreHitDelay);
 
-        KnockbackTest();
-
         bossStateMachine.GetMeleeAttacker().PerformAttackUntelegraphed(whirlwindAttack, damageMult);
 
         yield return new WaitForSeconds(attackPostHitDelay);
 
         stateMachine.SwitchState(null);
-    }
-
-    private void KnockbackTest()
-    {
-        PlayerHealth playerHealth = PlayerIdentifier.PlayerTransform.GetComponent<PlayerHealth>();
-
-        Vector3 knockbackDirection =
-            playerHealth.transform.position - bossStateMachine.transform.position;
-
-        playerHealth.Knockback(knockbackDirection.normalized, 500f);
     }
 
     private void PlayerGlaive_OnGlaiveSpecial(object sender, bool specialStart)

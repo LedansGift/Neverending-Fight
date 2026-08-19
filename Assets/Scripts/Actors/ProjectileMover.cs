@@ -12,13 +12,16 @@ public class ProjectileMover : MonoBehaviour
     private float zRotationSpeed;
 
     [SerializeField]
-    private Rigidbody projectileRb;
+    protected Rigidbody projectileRb;
 
     [SerializeField]
     private Transform rotatingElement;
 
     [SerializeField]
     private Projectile projectile;
+
+    [SerializeField]
+    private AnimationCurve speedOverLifetime;
 
     private void Awake()
     {
@@ -50,8 +53,11 @@ public class ProjectileMover : MonoBehaviour
 
     protected virtual void MoveProjectile()
     {
+        float resolvedSpeed = speedOverLifetime.Evaluate(projectile.GetLifetimeProgress()) * speed;
+
         projectileRb.MovePosition(
-            projectileRb.position + transform.forward * speed * Time.fixedDeltaTime * Time.timeScale
+            projectileRb.position
+                + transform.forward * resolvedSpeed * Time.fixedDeltaTime * Time.timeScale
         );
     }
 

@@ -27,7 +27,8 @@ public class BossDramaticLungeState : BossState
             0f,
             true,
             0f,
-            true
+            true,
+            500f
         );
     }
 
@@ -79,22 +80,8 @@ public class BossDramaticLungeState : BossState
 
         bossStateMachine.GetMover().CancelLockOn();
 
-        yield return new WaitForSeconds(attackPreHitDelay);
-
-        //KnockbackTest();
-
-        yield return new WaitForSeconds(attackPostHitDelay);
+        yield return new WaitForSeconds(attackPreHitDelay + attackPostHitDelay);
 
         stateMachine.SwitchState(null);
-    }
-
-    private void KnockbackTest()
-    {
-        PlayerHealth playerHealth = PlayerIdentifier.PlayerTransform.GetComponent<PlayerHealth>();
-
-        Vector3 knockbackDirection =
-            playerHealth.transform.position - bossStateMachine.transform.position;
-
-        playerHealth.Knockback(knockbackDirection.normalized, 500f);
     }
 }

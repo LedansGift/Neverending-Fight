@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern: []
   healthPhaseChange:
-    healthPercentageThreshold: 0
-    bossPhase: {fileID: 0}
+    healthPercentageThreshold: 80
+    bossPhase: {fileID: 11400000, guid: ce500a956e4ecb243a7328015e8a14d6, type: 2}

@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Testing Phase
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern:
-  - {fileID: 11400000, guid: 7db7266cf0d978d48adef8d7c51fe008, type: 2}
+  - {fileID: 11400000, guid: 10652e3baf43cf74ba8f2548cd25a88d, type: 2}
   - {fileID: 11400000, guid: 18f99ecf8e46567409ca5627791c267f, type: 2}
+  - {fileID: 11400000, guid: 3e1b61e4811f52f498395e84341b61be, type: 2}
+  - {fileID: 11400000, guid: 92bbee1c561b630449859fd59b89af78, type: 2}
+  - {fileID: 11400000, guid: 94d40ed16fa4cf3469784ea01713ee90, type: 2}
+  - {fileID: 11400000, guid: fee3c0632ba9d4b4498d8685327a7304, type: 2}
   healthPhaseChange:
     healthPercentageThreshold: 0
     bossPhase: {fileID: 0}

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bdb1d63ab535e24a992127ec5ca3c7c, type: 3}
+  m_Name: Inescapable Pinion Ranged Attack V1
+  m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
+  animationTrigger: 
+  attackName: DefaultName
+  empoweredAttack: {fileID: 0}
+  waitForSpawnsToFinish: 0
+  worldPositionPattern: 0
+  patternStartDelay: 2.5
+  patternEndDelay: 0.5
+  projectile: {fileID: 3067783169358302027, guid: b28eecfccc035684e89f4359dea11d59, type: 3}
+  pattern: {fileID: 11400000, guid: 11114acd74806eb4cb78a1771f757408, type: 2}

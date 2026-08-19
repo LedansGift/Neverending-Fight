@@ -6,6 +6,9 @@ public enum MagpieUniqueAttacks
     InescapablePinions,
     Whirlwind,
     DramaticLunge,
+    FellWingV1,
+    FellWingV2,
+    FellWingV3
 }
 
 public class MagpieStateDictionary : StateDictionary
@@ -19,7 +22,7 @@ public class MagpieStateDictionary : StateDictionary
 
         stateDictionary.Add(
             (int)MagpieUniqueAttacks.InescapablePinions,
-            new BossStateTest2(stateMachine as BossStateMachine)
+            new BossInescapablePinionsState(stateMachine as BossStateMachine)
         );
 
         stateDictionary.Add(
@@ -29,6 +32,19 @@ public class MagpieStateDictionary : StateDictionary
         stateDictionary.Add(
             (int)MagpieUniqueAttacks.DramaticLunge,
             new BossDramaticLungeState(stateMachine as BossStateMachine)
+        );
+
+        stateDictionary.Add(
+            (int)MagpieUniqueAttacks.FellWingV1,
+            new BossFellWingState(stateMachine as BossStateMachine, 0)
+        );
+        stateDictionary.Add(
+            (int)MagpieUniqueAttacks.FellWingV2,
+            new BossFellWingState(stateMachine as BossStateMachine, 1)
+        );
+        stateDictionary.Add(
+            (int)MagpieUniqueAttacks.FellWingV3,
+            new BossFellWingState(stateMachine as BossStateMachine, 2)
         );
     }
 }

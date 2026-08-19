@@ -109,7 +109,7 @@ public class PlayerHealth : Health
 
     //KNOCKBACKS NEED TO HAPPEN BEFORE DAMAGE
 
-    public void Knockback(
+    public override void Knockback(
         Vector3 knockbackDirection,
         float knockbackStrength,
         bool forceKnockback = false

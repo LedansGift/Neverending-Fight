@@ -5872,6 +5872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FormChangeManager
   arenaManager: {fileID: 1687476656189893375}
+  formChangeCutscenes: []
 --- !u!1 &5766746365539336276
 GameObject:
   m_ObjectHideFlags: 0
@@ -6056,6 +6057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1072b26ffb214bb43b4bc014fc93f9ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileManager
+  reflectedProjectilePrefab: {fileID: 6169150746065385514, guid: 9dc9dcebdd866a44d9a10716039b8b94, type: 3}
 --- !u!1 &6541668406695613719
 GameObject:
   m_ObjectHideFlags: 0

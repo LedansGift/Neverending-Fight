@@ -12,6 +12,9 @@ public class ProjectileManager : MonoBehaviour
     private List<List<Projectile>> projectileSets;
     private Dictionary<GameObject, int> projectileMapper;
 
+    [SerializeField]
+    private GameObject reflectedProjectilePrefab;
+
     private void Awake()
     {
         if (Instance != null)
@@ -25,6 +28,11 @@ public class ProjectileManager : MonoBehaviour
         projectileIndeces = new List<int>();
         projectileSets = new List<List<Projectile>>();
         projectileMapper = new Dictionary<GameObject, int>();
+    }
+
+    private void Start()
+    {
+        InitialiseProjectileSet(reflectedProjectilePrefab, 20);
     }
 
     private void OnEnable()
@@ -136,6 +144,11 @@ public class ProjectileManager : MonoBehaviour
         );
     }
 
+    public Projectile SpawnReflectedProjectile(Vector3 spawnPosition, Vector3 flightDirection)
+    {
+        return SpawnProjectile(reflectedProjectilePrefab, spawnPosition, flightDirection);
+    }
+
     private Projectile ResolveProjectileSpawn(
         int projectileSetIndex,
         int projectileIndex,
@@ -180,7 +193,7 @@ public class ProjectileManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("Projectile Pattern Started");
+        //Debug.Log("Projectile Pattern Started");
 
         StartCoroutine(
             ProjectilePatternSpawner(

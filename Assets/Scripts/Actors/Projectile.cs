@@ -94,6 +94,11 @@ public class Projectile : MonoBehaviour
         OnProjectileActivated?.Invoke(this, false);
     }
 
+    public float GetLifetimeProgress()
+    {
+        return lifetimeTimer / lifetime;
+    }
+
     public void SetSpeedAndDamage(float speed, int damage)
     {
         this.damage = damage;
@@ -115,7 +120,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void TryDestroyProjectile()
+    protected virtual void TryDestroyProjectile()
     {
         DeactivateProjectile();
     }

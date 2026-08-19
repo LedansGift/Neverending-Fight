@@ -25,6 +25,7 @@ MonoBehaviour:
     relativePosition: 1
     delayToNextAttack: 0
     relativePositionToForward: 0
+    knockbackStrength: 500
   - attackDamage: 25
     damageZoneType: 1
     damageZoneArea: {x: 30, y: 2}
@@ -34,3 +35,4 @@ MonoBehaviour:
     relativePosition: 1
     delayToNextAttack: 0
     relativePositionToForward: 0
+    knockbackStrength: 500

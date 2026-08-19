@@ -263,6 +263,11 @@ public class PlayerMovement : MonoBehaviour
         positionSaveTransform.rotation = playerRB.rotation;
     }
 
+    public Vector3 GetPlayerLookDirection()
+    {
+        return rotateTransform.forward;
+    }
+
     public void TryResolveGroundCheck()
     {
         if (groundChecker.GetIsGroundBelow())
