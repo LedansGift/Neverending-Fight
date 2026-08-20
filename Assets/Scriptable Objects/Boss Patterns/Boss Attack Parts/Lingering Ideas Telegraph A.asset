@@ -10,19 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbfc2a9137d3b404f9ba2daf00c56a77, type: 3}
-  m_Name: Boss Round Slash Attack
+  m_Name: Lingering Ideas Telegraph A
   m_EditorClassIdentifier: Assembly-CSharp::BossMeleeAttack
   animationTrigger: 
   attackName: DefaultName
   empoweredAttack: {fileID: 0}
   attacks:
-  - attackDamage: 20
+  - attackDamage: 0
     damageZoneType: 0
-    damageZoneArea: {x: 25, y: 1}
-    zoneWarningTime: 2
-    attackPosition: {x: 0, y: 0, z: 0}
+    damageZoneArea: {x: 8, y: 1}
+    zoneWarningTime: 3
+    attackPosition: {x: 10, y: 0, z: 0}
     attackYRotation: 0
     relativePosition: 1
-    delayToNextAttack: 2
+    delayToNextAttack: 0
+    relativePositionToForward: 0
+    knockbackStrength: 0
+  - attackDamage: 0
+    damageZoneType: 0
+    damageZoneArea: {x: 8, y: 1}
+    zoneWarningTime: 3
+    attackPosition: {x: -10, y: 0, z: 0}
+    attackYRotation: 0
+    relativePosition: 1
+    delayToNextAttack: 0
     relativePositionToForward: 0
     knockbackStrength: 0

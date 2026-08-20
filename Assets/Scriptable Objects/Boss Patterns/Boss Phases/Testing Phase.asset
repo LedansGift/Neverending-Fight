@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Testing Phase
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern:
+  - {fileID: 11400000, guid: 8cf3d5f5e66494d45949ac1e16cef068, type: 2}
   - {fileID: 11400000, guid: 10652e3baf43cf74ba8f2548cd25a88d, type: 2}
   - {fileID: 11400000, guid: 18f99ecf8e46567409ca5627791c267f, type: 2}
   - {fileID: 11400000, guid: 3e1b61e4811f52f498395e84341b61be, type: 2}

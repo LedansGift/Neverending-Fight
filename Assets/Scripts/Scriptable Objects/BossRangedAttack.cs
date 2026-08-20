@@ -77,17 +77,22 @@ public class BossRangedAttack : BossAttackNode
 
     private void CheckAvailableProjectiles()
     {
+        int desiredProjectiles = pattern.projectileNumber * pattern.patternWaves;
+
+        foreach (ProjectilePattern additionalPattern in pattern.additionalWaves)
+        {
+            desiredProjectiles +=
+                additionalPattern.projectileNumber * additionalPattern.patternWaves;
+        }
+
         if (
             !ProjectileManager.Instance.CheckAreProjectilesInitialised(
                 projectile,
                 out int projectileInitialised
-            ) || (projectileInitialised < pattern.projectileNumber * pattern.patternWaves)
+            ) || (projectileInitialised < desiredProjectiles)
         )
         {
-            ProjectileManager.Instance.InitialiseProjectileSet(
-                projectile,
-                pattern.projectileNumber * pattern.patternWaves
-            );
+            ProjectileManager.Instance.InitialiseProjectileSet(projectile, desiredProjectiles);
         }
     }
 }
