@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bdb1d63ab535e24a992127ec5ca3c7c, type: 3}
+  m_Name: Rewind Bomb
+  m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
+  animationTrigger: 
+  attackName: DefaultName
+  empoweredAttack: {fileID: 0}
+  waitForSpawnsToFinish: 1
+  worldPositionPattern: 0
+  patternStartDelay: 0.5
+  patternEndDelay: 2
+  projectile: {fileID: 8957220155274816525, guid: d1bbeaddad6c1c446b949e33f37a7629, type: 3}
+  pattern: {fileID: 11400000, guid: 4a4f8d91db31ccf4095f5dc07c796dfc, type: 2}

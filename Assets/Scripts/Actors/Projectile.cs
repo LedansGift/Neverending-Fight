@@ -105,6 +105,11 @@ public class Projectile : MonoBehaviour
         OnSetProjectileSpeed?.Invoke(this, speed);
     }
 
+    public bool IsProjectileActive()
+    {
+        return projectileActive;
+    }
+
     private void Update()
     {
         if (!projectileActive)

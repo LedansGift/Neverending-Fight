@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5943755932644677658, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: 'bossPhases.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a0a216cbccc6e94784e61e73da22797, type: 2}
     - target: {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: bossMusicTracks.Array.size
       value: 1

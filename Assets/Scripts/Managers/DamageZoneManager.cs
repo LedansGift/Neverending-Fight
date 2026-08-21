@@ -80,6 +80,12 @@ public class DamageZoneManager : MonoBehaviour
     )
     {
         int zoneListIndex = (int)zoneType;
+
+        if (zoneType == DamageZoneType.raidwide)
+        {
+            zoneListIndex = (int)DamageZoneType.circle;
+        }
+
         List<DamageZone> zones = damageZones[zoneListIndex];
         int zonesIndex = damageZoneIndeces[zoneListIndex];
 

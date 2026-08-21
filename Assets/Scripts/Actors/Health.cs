@@ -27,12 +27,12 @@ public abstract class Health : MonoBehaviour
         }
     }
 
-    protected void HealToFull()
+    public virtual void HealToFull()
     {
         health = maxHealth;
     }
 
-    protected void Die()
+    protected virtual void Die()
     {
         OnDeath?.Invoke();
     }

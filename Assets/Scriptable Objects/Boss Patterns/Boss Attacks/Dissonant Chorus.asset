@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de1ff2f4f889ac49af1ffa911caa65c, type: 3}
+  m_Name: Dissonant Chorus
+  m_EditorClassIdentifier: Assembly-CSharp::BossComplexAttack
+  animationTrigger: 
+  attackName: DefaultName
+  empoweredAttack: {fileID: 0}
+  attackNodes:
+  - {fileID: 11400000, guid: f58a41ec7b6b2d14a978e55a81ad8c24, type: 2}
+  - {fileID: 11400000, guid: 1587644dfb5d7d34588fe03cef8dcade, type: 2}
+  finalNode: {fileID: 11400000, guid: 6c22f49f667a29b4394f45f85e3780ac, type: 2}
