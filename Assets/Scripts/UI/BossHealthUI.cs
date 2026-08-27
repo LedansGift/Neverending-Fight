@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,6 +37,8 @@ public class BossHealthUI : MonoBehaviour
 
     private void InitialiseHealth(object sender, int maxHealth)
     {
+        //Debug.Log("Sender: " + sender + " New Max Health: " + maxHealth);
+
         bossMaxHealth = maxHealth;
         ChangeHealth(this, maxHealth);
 
@@ -46,6 +47,8 @@ public class BossHealthUI : MonoBehaviour
 
     private void ChangeHealth(object sender, int newHealth)
     {
+        //Debug.Log("Sender: " + sender + " Health Sent: " + newHealth);
+
         float health = (float)newHealth / bossMaxHealth;
         healthSlider.value = health;
     }

@@ -18,6 +18,7 @@ public abstract class BossState : State
         if (OnStateFinished != null)
         {
             OnStateFinished();
+            StateReset();
         }
     }
 

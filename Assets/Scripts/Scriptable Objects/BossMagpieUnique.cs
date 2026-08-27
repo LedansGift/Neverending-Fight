@@ -6,7 +6,7 @@ using UnityEngine;
     menuName = "Boss Attack/Unique Attack/Magpie",
     order = 1
 )]
-public class BossMagpieUnique : BossAttackNode
+public class BossMagpieUnique : BossUniqueAttack
 {
     [SerializeField]
     private MagpieUniqueAttacks magpieUniqueAttack;
@@ -17,30 +17,8 @@ public class BossMagpieUnique : BossAttackNode
         float damageMultiplier = 1
     )
     {
-        this.OnAttackFinished = OnAttackFinished;
+        uniqueAttackIndex = (int)magpieUniqueAttack;
 
-        StateDictionary stateDictionary = attacker.GetStateDictionary();
-        BossStateMachine stateMachine = stateDictionary.GetStateMachine() as BossStateMachine;
-
-        if (stateDictionary.TryGetState((int)magpieUniqueAttack, out State state))
-        {
-            //also send in onattackfinished action
-
-            // if (state.GetType() == typeof(BossState))
-            // {
-            //     Debug.Log("Boss State Recognised");
-            BossState bossState = state as BossState;
-            bossState.SetStateFinished(FinishAttack, damageMultiplier);
-            //}
-
-            stateMachine.SwitchState(state);
-        }
-    }
-
-    public override void FinishAttack()
-    {
-        OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
-
-        base.FinishAttack();
+        base.PerformAttack(attacker, OnAttackFinished, damageMultiplier);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BossCombatManager : MonoBehaviour
@@ -33,6 +34,15 @@ public class BossCombatManager : MonoBehaviour
             return;
         }
 
+        BossCastBarUI.CancelCast();
+
+        StartCoroutine(DelayedAttacksStart());
+    }
+
+    private IEnumerator DelayedAttacksStart()
+    {
+        yield return new WaitForSeconds(1f);
+
         PerformNextAttack();
     }
 
@@ -53,11 +63,14 @@ public class BossCombatManager : MonoBehaviour
         {
             activeHealthPhaseChange.GetNewPhase().InitialiseBossPhase(bossFormManager);
 
+            Debug.Log("HEALTH-PHASE CHANGE");
+
             StartBossCombat(
                 bossAttacker,
                 activeHealthPhaseChange.GetNewPhase().GetAttackPattern(),
                 activeHealthPhaseChange.GetNewPhase().GetHealthPhaseChange()
             );
+            return;
         }
 
         attackPatternIndex++;

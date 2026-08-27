@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Boss Round Slash Move 2
   m_EditorClassIdentifier: Assembly-CSharp::BossMoveNode
   animationTrigger: 
+  attackName: DefaultName
   empoweredAttack: {fileID: 0}
-  newPosition: {x: -20, y: 0, z: 30}
+  newPosition: {x: -15, y: 0, z: 15}
   newRotation: 135
   moveSpeed: 0
   relativeMovement: 0

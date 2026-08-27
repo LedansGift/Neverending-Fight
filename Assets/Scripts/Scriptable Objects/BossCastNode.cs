@@ -19,7 +19,7 @@ public class BossCastNode : BossAttackNode
         this.OnAttackFinished = OnAttackFinished;
         BossCastBarUI.InitiateCastEvent(new CastInfo(castName, castTime));
 
-        FinishCast();
+        attacker.StartBossIdle(0.1f, FinishCast);
     }
 
     private void FinishCast()

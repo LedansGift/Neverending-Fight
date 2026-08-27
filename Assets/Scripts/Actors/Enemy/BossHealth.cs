@@ -13,6 +13,11 @@ public class BossHealth : Health
     public static EventHandler<int> OnInitialiseBossHealth;
     public static EventHandler<int> OnChangeBossHealth;
 
+    private void Awake()
+    {
+        isInvincible = true;
+    }
+
     private void Start()
     {
         HealToFull();
@@ -20,6 +25,8 @@ public class BossHealth : Health
 
     public void InitialiseHealth(int bossHealth = -1)
     {
+        isInvincible = false;
+
         if (bossHealth < 0)
         {
             bossHealth = maxHealth;

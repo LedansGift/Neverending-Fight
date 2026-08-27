@@ -18,4 +18,6 @@ MonoBehaviour:
   attackNodes:
   - {fileID: 11400000, guid: f58a41ec7b6b2d14a978e55a81ad8c24, type: 2}
   - {fileID: 11400000, guid: 1587644dfb5d7d34588fe03cef8dcade, type: 2}
+  - {fileID: 11400000, guid: 7daddd9c9502ee94ca3aea3cf5ca7c84, type: 2}
+  - {fileID: 11400000, guid: 3144920819a2ed248b7d835aa4eef6d6, type: 2}
   finalNode: {fileID: 11400000, guid: 6c22f49f667a29b4394f45f85e3780ac, type: 2}

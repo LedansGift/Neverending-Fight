@@ -39,8 +39,6 @@ public class BossFellWingState : BossState
 
     public override void Enter()
     {
-        Debug.Log("Attack Version: " + attackNumber);
-
         BossCastBarUI.InitiateCastEvent(new CastInfo("Fell Wing", telegraphDuration));
         wingStrikeDirection = new List<int>();
 

@@ -31,10 +31,13 @@ public abstract class StateMachine : MonoBehaviour
         //     return;
         // }
 
+        //Debug.Log("Current State Pre Switch: " + currentState);
 
         currentState?.Exit();
         currentState = newState;
         currentState?.Enter();
+
+        //Debug.Log("Current State Post Switch: " + currentState);
     }
 
     protected State GetCurrentState()
