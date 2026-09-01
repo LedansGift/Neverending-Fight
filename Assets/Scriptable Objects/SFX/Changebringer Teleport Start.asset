@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156316dad280b104cb9f367a01afe051, type: 3}
+  m_Name: Changebringer Teleport Start
+  m_EditorClassIdentifier: Assembly-CSharp::SFXObjectRandom
+  soundEffect:
+    sfxClip: {fileID: 8300000, guid: 0718406d6c2af6e41bf7141a627a34a2, type: 3}
+    volume: 1
+    pitch: 1
+  additionalSFX:
+  - sfxClip: {fileID: 8300000, guid: d942740ea22e6c84daba973078ea8b55, type: 3}
+    volume: 1
+    pitch: 1
+  - sfxClip: {fileID: 8300000, guid: 743fdb3e66932744caefe43f8a33dc03, type: 3}
+    volume: 1
+    pitch: 1

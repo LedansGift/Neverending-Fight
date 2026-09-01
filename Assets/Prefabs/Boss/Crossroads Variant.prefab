@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1237606981654550925, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1338314440487284039, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: m_Name
       value: Crossroads Variant

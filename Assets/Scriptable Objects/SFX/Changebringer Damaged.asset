@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156316dad280b104cb9f367a01afe051, type: 3}
+  m_Name: Changebringer Damaged
+  m_EditorClassIdentifier: Assembly-CSharp::SFXObjectRandom
+  soundEffect:
+    sfxClip: {fileID: 8300000, guid: 1dde522b3861c83489c2bb7019a96171, type: 3}
+    volume: 1
+    pitch: 1
+  additionalSFX:
+  - sfxClip: {fileID: 8300000, guid: 9becba65b059f844d8a544760cb86e3e, type: 3}
+    volume: 1
+    pitch: 1
+  - sfxClip: {fileID: 8300000, guid: 0044b6e64d56b684397c2680f939e4ad, type: 3}
+    volume: 1
+    pitch: 1
+  - sfxClip: {fileID: 8300000, guid: 9f45f0965c4849247a33788bfe715f1e, type: 3}
+    volume: 1
+    pitch: 1
+  - sfxClip: {fileID: 8300000, guid: 47b1fafcf23126844933824e6318f84d, type: 3}
+    volume: 1
+    pitch: 1
+  - sfxClip: {fileID: 8300000, guid: 9a62d80c96feb9b44aa43b2dedf4bf8e, type: 3}
+    volume: 1
+    pitch: 1
+  - sfxClip: {fileID: 8300000, guid: 6dd4358ec781dd04ebb1d7eaecdd0732, type: 3}
+    volume: 1
+    pitch: 1
+  - sfxClip: {fileID: 8300000, guid: b8e59ed8f7c463e499beaa99f667a8e9, type: 3}
+    volume: 1
+    pitch: 1
+  - sfxClip: {fileID: 8300000, guid: e2588276a82c82a428726fbca03c1d9f, type: 3}
+    volume: 1
+    pitch: 1
+  - sfxClip: {fileID: 8300000, guid: 0347d0dc81233574a984749e60d89e05, type: 3}
+    volume: 1
+    pitch: 1

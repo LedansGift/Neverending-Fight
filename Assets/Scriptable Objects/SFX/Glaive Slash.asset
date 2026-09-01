@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156316dad280b104cb9f367a01afe051, type: 3}
+  m_Name: Glaive Slash
+  m_EditorClassIdentifier: Assembly-CSharp::SFXObjectRandom
+  soundEffect:
+    sfxClip: {fileID: 8300000, guid: 533f7cbd8f2238149adf6ce02bb0e3f4, type: 3}
+    volume: 1
+    pitch: 0.75
+  additionalSFX:
+  - sfxClip: {fileID: 8300000, guid: 4d4206508bc18a3439dc61ce78970bcc, type: 3}
+    volume: 1
+    pitch: 0.75
+  - sfxClip: {fileID: 8300000, guid: 2cecde16e1334164d87225420530b27a, type: 3}
+    volume: 1
+    pitch: 0.75
+  - sfxClip: {fileID: 8300000, guid: 1f052f48eea98824cb4c69d18cbd7944, type: 3}
+    volume: 1
+    pitch: 0.75
+  - sfxClip: {fileID: 8300000, guid: b0db5f7a07e17e1489659b6d240edcf4, type: 3}
+    volume: 1
+    pitch: 0.75

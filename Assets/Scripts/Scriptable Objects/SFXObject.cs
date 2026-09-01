@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SFX Object", menuName = "SFX Object", order = 3)]
-public class SFXObject : ScriptableObject
+[Serializable]
+public struct SFX
 {
     public AudioClip sfxClip;
 
@@ -10,4 +11,15 @@ public class SFXObject : ScriptableObject
 
     [Range(0, 2)]
     public float pitch;
+}
+
+[CreateAssetMenu(fileName = "SFX Object", menuName = "SFX/SFX Object", order = 3)]
+public class SFXObject : ScriptableObject
+{
+    public SFX soundEffect;
+
+    public virtual AudioSource PlaySFX(Vector3 sfxPosition, bool varyPitch = true)
+    {
+        return AudioManager.PlaySFX(soundEffect, sfxPosition, varyPitch);
+    }
 }

@@ -15,7 +15,7 @@ public class ButtonManager : MonoBehaviour
             return;
         }
 
-        AudioManager.PlaySFX(hoverSFX, Camera.main.transform.position, false);
+        hoverSFX.PlaySFX(Camera.main.transform.position, false);
     }
 
     public void OnClick()
@@ -25,6 +25,6 @@ public class ButtonManager : MonoBehaviour
             return;
         }
 
-        AudioManager.PlaySFX(clickSFX, Camera.main.transform.position, false);
+        clickSFX.PlaySFX(Camera.main.transform.position, false);
     }
 }

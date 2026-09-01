@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using Random = UnityEngine.Random;
@@ -20,6 +21,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]
     private AudioSource[] localSfxPool;
+    private static AudioManager localAudioManager;
     private static AudioSource[] sfxPool;
 
     private static EventHandler<MusicTrack> OnNewMusicTrack;
@@ -27,6 +29,7 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         musicPlayer = GetComponent<MusicPlayer>();
+        localAudioManager = this;
     }
 
     private void OnEnable()
@@ -35,6 +38,8 @@ public class AudioManager : MonoBehaviour
         OptionsUI.OnMusicVolumeUpdated += UpdateMusicVolume;
         OptionsUI.OnSFXVolumeUpdated += UpdateSFXVolume;
         OptionsUI.OnVoiceVolumeUpdated += UpdateVoiceVolume;
+
+        RestartManager.OnResetPhase += ResetAudioManager;
 
         OnNewMusicTrack += SetNewMusicTrack;
 
@@ -48,6 +53,8 @@ public class AudioManager : MonoBehaviour
         OptionsUI.OnMusicVolumeUpdated -= UpdateMusicVolume;
         OptionsUI.OnSFXVolumeUpdated -= UpdateSFXVolume;
         OptionsUI.OnVoiceVolumeUpdated -= UpdateVoiceVolume;
+
+        RestartManager.OnResetPhase -= ResetAudioManager;
 
         OnNewMusicTrack -= SetNewMusicTrack;
     }
@@ -85,13 +92,27 @@ public class AudioManager : MonoBehaviour
         return source;
     }
 
-    public static AudioSource PlaySFX(
-        SFXObject sfxObj,
-        Vector3 originPosition,
-        bool varyPitch = true
+    private static IEnumerator PlayDelayedSFXClip(
+        AudioClip clip,
+        Vector3 position,
+        float volume,
+        float pitch,
+        float delay
     )
     {
+        yield return new WaitForSeconds(delay);
+
+        PlaySFXClip(clip, position, volume, pitch);
+    }
+
+    public static AudioSource PlaySFX(SFX sfxObj, Vector3 originPosition, bool varyPitch = true)
+    {
         if (!Application.isPlaying)
+        {
+            return null;
+        }
+
+        if (!sfxObj.sfxClip)
         {
             return null;
         }
@@ -108,6 +129,41 @@ public class AudioManager : MonoBehaviour
             originPosition,
             sfxObj.volume,
             sfxObj.pitch * pitchVariance
+        );
+    }
+
+    public static void PlayDelayedSFX(
+        SFX sfxObj,
+        Vector3 originPosition,
+        float sfxDelay,
+        bool varyPitch = true
+    )
+    {
+        if (!Application.isPlaying)
+        {
+            return;
+        }
+
+        if (!sfxObj.sfxClip)
+        {
+            return;
+        }
+
+        float pitchVariance = 1f;
+
+        if (varyPitch)
+        {
+            pitchVariance = Random.Range(MIN_PITCH_VARIATION, MAX_PITCH_VARIATION);
+        }
+
+        localAudioManager.StartCoroutine(
+            PlayDelayedSFXClip(
+                sfxObj.sfxClip,
+                originPosition,
+                sfxObj.volume,
+                sfxObj.pitch * pitchVariance,
+                sfxDelay
+            )
         );
     }
 
@@ -151,5 +207,10 @@ public class AudioManager : MonoBehaviour
     private void SetNewMusicTrack(object sender, MusicTrack musicTrack)
     {
         musicPlayer.SetMusicTrack(musicTrack);
+    }
+
+    private void ResetAudioManager()
+    {
+        localAudioManager.StopAllCoroutines();
     }
 }
