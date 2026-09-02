@@ -34,6 +34,12 @@ public class BossMover : MonoBehaviour
     private DashTrail bossTeleportEndEffect;
 
     [SerializeField]
+    private SFXObject bossTeleportStartSFX;
+
+    [SerializeField]
+    private SFXObject bossTeleportEndSFX;
+
+    [SerializeField]
     private TransformShrinkScaler bossShrinker;
 
     private void Awake()
@@ -126,6 +132,7 @@ public class BossMover : MonoBehaviour
     private IEnumerator TeleportBoss(float initialDelay)
     {
         bossTeleportStartEffect.ActivateDashTrail(Vector2.up);
+        bossTeleportStartSFX?.PlaySFX(transform.position);
         bossAnimator.SetTrigger("teleport");
         bossShrinker.ShrinkTransform();
 
@@ -138,6 +145,7 @@ public class BossMover : MonoBehaviour
         yield return new WaitForFixedUpdate();
 
         bossTeleportEndEffect.ActivateDashTrail(Vector2.up);
+        bossTeleportEndSFX?.PlaySFX(transform.position);
 
         StartCoroutine(FinishMovement());
     }

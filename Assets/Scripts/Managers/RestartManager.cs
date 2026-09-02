@@ -33,16 +33,10 @@ public class RestartManager : MonoBehaviour
 
     private IEnumerator DelayedPhaseReset()
     {
+        //Play animation of screen darkening and timepiece rewinding
+
         yield return new WaitForSecondsRealtime(phaseResetVisualDuration);
         OnResetPhase?.Invoke();
-
-        //Deactivate all projectiles
-        //Set player location to start of phase
-        //Reset all player resources
-        //Set player active weapon
-        //Reset boss health and position
-
-
 
         TimeManager.Instance.RestartTimeAfterGradualPause();
     }

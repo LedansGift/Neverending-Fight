@@ -9,16 +9,11 @@ public class PlayerHealth : Health
     private bool attackFailTracker = false;
     private float iFrameDuration = 1f;
 
-    //private float impulseStrength = 1f;
+    private float impulseStrength = 1f;
+    private float deathImpulseStrength = 3f;
 
     private PlayerStats playerStats;
     private PlayerMovement playerMovement;
-
-    // [SerializeField]
-    // private AudioClip playerDamageSFX;
-
-    // [SerializeField]
-    // private AudioClip playerDeathSFX;
 
     private Coroutine iFrameCoroutine;
 
@@ -70,7 +65,6 @@ public class PlayerHealth : Health
 
         if (health == 0)
         {
-            //AudioManager.PlaySFX(playerDeathSFX, 1f, 0, transform.position);
             isDead = true;
             Die();
         }
@@ -83,8 +77,6 @@ public class PlayerHealth : Health
             return;
         }
 
-        //impulseSource.GenerateImpulse(impulseStrength);
-
         health = Mathf.Max(0, health - damage);
 
         if (!arenaWideDamage)
@@ -96,13 +88,15 @@ public class PlayerHealth : Health
 
         if (health == 0)
         {
-            //AudioManager.PlaySFX(playerDeathSFX, 1f, 0, transform.position);
+            impulseSource.GenerateImpulse(deathImpulseStrength);
             isDead = true;
             Die();
         }
         else
         {
-            //AudioManager.PlaySFX(playerDamageSFX, 1f, 0, transform.position);
+            damagedSFX?.PlaySFX(transform.position);
+
+            impulseSource.GenerateImpulse(impulseStrength);
             iFrameCoroutine = StartCoroutine(DamageInvincibility());
         }
     }

@@ -9,6 +9,9 @@ public class PhaseChangeManager : MonoBehaviour
     private GameObject bloodEffect;
 
     [SerializeField]
+    private SFXObject bloodSFX;
+
+    [SerializeField]
     private CinemachineCamera bossCamera;
 
     [SerializeField]
@@ -54,6 +57,8 @@ public class PhaseChangeManager : MonoBehaviour
         formManager.PlayBossDamagedAnimation();
 
         bloodEffect.SetActive(true);
+        bloodSFX?.PlaySFX(transform.position);
+
         TimeManager.Instance.RestartTimeAfterGradualPause();
 
         //Play UI animation of player getting healed up & recovering retries

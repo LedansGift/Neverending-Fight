@@ -90,6 +90,91 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &184017598324557151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8567607463991530574}
+  - component: {fileID: 453236234291003103}
+  m_Layer: 6
+  m_Name: Champion Damaged Impulse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8567607463991530574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184017598324557151}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5132082217607570884}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &453236234291003103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184017598324557151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseSource
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 2
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.25
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -0.5, z: 0}
 --- !u!1 &323422768602893399
 GameObject:
   m_ObjectHideFlags: 0
@@ -5217,9 +5302,13 @@ MonoBehaviour:
   playerStats: {fileID: 2681022547810002137}
   playerMovement: {fileID: 3619797051828649659}
   weaponAnimator: {fileID: 2639398916664422278}
+  weaponAttackSFX: {fileID: 11400000, guid: f76a0faf23cdb5b4395e6a2e7fa205cb, type: 2}
+  weaponSpecialSFX: {fileID: 11400000, guid: cbdfed5079fc11c4b82cbb46af774b6a, type: 2}
+  weaponSwapSFX: {fileID: 11400000, guid: 3a024563e23bd644c826bc29e9c2bea5, type: 2}
   explosionFX: {fileID: 9017766647867024307}
   tomeAbsorber: {fileID: 3214860492980416736}
   attackVisual: {fileID: 1394856570789926280}
+  tomeCastFinishSFX: {fileID: 11400000, guid: 04ae78b7ba141b842b5260327c95931e, type: 2}
 --- !u!1 &900499163305839477
 GameObject:
   m_ObjectHideFlags: 0
@@ -25365,6 +25454,9 @@ MonoBehaviour:
   playerStats: {fileID: 2681022547810002137}
   playerMovement: {fileID: 3619797051828649659}
   weaponAnimator: {fileID: 878092360485131966}
+  weaponAttackSFX: {fileID: 11400000, guid: 8957ffe92c211494983236a4a7b20d20, type: 2}
+  weaponSpecialSFX: {fileID: 11400000, guid: ad32c2a8bc1489a4aa5c8877fe51da2d, type: 2}
+  weaponSwapSFX: {fileID: 11400000, guid: 25733dc044ccd444b96358d89da5360e, type: 2}
   playerJumpTransform: {fileID: 5734084047213677556}
   jumpHeightCurve:
     serializedVersion: 2
@@ -25551,6 +25643,7 @@ Transform:
   - {fileID: 8280694725118974035}
   - {fileID: 5451069657045309193}
   - {fileID: 2228804065163516597}
+  - {fileID: 8567607463991530574}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5861330118676957611
@@ -25586,6 +25679,7 @@ MonoBehaviour:
     m_Bits: 512
   groundChecker: {fileID: 1584918540438668422}
   dashTrail: {fileID: 7786746253089384083}
+  dashSFX: {fileID: 11400000, guid: 373649a527f76d548b3ba6b9b0ab8fd8, type: 2}
 --- !u!114 &1584918540438668422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25763,7 +25857,9 @@ MonoBehaviour:
   isPlayer: 1
   isInvincible: 0
   maxHealth: 100
-  impulseSource: {fileID: 0}
+  damagedSFX: {fileID: 11400000, guid: 38143704a7e23fc44a4b583bb337ca6a, type: 2}
+  deathSFX: {fileID: 0}
+  impulseSource: {fileID: 453236234291003103}
 --- !u!1 &3884808745424254355
 GameObject:
   m_ObjectHideFlags: 0
@@ -36274,7 +36370,11 @@ MonoBehaviour:
   playerStats: {fileID: 2681022547810002137}
   playerMovement: {fileID: 3619797051828649659}
   weaponAnimator: {fileID: 8884454641688118477}
+  weaponAttackSFX: {fileID: 11400000, guid: 43280e74393cdfb428e96ad963e7a9c6, type: 2}
+  weaponSpecialSFX: {fileID: 11400000, guid: c7f7d2fbc0708454c81f0bb2a114dff9, type: 2}
+  weaponSwapSFX: {fileID: 11400000, guid: aebef45463784ec42b962baf61913447, type: 2}
   shootFX: {fileID: 4479376379916378809}
+  bowDrawSFX: {fileID: 11400000, guid: e7ade4e697d334a4290f7b5ec80e7b54, type: 2}
   bowShootTransform: {fileID: 1140277451413470249}
   bowProjectilePrefab: {fileID: 2780516738939657695, guid: 4dccb7106a300d0469d6ce9858b68276, type: 3}
   shootPointerRenderer: {fileID: 1358477294456647288}
@@ -41869,6 +41969,8 @@ MonoBehaviour:
   isPlayer: 1
   isInvincible: 0
   maxHealth: 0
+  damagedSFX: {fileID: 0}
+  deathSFX: {fileID: 0}
   absorberCollider: {fileID: 6759079763112699372}
   absorbParticles: {fileID: 2970955752392471699}
   absorbFlameVisual: {fileID: 484666204301251094}

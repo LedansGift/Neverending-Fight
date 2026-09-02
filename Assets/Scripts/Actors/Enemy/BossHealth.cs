@@ -49,15 +49,13 @@ public class BossHealth : Health
 
         if (health == 0f)
         {
-            //AudioManager.PlaySFX(enemyDeathSFX, 1f, 0, transform.position);
-
             OnBossDie?.Invoke();
             Die();
         }
         else
         {
             OnTakeDamage?.Invoke();
-            //AudioManager.PlaySFX(enemyHitSFX, 1f, 0, transform.position);
+            damagedSFX?.PlaySFX(transform.position);
         }
     }
 

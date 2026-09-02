@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3300afc30ca13e74ba03b60a7abb7f07, type: 3}
-  m_Name: Glaive Special End
+  m_Name: Changebringer Death
   m_EditorClassIdentifier: Assembly-CSharp::SFXObject
-  sfxClip: {fileID: 0}
-  volume: 0
-  pitch: 0
+  soundEffect:
+    sfxClip: {fileID: 8300000, guid: e5efb40ef9f35a34f9d9849848809f9a, type: 3}
+    volume: 0.75
+    pitch: 0.75

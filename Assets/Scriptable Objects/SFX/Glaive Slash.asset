@@ -15,17 +15,17 @@ MonoBehaviour:
   soundEffect:
     sfxClip: {fileID: 8300000, guid: 533f7cbd8f2238149adf6ce02bb0e3f4, type: 3}
     volume: 1
-    pitch: 0.75
+    pitch: 1.5
   additionalSFX:
   - sfxClip: {fileID: 8300000, guid: 4d4206508bc18a3439dc61ce78970bcc, type: 3}
     volume: 1
-    pitch: 0.75
+    pitch: 1.5
   - sfxClip: {fileID: 8300000, guid: 2cecde16e1334164d87225420530b27a, type: 3}
     volume: 1
-    pitch: 0.75
+    pitch: 1.5
   - sfxClip: {fileID: 8300000, guid: 1f052f48eea98824cb4c69d18cbd7944, type: 3}
     volume: 1
-    pitch: 0.75
+    pitch: 1.5
   - sfxClip: {fileID: 8300000, guid: b0db5f7a07e17e1489659b6d240edcf4, type: 3}
     volume: 1
-    pitch: 0.75
+    pitch: 1.5

@@ -130,6 +130,7 @@ MonoBehaviour:
   bossCombatManager: {fileID: 6173335375328832987}
   bossAttackManager: {fileID: 2621286475280256505}
   bossConditionalManager: {fileID: 6109488810009923894}
+  bossMusicTracks: []
 --- !u!114 &241299289315752863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +146,8 @@ MonoBehaviour:
   isPlayer: 0
   isInvincible: 0
   maxHealth: 100
+  damagedSFX: {fileID: 0}
+  deathSFX: {fileID: 11400000, guid: 4a1ba8981057adc4397e92c17f1da983, type: 2}
 --- !u!114 &6173335375328832987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +206,8 @@ MonoBehaviour:
   bossAnimator: {fileID: 6595367456897438995}
   bossTeleportStartEffect: {fileID: 5138717609911960192}
   bossTeleportEndEffect: {fileID: 4075012748634489783}
+  bossTeleportStartSFX: {fileID: 0}
+  bossTeleportEndSFX: {fileID: 0}
   bossShrinker: {fileID: 1745862203888786198}
 --- !u!114 &5943755932644677658
 MonoBehaviour:

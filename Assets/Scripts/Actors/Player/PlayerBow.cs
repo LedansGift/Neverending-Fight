@@ -18,11 +18,15 @@ public class PlayerBow : PlayerWeapon
     private const int BOW_WEAPON_INDEX = 1;
 
     private Vector3 specialHitbox = new Vector3(2f, 3f, 200f);
+    private AudioSource bowDrawAudioSource;
 
     private Coroutine cooldownCoroutine;
 
     [SerializeField]
     private BowShootFX shootFX;
+
+    [SerializeField]
+    private SFXObject bowDrawSFX;
 
     [SerializeField]
     private Transform bowShootTransform;
@@ -59,6 +63,11 @@ public class PlayerBow : PlayerWeapon
 
         weaponAnimator.SetTrigger("attack");
 
+        if (bowDrawSFX)
+        {
+            bowDrawAudioSource = bowDrawSFX.PlaySFX(transform.position);
+        }
+
         chargeBow = true;
         canSwap = false;
 
@@ -81,6 +90,14 @@ public class PlayerBow : PlayerWeapon
 
         weaponAnimator.SetTrigger("loose");
 
+        weaponAttackSFX?.PlaySFX(transform.position);
+
+        if (bowDrawAudioSource && bowDrawAudioSource.isPlaying)
+        {
+            bowDrawAudioSource.Stop();
+            bowDrawAudioSource = null;
+        }
+
         chargeBow = false;
         canSwap = true;
 
@@ -101,6 +118,8 @@ public class PlayerBow : PlayerWeapon
         }
 
         weaponAnimator.SetTrigger("special");
+
+        weaponSpecialSFX?.PlaySFX(transform.position);
 
         StartCoroutine(SpecialShoot());
 

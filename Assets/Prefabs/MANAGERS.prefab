@@ -5964,6 +5964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhaseChangeManager
   bloodEffect: {fileID: 1431459454845339865}
+  bloodSFX: {fileID: 11400000, guid: 680a7c12b8fc4184893533f91a7c47a9, type: 2}
   bossCamera: {fileID: 2234256089270849645}
   centreMoveNode: {fileID: 11400000, guid: fee3c0632ba9d4b4498d8685327a7304, type: 2}
 --- !u!1 &5815409440976278170

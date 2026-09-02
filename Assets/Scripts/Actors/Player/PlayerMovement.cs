@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private DashTrail dashTrail;
 
+    [SerializeField]
+    private SFXObject dashSFX;
+
     public Action OnDash;
 
     public static EventHandler<float> OnDashCooldownStart;
@@ -178,6 +181,8 @@ public class PlayerMovement : MonoBehaviour
         dashCoroutine = StartCoroutine(ApplyDash());
 
         dashTrail.ActivateDashTrail(movementDirection);
+
+        dashSFX?.PlaySFX(transform.position);
 
         dashAvailable = false;
 

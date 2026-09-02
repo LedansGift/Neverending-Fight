@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class Health : MonoBehaviour
 {
+    protected int health;
+
     [SerializeField]
     private bool isPlayer = false;
 
@@ -11,7 +13,13 @@ public abstract class Health : MonoBehaviour
 
     [SerializeField]
     protected int maxHealth = 100;
-    protected int health;
+
+    [SerializeField]
+    protected SFXObject damagedSFX;
+
+    [SerializeField]
+    protected SFXObject deathSFX;
+
     public Action OnTakeDamage;
     public Action OnDeath;
 
@@ -34,6 +42,8 @@ public abstract class Health : MonoBehaviour
 
     protected virtual void Die()
     {
+        deathSFX?.PlaySFX(transform.position);
+
         OnDeath?.Invoke();
     }
 

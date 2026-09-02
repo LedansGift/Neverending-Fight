@@ -31,6 +31,15 @@ public abstract class PlayerWeapon : MonoBehaviour
     [SerializeField]
     protected Animator weaponAnimator;
 
+    [SerializeField]
+    protected SFXObject weaponAttackSFX;
+
+    [SerializeField]
+    protected SFXObject weaponSpecialSFX;
+
+    [SerializeField]
+    protected SFXObject weaponSwapSFX;
+
     public static EventHandler<WeaponAbilityCharge> OnWeaponAbilityCharge;
 
     public abstract void WeaponAttackStart();
@@ -49,6 +58,8 @@ public abstract class PlayerWeapon : MonoBehaviour
         {
             return;
         }
+
+        weaponSwapSFX?.PlaySFX(transform.position);
 
         weaponAnimator.SetTrigger("draw");
         isBusy = false;

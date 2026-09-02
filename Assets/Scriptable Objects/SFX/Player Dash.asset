@@ -15,4 +15,4 @@ MonoBehaviour:
   soundEffect:
     sfxClip: {fileID: 8300000, guid: e4e8d96d0343d9b4db0499348b9e5226, type: 3}
     volume: 1
-    pitch: 1.25
+    pitch: 1.4

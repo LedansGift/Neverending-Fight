@@ -25,6 +25,9 @@ public class PlayerTome : PlayerWeapon
     [SerializeField]
     private TomeAttackVisual attackVisual;
 
+    [SerializeField]
+    private SFXObject tomeCastFinishSFX;
+
     private void Start()
     {
         explosionFX.transform.SetParent(null);
@@ -40,6 +43,11 @@ public class PlayerTome : PlayerWeapon
         }
 
         //weaponAnimator.SetTrigger("attack");
+
+        if (weaponAttackSFX)
+        {
+            weaponAttackSFX.PlaySFX(transform.position);
+        }
 
         chargeTome = true;
         canSwap = false;
@@ -64,6 +72,9 @@ public class PlayerTome : PlayerWeapon
 
         //weaponAnimator.SetTrigger("loose");
 
+
+        tomeCastFinishSFX?.PlaySFX(transform.position);
+
         chargeTome = false;
         canSwap = true;
 
@@ -87,6 +98,8 @@ public class PlayerTome : PlayerWeapon
         }
 
         weaponAnimator.SetTrigger("special");
+
+        weaponSpecialSFX?.PlaySFX(transform.position);
 
         specialCoroutine = StartCoroutine(SpecialCast());
     }

@@ -157,6 +157,8 @@ public class PlayerGlaive : PlayerWeapon
             1f
         );
 
+        weaponSpecialSFX?.PlaySFX(transform.position);
+
         yield return new WaitForSeconds(playerStats.GetGlaiveSpecialJumpTime());
 
         OnGlaiveSpecial?.Invoke(this, false);
@@ -182,6 +184,8 @@ public class PlayerGlaive : PlayerWeapon
     {
         isBusy = true;
         canSwap = false;
+
+        weaponAttackSFX?.PlaySFX(transform.position);
 
         yield return new WaitForSeconds(slashHitDelay);
 

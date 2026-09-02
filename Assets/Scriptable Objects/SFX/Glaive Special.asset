@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 019517c090e1a89438a7276b0a1f165b, type: 3}
-  m_Name: Bow Special
+  m_Name: Glaive Special
   m_EditorClassIdentifier: Assembly-CSharp::SFXObjectLayered
   soundEffect:
-    sfxClip: {fileID: 8300000, guid: c846cf96d53cf5443bf3394ae61136b4, type: 3}
-    volume: 0.75
-    pitch: 2
+    sfxClip: {fileID: 8300000, guid: 74d5d646282b7bc42a18d453c7d8aee3, type: 3}
+    volume: 0.5
+    pitch: 1.25
   initialSFXDelay: 0
   additionalSFX:
-  - sfxClip: {fileID: 8300000, guid: 60b4b3528ddab2e4e8290c2d1098efea, type: 3}
-    volume: 1
-    pitch: 1.5
+  - sfxClip: {fileID: 8300000, guid: 369b83b3ca596a449899daf9228b53c8, type: 3}
+    volume: 0.65
+    pitch: 1
   additionalSFXDelays:
-  - 0.5
+  - 2.5

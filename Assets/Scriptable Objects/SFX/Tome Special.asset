@@ -9,9 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3300afc30ca13e74ba03b60a7abb7f07, type: 3}
+  m_Script: {fileID: 11500000, guid: 019517c090e1a89438a7276b0a1f165b, type: 3}
   m_Name: Tome Special
-  m_EditorClassIdentifier: Assembly-CSharp::SFXObject
-  sfxClip: {fileID: 0}
-  volume: 0
-  pitch: 0
+  m_EditorClassIdentifier: Assembly-CSharp::SFXObjectLayered
+  soundEffect:
+    sfxClip: {fileID: 8300000, guid: cfddb327185e72448868dbcae1d8d70d, type: 3}
+    volume: 0.6
+    pitch: 1
+  initialSFXDelay: 0
+  additionalSFX:
+  - sfxClip: {fileID: 8300000, guid: 9bef1b43fb59ebe45908e5a9c17e368b, type: 3}
+    volume: 0.5
+    pitch: 1.5
+  additionalSFXDelays:
+  - 0.5
