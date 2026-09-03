@@ -1,16 +1,27 @@
+using System;
 using UnityEngine;
 
 public class Topic : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField]
+    private DialogueSO topicDialogue;
+
+    [SerializeField]
+    private TopicProgresser topicProgresser;
+
+    private void OnEnable()
     {
-        
+        topicProgresser.OnProgressTopic += ProgressTopic;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        topicProgresser.OnProgressTopic -= ProgressTopic;
+    }
+
+    private void ProgressTopic()
+    {
+        //Play topic dialogue
+        //Evaluate next topic if applicable
     }
 }

@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Time Rewind
   m_EditorClassIdentifier: Assembly-CSharp::SFXObjectLayered
   soundEffect:
-    sfxClip: {fileID: 0}
-    volume: 0
-    pitch: 0
+    sfxClip: {fileID: 8300000, guid: 6ba23446321fd404eb5dfcc8b3adaca1, type: 3}
+    volume: 0.8
+    pitch: 1.25
   initialSFXDelay: 0
-  additionalSFX: []
-  additionalSFXDelays: []
+  additionalSFX:
+  - sfxClip: {fileID: 8300000, guid: 18c361beb4b30184b9728eb57f51c71d, type: 3}
+    volume: 1
+    pitch: 1
+  additionalSFXDelays:
+  - 0

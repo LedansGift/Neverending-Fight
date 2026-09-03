@@ -7,7 +7,8 @@ public class PlayerTimepiece : MonoBehaviour
     private const int MAX_PLAYER_RETRIES = 2;
 
     public static Action OnNoMoreRetries;
-    public static Action OnPlayerRetry;
+    public static Action OnResetRetries;
+    public static EventHandler<int> OnPlayerRetry;
     public static EventHandler<int> OnNewPlayerRetries;
 
     private void Start()
@@ -30,7 +31,7 @@ public class PlayerTimepiece : MonoBehaviour
         }
 
         playerRetries--;
-        OnPlayerRetry?.Invoke();
+        OnPlayerRetry?.Invoke(this, playerRetries);
 
         UpdateRetryUI();
     }
@@ -38,6 +39,8 @@ public class PlayerTimepiece : MonoBehaviour
     public void ResetPlayerRetries()
     {
         playerRetries = MAX_PLAYER_RETRIES;
+
+        OnResetRetries?.Invoke();
         UpdateRetryUI();
     }
 

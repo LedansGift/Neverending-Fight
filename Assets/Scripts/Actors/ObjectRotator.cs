@@ -14,6 +14,7 @@ public class ObjectRotator : MonoBehaviour
 
     private void Update()
     {
-        transform.eulerAngles += new Vector3(xRotation, yRotation, zRotation) * Time.deltaTime;
+        transform.eulerAngles +=
+            new Vector3(xRotation, yRotation, zRotation) * Time.unscaledDeltaTime;
     }
 }

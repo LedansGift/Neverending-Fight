@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class BossTopicInitialiser : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject[] initialTopics;
 
-    // Update is called once per frame
-    void Update()
+    public void InitialiseTopics()
     {
-        
+        //spawn all initial topics via topic manager
+        //Do not initialise again on phase restart
     }
 }
