@@ -24,12 +24,12 @@ public class DialogueUI : MonoBehaviour
 
     private void Start()
     {
-        DialogueManager.Instance.OnDialogue += DialogueManager_OnDialogue;
+        DialogueManager.OnDialogue += DialogueManager_OnDialogue;
     }
 
     private void OnDisable()
     {
-        DialogueManager.Instance.OnDialogue -= DialogueManager_OnDialogue;
+        DialogueManager.OnDialogue -= DialogueManager_OnDialogue;
     }
 
     private void ClearDialogueText()

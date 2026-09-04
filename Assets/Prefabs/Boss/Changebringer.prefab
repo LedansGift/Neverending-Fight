@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 8371743262379200458}
   - component: {fileID: 8761823577968525310}
   - component: {fileID: 6109488810009923894}
+  - component: {fileID: 5725062810706316359}
   - component: {fileID: 4223425634845952058}
   - component: {fileID: 5181029723768449880}
   m_Layer: 6
@@ -130,6 +131,7 @@ MonoBehaviour:
   bossCombatManager: {fileID: 6173335375328832987}
   bossAttackManager: {fileID: 2621286475280256505}
   bossConditionalManager: {fileID: 6109488810009923894}
+  bossTopicInitialiser: {fileID: 5725062810706316359}
   bossMusicTracks: []
 --- !u!114 &241299289315752863
 MonoBehaviour:
@@ -264,6 +266,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossConditionalManager
   conditionals: []
+--- !u!114 &5725062810706316359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338314440487284039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c820fbe48c0054e89f391359e246e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossTopicInitialiser
+  initialTopics: []
 --- !u!136 &4223425634845952058
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -21,11 +21,77 @@ public class TopicManager : MonoBehaviour
         savedTopics = new List<Topic>();
     }
 
-    public void SpawnTopic(GameObject newTopic) { }
+    private void CleanupInactiveTopics()
+    {
+        List<Topic> newSavedList = new List<Topic>();
 
-    //Cleanup (destroy) dead Topics at end of phase
+        foreach (Topic topic in savedTopics)
+        {
+            if (!topic.GetIsTopicActive())
+            {
+                Destroy(topic.gameObject);
+            }
+            else
+            {
+                newSavedList.Add(topic);
+            }
+        }
 
-    //On new phase start, save persisting + newly initialised topics
+        foreach (Topic topic in activeTopics)
+        {
+            if (!topic.GetIsTopicActive() || !topic.GetIsTopicPersistent())
+            {
+                Destroy(topic.gameObject);
+            }
+            else
+            {
+                newSavedList.Add(topic);
+            }
+        }
 
-    //On phase reset, reinitialise saved topics
+        savedTopics = newSavedList;
+        activeTopics = new List<Topic>();
+    }
+
+    private void ResetSavedTopicsProgress()
+    {
+        foreach (Topic topic in savedTopics)
+        {
+            topic.LoadTopicProgress();
+        }
+    }
+
+    private void SaveActiveTopicsProgress()
+    {
+        foreach (Topic topic in savedTopics)
+        {
+            topic.SaveTopicProgress();
+        }
+    }
+
+    public void SpawnTopic(Topic newTopic)
+    {
+        GameObject spawnedTopicObject = Instantiate(newTopic.gameObject, transform);
+        Topic spawnedTopic = spawnedTopicObject.GetComponent<Topic>();
+        spawnedTopic.SetTopicActive(true);
+
+        activeTopics.Add(spawnedTopic);
+    }
+
+    public void ResetActiveTopics()
+    {
+        foreach (Topic topic in activeTopics)
+        {
+            Destroy(topic.gameObject);
+        }
+
+        activeTopics = new List<Topic>();
+        ResetSavedTopicsProgress();
+    }
+
+    public void AdvancePhase()
+    {
+        CleanupInactiveTopics();
+        SaveActiveTopicsProgress();
+    }
 }

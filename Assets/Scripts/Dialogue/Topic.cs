@@ -4,6 +4,9 @@ using UnityEngine;
 public class Topic : MonoBehaviour
 {
     [SerializeField]
+    private bool persistingTopic = false;
+
+    [SerializeField]
     private DialogueSO topicDialogue;
 
     [SerializeField]
@@ -21,7 +24,29 @@ public class Topic : MonoBehaviour
 
     private void ProgressTopic()
     {
-        //Play topic dialogue
-        //Evaluate next topic if applicable
+        if (topicDialogue)
+        {
+            //DialogueManager.Instance.PlayDialogue(topicDialogue, null);
+        }
+
+        topicProgresser.InitialiseFollowingTopics();
+
+        SetTopicActive(false);
+    }
+
+    public bool GetIsTopicPersistent()
+    {
+        return persistingTopic;
+    }
+
+    public bool GetIsTopicActive() => topicProgresser.GetIsTopicActive();
+
+    public void SaveTopicProgress() => topicProgresser.SaveTopicProgress();
+
+    public void LoadTopicProgress() => topicProgresser.LoadTopicProgress();
+
+    public void SetTopicActive(bool toggle)
+    {
+        topicProgresser.ToggleTopicActive(toggle);
     }
 }

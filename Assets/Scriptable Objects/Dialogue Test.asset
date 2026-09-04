@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSO
   dialogue:
     dialogue:
-    - Dialogue Test 1
-    - Dialogue Test 2
+    - Fly high, swallow....
     voiceClip:
     - {fileID: 8300000, guid: 1e0ee6f562c95b347a2ee625963b2cc1, type: 3}

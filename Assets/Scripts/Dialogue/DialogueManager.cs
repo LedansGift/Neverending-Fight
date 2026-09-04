@@ -17,8 +17,6 @@ public struct DialogueUIEventArgs
 
 public class DialogueManager : MonoBehaviour
 {
-    public static DialogueManager Instance { get; private set; }
-
     private bool voicePaused = false;
     private string currentSentence;
     private AudioSource dialogueAudioSource;
@@ -30,17 +28,10 @@ public class DialogueManager : MonoBehaviour
     private Dialogue dialogues;
     private Coroutine autoPlayCoroutine;
 
-    public EventHandler<DialogueUIEventArgs> OnDialogue;
+    public static EventHandler<DialogueUIEventArgs> OnDialogue;
 
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-
         dialogueAudioSource = GetComponent<AudioSource>();
     }
 
@@ -132,7 +123,7 @@ public class DialogueManager : MonoBehaviour
 
         dialogueAudioSource.Stop();
 
-        if (!skipping)
+        if (!skipping && (onDialogueComplete != null))
         {
             onDialogueComplete();
         }

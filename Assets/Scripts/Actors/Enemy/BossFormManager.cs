@@ -29,6 +29,9 @@ public class BossFormManager : MonoBehaviour
     private BossConditionalManager bossConditionalManager;
 
     [SerializeField]
+    private BossTopicInitialiser bossTopicInitialiser;
+
+    [SerializeField]
     private MusicTrack[] bossMusicTracks;
 
     public Action OnFinalPhaseFinished;
@@ -63,6 +66,8 @@ public class BossFormManager : MonoBehaviour
         phase.InitialiseBossPhase(this);
         bossCombatManager.SetFormManager(this);
 
+        bossTopicInitialiser.InitialiseTopics(bossPhaseManager.GetCurrentPhaseIndex());
+
         bossCombatManager.StartBossCombat(
             bossAttackManager,
             phase.GetAttackPattern(),
@@ -89,6 +94,8 @@ public class BossFormManager : MonoBehaviour
     private void InitiatePhaseChange()
     {
         bossPhaseManager.AdvancePhaseTracker();
+
+        TopicManager.Instance.AdvancePhase();
 
         if (bossPhaseManager.TryGetPhase(out BossPhase phase))
         {
@@ -151,6 +158,8 @@ public class BossFormManager : MonoBehaviour
     private IEnumerator DelayedBossReset()
     {
         yield return null;
+
+        TopicManager.Instance.ResetActiveTopics();
 
         InitialiseBoss();
     }

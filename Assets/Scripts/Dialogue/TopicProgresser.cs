@@ -1,8 +1,10 @@
 using System;
 using UnityEngine;
 
-public class TopicProgresser : MonoBehaviour
+public abstract class TopicProgresser : MonoBehaviour
 {
+    private bool saveTopicActive = true;
+
     protected bool topicActive = false;
 
     public Action OnProgressTopic;
@@ -17,8 +19,25 @@ public class TopicProgresser : MonoBehaviour
         OnProgressTopic?.Invoke();
     }
 
+    public virtual void SaveTopicProgress()
+    {
+        saveTopicActive = topicActive;
+    }
+
+    public virtual void LoadTopicProgress()
+    {
+        topicActive = saveTopicActive;
+    }
+
     public virtual void ToggleTopicActive(bool toggle)
     {
         topicActive = toggle;
+    }
+
+    public virtual void InitialiseFollowingTopics() { }
+
+    public bool GetIsTopicActive()
+    {
+        return topicActive;
     }
 }
