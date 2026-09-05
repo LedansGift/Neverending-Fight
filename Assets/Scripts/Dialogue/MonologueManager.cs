@@ -7,7 +7,7 @@ public class MonologueManager : MonoBehaviour
     public static MonologueManager Instance { get; private set; }
 
     private bool conversationActive = false;
-    private DialogueSO activeDialoguer;
+    private DialogueSO activeDialogue;
     private Queue<DialogueSO> conversationQueue = new Queue<DialogueSO>();
 
     [SerializeField]
@@ -27,24 +27,25 @@ public class MonologueManager : MonoBehaviour
         Instance = this;
     }
 
-    // private void AdvanceConversation()
-    // {
-    //     if (conversationQueue.TryDequeue(out DialogueCluster newCluster))
-    //     {
-    //         activeDialogueCluster = new Queue<ConversationNode>(newCluster.GetCinematicNodes());
-    //         TryResolveDialogueCluster();
-    //     }
-    //     else
-    //     {
-    //         EndConversation();
-    //     }
-    // }
+    private void AdvanceConversation()
+    {
+        if (conversationQueue.TryDequeue(out DialogueSO newDialogue))
+        {
+            activeDialogue = newDialogue;
+
+            dialogueManager.PlayDialogue(newDialogue, AdvanceConversation);
+        }
+        else
+        {
+            EndConversation();
+        }
+    }
 
     private void EndConversation()
     {
         conversationActive = false;
 
-        OnConversationActive?.Invoke(this, false);
+        //OnConversationActive?.Invoke(this, false);
 
         if (OnDialogueEnd != null)
         {
@@ -62,8 +63,8 @@ public class MonologueManager : MonoBehaviour
         if (!conversationActive)
         {
             conversationActive = true;
-            OnConversationActive?.Invoke(this, true);
-            //AdvanceConversation();
+            //OnConversationActive?.Invoke(this, true);
+            AdvanceConversation();
         }
     }
 }

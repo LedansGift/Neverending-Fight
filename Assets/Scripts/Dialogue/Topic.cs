@@ -27,6 +27,7 @@ public class Topic : MonoBehaviour
         if (topicDialogue)
         {
             //DialogueManager.Instance.PlayDialogue(topicDialogue, null);
+            MonologueManager.Instance.AddToConversation(topicDialogue);
         }
 
         topicProgresser.InitialiseFollowingTopics();

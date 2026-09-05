@@ -42,7 +42,6 @@ public class DialogueManager : MonoBehaviour
 
     private void OnDisable()
     {
-        //InputManager.OnSkipEvent -= SkipCurrentDialogue;
         PauseManager.OnPauseGame -= PauseVA;
     }
 
@@ -99,8 +98,6 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueAudioSource.clip = voiceClip;
 
-            //dialogueAudioSource.volume = PlayerOptions.GetVoiceVolume();
-
             dialogueAudioSource.Play();
 
             autoPlayCoroutine = StartCoroutine(DialogueAutoPlayTimer(voiceClip.length));
@@ -119,8 +116,6 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue(bool skipping = false)
     {
-        //InputManager.OnSkipEvent -= SkipCurrentDialogue;
-
         dialogueAudioSource.Stop();
 
         if (!skipping && (onDialogueComplete != null))
@@ -137,8 +132,6 @@ public class DialogueManager : MonoBehaviour
     {
         this.onDialogueComplete = onDialogueComplete;
         dialogues = dialogueSO.GetDialogue();
-
-        //InputManager.OnSkipEvent += SkipCurrentDialogue;
 
         TryPlayNextDialogue();
     }
