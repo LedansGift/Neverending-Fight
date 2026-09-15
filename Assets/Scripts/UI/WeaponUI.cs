@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class WeaponUI : MonoBehaviour
 {
     private bool uiChange = false;
+    private bool fullyCharged = true;
     private float uiChangeTimer = 0f;
     private float uiScaleNonTarget = 0f;
     private float uiScaleTarget = 1f;
@@ -24,7 +25,15 @@ public class WeaponUI : MonoBehaviour
     private Image[] weaponUIImages;
 
     [SerializeField]
-    private Transform weaponAbilityUI;
+    private Image weaponAbilityUIFill;
+
+    [SerializeField]
+    private Animator abilityAnimator;
+
+    private void Awake()
+    {
+        abilityAnimator.SetBool("full", true);
+    }
 
     private void Update()
     {
@@ -66,7 +75,27 @@ public class WeaponUI : MonoBehaviour
 
     public virtual void SetAbilityCharge(float newCharge)
     {
-        weaponAbilityUI.localScale = new Vector3(newCharge, newCharge, newCharge);
+        //weaponAbilityUI.localScale = new Vector3(newCharge, newCharge, newCharge);
+
+        if (fullyCharged && (newCharge >= 1f))
+        {
+            return;
+        }
+
+        if (fullyCharged && (newCharge < 1f))
+        {
+            abilityAnimator.SetBool("full", false);
+            fullyCharged = false;
+        }
+
+        if (!fullyCharged && (newCharge >= 1f))
+        {
+            abilityAnimator.SetBool("full", true);
+            abilityAnimator.SetTrigger("pulse");
+            fullyCharged = true;
+        }
+
+        weaponAbilityUIFill.material.SetFloat("_YReveal", newCharge);
     }
 
     public void SetUIActive(bool toggle)

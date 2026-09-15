@@ -1419,6 +1419,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Changebringer Model
       objectReference: {fileID: 0}
+    - target: {fileID: 5082677393395721632, guid: fbc76939d9eea3443b78115292edd6e0, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 241299289315752863}
     - target: {fileID: 5773658287830695796, guid: fbc76939d9eea3443b78115292edd6e0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
