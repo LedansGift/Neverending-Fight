@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Boss Cast", menuName = "Boss Attack/Cast", order = 8)]
-public class BossCastNode : BossAttackNode
+public class BossCastNode : BossNode
 {
     [SerializeField]
     private float castTime;

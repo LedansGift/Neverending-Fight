@@ -11,7 +11,7 @@ public class BossComplexAttack : BossAttackNode
     private int nodeIndex = 0;
 
     [SerializeField]
-    private BossAttackNode[] attackNodes;
+    private BossNode[] attackNodes;
 
     [SerializeField]
     private BossIdleNode finalNode;
@@ -40,7 +40,7 @@ public class BossComplexAttack : BossAttackNode
             return;
         }
 
-        BossAttackNode activeNode = attackNodes[nodeIndex];
+        BossNode activeNode = attackNodes[nodeIndex];
         nodeIndex++;
 
         if (activeNode.GetType() == typeof(BossIdleNode))
@@ -65,7 +65,10 @@ public class BossComplexAttack : BossAttackNode
 
     private void FinishComplexAttack()
     {
-        OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
+        if (failableAttack)
+        {
+            OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
+        }
 
         OnAttackFinished();
     }

@@ -71,8 +71,10 @@ public class BossMeleeAttack : BossAttackNode
 
     public override void FinishAttack()
     {
-        // tell attack manager that a this attack was failed
-        OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
+        if (failableAttack)
+        {
+            OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
+        }
 
         base.FinishAttack();
     }

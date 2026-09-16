@@ -6,12 +6,12 @@ using UnityEngine;
 public class BossPhase : ScriptableObject
 {
     [SerializeField]
-    protected BossAttackNode[] bossAttackPattern;
+    protected BossNode[] bossAttackPattern;
 
     [SerializeField]
     protected HealthThresholdPhaseChange healthPhaseChange;
 
-    public virtual BossAttackNode[] GetAttackPattern()
+    public virtual BossNode[] GetAttackPattern()
     {
         return bossAttackPattern;
     }

@@ -5,7 +5,7 @@ public class BossCombatManager : MonoBehaviour
 {
     private int attackPatternIndex = 0;
     private BossFormManager bossFormManager;
-    private BossAttackNode[] activeAttackPattern;
+    private BossNode[] activeAttackPattern;
     private HealthThresholdPhaseChange activeHealthPhaseChange;
 
     [SerializeField]
@@ -16,7 +16,7 @@ public class BossCombatManager : MonoBehaviour
 
     public void StartBossCombat(
         BossAttackManager bossAttacker,
-        BossAttackNode[] newAttackPattern,
+        BossNode[] newAttackPattern,
         HealthThresholdPhaseChange healthPhaseChange = null
     )
     {
@@ -48,7 +48,7 @@ public class BossCombatManager : MonoBehaviour
 
     private void PerformNextAttack()
     {
-        BossAttackNode currentAttack = activeAttackPattern[attackPatternIndex];
+        BossNode currentAttack = activeAttackPattern[attackPatternIndex];
         bossAttacker.PerformAttackNode(currentAttack, ResolveAttack);
     }
 

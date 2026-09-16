@@ -11,6 +11,8 @@ public class BossAttackManager : MonoBehaviour
 
     private PlayerHealth playerHealth;
 
+    public static EventHandler<bool> OnAttackFailed;
+
     [SerializeField]
     private BossMeleeAttacker meleeAttacker;
 
@@ -108,12 +110,24 @@ public class BossAttackManager : MonoBehaviour
         return outAttackNode;
     }
 
-    public void PerformAttackNode(BossAttackNode attackNode, Action onAttackFinished)
+    public void PerformAttackNode(BossNode attackNode, Action onAttackFinished)
     {
-        BossAttackNode resolvedNode = ResolveAttackNode(attackNode, out int damageScale);
-        float damageMult = 1f + (FAIL_DAMAGE_MULT_INCREASE * damageScale);
+        if (attackNode.GetIsAttackNode())
+        {
+            Debug.Log("Resolving Node");
 
-        resolvedNode.PerformAttack(this, onAttackFinished, damageMult);
+            BossAttackNode resolvedNode = ResolveAttackNode(
+                attackNode as BossAttackNode,
+                out int damageScale
+            );
+            float damageMult = 1f + (FAIL_DAMAGE_MULT_INCREASE * damageScale);
+
+            resolvedNode.PerformAttack(this, onAttackFinished, damageMult);
+        }
+        else
+        {
+            attackNode.PerformAttack(this, onAttackFinished, 1f);
+        }
     }
 
     public BossMeleeAttacker GetBossMeleeAttacker()
@@ -162,6 +176,12 @@ public class BossAttackManager : MonoBehaviour
             Debug.Log("Attack failed: " + sender);
             RegisterAttackFailure(sender as BossAttackNode);
             playerHealth.ResetAttackFailStatus();
+
+            OnAttackFailed?.Invoke(this, true);
+        }
+        else
+        {
+            OnAttackFailed?.Invoke(this, false);
         }
     }
 

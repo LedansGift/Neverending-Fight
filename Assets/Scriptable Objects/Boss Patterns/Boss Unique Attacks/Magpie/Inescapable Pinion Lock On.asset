@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossMagpieUnique
   animationTrigger: 
   attackName: Inescapable Pinions
+  failableAttack: 0
   empoweredAttack: {fileID: 0}
   magpieUniqueAttack: 1

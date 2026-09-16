@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Boss Move", menuName = "Boss Attack/Move", order = 0)]
-public class BossMoveNode : BossAttackNode
+public class BossMoveNode : BossNode
 {
     [SerializeField]
     private Vector3 newPosition;

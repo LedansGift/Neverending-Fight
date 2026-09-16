@@ -34,7 +34,11 @@ public class BossUniqueAttack : BossAttackNode
 
     public override void FinishAttack()
     {
-        OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
+        if (failableAttack)
+        {
+            OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
+        }
+
         base.FinishAttack();
     }
 }

@@ -17,7 +17,7 @@ public class BossPhaseConditional : BossPhase
     [SerializeField]
     private BossPhase[] alternatePhases;
 
-    public override BossAttackNode[] GetAttackPattern()
+    public override BossNode[] GetAttackPattern()
     {
         if (phaseConditionalResult == 0)
         {

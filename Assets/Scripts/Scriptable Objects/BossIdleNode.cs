@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Boss Idle", menuName = "Boss Attack/Idle", order = 5)]
-public class BossIdleNode : BossAttackNode
+public class BossIdleNode : BossNode
 {
     [SerializeField]
     private float idleTime;
