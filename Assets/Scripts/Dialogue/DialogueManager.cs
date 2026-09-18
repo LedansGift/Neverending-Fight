@@ -128,12 +128,19 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void PlayDialogue(DialogueSO dialogueSO, Action onDialogueComplete)
+    public void PlayDialogue(Dialogue dialogue, Action onDialogueComplete)
     {
         this.onDialogueComplete = onDialogueComplete;
-        dialogues = dialogueSO.GetDialogue();
+        dialogues = dialogue;
 
         TryPlayNextDialogue();
+    }
+
+    public void InterruptDialogue(Dialogue dialogue, Action onDialogueComplete)
+    {
+        DialogueSkipCleanup();
+
+        PlayDialogue(dialogue, onDialogueComplete);
     }
 
     public void SkipCurrentDialogue()

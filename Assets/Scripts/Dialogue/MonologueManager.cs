@@ -7,13 +7,15 @@ public class MonologueManager : MonoBehaviour
     public static MonologueManager Instance { get; private set; }
 
     private bool conversationActive = false;
-    private DialogueSO activeDialogue;
-    private Queue<DialogueSO> conversationQueue = new Queue<DialogueSO>();
+    private Dialogue activeDialogue;
+    private Action dialogueEndAction;
+    private Queue<Dialogue> conversationQueue = new Queue<Dialogue>();
+    private Queue<Action> dialogueEndQueue = new Queue<Action>();
 
     [SerializeField]
     private DialogueManager dialogueManager;
 
-    private Action OnDialogueEnd;
+    //private Action OnDialogueEnd;
 
     public static EventHandler<bool> OnConversationActive;
 
@@ -29,11 +31,12 @@ public class MonologueManager : MonoBehaviour
 
     private void AdvanceConversation()
     {
-        if (conversationQueue.TryDequeue(out DialogueSO newDialogue))
+        if (conversationQueue.TryDequeue(out Dialogue newDialogue))
         {
             activeDialogue = newDialogue;
+            dialogueEndAction = dialogueEndQueue.Dequeue();
 
-            dialogueManager.PlayDialogue(newDialogue, AdvanceConversation);
+            dialogueManager.PlayDialogue(newDialogue, EndCurrentDialogue);
         }
         else
         {
@@ -47,18 +50,34 @@ public class MonologueManager : MonoBehaviour
 
         //OnConversationActive?.Invoke(this, false);
 
-        if (OnDialogueEnd != null)
+        // if (OnDialogueEnd != null)
+        // {
+        //     OnDialogueEnd();
+        //     OnDialogueEnd = null;
+        // }
+    }
+
+    private void EndCurrentDialogue()
+    {
+        TryInvokeDialogueEndAction();
+        AdvanceConversation();
+    }
+
+    private void TryInvokeDialogueEndAction()
+    {
+        if (dialogueEndAction != null)
         {
-            OnDialogueEnd();
-            OnDialogueEnd = null;
+            dialogueEndAction();
+            dialogueEndAction = null;
         }
     }
 
-    public void AddToConversation(DialogueSO newDialogue, Action onDialogueEnd = null)
+    public void AddToConversation(Dialogue newDialogue, Action onDialogueEnd = null)
     {
         conversationQueue.Enqueue(newDialogue);
+        dialogueEndQueue.Enqueue(onDialogueEnd);
 
-        OnDialogueEnd = onDialogueEnd;
+        //OnDialogueEnd = onDialogueEnd;
 
         if (!conversationActive)
         {
@@ -66,5 +85,15 @@ public class MonologueManager : MonoBehaviour
             //OnConversationActive?.Invoke(this, true);
             AdvanceConversation();
         }
+    }
+
+    public void InterruptConversation(Dialogue newDialogue, Action onDialogueEnd = null)
+    {
+        TryInvokeDialogueEndAction();
+
+        dialogueEndAction = onDialogueEnd;
+
+        activeDialogue = newDialogue;
+        dialogueManager.InterruptDialogue(newDialogue, EndCurrentDialogue);
     }
 }

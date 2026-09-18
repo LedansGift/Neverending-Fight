@@ -20,6 +20,7 @@ public class PlayerHealth : Health
     [SerializeField]
     private CinemachineImpulseSource impulseSource;
 
+    public static Action OnPlayerHit;
     public static EventHandler<int> OnInitialisePlayerHealth;
     public static EventHandler<int> OnChangePlayerHealth;
 
@@ -84,6 +85,7 @@ public class PlayerHealth : Health
             attackFailTracker = true;
         }
 
+        OnPlayerHit?.Invoke();
         OnChangePlayerHealth?.Invoke(this, health);
 
         if (health == 0)

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8330633796673913350}
   - component: {fileID: 3118979314244797203}
   m_Layer: 0
-  m_Name: Test Topic Set
+  m_Name: Topic Set Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

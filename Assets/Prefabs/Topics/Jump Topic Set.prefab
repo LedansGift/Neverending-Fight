@@ -46,7 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Topic
   persistingTopic: 0
-  topicDialogue: {fileID: 0}
+  interruptTopic: 0
+  priority: 0
+  topicDialogue:
+    dialogue:
+    - Jump Topic Dialogue
+    voiceClip:
+    - {fileID: 8300000, guid: 73accb9fba7fd344cbda17a0428bc5ec, type: 3}
   topicProgresser: {fileID: 5145999858930718802}
 --- !u!114 &5145999858930718802
 MonoBehaviour:

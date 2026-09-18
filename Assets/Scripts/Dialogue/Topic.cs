@@ -7,7 +7,13 @@ public class Topic : MonoBehaviour
     private bool persistingTopic = false;
 
     [SerializeField]
-    private DialogueSO topicDialogue;
+    private bool interruptTopic = false;
+
+    // [SerializeField]
+    // private float priority = 0;
+
+    [SerializeField]
+    private Dialogue topicDialogue;
 
     [SerializeField]
     private TopicProgresser topicProgresser;
@@ -24,10 +30,17 @@ public class Topic : MonoBehaviour
 
     private void ProgressTopic()
     {
-        if (topicDialogue)
+        if (topicDialogue.dialogue.Length > 0)
         {
-            //DialogueManager.Instance.PlayDialogue(topicDialogue, null);
-            MonologueManager.Instance.AddToConversation(topicDialogue);
+            if (interruptTopic)
+            {
+                MonologueManager.Instance.InterruptConversation(topicDialogue);
+            }
+            else
+            {
+                //DialogueManager.Instance.PlayDialogue(topicDialogue, null);
+                MonologueManager.Instance.AddToConversation(topicDialogue);
+            }
         }
 
         topicProgresser.InitialiseFollowingTopics();
