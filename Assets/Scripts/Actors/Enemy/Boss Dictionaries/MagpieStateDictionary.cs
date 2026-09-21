@@ -8,7 +8,8 @@ public enum MagpieUniqueAttacks
     DramaticLunge,
     FellWingV1,
     FellWingV2,
-    FellWingV3
+    FellWingV3,
+    GuardStance
 }
 
 public class MagpieStateDictionary : StateDictionary
@@ -45,6 +46,11 @@ public class MagpieStateDictionary : StateDictionary
         stateDictionary.Add(
             (int)MagpieUniqueAttacks.FellWingV3,
             new BossFellWingState(stateMachine as BossStateMachine, 2)
+        );
+
+        stateDictionary.Add(
+            (int)MagpieUniqueAttacks.GuardStance,
+            new BossGuardState(stateMachine as BossStateMachine)
         );
     }
 }

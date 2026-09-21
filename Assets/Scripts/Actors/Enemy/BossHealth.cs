@@ -3,13 +3,8 @@ using UnityEngine;
 
 public class BossHealth : Health
 {
-    // [SerializeField]
-    // private AudioClip enemyHitSFX;
-
-    // [SerializeField]
-    // private AudioClip enemyDeathSFX;
+    public EventHandler<int> OnIncomingDamage;
     public static Action OnBossDie;
-
     public static EventHandler<int> OnInitialiseBossHealth;
     public static EventHandler<int> OnChangeBossHealth;
 
@@ -38,6 +33,8 @@ public class BossHealth : Health
 
     public override void TakeDamage(int damage, bool arenaWideDamage = false)
     {
+        OnIncomingDamage?.Invoke(this, damage);
+
         if (isInvincible)
         {
             return;
