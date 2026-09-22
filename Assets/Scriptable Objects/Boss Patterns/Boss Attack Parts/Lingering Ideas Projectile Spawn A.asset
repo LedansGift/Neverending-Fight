@@ -21,4 +21,14 @@ MonoBehaviour:
   patternStartDelay: 0.5
   patternEndDelay: 0.5
   projectile: {fileID: 2904204659378856993, guid: 7bfdd7dcab8fb884d91348996418e781, type: 3}
-  pattern: {fileID: 11400000, guid: 7a6210a2cea959449b940498ab7c92f4, type: 2}
+  pattern:
+    projectileNumber: 5
+    timeBetweenSpawns: 0
+    startingAngle: 0
+    angleChangePerSpawn: 0
+    startingPosition: {x: -12, y: 0, z: 4}
+    positionChangePerSpawn: {x: 0, y: 0, z: -2}
+    patternWaves: 4
+    positionChangePerWave: {x: 2, y: 0, z: 0}
+    timeBetweenWaves: 0
+  patternOverride: {fileID: 11400000, guid: 7a6210a2cea959449b940498ab7c92f4, type: 2}

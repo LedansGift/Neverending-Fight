@@ -1,31 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class LaserBookController : MonoBehaviour
+public class LaserBookController : ProjectileEntityController
 {
-    [SerializeField]
-    private float spawnTime = 2f;
-
     [SerializeField]
     private MeleeAttack laserAttack;
 
-    private Projectile projectile;
     private DamageZone laserDamageZone;
 
-    private void Awake()
+    protected override IEnumerator StartEntityAction()
     {
-        projectile = GetComponent<Projectile>();
-        projectile.OnProjectileActivated += ToggleBookActive;
-    }
-
-    private void OnDisable()
-    {
-        projectile.OnProjectileActivated -= ToggleBookActive;
-    }
-
-    private IEnumerator StartAttack()
-    {
-        yield return new WaitForSeconds(spawnTime);
+        yield return base.StartEntityAction();
 
         laserDamageZone = AttackTelegraphManager.Instance.StartAttack(transform, laserAttack);
 
@@ -34,11 +19,11 @@ public class LaserBookController : MonoBehaviour
         AttackHitResolver.HitBoxArea(transform, laserAttack, LayerMaskManager.GetAttackLayerMask());
     }
 
-    private void ToggleBookActive(object sender, bool toggle)
+    protected override void ToggleEntityActive(object sender, bool toggle)
     {
         if (toggle)
         {
-            StartCoroutine(StartAttack());
+            StartCoroutine(StartEntityAction());
         }
         else
         {

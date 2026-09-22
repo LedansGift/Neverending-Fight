@@ -12,6 +12,8 @@ public class ProjectileManager : MonoBehaviour
     private List<List<Projectile>> projectileSets;
     private Dictionary<GameObject, int> projectileMapper;
 
+    private ProjectileInitialiser projectileInitialiser;
+
     [SerializeField]
     private GameObject reflectedProjectilePrefab;
 
@@ -28,6 +30,8 @@ public class ProjectileManager : MonoBehaviour
         projectileIndeces = new List<int>();
         projectileSets = new List<List<Projectile>>();
         projectileMapper = new Dictionary<GameObject, int>();
+
+        projectileInitialiser = GetComponent<ProjectileInitialiser>();
     }
 
     private void Start()
@@ -91,32 +95,29 @@ public class ProjectileManager : MonoBehaviour
             )
         )
         {
-            for (int i = 0; i < amount; i++)
-            {
-                Projectile newProjectile = Instantiate(newProjectilePrefab, transform)
-                    .GetComponent<Projectile>();
-
-                projectileSets[projectileSetIndex].Add(newProjectile);
-            }
+            projectileInitialiser.StartInitialiseProjectilesOverTime(
+                newProjectilePrefab,
+                projectileSetIndex,
+                amount
+            );
 
             return;
         }
 
         projectileMapper.Add(newProjectilePrefab, mapperIndex);
+        int currentIndex = mapperIndex;
         mapperIndex++;
 
         List<Projectile> newProjectileSet = new List<Projectile>();
 
-        for (int i = 0; i < amount; i++)
-        {
-            Projectile newProjectile = Instantiate(newProjectilePrefab, transform)
-                .GetComponent<Projectile>();
-
-            newProjectileSet.Add(newProjectile);
-        }
-
         projectileSets.Add(newProjectileSet);
         projectileIndeces.Add(0);
+
+        projectileInitialiser.StartInitialiseProjectilesOverTime(
+            newProjectilePrefab,
+            currentIndex,
+            amount
+        );
     }
 
     public Projectile SpawnProjectile(
@@ -175,7 +176,7 @@ public class ProjectileManager : MonoBehaviour
 
     public void SpawnProjectilePattern(
         GameObject projectileType,
-        ProjectilePattern pattern,
+        ProjectilePatternStruct pattern,
         float patternStartDelay,
         float patternEndDelay,
         Transform spawnTransform,
@@ -190,6 +191,7 @@ public class ProjectileManager : MonoBehaviour
             )
         )
         {
+            Debug.Log("Projectile Not Initialised");
             return;
         }
 
@@ -208,7 +210,7 @@ public class ProjectileManager : MonoBehaviour
     }
 
     private IEnumerator ProjectilePatternSpawner(
-        ProjectilePattern pattern,
+        ProjectilePatternStruct pattern,
         float patternStartDelay,
         float patternEndDelay,
         int projectileSet,
@@ -218,11 +220,13 @@ public class ProjectileManager : MonoBehaviour
     {
         yield return new WaitForSeconds(patternStartDelay);
 
-        ProjectilePattern activePattern = pattern;
+        ProjectilePatternStruct activePattern = pattern;
 
-        for (int j = 0; j < pattern.patternWaves; j++)
+        for (int patternWave = 0; patternWave < pattern.patternWaves; patternWave++)
         {
-            Vector3 positionOffset = activePattern.startingPosition;
+            Vector3 positionOffset =
+                activePattern.startingPosition
+                + (activePattern.positionChangePerWave * patternWave);
             float angleOffset = activePattern.startingAngle;
 
             for (int i = 0; i < activePattern.projectileNumber; i++)
@@ -247,17 +251,18 @@ public class ProjectileManager : MonoBehaviour
 
             float waveDelay = pattern.timeBetweenWaves;
 
-            if (pattern.additionalWaves.Count > 0)
-            {
-                int waveIndex = (int)AdditionalMath.Modulus(j, pattern.additionalWaves.Count);
+            // if (pattern.additionalWaves.Count > 0)
+            // {
+            //     int waveIndex = (int)
+            //         AdditionalMath.Modulus(patternWave, pattern.additionalWaves.Count);
 
-                activePattern = pattern.additionalWaves[waveIndex];
+            //     activePattern = pattern.additionalWaves[waveIndex];
 
-                if (pattern.additionalWaveDelay.Count > waveIndex)
-                {
-                    waveDelay = pattern.additionalWaveDelay[waveIndex];
-                }
-            }
+            //     if (pattern.additionalWaveDelay.Count > waveIndex)
+            //     {
+            //         waveDelay = pattern.additionalWaveDelay[waveIndex];
+            //     }
+            // }
 
             yield return new WaitForSeconds(waveDelay);
         }
@@ -268,6 +273,11 @@ public class ProjectileManager : MonoBehaviour
         {
             OnPatternFinished();
         }
+    }
+
+    public void AddToProjectileSet(Projectile newProjectile, int projectileSetIndex)
+    {
+        projectileSets[projectileSetIndex].Add(newProjectile);
     }
 
     private void DeactivateAllProjectiles()

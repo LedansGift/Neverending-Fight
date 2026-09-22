@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-public class DoomFeatherController : MonoBehaviour
+public class DoomFeatherController : ProjectileEntityController
 {
     [SerializeField]
     private float damageZoneAppearTime = 5f;
@@ -11,28 +10,13 @@ public class DoomFeatherController : MonoBehaviour
     private float damageTime = 5.995f;
     private float featherStartDistance = 30f;
 
-    private Projectile projectile;
-
     [SerializeField]
     private Rigidbody featherRB;
 
     [SerializeField]
     private MeleeAttack featherAttack;
 
-    private void Awake()
-    {
-        projectile = GetComponent<Projectile>();
-        projectile.OnProjectileActivated += ToggleDoomFeather;
-    }
-
-    private void OnDisable()
-    {
-        projectile.OnProjectileActivated -= ToggleDoomFeather;
-
-        StopAllCoroutines();
-    }
-
-    private IEnumerator DelayedDamageZoneSpawn()
+    protected override IEnumerator StartEntityAction()
     {
         featherRB.position = new Vector3(
             transform.position.x,
@@ -54,17 +38,5 @@ public class DoomFeatherController : MonoBehaviour
             featherAttack,
             LayerMaskManager.GetAttackLayerMask()
         );
-    }
-
-    private void ToggleDoomFeather(object sender, bool toggle)
-    {
-        if (toggle)
-        {
-            StartCoroutine(DelayedDamageZoneSpawn());
-        }
-        else
-        {
-            StopAllCoroutines();
-        }
     }
 }

@@ -12,5 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bdb1d63ab535e24a992127ec5ca3c7c, type: 3}
   m_Name: Boss Ranged Attack
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
+  animationTrigger: 
+  attackName: DefaultName
+  failableAttack: 1
+  empoweredAttack: {fileID: 0}
+  waitForSpawnsToFinish: 1
+  worldPositionPattern: 0
+  patternStartDelay: 0.5
+  patternEndDelay: 0.5
   projectile: {fileID: 5388639131738190698, guid: 3904e9399dbb6fc4c8690c77cf9d1a5e, type: 3}
-  pattern: {fileID: 11400000, guid: cfa6b7e05921d534e8728d8cf50f4244, type: 2}
+  pattern:
+    projectileNumber: 10
+    timeBetweenSpawns: 0
+    startingAngle: 0
+    angleChangePerSpawn: 36
+    startingPosition: {x: 0, y: 0, z: 0}
+    positionChangePerSpawn: {x: 0, y: 0, z: 0}
+    patternWaves: 3
+    positionChangePerWave: {x: 0, y: 0, z: 0}
+    timeBetweenWaves: 0.15
+  patternOverride: {fileID: 0}

@@ -18,17 +18,8 @@ MonoBehaviour:
   angleChangePerSpawn: 0
   startingPosition: {x: -12, y: 0, z: 4}
   positionChangePerSpawn: {x: 0, y: 0, z: -2}
-  patternWaves: 6
+  patternWaves: 4
+  positionChangePerWave: {x: 2, y: 0, z: 0}
   timeBetweenWaves: 0
-  additionalWaves:
-  - {fileID: 11400000, guid: f0e3b2eb7df6ae64ea2d5dba44fe7985, type: 2}
-  - {fileID: 11400000, guid: 552d30c3443549d4fab4140c8aa524ce, type: 2}
-  - {fileID: 11400000, guid: 449ffc491775aab4ea12cb8d03c6cb2d, type: 2}
-  - {fileID: 11400000, guid: 132210c90580a9040b19f9da06dbeca1, type: 2}
-  - {fileID: 11400000, guid: af9951a9681f8674eb151ca821e05b29, type: 2}
-  additionalWaveDelay:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  additionalWaves: []
+  additionalWaveDelay: []

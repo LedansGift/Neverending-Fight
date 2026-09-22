@@ -1,47 +1,18 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-public class MeleeCrowController : MonoBehaviour
+public class MeleeCrowController : ProjectileEntityController
 {
-    [SerializeField]
-    private float movementStartDelay = 4f;
-
     [SerializeField]
     private float movementSpeed = 6f;
 
     [SerializeField]
     private int impactDamage = 5;
 
-    private Projectile projectile;
-
-    private void Awake()
+    protected override IEnumerator StartEntityAction()
     {
-        projectile = GetComponent<Projectile>();
-        projectile.OnProjectileActivated += ToggleCrowActive;
-    }
-
-    private void OnDisable()
-    {
-        projectile.OnProjectileActivated -= ToggleCrowActive;
-    }
-
-    private IEnumerator StartCrowMovement()
-    {
-        yield return new WaitForSeconds(movementStartDelay);
+        yield return base.StartEntityAction();
 
         projectile.SetSpeedAndDamage(movementSpeed, impactDamage);
-    }
-
-    private void ToggleCrowActive(object sender, bool toggle)
-    {
-        if (toggle)
-        {
-            StartCoroutine(StartCrowMovement());
-        }
-        else
-        {
-            StopAllCoroutines();
-        }
     }
 }

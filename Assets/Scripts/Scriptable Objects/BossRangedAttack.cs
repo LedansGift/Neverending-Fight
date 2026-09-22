@@ -25,7 +25,10 @@ public class BossRangedAttack : BossAttackNode
     private GameObject projectile;
 
     [SerializeField]
-    private ProjectilePattern pattern;
+    private ProjectilePatternStruct pattern;
+
+    [SerializeField]
+    private ProjectilePatternSO patternOverride;
 
     public override void PerformAttack(
         BossAttackManager attacker,
@@ -54,7 +57,7 @@ public class BossRangedAttack : BossAttackNode
 
         ProjectileManager.Instance.SpawnProjectilePattern(
             projectile,
-            pattern,
+            GetActivePattern(),
             patternStartDelay,
             patternEndDelay,
             spawnTransform,
@@ -69,6 +72,11 @@ public class BossRangedAttack : BossAttackNode
         FinishAttack();
     }
 
+    private ProjectilePatternStruct GetActivePattern()
+    {
+        return (patternOverride != null) ? patternOverride.projectilePattern : pattern;
+    }
+
     private IEnumerator PatternFinishDelay()
     {
         yield return new WaitForSeconds(patternEndDelay);
@@ -77,13 +85,15 @@ public class BossRangedAttack : BossAttackNode
 
     private void CheckAvailableProjectiles()
     {
-        int desiredProjectiles = pattern.projectileNumber * pattern.patternWaves;
+        ProjectilePatternStruct activePattern = GetActivePattern();
 
-        foreach (ProjectilePattern additionalPattern in pattern.additionalWaves)
-        {
-            desiredProjectiles +=
-                additionalPattern.projectileNumber * additionalPattern.patternWaves;
-        }
+        int desiredProjectiles = activePattern.projectileNumber * activePattern.patternWaves;
+
+        // foreach (ProjectilePatternSO additionalPattern in activePattern.additionalWaves)
+        // {
+        //     desiredProjectiles +=
+        //         activePattern.projectileNumber * activePattern.patternWaves;
+        // }
 
         if (
             !ProjectileManager.Instance.CheckAreProjectilesInitialised(

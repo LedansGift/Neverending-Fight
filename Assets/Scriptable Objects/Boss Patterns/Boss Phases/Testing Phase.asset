@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Testing Phase
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern:
-  - {fileID: 11400000, guid: 75bc9d0c92f01ff41a55f743d5428ad9, type: 2}
   - {fileID: 11400000, guid: 8cf3d5f5e66494d45949ac1e16cef068, type: 2}
+  - {fileID: 11400000, guid: a1a6c27a2ee323342b494a078deb1497, type: 2}
+  - {fileID: 11400000, guid: 43649619239fb08499ba72d8bded3b70, type: 2}
+  - {fileID: 11400000, guid: f4eaf5b72137a74409c5c1f852c41b75, type: 2}
+  - {fileID: 11400000, guid: 75bc9d0c92f01ff41a55f743d5428ad9, type: 2}
   - {fileID: 11400000, guid: 86b16fa814f22ce498b24e3b59a4f11f, type: 2}
   - {fileID: 11400000, guid: 10652e3baf43cf74ba8f2548cd25a88d, type: 2}
   - {fileID: 11400000, guid: 18f99ecf8e46567409ca5627791c267f, type: 2}
   - {fileID: 11400000, guid: 3e1b61e4811f52f498395e84341b61be, type: 2}
   - {fileID: 11400000, guid: 92bbee1c561b630449859fd59b89af78, type: 2}
   - {fileID: 11400000, guid: 94d40ed16fa4cf3469784ea01713ee90, type: 2}
-  - {fileID: 11400000, guid: fee3c0632ba9d4b4498d8685327a7304, type: 2}
   - {fileID: 11400000, guid: fee3c0632ba9d4b4498d8685327a7304, type: 2}
   - {fileID: 11400000, guid: fee3c0632ba9d4b4498d8685327a7304, type: 2}
   - {fileID: 11400000, guid: fee3c0632ba9d4b4498d8685327a7304, type: 2}

@@ -1,11 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class RewindBombController : MonoBehaviour
+public class RewindBombController : ProjectileEntityController
 {
     private int activeFragments;
-
-    private Projectile projectile;
 
     [SerializeField]
     private float damageZoneAppearTime = 4f;
@@ -22,10 +20,9 @@ public class RewindBombController : MonoBehaviour
     [SerializeField]
     private MeleeAttack bombAttack;
 
-    private void Awake()
+    protected override void Awake()
     {
-        projectile = GetComponent<Projectile>();
-        projectile.OnProjectileActivated += ToggleBomb;
+        base.Awake();
 
         foreach (RewindBombFragment fragment in bombFragments)
         {
@@ -33,19 +30,17 @@ public class RewindBombController : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
-        projectile.OnProjectileActivated -= ToggleBomb;
-
         foreach (RewindBombFragment fragment in bombFragments)
         {
             fragment.OnDeath -= DecrementFragmentCount;
         }
 
-        StopAllCoroutines();
+        base.OnDisable();
     }
 
-    private IEnumerator DelayedDamageZoneSpawn()
+    protected override IEnumerator StartEntityAction()
     {
         activeFragments = bombFragments.Length;
 
@@ -86,18 +81,6 @@ public class RewindBombController : MonoBehaviour
         if (activeFragments <= 0)
         {
             projectile.DeactivateProjectile();
-        }
-    }
-
-    private void ToggleBomb(object sender, bool toggle)
-    {
-        if (toggle)
-        {
-            StartCoroutine(DelayedDamageZoneSpawn());
-        }
-        else
-        {
-            StopAllCoroutines();
         }
     }
 }
