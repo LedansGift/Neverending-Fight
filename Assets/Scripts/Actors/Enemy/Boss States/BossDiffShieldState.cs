@@ -1,16 +1,31 @@
 using UnityEngine;
 
-public class BossDiffShieldState : MonoBehaviour
+public class BossDiffShieldState : BossState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private bool toggleShield;
+
+    public BossDiffShieldState(BossStateMachine stateMachine, bool toggleShield)
+        : base(stateMachine)
     {
-        
+        this.toggleShield = toggleShield;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        if (stateMachine.TryGetComponent<BossMagusHealth>(out BossMagusHealth magusHealth))
+        {
+            magusHealth.ToggleShield(toggleShield);
+        }
+
+        //maybe wait for animation to play?
+
+        stateMachine.SwitchState(null);
     }
+
+    public override void Exit()
+    {
+        TryFinishState();
+    }
+
+    public override void Tick(float deltaTime) { }
 }

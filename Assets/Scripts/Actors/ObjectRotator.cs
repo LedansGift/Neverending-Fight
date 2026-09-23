@@ -4,6 +4,9 @@ using UnityEngine;
 public class ObjectRotator : MonoBehaviour
 {
     [SerializeField]
+    private bool localRotation = false;
+
+    [SerializeField]
     private float xRotation;
 
     [SerializeField]
@@ -14,7 +17,15 @@ public class ObjectRotator : MonoBehaviour
 
     private void Update()
     {
-        transform.eulerAngles +=
-            new Vector3(xRotation, yRotation, zRotation) * Time.unscaledDeltaTime;
+        if (localRotation)
+        {
+            transform.localEulerAngles +=
+                new Vector3(xRotation, yRotation, zRotation) * Time.unscaledDeltaTime;
+        }
+        else
+        {
+            transform.eulerAngles +=
+                new Vector3(xRotation, yRotation, zRotation) * Time.unscaledDeltaTime;
+        }
     }
 }

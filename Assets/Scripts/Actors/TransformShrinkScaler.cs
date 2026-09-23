@@ -6,6 +6,7 @@ public class TransformShrinkScaler : MonoBehaviour
 
     private float scaleValue;
     private float targetScaleValue;
+    private float initialScaleValue;
 
     [SerializeField]
     private float yShrinkModifier = 0f;
@@ -18,6 +19,11 @@ public class TransformShrinkScaler : MonoBehaviour
 
     [SerializeField]
     private AnimationCurve lerpCurve;
+
+    private void Start()
+    {
+        initialScaleValue = targetTransform.localScale.x;
+    }
 
     private void Update()
     {
@@ -60,7 +66,7 @@ public class TransformShrinkScaler : MonoBehaviour
     public void UnshrinkTransform()
     {
         scaleValue = 0f;
-        targetScaleValue = 1f;
+        targetScaleValue = initialScaleValue;
         alterScale = true;
     }
 }
