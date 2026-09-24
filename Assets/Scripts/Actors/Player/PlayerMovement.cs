@@ -268,6 +268,12 @@ public class PlayerMovement : MonoBehaviour
         positionSaveTransform.rotation = playerRB.rotation;
     }
 
+    public void SetPlayerTransform(Transform newTransform)
+    {
+        playerRB.position = newTransform.position;
+        playerRB.rotation = newTransform.rotation;
+    }
+
     public Vector3 GetPlayerLookDirection()
     {
         return rotateTransform.forward;

@@ -21,7 +21,13 @@ public class BossManager : MonoBehaviour
     private BossForm activeBossForm;
 
     [SerializeField]
+    private Transform playerDefaultPosition;
+
+    [SerializeField]
     private BossFormManager[] bossForms;
+
+    [SerializeField]
+    private TutorialFightManager tutorialFightManager;
 
     public static EventHandler<BossFormManager> OnNewBossForm;
 
@@ -68,7 +74,7 @@ public class BossManager : MonoBehaviour
         {
             //Various shit to decide form change
             //ActivateBossForm(BossForm.MAGUS);
-            FormChangeManager.Instance.ChangeBossForm(BossForm.MAGUS);
+            FormChangeManager.Instance.ChangeBossForm(BossForm.MAGUS, playerDefaultPosition);
         }
         else
         {
@@ -83,11 +89,17 @@ public class BossManager : MonoBehaviour
         return activeBossForm;
     }
 
-    public void ActivateTutorialBossForm()
+    public void ActivateTutorialTransition()
     {
         DeactivateBossForm();
         //ActivateBossForm(BossForm.MAGPIE);
-        FormChangeManager.Instance.ChangeBossForm(BossForm.MAGPIE);
+
+        tutorialFightManager.InitiateTutorialManager(StartTutorialBossForm);
+    }
+
+    public void StartTutorialBossForm()
+    {
+        FormChangeManager.Instance.ChangeBossForm(BossForm.MAGPIE, playerDefaultPosition);
     }
 
     public void HideAllBosses()

@@ -95,7 +95,7 @@ public class RestartManager : MonoBehaviour
 
         if (BossManager.Instance.GetActiveBossForm() == BossForm.CROSSROADS)
         {
-            BossManager.Instance.ActivateTutorialBossForm();
+            BossManager.Instance.ActivateTutorialTransition();
 
             return;
         }

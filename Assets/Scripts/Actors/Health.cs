@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class Health : MonoBehaviour
 {
+    protected bool isUnkillable = false;
     protected int health;
 
     [SerializeField]
@@ -61,5 +62,10 @@ public abstract class Health : MonoBehaviour
     public void SetInvincibility(bool invincible)
     {
         isInvincible = invincible;
+    }
+
+    public void SetUnkillable(bool unkillable)
+    {
+        isUnkillable = unkillable;
     }
 }

@@ -8,7 +8,7 @@ public class BossHealth : Health
     public static EventHandler<int> OnInitialiseBossHealth;
     public static EventHandler<int> OnChangeBossHealth;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         isInvincible = true;
     }
@@ -18,7 +18,7 @@ public class BossHealth : Health
         HealToFull();
     }
 
-    public void InitialiseHealth(int bossHealth = -1)
+    public virtual void InitialiseHealth(int bossHealth = -1)
     {
         isInvincible = false;
 
@@ -40,7 +40,14 @@ public class BossHealth : Health
             return;
         }
 
-        health = Mathf.Max(0, health - damage);
+        int minimumHealthThreshold = 0;
+
+        if (isUnkillable)
+        {
+            minimumHealthThreshold = 1;
+        }
+
+        health = Mathf.Max(minimumHealthThreshold, health - damage);
 
         OnChangeBossHealth?.Invoke(this, health);
 

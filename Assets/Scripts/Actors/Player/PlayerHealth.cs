@@ -78,7 +78,14 @@ public class PlayerHealth : Health
             return;
         }
 
-        health = Mathf.Max(0, health - damage);
+        int minimumHealthThreshold = 0;
+
+        if (isUnkillable)
+        {
+            minimumHealthThreshold = 1;
+        }
+
+        health = Mathf.Max(minimumHealthThreshold, health - damage);
 
         if (!arenaWideDamage)
         {

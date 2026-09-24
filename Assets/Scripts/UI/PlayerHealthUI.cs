@@ -11,11 +11,20 @@ public class PlayerHealthUI : MonoBehaviour
     [SerializeField]
     private GameObject[] retryImages;
 
+    [SerializeField]
+    private GameObject rewindsUI;
+
+    [SerializeField]
+    private CanvasGroupFader healthFader;
+
     private void OnEnable()
     {
         PlayerHealth.OnChangePlayerHealth += ChangeHealth;
         PlayerHealth.OnInitialisePlayerHealth += InitialiseHealth;
         PlayerTimepiece.OnNewPlayerRetries += UpdateRetries;
+        PlayerTimepiece.OnFirstTimeTimepiece += DisableRetryUI;
+
+        TutorialFightManager.OnToggleHealthUI += ToggleHealthUI;
     }
 
     private void OnDisable()
@@ -23,6 +32,9 @@ public class PlayerHealthUI : MonoBehaviour
         PlayerHealth.OnChangePlayerHealth -= ChangeHealth;
         PlayerHealth.OnInitialisePlayerHealth -= InitialiseHealth;
         PlayerTimepiece.OnNewPlayerRetries -= UpdateRetries;
+        PlayerTimepiece.OnFirstTimeTimepiece -= DisableRetryUI;
+
+        TutorialFightManager.OnToggleHealthUI -= ToggleHealthUI;
     }
 
     private void InitialiseHealth(object sender, int maxHealth)
@@ -43,5 +55,15 @@ public class PlayerHealthUI : MonoBehaviour
         {
             retryImages[i].SetActive(i < newRetries);
         }
+    }
+
+    private void DisableRetryUI()
+    {
+        rewindsUI.SetActive(false);
+    }
+
+    private void ToggleHealthUI(object sender, bool toggle)
+    {
+        healthFader.ToggleFade(toggle);
     }
 }

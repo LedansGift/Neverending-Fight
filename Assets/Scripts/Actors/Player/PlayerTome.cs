@@ -12,6 +12,7 @@ public class PlayerTome : PlayerWeapon
     private float chargeAmount = 0f;
 
     private const int TOME_WEAPON_INDEX = 2;
+    private Vector3 EXPLOSION_DETECTION_CAPSULE_SIZE = new Vector3(0f, 2f, 0f);
 
     private Coroutine attackCooldownCoroutine;
     private Coroutine specialCoroutine;
@@ -215,8 +216,15 @@ public class PlayerTome : PlayerWeapon
 
     private Health[] GetHitObjects(float hitRadius)
     {
-        Collider[] colliders = Physics.OverlapSphere(
-            attackVisual.transform.position,
+        // Collider[] colliders = Physics.OverlapSphere(
+        //     attackVisual.transform.position,
+        //     hitRadius,
+        //     attackLayerMask
+        // );
+
+        Collider[] colliders = Physics.OverlapCapsule(
+            attackVisual.transform.position + EXPLOSION_DETECTION_CAPSULE_SIZE,
+            attackVisual.transform.position - EXPLOSION_DETECTION_CAPSULE_SIZE,
             hitRadius,
             attackLayerMask
         );

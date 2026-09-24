@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CameraTarget : MonoBehaviour
 {
+    private const float TARGET_POSITION_CLAMP = 1000f;
+
     private InputManager input;
 
     private void Start()
@@ -49,9 +51,17 @@ public class CameraTarget : MonoBehaviour
         float t = Camera.main.transform.position.y / (Camera.main.transform.position.y - point.y);
 
         Vector3 cameraTargetPosition = new Vector3(
-            t * (point.x - Camera.main.transform.position.x) + Camera.main.transform.position.x,
+            Mathf.Clamp(
+                t * (point.x - Camera.main.transform.position.x) + Camera.main.transform.position.x,
+                -TARGET_POSITION_CLAMP,
+                TARGET_POSITION_CLAMP
+            ),
             0f,
-            t * (point.z - Camera.main.transform.position.z) + Camera.main.transform.position.z
+            Mathf.Clamp(
+                t * (point.z - Camera.main.transform.position.z) + Camera.main.transform.position.z,
+                -TARGET_POSITION_CLAMP,
+                TARGET_POSITION_CLAMP
+            )
         );
 
         transform.position = cameraTargetPosition;

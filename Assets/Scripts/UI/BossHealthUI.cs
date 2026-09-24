@@ -21,6 +21,8 @@ public class BossHealthUI : MonoBehaviour
         BossHealth.OnChangeBossHealth += ChangeHealth;
         BossHealth.OnInitialiseBossHealth += InitialiseHealth;
         BossHealth.OnBossDie += FadeOutHealth;
+
+        TutorialFightManager.OnTutorialStart += FadeOutHealth;
     }
 
     private void OnDisable()
@@ -28,6 +30,8 @@ public class BossHealthUI : MonoBehaviour
         BossHealth.OnChangeBossHealth -= ChangeHealth;
         BossHealth.OnInitialiseBossHealth -= InitialiseHealth;
         BossHealth.OnBossDie -= FadeOutHealth;
+
+        TutorialFightManager.OnTutorialStart -= FadeOutHealth;
     }
 
     private void FadeOutHealth()

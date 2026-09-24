@@ -3,8 +3,14 @@ using UnityEngine;
 
 public class PlayerTimepiece : MonoBehaviour
 {
+    [SerializeField]
+    private bool firstTimeRun = false;
+
+    private bool timepieceActive;
     private int playerRetries = 0;
     private const int MAX_PLAYER_RETRIES = 2;
+
+    public static Action OnFirstTimeTimepiece;
 
     public static Action OnNoMoreRetries;
     public static Action OnResetRetries;
@@ -14,6 +20,19 @@ public class PlayerTimepiece : MonoBehaviour
     private void Start()
     {
         // If first time, do not setup player retries
+        if (firstTimeRun)
+        {
+            OnFirstTimeTimepiece?.Invoke();
+            return;
+        }
+
+        SetupTimepiece();
+    }
+
+    private void SetupTimepiece()
+    {
+        timepieceActive = true;
+
         ResetPlayerRetries();
     }
 
@@ -38,6 +57,12 @@ public class PlayerTimepiece : MonoBehaviour
 
     public void ResetPlayerRetries()
     {
+        if (!timepieceActive)
+        {
+            UpdateRetryUI();
+            return;
+        }
+
         playerRetries = MAX_PLAYER_RETRIES;
 
         OnResetRetries?.Invoke();

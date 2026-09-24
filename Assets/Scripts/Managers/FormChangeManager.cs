@@ -25,24 +25,43 @@ public class FormChangeManager : MonoBehaviour
         }
         Instance = this;
 
-        formCutsceneMap.Add(BossForm.MAGUS, 0);
+        formCutsceneMap.Add(BossForm.MAGPIE, 0);
+        formCutsceneMap.Add(BossForm.MAGUS, 1);
     }
 
-    public void ChangeBossForm(BossForm newForm)
+    public void ChangeBossForm(BossForm newForm, Transform playerStartTransform)
     {
         activeFormChange = newForm;
 
         if (formCutsceneMap.TryGetValue(newForm, out int cutsceneIndex))
         {
+            //Make screen go black
+            //Do next form setup stuff (placing player in default position)
+
+            SetPlayerDefaultPosition(playerStartTransform);
+
             formChangeCutscenes[cutsceneIndex].InitialiseCutsceneHandler(
                 activeFormChange,
                 arenaManager
             );
             StartFormChangeCutscene(cutsceneIndex);
+
+            //Fade screen back to visible
         }
         else
         {
             StartCoroutine(FormChange(newForm));
+        }
+    }
+
+    private void SetPlayerDefaultPosition(Transform playerStartTransform)
+    {
+        PlayerMovement playerMovement =
+            PlayerIdentifier.PlayerTransform.GetComponent<PlayerMovement>();
+
+        if (playerMovement)
+        {
+            playerMovement.SetPlayerTransform(playerStartTransform);
         }
     }
 
@@ -54,13 +73,18 @@ public class FormChangeManager : MonoBehaviour
         );
     }
 
+    //Default form change when there's no cutscene
+
     private IEnumerator FormChange(BossForm newForm)
     {
         LoadingScreenUI.ToggleLoadingScreen(true);
 
         yield return new WaitForSeconds(2.5f);
 
+        //if (newForm != BossForm.MAGPIE) { }
+
         arenaManager.SwitchArena(newForm);
+
         //Set player position to be in set arena position
 
         LoadingScreenUI.ToggleLoadingScreen(false);

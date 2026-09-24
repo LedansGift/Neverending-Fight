@@ -67,11 +67,19 @@ PrefabInstance:
     - target: {fileID: 6173335375328832987, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: bossHealth
       value: 
-      objectReference: {fileID: 817375790290805109}
+      objectReference: {fileID: 7582674296583822720}
+    - target: {fileID: 6576801874142741153, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: bossTeleportEndSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: 05130af1effd2584da36e77d35183d58, type: 2}
+    - target: {fileID: 6576801874142741153, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: bossTeleportStartSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: 46f884f05556b8640b7003a1c6169647, type: 2}
     - target: {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: bossHealth
       value: 
-      objectReference: {fileID: 817375790290805109}
+      objectReference: {fileID: 7582674296583822720}
     - target: {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: bossMusicTracks.Array.size
       value: 2
@@ -91,7 +99,7 @@ PrefabInstance:
     - target: {fileID: 8696608915596584275, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: health
       value: 
-      objectReference: {fileID: 817375790290805109}
+      objectReference: {fileID: 7582674296583822720}
     m_RemovedComponents:
     - {fileID: 241299289315752863, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
     m_RemovedGameObjects: []
@@ -102,7 +110,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1338314440487284039, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       insertIndex: 2
-      addedObject: {fileID: 817375790290805109}
+      addedObject: {fileID: 7582674296583822720}
   m_SourcePrefab: {fileID: 100100000, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
 --- !u!4 &3517566269979795702 stripped
 Transform:
@@ -114,7 +122,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1338314440487284039, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
   m_PrefabInstance: {fileID: 3224412775398411691}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &817375790290805109
+--- !u!114 &7582674296583822720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,9 +131,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4480465565330153708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cc21058d5f601742bf669a452d667d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 86057928b6402b54db94b124d3c6f8f2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossMagusHealth
+  m_EditorClassIdentifier: Assembly-CSharp::BossMagpieHealth
   isPlayer: 0
   isInvincible: 0
   maxHealth: 100

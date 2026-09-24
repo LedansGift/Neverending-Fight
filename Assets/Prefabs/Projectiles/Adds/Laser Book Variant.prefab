@@ -160,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       propertyPath: lifetime
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       propertyPath: damagingProjectile
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbafcd27a94262479a02fdc3ebe8dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserBookController
-  spawnTime: 2
+  actionStartDelay: 4
   laserAttack:
     attackDamage: 15
     damageZoneType: 1
@@ -211,6 +211,4 @@ MonoBehaviour:
     relativePosition: 1
     delayToNextAttack: 0
     relativePositionToForward: 1
-  attackLayermask:
-    serializedVersion: 2
-    m_Bits: 64
+    knockbackStrength: 0
