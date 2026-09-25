@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerAttacker : MonoBehaviour
 {
     private bool canAttack = false;
+
+    private int weaponLockStatus = 2;
+
     private PlayerWeapon activeWeapon = null;
 
     [SerializeField]
@@ -38,6 +41,8 @@ public class PlayerAttacker : MonoBehaviour
         InputManager.Instance.OnSwapWeaponEvent += SwapWeapon;
         InputManager.Instance.OnSelectWeaponEvent += SelectWeapon;
 
+        TutorialFightManager.OnToggleWeaponLock += UpdateWeaponLock;
+
         ToggleCanAttack(false);
     }
 
@@ -49,6 +54,8 @@ public class PlayerAttacker : MonoBehaviour
 
         InputManager.Instance.OnSwapWeaponEvent -= SwapWeapon;
         InputManager.Instance.OnSelectWeaponEvent -= SelectWeapon;
+
+        TutorialFightManager.OnToggleWeaponLock -= UpdateWeaponLock;
     }
 
     private void WeaponAttack()
@@ -108,7 +115,14 @@ public class PlayerAttacker : MonoBehaviour
             return;
         }
 
-        PlayerWeapon weapon = playerWeapons[newWeapon - 1];
+        int newWeaponIndex = newWeapon - 1;
+
+        if (newWeaponIndex > weaponLockStatus)
+        {
+            return;
+        }
+
+        PlayerWeapon weapon = playerWeapons[newWeaponIndex];
 
         if (weapon != activeWeapon)
         {
@@ -137,10 +151,15 @@ public class PlayerAttacker : MonoBehaviour
         int newWeaponIndex = (int)
             AdditionalMath.Modulus(
                 Array.IndexOf(playerWeapons, activeWeapon) + (int)newWeapon,
-                playerWeapons.Length
+                weaponLockStatus + 1
             );
 
-        ChangeWeapon(playerWeapons[newWeaponIndex]);
+        PlayerWeapon weapon = playerWeapons[newWeaponIndex];
+
+        if (weapon != activeWeapon)
+        {
+            ChangeWeapon(weapon);
+        }
     }
 
     public void ResetWeapons()
@@ -168,7 +187,12 @@ public class PlayerAttacker : MonoBehaviour
 
         if (toggle)
         {
-            //Set glaive as weapon?
+            ChangeWeapon(playerWeapons[0]);
         }
+    }
+
+    private void UpdateWeaponLock(object sender, int lockInt)
+    {
+        weaponLockStatus = lockInt;
     }
 }

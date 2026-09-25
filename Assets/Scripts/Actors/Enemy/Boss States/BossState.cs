@@ -17,8 +17,11 @@ public abstract class BossState : State
     {
         if (OnStateFinished != null)
         {
-            OnStateFinished();
+            Debug.Log("State finish");
+
+            Action onStateFinished = OnStateFinished;
             StateReset();
+            onStateFinished();
         }
     }
 

@@ -8,6 +8,7 @@ public class TutorialFightManager : MonoBehaviour
 
     public static Action OnTutorialStart;
     public static EventHandler<bool> OnToggleHealthUI;
+    public static EventHandler<int> OnToggleWeaponLock;
 
     private void Awake()
     {
@@ -16,13 +17,13 @@ public class TutorialFightManager : MonoBehaviour
 
     public void InitiateTutorialManager(Action OnTutorialInitialised)
     {
-        //Make player unkillable
-        //Turn off player health UI
-        //Enable barrier around arena
+        Health playerHealth = PlayerIdentifier.PlayerTransform.GetComponent<Health>();
+        playerHealth.SetUnkillable(true);
+
         tutorialArenaColliders.SetActive(true);
-        //Lock champion bow and tome
         //Initiate UI button prompts
         OnToggleHealthUI?.Invoke(this, false);
+        OnToggleWeaponLock?.Invoke(this, 0);
 
         OnTutorialStart?.Invoke();
         OnTutorialInitialised();

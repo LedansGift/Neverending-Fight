@@ -130,7 +130,6 @@ MonoBehaviour:
   bossPhaseManager: {fileID: 5943755932644677658}
   bossCombatManager: {fileID: 6173335375328832987}
   bossAttackManager: {fileID: 2621286475280256505}
-  bossConditionalManager: {fileID: 6109488810009923894}
   bossTopicInitialiser: {fileID: 5725062810706316359}
   bossMusicTracks: []
 --- !u!114 &241299289315752863
@@ -225,6 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossPhaseManager
   bossPhases:
   - {fileID: 11400000, guid: cb839e10cb970734f98dce8014e531b7, type: 2}
+  bossConditionalManager: {fileID: 6109488810009923894}
 --- !u!114 &8371743262379200458
 MonoBehaviour:
   m_ObjectHideFlags: 0

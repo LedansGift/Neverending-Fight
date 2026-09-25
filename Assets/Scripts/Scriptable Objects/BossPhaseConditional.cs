@@ -41,10 +41,43 @@ public class BossPhaseConditional : BossPhase
         }
     }
 
-    public override void InitialiseBossPhase(BossFormManager bossFormManager)
+    public override BattleStatePhaseChange GetBattleStatePhaseChange()
     {
-        phaseConditionalResult = bossFormManager
+        if (phaseConditionalResult == 0)
+        {
+            return base.GetBattleStatePhaseChange();
+        }
+        else
+        {
+            return alternatePhases[phaseConditionalResult - 1].GetBattleStatePhaseChange();
+        }
+    }
+
+    public override void DeactivateBossPhase()
+    {
+        if (phaseConditionalResult == 0)
+        {
+            base.DeactivateBossPhase();
+        }
+        else
+        {
+            alternatePhases[phaseConditionalResult - 1].DeactivateBossPhase();
+        }
+    }
+
+    public override void InitialiseBossPhase(BossPhaseManager bossPhaseManager)
+    {
+        phaseConditionalResult = bossPhaseManager
             .GetConditionalManager()
             .ResolveConditional(formConditionalIndex);
+
+        if (phaseConditionalResult == 0)
+        {
+            base.InitialiseBossPhase(bossPhaseManager);
+        }
+        else
+        {
+            alternatePhases[phaseConditionalResult - 1].InitialiseBossPhase(bossPhaseManager);
+        }
     }
 }

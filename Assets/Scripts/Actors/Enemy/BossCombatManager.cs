@@ -7,6 +7,7 @@ public class BossCombatManager : MonoBehaviour
     private BossFormManager bossFormManager;
     private BossNode[] activeAttackPattern;
     private HealthThresholdPhaseChange activeHealthPhaseChange;
+    private BattleStatePhaseChange activeBattleStatePhaseChange;
 
     [SerializeField]
     private BossAttackManager bossAttacker;
@@ -17,12 +18,14 @@ public class BossCombatManager : MonoBehaviour
     public void StartBossCombat(
         BossAttackManager bossAttacker,
         BossNode[] newAttackPattern,
-        HealthThresholdPhaseChange healthPhaseChange = null
+        HealthThresholdPhaseChange healthPhaseChange = null,
+        BattleStatePhaseChange battleStatePhaseChange = null
     )
     {
         attackPatternIndex = 0;
         activeAttackPattern = newAttackPattern;
         activeHealthPhaseChange = healthPhaseChange;
+        activeBattleStatePhaseChange = battleStatePhaseChange;
 
         if (bossAttacker)
         {
@@ -55,21 +58,30 @@ public class BossCombatManager : MonoBehaviour
     private void ResolveAttack()
     {
         //Debug.Log("Attack Finished");
-
         if (
+            (activeBattleStatePhaseChange != null)
+            && activeBattleStatePhaseChange.ResolveBattleState()
+        )
+        {
+            StopAllCoroutines();
+
+            bossFormManager.InitiateMidFightPhaseChange(activeBattleStatePhaseChange.GetNewPhase());
+
+            Debug.Log("BATTLE STATE PHASE CHANGE");
+
+            return;
+        }
+        else if (
             (activeHealthPhaseChange != null)
             && (bossHealth.GetHealthPercentage() <= activeHealthPhaseChange.GetHealthThreshold())
         )
         {
-            activeHealthPhaseChange.GetNewPhase().InitialiseBossPhase(bossFormManager);
+            StopAllCoroutines();
+            //activeHealthPhaseChange.GetNewPhase().InitialiseBossPhase(bossFormManager);
+            bossFormManager.InitiateMidFightPhaseChange(activeHealthPhaseChange.GetNewPhase());
 
             Debug.Log("HEALTH-PHASE CHANGE");
 
-            StartBossCombat(
-                bossAttacker,
-                activeHealthPhaseChange.GetNewPhase().GetAttackPattern(),
-                activeHealthPhaseChange.GetNewPhase().GetHealthPhaseChange()
-            );
             return;
         }
 

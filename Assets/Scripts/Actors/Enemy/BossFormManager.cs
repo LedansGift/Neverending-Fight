@@ -26,9 +26,6 @@ public class BossFormManager : MonoBehaviour
     private BossAttackManager bossAttackManager;
 
     [SerializeField]
-    private BossConditionalManager bossConditionalManager;
-
-    [SerializeField]
     private BossTopicInitialiser bossTopicInitialiser;
 
     [SerializeField]
@@ -63,7 +60,9 @@ public class BossFormManager : MonoBehaviour
         bossHealth.InitialiseHealth();
         BossCastBarUI.CancelCast();
 
-        phase.InitialiseBossPhase(this);
+        //phase.InitialiseBossPhase(this);
+
+        bossPhaseManager.SwitchPhase(phase);
         bossCombatManager.SetFormManager(this);
 
         bossTopicInitialiser.InitialiseTopics(bossPhaseManager.GetCurrentPhaseIndex());
@@ -71,7 +70,8 @@ public class BossFormManager : MonoBehaviour
         bossCombatManager.StartBossCombat(
             bossAttackManager,
             phase.GetAttackPattern(),
-            phase.GetHealthPhaseChange()
+            phase.GetHealthPhaseChange(),
+            phase.GetBattleStatePhaseChange()
         );
         bossActive = true;
     }
@@ -87,11 +87,10 @@ public class BossFormManager : MonoBehaviour
         bossAttackManager.PhaseEndCleanup();
         OnPhaseFinished?.Invoke();
 
-        //InitiatePhaseChange();
-        OnPhaseChange?.Invoke(this, InitiatePhaseChange);
+        OnPhaseChange?.Invoke(this, InitiateDeathPhaseChange);
     }
 
-    private void InitiatePhaseChange()
+    private void InitiateDeathPhaseChange()
     {
         bossPhaseManager.AdvancePhaseTracker();
 
@@ -111,6 +110,20 @@ public class BossFormManager : MonoBehaviour
         }
     }
 
+    public void InitiateMidFightPhaseChange(BossPhase newPhase)
+    {
+        BossCastBarUI.CancelCast();
+
+        bossPhaseManager.SwitchPhase(newPhase);
+
+        bossCombatManager.StartBossCombat(
+            bossAttackManager,
+            newPhase.GetAttackPattern(),
+            newPhase.GetHealthPhaseChange(),
+            newPhase.GetBattleStatePhaseChange()
+        );
+    }
+
     public void TryPlayNewPhaseMusic()
     {
         if ((bossPhaseManager.GetCurrentPhaseIndex() + 1) >= bossPhaseManager.GetTotalPhases())
@@ -124,6 +137,7 @@ public class BossFormManager : MonoBehaviour
     public void ActivateBossForm()
     {
         bossFormActive = true;
+        bossAttackManager.ToggleAttackManager(true);
         OnNewPhaseStart?.Invoke();
         InitialiseBoss();
     }
@@ -138,6 +152,7 @@ public class BossFormManager : MonoBehaviour
         }
 
         bossFormActive = false;
+        bossAttackManager.ToggleAttackManager(false);
     }
 
     public void PlayBossDamagedAnimation()
@@ -150,16 +165,12 @@ public class BossFormManager : MonoBehaviour
         return bossAttackManager;
     }
 
-    public BossConditionalManager GetConditionalManager()
-    {
-        return bossConditionalManager;
-    }
-
     private IEnumerator DelayedBossReset()
     {
         yield return null;
 
         TopicManager.Instance.ResetActiveTopics();
+        bossPhaseManager.ResetCurrentPhase();
 
         InitialiseBoss();
     }

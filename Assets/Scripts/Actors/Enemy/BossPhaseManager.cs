@@ -3,9 +3,13 @@ using UnityEngine;
 public class BossPhaseManager : MonoBehaviour
 {
     private int phaseTracker = 0;
+    private BossPhase activePhase;
 
     [SerializeField]
     private BossPhase[] bossPhases;
+
+    [SerializeField]
+    private BossConditionalManager bossConditionalManager;
 
     public bool TryGetPhase(out BossPhase currentPhase)
     {
@@ -20,9 +24,28 @@ public class BossPhaseManager : MonoBehaviour
         return true;
     }
 
+    public void SwitchPhase(BossPhase newPhase)
+    {
+        if (activePhase == newPhase)
+        {
+            return;
+        }
+
+        activePhase?.DeactivateBossPhase();
+        activePhase = newPhase;
+        activePhase?.InitialiseBossPhase(this);
+    }
+
+    public void ResetCurrentPhase()
+    {
+        activePhase.ResetPhase();
+        bossConditionalManager.ResetConditionals();
+    }
+
     public void AdvancePhaseTracker()
     {
         phaseTracker++;
+        bossConditionalManager.SaveConditionals();
     }
 
     public int GetCurrentPhaseIndex()
@@ -33,5 +56,10 @@ public class BossPhaseManager : MonoBehaviour
     public int GetTotalPhases()
     {
         return bossPhases.Length;
+    }
+
+    public BossConditionalManager GetConditionalManager()
+    {
+        return bossConditionalManager;
     }
 }

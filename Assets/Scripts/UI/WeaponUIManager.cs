@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class WeaponUIManager : MonoBehaviour
@@ -30,12 +31,16 @@ public class WeaponUIManager : MonoBehaviour
     {
         PlayerWeapon.OnWeaponAbilityCharge += UpdateAbilityCharge;
         PlayerAttacker.OnSwitchWeapon += UpdateWeaponUI;
+
+        TutorialFightManager.OnToggleWeaponLock += UpdateWeaponLock;
     }
 
     private void OnDisable()
     {
         PlayerWeapon.OnWeaponAbilityCharge -= UpdateAbilityCharge;
         PlayerAttacker.OnSwitchWeapon -= UpdateWeaponUI;
+
+        TutorialFightManager.OnToggleWeaponLock -= UpdateWeaponLock;
     }
 
     private void Update()
@@ -62,6 +67,8 @@ public class WeaponUIManager : MonoBehaviour
 
     private void UpdateWeaponUI(object sender, int weaponType)
     {
+        Debug.Log("Update Weapon UI");
+
         if (activeWeaponUI >= 0)
         {
             weaponUIs[activeWeaponUI].SetUIActive(false);
@@ -97,5 +104,22 @@ public class WeaponUIManager : MonoBehaviour
         {
             weaponUIs[weaponType].SetAbilityCharge(abilityCharge.weaponCharge);
         }
+    }
+
+    private void UpdateWeaponLock(object sender, int lockInt)
+    {
+        if (lockInt >= weaponUIs.Length)
+        {
+            return;
+        }
+
+        if (lockInt <= 0)
+        {
+            weaponUIs[1].SetUILocked(true);
+            weaponUIs[2].SetUILocked(true);
+            return;
+        }
+
+        weaponUIs[lockInt].SetUILocked(false);
     }
 }

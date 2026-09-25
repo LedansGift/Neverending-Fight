@@ -11,6 +11,9 @@ public class BossPhase : ScriptableObject
     [SerializeField]
     protected HealthThresholdPhaseChange healthPhaseChange;
 
+    [SerializeField]
+    protected BattleStatePhaseChange battleStatePhaseChange;
+
     public virtual BossNode[] GetAttackPattern()
     {
         return bossAttackPattern;
@@ -26,5 +29,28 @@ public class BossPhase : ScriptableObject
         return healthPhaseChange;
     }
 
-    public virtual void InitialiseBossPhase(BossFormManager bossFormManager) { }
+    public virtual BattleStatePhaseChange GetBattleStatePhaseChange()
+    {
+        if (!battleStatePhaseChange.GetBattleState())
+        {
+            return null;
+        }
+
+        return battleStatePhaseChange;
+    }
+
+    public virtual void InitialiseBossPhase(BossPhaseManager bossPhaseManager)
+    {
+        battleStatePhaseChange?.InitialiseBattleState(bossPhaseManager.transform);
+    }
+
+    public virtual void DeactivateBossPhase()
+    {
+        battleStatePhaseChange?.DeactivateBattleState();
+    }
+
+    public virtual void ResetPhase()
+    {
+        battleStatePhaseChange?.ResetBattleState();
+    }
 }

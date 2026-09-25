@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BossAttackManager : MonoBehaviour
 {
+    private bool attackManagerActive = false;
+
     private const float FAIL_DAMAGE_MULT_INCREASE = 0.5f;
     private List<AttackFailTracker> savedAttacks = new List<AttackFailTracker>();
     private List<AttackFailTracker> currentAttacks = new List<AttackFailTracker>();
@@ -147,6 +149,7 @@ public class BossAttackManager : MonoBehaviour
 
     public void StartBossIdle(float idleTime, Action onIdleFinished)
     {
+        Debug.Log("Idle Started");
         StartCoroutine(IdleBoss(idleTime, onIdleFinished));
     }
 
@@ -157,6 +160,11 @@ public class BossAttackManager : MonoBehaviour
         meleeAttacker.ResetMeleeAttacker();
     }
 
+    public void ToggleAttackManager(bool toggle)
+    {
+        attackManagerActive = toggle;
+    }
+
     private IEnumerator IdleBoss(float idleTime, Action onIdleFinished)
     {
         yield return new WaitForSeconds(idleTime);
@@ -165,6 +173,11 @@ public class BossAttackManager : MonoBehaviour
 
     private void CheckAttackFailure(object sender, EventArgs eventArgs)
     {
+        if (!attackManagerActive)
+        {
+            return;
+        }
+
         if (!playerHealth)
         {
             Debug.Log("No Player health Set");
@@ -187,6 +200,11 @@ public class BossAttackManager : MonoBehaviour
 
     private void ResetAttacker()
     {
+        if (!attackManagerActive)
+        {
+            return;
+        }
+
         StopAllCoroutines();
         BossCastBarUI.CancelCast();
         currentAttacks = new List<AttackFailTracker>();

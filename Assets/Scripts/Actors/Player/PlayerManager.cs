@@ -45,10 +45,10 @@ public class PlayerManager : MonoBehaviour
 
     public void TogglePlayer(object sender, bool toggle)
     {
-        if (playerActive == toggle)
-        {
-            return;
-        }
+        // if (playerActive == toggle)
+        // {
+        //     return;
+        // }
 
         playerActive = toggle;
 

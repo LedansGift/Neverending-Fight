@@ -28,11 +28,15 @@ public class WeaponUI : MonoBehaviour
     private Image weaponAbilityUIFill;
 
     [SerializeField]
+    private CanvasGroupFader lockedOverlay;
+
+    [SerializeField]
     private Animator abilityAnimator;
 
     private void Awake()
     {
         abilityAnimator.SetBool("full", true);
+        lockedOverlay.SetCanvasGroupAlpha(0f);
     }
 
     private void Update()
@@ -119,5 +123,10 @@ public class WeaponUI : MonoBehaviour
 
         uiChangeTimer = 0f;
         uiChange = true;
+    }
+
+    public void SetUILocked(bool toggle)
+    {
+        lockedOverlay.ToggleFade(toggle);
     }
 }

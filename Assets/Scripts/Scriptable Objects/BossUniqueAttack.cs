@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class BossUniqueAttack : BossAttackNode
 {
@@ -36,6 +37,7 @@ public class BossUniqueAttack : BossAttackNode
     {
         if (failableAttack)
         {
+            Debug.Log("Attack fail check");
             OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
         }
 
