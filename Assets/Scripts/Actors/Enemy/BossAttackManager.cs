@@ -149,7 +149,6 @@ public class BossAttackManager : MonoBehaviour
 
     public void StartBossIdle(float idleTime, Action onIdleFinished)
     {
-        Debug.Log("Idle Started");
         StartCoroutine(IdleBoss(idleTime, onIdleFinished));
     }
 

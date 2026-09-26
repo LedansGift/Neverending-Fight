@@ -1,13 +1,12 @@
 using System;
 using UnityEngine;
 
-public class MagpieTutorialPhaseChange1 : BattleState
+public class MagpieTutorialPhaseChange2 : BattleState
 {
-    private bool whirlwindDodged = false;
+    private bool enemiesKilled = false;
 
     [SerializeField]
     private BossPhase nextTutorialPhase;
-    public static Action OnWhirlwindReached;
 
     public static Action OnPhaseChangeSuccessful;
 
@@ -20,39 +19,34 @@ public class MagpieTutorialPhaseChange1 : BattleState
 
     public override bool ResolveBattleState()
     {
-        //if whirlwind successfully dodges with special, return true
-
-        if (whirlwindDodged)
+        if (enemiesKilled)
         {
             OnPhaseChangeSuccessful?.Invoke();
         }
 
-        return whirlwindDodged;
+        return enemiesKilled;
     }
 
     public override void ActivateListeners()
     {
         base.ActivateListeners();
 
-        OnWhirlwindReached?.Invoke();
-
-        BossAttackManager.OnAttackFailed += CheckAttackFail;
+        ProjectileEntityController.OnNewActiveEntities += EvaluateActiveEntities;
     }
 
     public override void DeactivateListeners()
     {
         base.DeactivateListeners();
 
-        BossAttackManager.OnAttackFailed -= CheckAttackFail;
+        ProjectileEntityController.OnNewActiveEntities -= EvaluateActiveEntities;
     }
 
-    private void CheckAttackFail(object sender, bool failed)
+    private void EvaluateActiveEntities(object sender, int entityNumber)
     {
-        Debug.Log("Attack Failed: " + failed);
-
-        if (!failed)
+        if (entityNumber <= 0)
         {
-            whirlwindDodged = true;
+            Debug.Log("All crows killed");
+            enemiesKilled = true;
         }
     }
 }

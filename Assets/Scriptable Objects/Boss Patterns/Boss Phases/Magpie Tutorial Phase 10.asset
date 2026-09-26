@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53914625710d5de409d4f333e89c1a9d, type: 3}
-  m_Name: Magpie Tutorial Phase 6
+  m_Name: Magpie Tutorial Phase 10
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern:
-  - {fileID: 11400000, guid: e783c246f738b3143b9a4f335de4f56c, type: 2}
+  - {fileID: 11400000, guid: 24da75ecf3a045142bde95bc03b76ed9, type: 2}
+  endOfPatternPhaseChange: {fileID: 0}
   healthPhaseChange:
     healthPercentageThreshold: 50
     bossPhase: {fileID: 0}

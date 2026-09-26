@@ -29,6 +29,18 @@ public class BossPhaseConditional : BossPhase
         }
     }
 
+    public override BossPhase GetEndOfPatternPhaseChange()
+    {
+        if (phaseConditionalResult == 0)
+        {
+            return base.GetEndOfPatternPhaseChange();
+        }
+        else
+        {
+            return alternatePhases[phaseConditionalResult - 1].GetEndOfPatternPhaseChange();
+        }
+    }
+
     public override HealthThresholdPhaseChange GetHealthPhaseChange()
     {
         if (phaseConditionalResult == 0)

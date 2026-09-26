@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53914625710d5de409d4f333e89c1a9d, type: 3}
-  m_Name: Magpie Tutorial Phase 1
+  m_Name: Magpie Tutorial Phase 5 Bow Basic
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern:
   - {fileID: 11400000, guid: e783c246f738b3143b9a4f335de4f56c, type: 2}
+  endOfPatternPhaseChange: {fileID: 0}
   healthPhaseChange:
     healthPercentageThreshold: 50
-    bossPhase: {fileID: 11400000, guid: 2f94e72d490efd243923e8386c9c86c0, type: 2}
+    bossPhase: {fileID: 0}
   battleStatePhaseChange:
-    battleStatePrefab: {fileID: 0}
+    battleStatePrefab: {fileID: 3214154973294013981, guid: d640b85e2c4a8f045b50fa5ef031e250, type: 3}

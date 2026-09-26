@@ -6,6 +6,7 @@ public class BossCombatManager : MonoBehaviour
     private int attackPatternIndex = 0;
     private BossFormManager bossFormManager;
     private BossNode[] activeAttackPattern;
+    private BossPhase activeEndOfPatternPhaseChange;
     private HealthThresholdPhaseChange activeHealthPhaseChange;
     private BattleStatePhaseChange activeBattleStatePhaseChange;
 
@@ -18,12 +19,14 @@ public class BossCombatManager : MonoBehaviour
     public void StartBossCombat(
         BossAttackManager bossAttacker,
         BossNode[] newAttackPattern,
+        BossPhase endOfPatternPhaseChange = null,
         HealthThresholdPhaseChange healthPhaseChange = null,
         BattleStatePhaseChange battleStatePhaseChange = null
     )
     {
         attackPatternIndex = 0;
         activeAttackPattern = newAttackPattern;
+        activeEndOfPatternPhaseChange = endOfPatternPhaseChange;
         activeHealthPhaseChange = healthPhaseChange;
         activeBattleStatePhaseChange = battleStatePhaseChange;
 
@@ -89,6 +92,16 @@ public class BossCombatManager : MonoBehaviour
 
         if (attackPatternIndex >= activeAttackPattern.Length)
         {
+            if (activeEndOfPatternPhaseChange != null)
+            {
+                StopAllCoroutines();
+
+                bossFormManager.InitiateMidFightPhaseChange(activeEndOfPatternPhaseChange);
+
+                Debug.Log("END OF PATTERN PHASE CHANGE");
+                return;
+            }
+
             attackPatternIndex = 0;
         }
 

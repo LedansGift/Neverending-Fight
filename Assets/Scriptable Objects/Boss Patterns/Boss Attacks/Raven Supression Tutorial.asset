@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bdb1d63ab535e24a992127ec5ca3c7c, type: 3}
-  m_Name: Murder of Crows
+  m_Name: Raven Supression Tutorial
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
   animationTrigger: 
   attackName: DefaultName
@@ -19,15 +19,15 @@ MonoBehaviour:
   waitForSpawnsToFinish: 0
   worldPositionPattern: 1
   patternStartDelay: 0.5
-  patternEndDelay: 5
-  projectile: {fileID: 8241304567202759645, guid: 760a12a58011c5e4d8fa6c87a907730c, type: 3}
+  patternEndDelay: 0.5
+  projectile: {fileID: 8165753937020070932, guid: 64763c1a2265b1747bc01efa832f605c, type: 3}
   pattern:
-    projectileNumber: 10
+    projectileNumber: 4
     timeBetweenSpawns: 1
-    startingAngle: 90
+    startingAngle: 180
     angleChangePerSpawn: 0
-    startingPosition: {x: -20, y: 0, z: 20}
-    positionChangePerSpawn: {x: 0, y: 0, z: -3}
+    startingPosition: {x: -30, y: 0, z: 30}
+    positionChangePerSpawn: {x: 20, y: 0, z: 0}
     patternWaves: 1
     positionChangePerWave: {x: 0, y: 0, z: 0}
     timeBetweenWaves: 0.25

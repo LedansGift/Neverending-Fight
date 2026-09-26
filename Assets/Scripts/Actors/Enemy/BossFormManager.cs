@@ -70,6 +70,7 @@ public class BossFormManager : MonoBehaviour
         bossCombatManager.StartBossCombat(
             bossAttackManager,
             phase.GetAttackPattern(),
+            phase.GetEndOfPatternPhaseChange(),
             phase.GetHealthPhaseChange(),
             phase.GetBattleStatePhaseChange()
         );
@@ -119,6 +120,7 @@ public class BossFormManager : MonoBehaviour
         bossCombatManager.StartBossCombat(
             bossAttackManager,
             newPhase.GetAttackPattern(),
+            newPhase.GetEndOfPatternPhaseChange(),
             newPhase.GetHealthPhaseChange(),
             newPhase.GetBattleStatePhaseChange()
         );

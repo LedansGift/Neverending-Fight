@@ -67,7 +67,7 @@ public class WeaponUIManager : MonoBehaviour
 
     private void UpdateWeaponUI(object sender, int weaponType)
     {
-        Debug.Log("Update Weapon UI");
+        //Debug.Log("Update Weapon UI");
 
         if (activeWeaponUI >= 0)
         {

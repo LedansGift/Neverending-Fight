@@ -15,7 +15,7 @@ public class PlayerHealthUI : MonoBehaviour
     private GameObject rewindsUI;
 
     [SerializeField]
-    private CanvasGroupFader healthFader;
+    private CanvasGroupFader healthSliderFader;
 
     private void OnEnable()
     {
@@ -64,6 +64,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void ToggleHealthUI(object sender, bool toggle)
     {
-        healthFader.ToggleFade(toggle);
+        Debug.Log("Toggle Health Fade");
+        healthSliderFader.ToggleFade(toggle);
     }
 }

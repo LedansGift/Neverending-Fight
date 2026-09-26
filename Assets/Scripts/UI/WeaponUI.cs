@@ -15,6 +15,7 @@ public class WeaponUI : MonoBehaviour
     private Color uiColourTarget = Color.white;
 
     private Color inactiveUIColour;
+    private Material uiFillMaterial;
 
     private AnimationCurve scaleChangeCurve;
 
@@ -37,6 +38,7 @@ public class WeaponUI : MonoBehaviour
     {
         abilityAnimator.SetBool("full", true);
         lockedOverlay.SetCanvasGroupAlpha(0f);
+        uiFillMaterial = weaponAbilityUIFill.material;
     }
 
     private void Update()
@@ -99,7 +101,7 @@ public class WeaponUI : MonoBehaviour
             fullyCharged = true;
         }
 
-        weaponAbilityUIFill.material.SetFloat("_YReveal", newCharge);
+        uiFillMaterial.SetFloat("_YReveal", newCharge);
     }
 
     public void SetUIActive(bool toggle)

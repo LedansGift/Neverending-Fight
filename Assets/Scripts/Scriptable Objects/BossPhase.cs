@@ -9,6 +9,9 @@ public class BossPhase : ScriptableObject
     protected BossNode[] bossAttackPattern;
 
     [SerializeField]
+    protected BossPhase endOfPatternPhaseChange;
+
+    [SerializeField]
     protected HealthThresholdPhaseChange healthPhaseChange;
 
     [SerializeField]
@@ -17,6 +20,16 @@ public class BossPhase : ScriptableObject
     public virtual BossNode[] GetAttackPattern()
     {
         return bossAttackPattern;
+    }
+
+    public virtual BossPhase GetEndOfPatternPhaseChange()
+    {
+        if (!endOfPatternPhaseChange)
+        {
+            return null;
+        }
+
+        return endOfPatternPhaseChange;
     }
 
     public virtual HealthThresholdPhaseChange GetHealthPhaseChange()

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53914625710d5de409d4f333e89c1a9d, type: 3}
-  m_Name: Magpie Tutorial Phase 5
+  m_Name: Magpie Tutorial Phase 3 Glaive Special
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern:
-  - {fileID: 11400000, guid: e783c246f738b3143b9a4f335de4f56c, type: 2}
+  - {fileID: 11400000, guid: 96dc936e7adb42d4bb672d596f6b6835, type: 2}
   healthPhaseChange:
-    healthPercentageThreshold: 50
+    healthPercentageThreshold: 100
     bossPhase: {fileID: 0}
   battleStatePhaseChange:
-    battleStatePrefab: {fileID: 0}
+    battleStatePrefab: {fileID: 9038752500796227789, guid: ffeedd11f7875734fa652aa87b97d7d9, type: 3}

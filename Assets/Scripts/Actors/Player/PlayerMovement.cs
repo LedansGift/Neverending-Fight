@@ -253,8 +253,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        playerRB.position = positionSaveTransform.position;
-        playerRB.rotation = positionSaveTransform.rotation;
+        SetPlayerTransform(positionSaveTransform);
     }
 
     public void SaveCurrentPosition()
@@ -270,6 +269,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetPlayerTransform(Transform newTransform)
     {
+        playerRB.linearVelocity = Vector3.zero;
+        playerRB.angularVelocity = Vector3.zero;
+
         playerRB.position = newTransform.position;
         playerRB.rotation = newTransform.rotation;
     }
