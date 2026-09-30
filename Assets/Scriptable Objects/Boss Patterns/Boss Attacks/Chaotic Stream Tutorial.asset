@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bdb1d63ab535e24a992127ec5ca3c7c, type: 3}
+  m_Name: Chaotic Stream Tutorial
+  m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
+  animationTrigger: 
+  attackName: DefaultName
+  failableAttack: 0
+  empoweredAttack: {fileID: 0}
+  waitForSpawnsToFinish: 0
+  worldPositionPattern: 1
+  patternStartDelay: 0.5
+  patternEndDelay: 0.5
+  projectile: {fileID: 1639230226160399649, guid: bb75a4c13996d4c4294b9e6a8b200a27, type: 3}
+  pattern:
+    projectileNumber: 1
+    timeBetweenSpawns: 1
+    startingAngle: 90
+    angleChangePerSpawn: 0
+    startingPosition: {x: -20, y: 0, z: 0}
+    positionChangePerSpawn: {x: 0, y: 0, z: 0}
+    patternWaves: 1
+    positionChangePerWave: {x: 0, y: 0, z: 0}
+    timeBetweenWaves: 0.25
+  patternOverride: {fileID: 0}

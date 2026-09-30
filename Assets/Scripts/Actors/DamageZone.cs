@@ -18,6 +18,9 @@ public class DamageZone : MonoBehaviour
     protected bool easeGrowth = true;
 
     [SerializeField]
+    protected float maxDamageZoneOpacity = 1f;
+
+    [SerializeField]
     protected Transform zoneVisual;
 
     [SerializeField]
@@ -74,13 +77,13 @@ public class DamageZone : MonoBehaviour
 
         if (fadeOut)
         {
-            decalProjector.fadeFactor = 1f - growLerp;
+            decalProjector.fadeFactor = (1f - growLerp) * maxDamageZoneOpacity;
 
             return;
         }
         else
         {
-            decalProjector.fadeFactor = growLerp;
+            decalProjector.fadeFactor = growLerp * maxDamageZoneOpacity;
         }
 
         float zoneScaleX = Mathf.Lerp(1f - zoneTarget, zoneTarget, growLerp) * zoneSize.x;
@@ -115,7 +118,7 @@ public class DamageZone : MonoBehaviour
         zoneActive = true;
     }
 
-    public void DeactivateZone(float growDuration = 0.35f)
+    public virtual void DeactivateZone(float growDuration = 0.35f)
     {
         lifeTime = 0f;
 

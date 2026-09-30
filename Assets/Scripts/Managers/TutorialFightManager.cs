@@ -27,6 +27,7 @@ public class TutorialFightManager : MonoBehaviour
         MagpieTutorialPhaseChange2.OnPhaseChangeSuccessful -= AdvanceToTomeSection;
         MagpieTutorialPhaseChange1.OnWhirlwindReached -= EnableSpecialPrompt;
         MagpieTutorialPhaseChange3.OnToggleTomeBarriers -= ToggleTomeSectionBarriers;
+        MagpieFormManager.OnTutorialPhaseChange -= StartTutorialFinalFight;
     }
 
     public void InitiateTutorialManager(Action OnTutorialInitialised)
@@ -37,6 +38,7 @@ public class TutorialFightManager : MonoBehaviour
         MagpieTutorialPhaseChange2.OnPhaseChangeSuccessful += AdvanceToTomeSection;
         MagpieTutorialPhaseChange1.OnWhirlwindReached += EnableSpecialPrompt;
         MagpieTutorialPhaseChange3.OnToggleTomeBarriers += ToggleTomeSectionBarriers;
+        MagpieFormManager.OnTutorialPhaseChange += StartTutorialFinalFight;
 
         Health playerHealth = PlayerIdentifier.PlayerTransform.GetComponent<Health>();
         playerHealth.SetUnkillable(true);
@@ -86,16 +88,13 @@ public class TutorialFightManager : MonoBehaviour
         tomeSectionBarriers.SetActive(toggle);
     }
 
-    public void StartTutorialFinalFight(
-        BossFormManager magpieBossForm,
-        Action OnFinalFightInitialised
-    )
+    private void StartTutorialFinalFight(object sender, Action OnPhaseChangeFinished)
     {
-        Health magpieHealth = magpieBossForm.GetComponent<Health>();
-        magpieHealth.SetUnkillable(false);
+        // Health magpieHealth = (sender as BossFormManager).GetComponent<Health>();
+        // magpieHealth.SetUnkillable(false);
 
         OnToggleHealthUI?.Invoke(this, true);
 
-        OnFinalFightInitialised();
+        OnPhaseChangeFinished();
     }
 }

@@ -59,11 +59,11 @@ PrefabInstance:
     - target: {fileID: 5943755932644677658, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: 'bossPhases.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: f7a64b845be33c74181535c779200ac2, type: 2}
+      objectReference: {fileID: 11400000, guid: 46f1f756fbdbce64dad79406e4a2218f, type: 2}
     - target: {fileID: 5943755932644677658, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: 'bossPhases.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 09dee56d482c51347bbaaa5f24811a1a, type: 2}
+      objectReference: {fileID: 11400000, guid: bd732eb22dcc2454a9256da4f7f0bfa3, type: 2}
     - target: {fileID: 6173335375328832987, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: bossHealth
       value: 
@@ -102,6 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 7582674296583822720}
     m_RemovedComponents:
     - {fileID: 241299289315752863, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+    - {fileID: 6767254815177932681, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2049012174118989149, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
@@ -109,9 +110,23 @@ PrefabInstance:
       addedObject: {fileID: 5957522553050780990}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1338314440487284039, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 5290158697754595718}
+    - targetCorrespondingSourceObject: {fileID: 1338314440487284039, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       insertIndex: 2
       addedObject: {fileID: 7582674296583822720}
   m_SourcePrefab: {fileID: 100100000, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+--- !u!114 &639445712643752018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2621286475280256505, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+  m_PrefabInstance: {fileID: 3224412775398411691}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480465565330153708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d2ac98c9c67df4f943c47a1304a395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossMeleeAttacker
 --- !u!4 &3517566269979795702 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2049012174118989149, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
@@ -122,6 +137,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1338314440487284039, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
   m_PrefabInstance: {fileID: 3224412775398411691}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5290158697754595718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480465565330153708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84abe3b683c286c4eb2b05815047b5e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagpieFormManager
+  bossAnimator: {fileID: 8590644429722851512}
+  bossHealth: {fileID: 7582674296583822720}
+  bossMover: {fileID: 8645244564186877706}
+  bossPhaseManager: {fileID: 9134176159153690033}
+  bossCombatManager: {fileID: 8724454913516068976}
+  bossAttackManager: {fileID: 639445712643752018}
+  bossTopicInitialiser: {fileID: 7191377923942220268}
+  bossMusicTracks:
+  - {fileID: 11400000, guid: 9c68d98f07cd0ac47a6261329b36acf4, type: 2}
+  - {fileID: 11400000, guid: 82d71fe7722daf046863b097c2cba330, type: 2}
 --- !u!114 &7582674296583822720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +177,55 @@ MonoBehaviour:
   damagedSFX: {fileID: 0}
   deathSFX: {fileID: 11400000, guid: 4a1ba8981057adc4397e92c17f1da983, type: 2}
   shieldVisual: {fileID: 4707402745313548895}
+--- !u!114 &7191377923942220268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5725062810706316359, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+  m_PrefabInstance: {fileID: 3224412775398411691}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480465565330153708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c820fbe48c0054e89f391359e246e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossTopicInitialiser
+--- !u!95 &8590644429722851512 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6595367456897438995, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+  m_PrefabInstance: {fileID: 3224412775398411691}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8645244564186877706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6576801874142741153, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+  m_PrefabInstance: {fileID: 3224412775398411691}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480465565330153708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc6535d986c4937408dfbe5eb3f65531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossMover
+--- !u!114 &8724454913516068976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6173335375328832987, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+  m_PrefabInstance: {fileID: 3224412775398411691}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480465565330153708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f953915783fa47b4cb4e5f7ca733ea05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossCombatManager
+--- !u!114 &9134176159153690033 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5943755932644677658, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+  m_PrefabInstance: {fileID: 3224412775398411691}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480465565330153708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce59192dacf96d4e9ad8fa9e96fbf85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossPhaseManager
 --- !u!1001 &4845821981197086105
 PrefabInstance:
   m_ObjectHideFlags: 0

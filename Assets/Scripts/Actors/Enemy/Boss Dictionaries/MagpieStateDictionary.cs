@@ -11,7 +11,8 @@ public enum MagpieUniqueAttacks
     FellWingV3,
     GuardStance,
     DiffShieldOn,
-    DiffShieldOff
+    DiffShieldOff,
+    TutorialEnd
 }
 
 public class MagpieStateDictionary : StateDictionary
@@ -62,6 +63,11 @@ public class MagpieStateDictionary : StateDictionary
         stateDictionary.Add(
             (int)MagpieUniqueAttacks.GuardStance,
             new BossGuardState(stateMachine as BossStateMachine)
+        );
+
+        stateDictionary.Add(
+            (int)MagpieUniqueAttacks.TutorialEnd,
+            new MagpieTutorialEndState(stateMachine as BossStateMachine)
         );
     }
 }

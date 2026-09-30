@@ -25728,6 +25728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3579bfbfaedcea4d9db77b823339ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTimepiece
+  firstTimeRun: 0
 --- !u!114 &2681022547810002137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51844,6 +51845,91 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6554966622416001556, guid: 8e095ce3a30ea884aa873fbe21472a94, type: 3}
   m_PrefabInstance: {fileID: 4809150959898763827}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4947919874385352061
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4606848778277875436}
+    m_Modifications:
+    - target: {fileID: 927233731633964742, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 390b3213f75ee824495c99f9a345a181, type: 2}
+    - target: {fileID: 2484804656055218086, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: maxDamageZoneOpacity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3090652956009000080, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513051557798208631, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      propertyPath: m_Name
+      value: Tome Max Range Zone
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+--- !u!4 &2580472376030810064 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+  m_PrefabInstance: {fileID: 4947919874385352061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7408780113258347227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2484804656055218086, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+  m_PrefabInstance: {fileID: 4947919874385352061}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7204ff8e5195469428279f7b8dc81601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageZone
 --- !u!1001 &5049861572994497998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52383,7 +52469,10 @@ PrefabInstance:
     - {fileID: 4184974446167656384, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
     - {fileID: 2484804656055218086, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2580472376030810064}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7513051557798208631, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}
       insertIndex: -1
@@ -52407,8 +52496,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TomeAttackVisual
   easeGrowth: 1
+  maxDamageZoneOpacity: 1
   zoneVisual: {fileID: 8246024871487690961}
   decalProjector: {fileID: 6076980674478166663}
+  maxAttackRangeVisual: {fileID: 7408780113258347227}
 --- !u!4 &4606848778277875436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7450404164730084013, guid: 1a5f87a93fb7d2d4890c283a3a01b238, type: 3}

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ProjectileEntityController : MonoBehaviour
 {
+    protected bool entityActive = false;
+
     [SerializeField]
     protected float actionStartDelay = 4f;
     protected Projectile projectile;
 
-    private static int projectileEntitesActive = 0;
+    private static int projectileEntitiesActive = 0;
 
     public static EventHandler<int> OnNewActiveEntities;
 
@@ -35,15 +37,29 @@ public class ProjectileEntityController : MonoBehaviour
         if (toggle)
         {
             StartCoroutine(StartEntityAction());
-            projectileEntitesActive++;
         }
         else
         {
             StopAllCoroutines();
-            projectileEntitesActive--;
         }
 
-        OnNewActiveEntities?.Invoke(this, projectileEntitesActive);
-        Debug.Log("Active Entities: " + projectileEntitesActive);
+        if (toggle == entityActive)
+        {
+            return;
+        }
+
+        entityActive = toggle;
+
+        if (toggle)
+        {
+            projectileEntitiesActive++;
+        }
+        else
+        {
+            projectileEntitiesActive--;
+        }
+
+        OnNewActiveEntities?.Invoke(this, projectileEntitiesActive);
+        Debug.Log("Active Entities: " + projectileEntitiesActive);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossFormManager : MonoBehaviour
 {
-    private bool bossActive = false;
+    protected bool bossActive = false;
     private bool bossFormActive = false;
 
     [SerializeField]
@@ -23,7 +23,7 @@ public class BossFormManager : MonoBehaviour
     private BossCombatManager bossCombatManager;
 
     [SerializeField]
-    private BossAttackManager bossAttackManager;
+    protected BossAttackManager bossAttackManager;
 
     [SerializeField]
     private BossTopicInitialiser bossTopicInitialiser;
@@ -77,7 +77,7 @@ public class BossFormManager : MonoBehaviour
         bossActive = true;
     }
 
-    private void HandleBossDeath()
+    protected virtual void HandleBossDeath()
     {
         if (!bossActive)
         {
@@ -91,7 +91,7 @@ public class BossFormManager : MonoBehaviour
         OnPhaseChange?.Invoke(this, InitiateDeathPhaseChange);
     }
 
-    private void InitiateDeathPhaseChange()
+    protected void InitiateDeathPhaseChange()
     {
         bossPhaseManager.AdvancePhaseTracker();
 

@@ -10,6 +10,8 @@ public class DifferentialShield : MonoBehaviour
     [SerializeField]
     private GameObject shieldVisual;
 
+    public static EventHandler<int> OnShieldDamageResolved;
+
     private void Awake()
     {
         ToggleShield(false);
@@ -33,6 +35,8 @@ public class DifferentialShield : MonoBehaviour
 
             return SHIELDED_DAMAGE;
         }
+
+        OnShieldDamageResolved?.Invoke(this, damageIn);
 
         return damageIn;
     }
