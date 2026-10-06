@@ -947,6 +947,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2621286475280256505, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: stateDictionary
+      value: 
+      objectReference: {fileID: 1671316736195655527}
     - target: {fileID: 4075012748634489783, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: championMeshes.Array.size
       value: 0
@@ -1005,6 +1009,7 @@ PrefabInstance:
       objectReference: {fileID: 5660016080113343175}
     m_RemovedComponents:
     - {fileID: 241299289315752863, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+    - {fileID: 8761823577968525310, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
     m_RemovedGameObjects:
     - {fileID: 444888492234151379, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
     m_AddedGameObjects:
@@ -1018,7 +1023,21 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1338314440487284039, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       insertIndex: 2
       addedObject: {fileID: 4729304045367818051}
+    - targetCorrespondingSourceObject: {fileID: 1338314440487284039, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      insertIndex: 9
+      addedObject: {fileID: 1671316736195655527}
   m_SourcePrefab: {fileID: 100100000, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+--- !u!114 &1919894325388732082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8371743262379200458, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+  m_PrefabInstance: {fileID: 7965387333504903544}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941923961016517695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1763f19e2d52442bab1eb6a2938aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossStateMachine
 --- !u!4 &8279076423669679141 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2049012174118989149, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
@@ -1047,3 +1066,16 @@ MonoBehaviour:
   damagedSFX: {fileID: 0}
   deathSFX: {fileID: 11400000, guid: 4a1ba8981057adc4397e92c17f1da983, type: 2}
   shieldVisual: {fileID: 7226696163846065102}
+--- !u!114 &1671316736195655527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941923961016517695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706470e07b533b943944b403a7b07e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MagusStateDictionary
+  stateMachine: {fileID: 1919894325388732082}

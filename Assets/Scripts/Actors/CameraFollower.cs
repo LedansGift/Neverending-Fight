@@ -1,15 +1,11 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class CameraFollower : MonoBehaviour
+public class CameraFollower : ObjectFollower
 {
-    private float moveSpeed = 0.4f;
-
-    protected Transform followTransform;
-
     protected virtual void Start()
     {
-        SetTarget();
+        SetPlayerTarget();
         CinemachineCore.CameraUpdatedEvent.AddListener(OnCameraUpdated);
     }
 
@@ -18,7 +14,9 @@ public class CameraFollower : MonoBehaviour
         CinemachineCore.CameraUpdatedEvent.RemoveListener(OnCameraUpdated);
     }
 
-    protected virtual void SetTarget()
+    protected override void Update() { }
+
+    protected virtual void SetPlayerTarget()
     {
         Transform playerTransform = PlayerIdentifier.PlayerTransform;
 
@@ -29,20 +27,6 @@ public class CameraFollower : MonoBehaviour
         }
 
         followTransform = playerTransform;
-    }
-
-    private void MoveTowardsFollowTransform()
-    {
-        if (!followTransform)
-        {
-            return;
-        }
-
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            followTransform.position,
-            moveSpeed * Time.timeScale
-        );
     }
 
     private void OnCameraUpdated(CinemachineBrain arg0)

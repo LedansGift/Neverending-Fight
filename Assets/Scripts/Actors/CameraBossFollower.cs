@@ -16,11 +16,11 @@ public class CameraBossFollower : CameraFollower
         BossManager.OnNewBossForm -= UpdateBossTarget;
     }
 
-    protected override void SetTarget()
+    protected override void SetPlayerTarget()
     {
         if (!activeBossTransform)
         {
-            base.SetTarget();
+            base.SetPlayerTarget();
             return;
         }
 
@@ -30,6 +30,6 @@ public class CameraBossFollower : CameraFollower
     private void UpdateBossTarget(object sender, BossFormManager newForm)
     {
         activeBossTransform = newForm.transform;
-        SetTarget();
+        SetPlayerTarget();
     }
 }
