@@ -88,6 +88,7 @@ public class BossFormManager : MonoBehaviour
         bossAttackManager.PhaseEndCleanup();
         OnPhaseFinished?.Invoke();
 
+        //Passes to Phase Change Manager, which when finished goes to InitiateDeathPhaseChange
         OnPhaseChange?.Invoke(this, InitiateDeathPhaseChange);
     }
 
@@ -99,9 +100,13 @@ public class BossFormManager : MonoBehaviour
 
         if (bossPhaseManager.TryGetPhase(out BossPhase phase))
         {
-            //Start phase change cutscene that callbacks to Initialise Boss
-            OnNewPhaseStart?.Invoke();
-            InitialiseBoss();
+            if (phase.GetBloodRainStart())
+            {
+                //Play blood rain cutscene through manager, which when finished goes to InitiateNewBossPhase
+                BloodRainManager.ToggleBloodRainEvent(true);
+            }
+
+            InitiateNewBossPhase();
         }
         else
         {
@@ -109,6 +114,12 @@ public class BossFormManager : MonoBehaviour
             Debug.Log("Final Phase Finished");
             OnFinalPhaseFinished?.Invoke();
         }
+    }
+
+    private void InitiateNewBossPhase()
+    {
+        OnNewPhaseStart?.Invoke();
+        InitialiseBoss();
     }
 
     public void InitiateMidFightPhaseChange(BossPhase newPhase)

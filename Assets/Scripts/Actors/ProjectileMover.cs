@@ -4,24 +4,25 @@ using UnityEngine;
 public class ProjectileMover : MonoBehaviour
 {
     private bool moverActive = false;
+    private float rotationSpeedModifier = 10f;
 
     [SerializeField]
-    private float speed;
+    protected float speed;
 
     [SerializeField]
-    private float zRotationSpeed;
+    protected float zRotationSpeed;
 
     [SerializeField]
     protected Rigidbody projectileRb;
 
     [SerializeField]
-    private Transform rotatingElement;
+    protected Transform rotatingElement;
 
     [SerializeField]
-    private Projectile projectile;
+    protected Projectile projectile;
 
     [SerializeField]
-    private AnimationCurve speedOverLifetime;
+    protected AnimationCurve speedOverLifetime;
 
     private void Awake()
     {
@@ -63,7 +64,11 @@ public class ProjectileMover : MonoBehaviour
 
     protected virtual void RotateProjectile()
     {
-        rotatingElement.eulerAngles += new Vector3(0f, 0f, zRotationSpeed * Time.deltaTime);
+        rotatingElement.eulerAngles += new Vector3(
+            0f,
+            0f,
+            zRotationSpeed * rotationSpeedModifier * Time.deltaTime
+        );
     }
 
     private void ToggleMover(object sender, bool toggle)

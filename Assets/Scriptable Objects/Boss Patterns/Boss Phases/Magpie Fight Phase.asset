@@ -21,3 +21,4 @@ MonoBehaviour:
     bossPhase: {fileID: 0}
   battleStatePhaseChange:
     battleStatePrefab: {fileID: 0}
+  bloodRainStart: 1

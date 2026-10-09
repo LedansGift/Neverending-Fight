@@ -52,11 +52,16 @@ public class MusicPlayer : MonoBehaviour
 
             if (newMusicTrack != null)
             {
-                activeMusicTrack = newMusicTrack;
-                newMusicTrack = null;
-                FadeInActiveTrack();
+                SetNewTrack();
             }
         }
+    }
+
+    private void SetNewTrack()
+    {
+        activeMusicTrack = newMusicTrack;
+        newMusicTrack = null;
+        FadeInActiveTrack();
     }
 
     private void FadeOutActiveTrack()
@@ -69,10 +74,11 @@ public class MusicPlayer : MonoBehaviour
     private void FadeInActiveTrack()
     {
         targetMusicVolume = activeMusicTrack.trackVolume;
+        musicAudioSource.volume = targetMusicVolume;
         musicAudioSource.clip = activeMusicTrack.track;
         musicAudioSource.Play();
 
-        fadeMusic = true;
+        //fadeMusic = true;
     }
 
     public void SetMusicTrack(MusicTrack musicTrack)
@@ -85,9 +91,7 @@ public class MusicPlayer : MonoBehaviour
         }
         else if (newMusicTrack)
         {
-            activeMusicTrack = newMusicTrack;
-            newMusicTrack = null;
-            FadeInActiveTrack();
+            SetNewTrack();
         }
     }
 }

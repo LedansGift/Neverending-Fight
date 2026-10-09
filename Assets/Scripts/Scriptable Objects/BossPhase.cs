@@ -17,6 +17,9 @@ public class BossPhase : ScriptableObject
     [SerializeField]
     protected BattleStatePhaseChange battleStatePhaseChange;
 
+    [SerializeField]
+    protected bool bloodRainStart;
+
     public virtual BossNode[] GetAttackPattern()
     {
         return bossAttackPattern;
@@ -50,6 +53,11 @@ public class BossPhase : ScriptableObject
         }
 
         return battleStatePhaseChange;
+    }
+
+    public virtual bool GetBloodRainStart()
+    {
+        return bloodRainStart;
     }
 
     public virtual void InitialiseBossPhase(BossPhaseManager bossPhaseManager)

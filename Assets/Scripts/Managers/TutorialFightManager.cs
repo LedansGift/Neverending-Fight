@@ -92,6 +92,8 @@ public class TutorialFightManager : MonoBehaviour
     {
         // Health magpieHealth = (sender as BossFormManager).GetComponent<Health>();
         // magpieHealth.SetUnkillable(false);
+        BossFormManager formManager = sender as BossFormManager;
+        formManager.TryPlayNewPhaseMusic();
 
         OnToggleHealthUI?.Invoke(this, true);
 

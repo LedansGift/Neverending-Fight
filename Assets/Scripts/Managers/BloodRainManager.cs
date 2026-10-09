@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -16,6 +17,8 @@ public class BloodRainManager : MonoBehaviour
     [SerializeField]
     private Volume bloodRainVolume;
 
+    private static EventHandler<bool> OnToggleBloodRain;
+
     private void Start()
     {
         Transform playerTransform = PlayerIdentifier.PlayerTransform;
@@ -23,6 +26,16 @@ public class BloodRainManager : MonoBehaviour
 
         //ActivateRain();
         DeactivateRain();
+    }
+
+    void OnEnable()
+    {
+        OnToggleBloodRain += ToggleBloodRain;
+    }
+
+    void OnDisable()
+    {
+        OnToggleBloodRain -= ToggleBloodRain;
     }
 
     private void Update()
@@ -68,5 +81,27 @@ public class BloodRainManager : MonoBehaviour
         bloodRainEffect.Stop();
 
         rainActive = false;
+    }
+
+    private void ToggleBloodRain(object sender, bool toggle)
+    {
+        if (toggle == rainActive)
+        {
+            return;
+        }
+
+        if (toggle)
+        {
+            ActivateRain();
+        }
+        else
+        {
+            DeactivateRain();
+        }
+    }
+
+    public static void ToggleBloodRainEvent(bool toggle)
+    {
+        OnToggleBloodRain?.Invoke(null, toggle);
     }
 }
