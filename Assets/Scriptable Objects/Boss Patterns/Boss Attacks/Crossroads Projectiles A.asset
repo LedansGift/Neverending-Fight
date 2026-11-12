@@ -15,6 +15,9 @@ MonoBehaviour:
   animationTrigger: 
   attackName: DefaultName
   failableAttack: 0
+  attackFX:
+  - fxKey: CROSS_PROJ_A
+    fxDelay: 0
   empoweredAttack: {fileID: 0}
   waitForSpawnsToFinish: 1
   worldPositionPattern: 0

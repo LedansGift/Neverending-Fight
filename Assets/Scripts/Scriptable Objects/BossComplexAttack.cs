@@ -29,6 +29,8 @@ public class BossComplexAttack : BossAttackNode
         nodeIndex = 0;
         attackManager = attacker;
 
+        PlayFX(attacker.transform);
+
         TryPerformNode(attacker, damageMultiplier);
     }
 

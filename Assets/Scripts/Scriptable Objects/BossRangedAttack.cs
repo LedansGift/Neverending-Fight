@@ -41,6 +41,8 @@ public class BossRangedAttack : BossAttackNode
         Action patternFinish = null;
         Transform spawnTransform = attacker.transform;
 
+        PlayFX(attacker.transform);
+
         if (waitForSpawnsToFinish)
         {
             patternFinish = FinishProjectilePattern;

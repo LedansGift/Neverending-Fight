@@ -55,6 +55,8 @@ public class BossMeleeAttack : BossAttackNode
     {
         this.OnAttackFinished = OnAttackFinished;
 
+        PlayFX(attacker.transform);
+
         BossMeleeAttacker meleeAttacker = attacker.GetBossMeleeAttacker();
         meleeAttacker.PerformMeleeAttacks(attacks, damageMultiplier, FinishAttack);
     }

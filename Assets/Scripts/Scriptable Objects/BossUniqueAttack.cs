@@ -16,6 +16,8 @@ public class BossUniqueAttack : BossAttackNode
         this.attacker = attacker;
         this.OnAttackFinished = OnAttackFinished;
 
+        PlayFX(attacker.transform);
+
         StateDictionary stateDictionary = attacker.GetStateDictionary();
         BossStateMachine stateMachine = stateDictionary.GetStateMachine() as BossStateMachine;
 

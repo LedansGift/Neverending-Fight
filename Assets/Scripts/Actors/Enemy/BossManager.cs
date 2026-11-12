@@ -94,6 +94,8 @@ public class BossManager : MonoBehaviour
         DeactivateBossForm();
         //ActivateBossForm(BossForm.MAGPIE);
 
+        TopicManager.Instance.AdvancePhase();
+
         tutorialFightManager.InitiateTutorialManager(StartTutorialBossForm);
     }
 
