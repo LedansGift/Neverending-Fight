@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossMagpieUnique
   animationTrigger: 
   attackName: DefaultName
+  failableAttack: 1
+  attackFX:
+  - fxKey: WIND_CHARGE
+    fxDelay: 0
   empoweredAttack: {fileID: 0}
   magpieUniqueAttack: 2

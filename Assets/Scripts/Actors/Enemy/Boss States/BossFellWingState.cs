@@ -10,8 +10,14 @@ public class BossFellWingState : BossState
     private float telegraphDuration = 3f;
     private float timeBetweenSlashes = 1.5f;
 
+    private const string chargeKey = "CB_FELL_CHARGE";
+    private const string telegraphKey = "FELL_TELE";
+    private const string attackKey = "FELL_WING";
+
     private MeleeAttack leftSlash;
     private MeleeAttack rightSlash;
+
+    private ChangebringerFellWingPositioner wingPositioner;
 
     private List<int> wingStrikeDirection = new List<int>();
 
@@ -35,6 +41,8 @@ public class BossFellWingState : BossState
         rightSlash.attackPosition = new Vector3(50f, 0f, 0f);
 
         attackNumber = 1 + attackVersion;
+
+        wingPositioner = stateMachine?.GetComponent<ChangebringerFellWingPositioner>();
     }
 
     public override void Enter()
@@ -59,15 +67,37 @@ public class BossFellWingState : BossState
 
     public override void Tick(float deltaTime) { }
 
+    private void PlayTelegraph(int directionTelegraph)
+    {
+        Transform telegraphTransform = bossStateMachine.transform;
+
+        if (wingPositioner)
+        {
+            if (directionTelegraph <= 0)
+            {
+                telegraphTransform = wingPositioner?.GetLeftWingTransform();
+            }
+            else
+            {
+                telegraphTransform = wingPositioner?.GetRightWingTransform();
+            }
+        }
+
+        VFXManager.Instance.TryPlayVFX(telegraphKey, telegraphTransform);
+    }
+
     private IEnumerator PerformTelegraphs(int attackNumber)
     {
         float timeBetweenTelegraphs = telegraphDuration / (attackNumber + 1);
+
+        VFXManager.Instance.TryPlayVFX(chargeKey, bossStateMachine.transform);
 
         yield return new WaitForSeconds(timeBetweenTelegraphs);
 
         for (int i = 0; i < attackNumber; i++)
         {
             Debug.Log("Telegraph: " + wingStrikeDirection[i]);
+            PlayTelegraph(wingStrikeDirection[i]);
             yield return new WaitForSeconds(timeBetweenTelegraphs);
         }
 
@@ -76,22 +106,38 @@ public class BossFellWingState : BossState
 
     private IEnumerator PerformAttacks()
     {
+        VFXManager.Instance.StopVFX(chargeKey);
+
         for (int i = 0; i < wingStrikeDirection.Count; i++)
         {
             MeleeAttack activeAttack;
+            Transform attackTransform;
 
             if (wingStrikeDirection[i] <= 0)
             {
                 activeAttack = leftSlash;
+                attackTransform = wingPositioner?.GetLeftAttackTransform();
             }
             else
             {
                 activeAttack = rightSlash;
+                attackTransform = wingPositioner?.GetRightAttackTransform();
             }
 
             MeleeAttack[] attackHolder = { activeAttack };
 
+            if (attackTransform == null)
+            {
+                attackTransform = bossStateMachine.transform;
+            }
+
             bossStateMachine.GetMeleeAttacker().PerformMeleeAttacks(attackHolder, damageMult, null);
+
+            VFXManager.Instance.TryPlayVFX(
+                attackKey,
+                attackTransform,
+                activeAttack.zoneWarningTime
+            );
 
             yield return new WaitForSeconds(timeBetweenSlashes);
         }

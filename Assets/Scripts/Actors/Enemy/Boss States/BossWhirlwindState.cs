@@ -12,6 +12,8 @@ public class BossWhirlwindState : BossState
     private float castDuration = 6f;
     private float attackPreHitDelay = 0.5f;
     private float attackPostHitDelay = 2f;
+    private const string windChargeKey = "WIND_CHARGE";
+    private const string whirlwindAttackKey = "WHIRLWIND";
 
     private MeleeAttack whirlwindAttack;
     private DamageZone whirlwindDamageZone;
@@ -73,12 +75,14 @@ public class BossWhirlwindState : BossState
     private IEnumerator PerformAttack()
     {
         whirlwindDamageZone?.DeactivateZone();
+        VFXManager.Instance.StopVFX(windChargeKey);
 
         BossCastBarUI.CancelCast();
 
         yield return new WaitForSeconds(attackPreHitDelay);
 
         bossStateMachine.GetMeleeAttacker().PerformAttackUntelegraphed(whirlwindAttack, damageMult);
+        VFXManager.Instance.TryPlayVFX(whirlwindAttackKey, bossStateMachine.transform);
 
         yield return new WaitForSeconds(attackPostHitDelay);
 

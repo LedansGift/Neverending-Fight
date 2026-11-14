@@ -67,6 +67,8 @@ public class BossMeleeAttack : BossAttackNode
         float damageMultiplier = 1f
     )
     {
+        PlayFX(attacker.transform);
+
         BossMeleeAttacker meleeAttacker = attacker.GetBossMeleeAttacker();
         meleeAttacker.PerformMeleeAttacks(attacks, damageMultiplier, OnAttackFinished);
     }

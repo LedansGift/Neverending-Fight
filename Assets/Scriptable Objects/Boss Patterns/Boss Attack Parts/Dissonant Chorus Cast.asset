@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossCastNode
   animationTrigger: 
   attackName: DefaultName
-  empoweredAttack: {fileID: 0}
-  castTime: 9
+  castTime: 10
   castName: Dissonant Chorus

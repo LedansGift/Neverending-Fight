@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossComplexAttack
   animationTrigger: 
   attackName: Inescapable Pinions
+  failableAttack: 1
+  attackFX:
+  - fxKey: CB_DASH
+    fxDelay: 1.5
+  - fxKey: PINION_FIRE
+    fxDelay: 2.5
   empoweredAttack: {fileID: 0}
   attackNodes:
   - {fileID: 11400000, guid: 855cbd8861baaaa4ab8b21c404551494, type: 2}

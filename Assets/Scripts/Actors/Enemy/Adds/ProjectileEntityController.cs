@@ -8,6 +8,9 @@ public class ProjectileEntityController : MonoBehaviour
 
     [SerializeField]
     protected float actionStartDelay = 4f;
+
+    [SerializeField]
+    protected ParticleSystem entitySpawnVFX;
     protected Projectile projectile;
 
     private static int projectileEntitiesActive = 0;
@@ -36,6 +39,11 @@ public class ProjectileEntityController : MonoBehaviour
     {
         if (toggle)
         {
+            if (entitySpawnVFX)
+            {
+                entitySpawnVFX.Play();
+            }
+
             StartCoroutine(StartEntityAction());
         }
         else

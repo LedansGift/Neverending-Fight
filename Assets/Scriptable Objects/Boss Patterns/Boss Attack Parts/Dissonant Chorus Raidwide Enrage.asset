@@ -14,12 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossMeleeAttack
   animationTrigger: 
   attackName: DefaultName
+  failableAttack: 1
+  attackFX:
+  - fxKey: CB_HCHARGE
+    fxDelay: 0
+  - fxKey: DISS_CHORUS
+    fxDelay: 10
   empoweredAttack: {fileID: 0}
   attacks:
   - attackDamage: 100
     damageZoneType: 3
     damageZoneArea: {x: 0, y: 0}
-    zoneWarningTime: 5
+    zoneWarningTime: 10
     attackPosition: {x: 0, y: 0, z: 0}
     attackYRotation: 0
     relativePosition: 0

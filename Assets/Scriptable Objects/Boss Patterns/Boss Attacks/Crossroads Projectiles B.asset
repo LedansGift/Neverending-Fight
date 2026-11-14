@@ -15,6 +15,9 @@ MonoBehaviour:
   animationTrigger: 
   attackName: DefaultName
   failableAttack: 0
+  attackFX:
+  - fxKey: CB_LCHANNEL
+    fxDelay: 0
   empoweredAttack: {fileID: 0}
   waitForSpawnsToFinish: 1
   worldPositionPattern: 0

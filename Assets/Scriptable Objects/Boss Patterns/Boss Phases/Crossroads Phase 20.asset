@@ -19,9 +19,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 18f99ecf8e46567409ca5627791c267f, type: 2}
   - {fileID: 11400000, guid: 94d40ed16fa4cf3469784ea01713ee90, type: 2}
   - {fileID: 11400000, guid: f58a41ec7b6b2d14a978e55a81ad8c24, type: 2}
-  - {fileID: 11400000, guid: 1587644dfb5d7d34588fe03cef8dcade, type: 2}
-  - {fileID: 11400000, guid: 7daddd9c9502ee94ca3aea3cf5ca7c84, type: 2}
   - {fileID: 11400000, guid: 3144920819a2ed248b7d835aa4eef6d6, type: 2}
+  endOfPatternPhaseChange: {fileID: 0}
   healthPhaseChange:
     healthPercentageThreshold: 0
     bossPhase: {fileID: 0}
+  battleStatePhaseChange:
+    battleStatePrefab: {fileID: 0}
+  bloodRainStart: 0

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProjectileRotator : ProjectileMover
 {
-    private float rotationSpeedModifier = 10f;
+    private float rotatorModifier = 10f;
 
     protected override void MoveProjectile()
     {
@@ -12,7 +12,7 @@ public class ProjectileRotator : ProjectileMover
             projectileRb.rotation.eulerAngles
                 + transform.up
                     * resolvedSpeed
-                    * rotationSpeedModifier
+                    * rotatorModifier
                     * Time.fixedDeltaTime
                     * Time.timeScale
         );

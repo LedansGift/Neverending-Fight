@@ -7,6 +7,9 @@ public class BossGuardState : BossState
     private float guardDamageThreshold = 25;
     private float damagePoolDecayRate = 4f;
 
+    private const string shieldKey = "GUARD_SHIELD";
+    private const string guardBreakKey = "GUARD_BREAK";
+
     private BossHealth bossHealth;
 
     //Guard visual that provides feedback for attacks being guarded against + showing meter of guard break
@@ -60,6 +63,10 @@ public class BossGuardState : BossState
     private void BreakGuardStance()
     {
         //cleanup
+
+        VFXManager.Instance.StopVFX(shieldKey);
+        VFXManager.Instance.TryPlayVFX(guardBreakKey, bossStateMachine.transform);
+
         stateMachine.SwitchState(null);
     }
 }

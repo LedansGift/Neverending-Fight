@@ -15,5 +15,8 @@ MonoBehaviour:
   animationTrigger: 
   attackName: DefaultName
   failableAttack: 0
+  attackFX:
+  - fxKey: GUARD_SHIELD
+    fxDelay: 0
   empoweredAttack: {fileID: 0}
   magpieUniqueAttack: 7

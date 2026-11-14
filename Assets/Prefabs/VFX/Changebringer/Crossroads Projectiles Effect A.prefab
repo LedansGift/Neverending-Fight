@@ -4948,6 +4948,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1274356709170513831, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274356709170513831, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 6.5
       objectReference: {fileID: 0}
@@ -4978,6 +4982,18 @@ PrefabInstance:
     - target: {fileID: 1369457177632973364, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
       propertyPath: ColorModule.enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369457177632973364, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369457177632973364, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369457177632973364, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
+      propertyPath: InitialModule.startSizeZ.scalar
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1369457177632973364, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -5060,6 +5076,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8223445283077218856, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223445283077218856, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 6.5
       objectReference: {fileID: 0}
@@ -5089,15 +5109,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9069432574075158723, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9069432574075158723, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9069432574075158723, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069432574075158723, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069432574075158723, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 6.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9069432574075158723, guid: 11fb55a7833af8346b17191f3167dc07, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b

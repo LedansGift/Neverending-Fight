@@ -69,6 +69,17 @@ public class VFXManager : MonoBehaviour
         }
     }
 
+    public void StopVFX(string vfxKey)
+    {
+        if (!vfxDictionary.TryGetValue(vfxKey, out VFXPlayer fXPlayer))
+        {
+            Debug.Log("No VFX found with key: " + vfxKey);
+            return;
+        }
+
+        fXPlayer.StopVFX();
+    }
+
     private void DeactivateAllVFX()
     {
         StopAllCoroutines();

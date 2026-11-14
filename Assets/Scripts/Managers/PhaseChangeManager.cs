@@ -6,7 +6,7 @@ using UnityEngine;
 public class PhaseChangeManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject bloodEffect;
+    private ParticleSystem bloodEffect;
 
     [SerializeField]
     private SFXObject bloodSFX;
@@ -21,7 +21,6 @@ public class PhaseChangeManager : MonoBehaviour
 
     private void Awake()
     {
-        bloodEffect.SetActive(false);
         bossCamera.gameObject.SetActive(false);
     }
 
@@ -56,7 +55,7 @@ public class PhaseChangeManager : MonoBehaviour
 
         formManager.PlayBossDamagedAnimation();
 
-        bloodEffect.SetActive(true);
+        bloodEffect.Play();
         bloodSFX?.PlaySFX(transform.position);
 
         TimeManager.Instance.RestartTimeAfterGradualPause();
