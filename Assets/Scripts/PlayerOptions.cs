@@ -8,6 +8,7 @@ public class PlayerOptions
     private const string VOICE_VOLUME = "VoiceVolume";
     private const string VSYNC = "VSync";
     private const string FULLSCREEN = "Fullscreen";
+    private const string TUTORIAL_COMPLETED = "TutorialComp";
 
     private static float MASTER_VOLUME_DEF = 0.5f;
     private static float MUSIC_VOLUME_DEF = 1f;
@@ -16,6 +17,7 @@ public class PlayerOptions
 
     private static bool VSYNC_DEF = true;
     private static bool FULLSCREEN_DEF = true;
+    private static bool TUTORIAL_DEF = false;
 
     public static void SetMasterVolume(float newVolume)
     {
@@ -65,6 +67,17 @@ public class PlayerOptions
         }
 
         PlayerPrefs.SetInt(FULLSCREEN, fullScreen);
+    }
+
+    public static void SetTutorialCompleted(bool toggle)
+    {
+        int tutorialComp = 0;
+        if (toggle)
+        {
+            tutorialComp = 1;
+        }
+
+        PlayerPrefs.SetInt(TUTORIAL_COMPLETED, tutorialComp);
     }
 
     public static float GetMasterVolume()
@@ -148,6 +161,24 @@ public class PlayerOptions
             }
 
             return fullScreen;
+        }
+    }
+
+    public static bool GetTutorialCompleted()
+    {
+        if (!PlayerPrefs.HasKey(TUTORIAL_COMPLETED))
+        {
+            return TUTORIAL_DEF;
+        }
+        else
+        {
+            bool tutorialCompleted = false;
+            if (PlayerPrefs.GetInt(TUTORIAL_COMPLETED) == 1)
+            {
+                tutorialCompleted = true;
+            }
+
+            return tutorialCompleted;
         }
     }
 }

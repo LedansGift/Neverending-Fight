@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerTimepiece : MonoBehaviour
 {
-    [SerializeField]
-    private bool firstTimeRun = false;
+    // [SerializeField]
+    // private bool firstTimeRun = false;
 
     private bool timepieceActive;
     private int playerRetries = 0;
@@ -20,7 +20,7 @@ public class PlayerTimepiece : MonoBehaviour
     private void Start()
     {
         // If first time, do not setup player retries
-        if (firstTimeRun)
+        if (!PlayerOptions.GetTutorialCompleted())
         {
             OnFirstTimeTimepiece?.Invoke();
             return;

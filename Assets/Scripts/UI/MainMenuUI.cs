@@ -33,6 +33,11 @@ public class MainMenuUI : MonoBehaviour
 
         InputManager.Instance.TogglePlayerControlActive(true);
 
+        TextCutsceneUI.StartTextCutsceneEvent(0, PlaySceneTransitionCutscene);
+    }
+
+    private void PlaySceneTransitionCutscene()
+    {
         CutsceneManager.Instance.StartCutscene(introCutsceneDirector, OnCutsceneFinished);
     }
 

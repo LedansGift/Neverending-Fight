@@ -8,10 +8,19 @@ public class BattleManager : MonoBehaviour
     public static BattleManager Instance { get; private set; }
 
     [SerializeField]
+    private bool firstTimeRunOverride = false;
+
+    [SerializeField]
+    private bool tutorialCompleteOverride = false;
+
+    [SerializeField]
     private PlayableDirector bossIntroCutscene;
 
     [SerializeField]
     private PlayableDirector firstTimeTimepieceCutscene;
+
+    [SerializeField]
+    private GameObject timepieceCutsceneTrigger;
 
     public static EventHandler<bool> OnPlayerToggle;
 
@@ -23,11 +32,16 @@ public class BattleManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        if (firstTimeRunOverride)
+        {
+            PlayerOptions.SetTutorialCompleted(tutorialCompleteOverride);
+        }
     }
 
     private void Start()
     {
-        //if not first time doing gameplay level
+        timepieceCutsceneTrigger.SetActive(!PlayerOptions.GetTutorialCompleted());
 
         StartCoroutine(SceneStartPlayerEnable());
     }
@@ -41,11 +55,26 @@ public class BattleManager : MonoBehaviour
     private IEnumerator SceneStartPlayerEnable()
     {
         yield return new WaitForSeconds(0.5f);
+
+        if (PlayerOptions.GetTutorialCompleted())
+        {
+            TogglePlayer(true);
+        }
+        else
+        {
+            TextCutsceneUI.StartTextCutsceneEvent(0, TextCutsceneEnd);
+        }
+    }
+
+    private void TextCutsceneEnd()
+    {
         TogglePlayer(true);
     }
 
     private void EnableWeakenedPlayer()
     {
+        //Set player health to be critically low
+        //Enable timepiece visual
         TogglePlayer(true);
     }
 
@@ -58,7 +87,8 @@ public class BattleManager : MonoBehaviour
     {
         TogglePlayer(false);
 
-        CutsceneManager.Instance.StartCutscene(firstTimeTimepieceCutscene, EnableWeakenedPlayer);
+        //CutsceneManager.Instance.StartCutscene(firstTimeTimepieceCutscene, EnableWeakenedPlayer);
+        TextCutsceneUI.StartTextCutsceneEvent(1, EnableWeakenedPlayer);
     }
 
     public void PlayBossIntroCutscene()
