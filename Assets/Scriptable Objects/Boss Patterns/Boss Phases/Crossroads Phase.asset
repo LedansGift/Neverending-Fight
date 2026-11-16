@@ -18,8 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 94d40ed16fa4cf3469784ea01713ee90, type: 2}
   - {fileID: 11400000, guid: 10652e3baf43cf74ba8f2548cd25a88d, type: 2}
   - {fileID: 11400000, guid: 24da75ecf3a045142bde95bc03b76ed9, type: 2}
-  - {fileID: 11400000, guid: f58a41ec7b6b2d14a978e55a81ad8c24, type: 2}
-  - {fileID: 11400000, guid: 3144920819a2ed248b7d835aa4eef6d6, type: 2}
+  - {fileID: 11400000, guid: 00af5162fd3d2204885654302d528e84, type: 2}
   endOfPatternPhaseChange: {fileID: 0}
   healthPhaseChange:
     healthPercentageThreshold: 80

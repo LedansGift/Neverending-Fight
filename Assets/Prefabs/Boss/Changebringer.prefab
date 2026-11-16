@@ -240,6 +240,7 @@ MonoBehaviour:
   animator: {fileID: 6595367456897438995}
   meleeAttacker: {fileID: 628831648535119604}
   mover: {fileID: 6576801874142741153}
+  health: {fileID: 241299289315752863}
 --- !u!114 &8761823577968525310
 MonoBehaviour:
   m_ObjectHideFlags: 0

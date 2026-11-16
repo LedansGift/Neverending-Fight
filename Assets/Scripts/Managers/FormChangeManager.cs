@@ -38,13 +38,7 @@ public class FormChangeManager : MonoBehaviour
             //Make screen go black
             //Do next form setup stuff (placing player in default position)
 
-            SetPlayerDefaultPosition(playerStartTransform);
-
-            formChangeCutscenes[cutsceneIndex].InitialiseCutsceneHandler(
-                activeFormChange,
-                arenaManager
-            );
-            StartFormChangeCutscene(cutsceneIndex);
+            StartCoroutine(FormChangeSetup(cutsceneIndex, playerStartTransform));
 
             //Fade screen back to visible
         }
@@ -52,6 +46,23 @@ public class FormChangeManager : MonoBehaviour
         {
             StartCoroutine(FormChange(newForm));
         }
+    }
+
+    private IEnumerator FormChangeSetup(int cutsceneIndex, Transform playerStartTransform)
+    {
+        LoadingScreenUI.ToggleLoadingScreen(true);
+
+        yield return new WaitForSeconds(2.5f);
+
+        SetPlayerDefaultPosition(playerStartTransform);
+
+        formChangeCutscenes[cutsceneIndex].InitialiseCutsceneHandler(
+            activeFormChange,
+            arenaManager
+        );
+
+        LoadingScreenUI.ToggleLoadingScreen(false);
+        StartFormChangeCutscene(cutsceneIndex);
     }
 
     private void SetPlayerDefaultPosition(Transform playerStartTransform)

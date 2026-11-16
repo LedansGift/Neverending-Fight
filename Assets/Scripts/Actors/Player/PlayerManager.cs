@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         BattleManager.OnPlayerToggle += TogglePlayer;
+        BattleManager.OnWeakenPlayer += WeakenPlayer;
         PlayerGlaive.OnGlaiveSpecial += TryToggleCollider;
         RestartManager.OnResetPhase += ResetPlayer;
         BossFormManager.OnPhaseFinished += HandlePlayerFinishPhase;
@@ -36,6 +37,7 @@ public class PlayerManager : MonoBehaviour
     private void OnDisable()
     {
         BattleManager.OnPlayerToggle -= TogglePlayer;
+        BattleManager.OnWeakenPlayer -= WeakenPlayer;
         PlayerGlaive.OnGlaiveSpecial -= TryToggleCollider;
         RestartManager.OnResetPhase -= ResetPlayer;
         BossFormManager.OnPhaseFinished -= HandlePlayerFinishPhase;
@@ -64,6 +66,11 @@ public class PlayerManager : MonoBehaviour
     {
         playerMovement.SetMouseTarget(targetTransform);
         playerAttacker.SetMouseTarget(targetTransform);
+    }
+
+    public void WeakenPlayer()
+    {
+        playerHealth.SetWeakenedHealth();
     }
 
     private void HandlePlayerDeath()

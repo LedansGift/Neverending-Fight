@@ -12,7 +12,8 @@ public enum MagpieUniqueAttacks
     GuardStance,
     DiffShieldOn,
     DiffShieldOff,
-    TutorialEnd
+    TutorialEnd,
+    DissonantChorus
 }
 
 public class MagpieStateDictionary : StateDictionary
@@ -68,6 +69,11 @@ public class MagpieStateDictionary : StateDictionary
         stateDictionary.Add(
             (int)MagpieUniqueAttacks.TutorialEnd,
             new MagpieTutorialEndState(stateMachine as BossStateMachine)
+        );
+
+        stateDictionary.Add(
+            (int)MagpieUniqueAttacks.DissonantChorus,
+            new BossDissonantChorusState(stateMachine as BossStateMachine)
         );
     }
 }

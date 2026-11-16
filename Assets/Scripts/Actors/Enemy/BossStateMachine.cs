@@ -11,6 +11,9 @@ public class BossStateMachine : StateMachine
     [SerializeField]
     protected BossMover mover;
 
+    [SerializeField]
+    protected BossHealth health;
+
     public Animator GetAnimator()
     {
         return animator;
@@ -24,5 +27,10 @@ public class BossStateMachine : StateMachine
     public BossMover GetMover()
     {
         return mover;
+    }
+
+    public BossHealth GetBossHealth()
+    {
+        return health;
     }
 }

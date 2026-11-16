@@ -274,6 +274,8 @@ public class PlayerMovement : MonoBehaviour
 
         playerRB.position = newTransform.position;
         playerRB.rotation = newTransform.rotation;
+
+        //Debug.Log("Player position set: " + newTransform.position);
     }
 
     public Vector3 GetPlayerLookDirection()

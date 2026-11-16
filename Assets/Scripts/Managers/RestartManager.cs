@@ -91,14 +91,14 @@ public class RestartManager : MonoBehaviour
 
     private void ResetLevel()
     {
-        OnStartLevelResetVisual?.Invoke();
-
         if (BossManager.Instance.GetActiveBossForm() == BossForm.CROSSROADS)
         {
             BossManager.Instance.ActivateTutorialTransition();
 
             return;
         }
+
+        OnStartLevelResetVisual?.Invoke();
 
         StartCoroutine(DelayedLevelReset());
     }

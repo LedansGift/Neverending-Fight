@@ -22,6 +22,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private GameObject timepieceCutsceneTrigger;
 
+    public static Action OnWeakenPlayer;
+
     public static EventHandler<bool> OnPlayerToggle;
 
     private void Awake()
@@ -74,6 +76,7 @@ public class BattleManager : MonoBehaviour
     private void EnableWeakenedPlayer()
     {
         //Set player health to be critically low
+        OnWeakenPlayer?.Invoke();
         //Enable timepiece visual
         TogglePlayer(true);
     }

@@ -74,10 +74,7 @@ public class BossCombatManager : MonoBehaviour
 
             return;
         }
-        else if (
-            (activeHealthPhaseChange != null)
-            && (bossHealth.GetHealthPercentage() <= activeHealthPhaseChange.GetHealthThreshold())
-        )
+        else if (GetIsHealthThresholdPhaseChangeAvailable())
         {
             StopAllCoroutines();
             //activeHealthPhaseChange.GetNewPhase().InitialiseBossPhase(bossFormManager);
@@ -111,5 +108,15 @@ public class BossCombatManager : MonoBehaviour
     public void SetFormManager(BossFormManager bossFormManager)
     {
         this.bossFormManager = bossFormManager;
+    }
+
+    public bool GetIsHealthThresholdPhaseChangeAvailable()
+    {
+        if (activeHealthPhaseChange == null)
+        {
+            return false;
+        }
+
+        return bossHealth.GetHealthPercentage() <= activeHealthPhaseChange.GetHealthThreshold();
     }
 }

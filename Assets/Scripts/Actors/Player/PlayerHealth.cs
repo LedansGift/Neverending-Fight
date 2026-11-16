@@ -6,11 +6,13 @@ using UnityEngine;
 public class PlayerHealth : Health
 {
     private bool isDead = false;
+    private bool playerWeakened = false;
     private bool attackFailTracker = false;
     private float iFrameDuration = 1f;
 
     private float impulseStrength = 1f;
     private float deathImpulseStrength = 3f;
+    private const int WEAKENED_HEALTH_AMOUNT = 25;
 
     private PlayerStats playerStats;
     private PlayerMovement playerMovement;
@@ -71,6 +73,15 @@ public class PlayerHealth : Health
         }
     }
 
+    public override void HealToFull()
+    {
+        if (playerWeakened)
+        {
+            return;
+        }
+        base.HealToFull();
+    }
+
     public override void TakeDamage(int damage, bool arenaWideDamage = false)
     {
         if (isDead || (isInvincible && !arenaWideDamage))
@@ -126,6 +137,16 @@ public class PlayerHealth : Health
         playerMovement.ApplyKnockback(knockbackDirection, knockbackStrength);
     }
 
+    protected override void Die()
+    {
+        if (playerWeakened)
+        {
+            playerWeakened = false;
+        }
+
+        base.Die();
+    }
+
     public void Heal(int healAmount)
     {
         if (isDead)
@@ -152,6 +173,13 @@ public class PlayerHealth : Health
         }
 
         SetInvincibility(false);
+    }
+
+    public void SetWeakenedHealth()
+    {
+        health = WEAKENED_HEALTH_AMOUNT;
+        playerWeakened = true;
+        OnChangePlayerHealth?.Invoke(this, health);
     }
 
     public bool GetAttackFailStatus()
