@@ -323,5 +323,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2961081284288059993, guid: 15499dc61a3a8074d8705e1627b2241b, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 4786113278553570142}
   m_SourcePrefab: {fileID: 100100000, guid: 15499dc61a3a8074d8705e1627b2241b, type: 3}
+--- !u!198 &140263446553628013 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1227651307656081654, guid: 15499dc61a3a8074d8705e1627b2241b, type: 3}
+  m_PrefabInstance: {fileID: 1223622853974261147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4173976203174307778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2961081284288059993, guid: 15499dc61a3a8074d8705e1627b2241b, type: 3}
+  m_PrefabInstance: {fileID: 1223622853974261147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4786113278553570142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4173976203174307778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
+  vfxKey: ROUND_SLASH
+  particleVFX: {fileID: 140263446553628013}

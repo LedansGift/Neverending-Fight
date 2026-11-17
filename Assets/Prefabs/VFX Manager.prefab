@@ -249,35 +249,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1032873855750897033, guid: 59511f4e63b995e46a64189f03408bd9, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 7651263035478910896}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59511f4e63b995e46a64189f03408bd9, type: 3}
---- !u!1 &1968204764301779656 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1032873855750897033, guid: 59511f4e63b995e46a64189f03408bd9, type: 3}
-  m_PrefabInstance: {fileID: 1514887890983821121}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7651263035478910896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968204764301779656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: GUARD_BREAK
-  particleVFX: {fileID: 3459242009943745683}
---- !u!198 &3459242009943745683 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2667332492250299346, guid: 59511f4e63b995e46a64189f03408bd9, type: 3}
-  m_PrefabInstance: {fileID: 1514887890983821121}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8176300509755453925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7241220289574481572, guid: 59511f4e63b995e46a64189f03408bd9, type: 3}
@@ -293,7 +266,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 608279083455729607, guid: 1eb22939c06e15846b68df393e66789e, type: 3}
       propertyPath: m_Name
-      value: Wind Charge
+      value: Wind Charge VFX
       objectReference: {fileID: 0}
     - target: {fileID: 1380490988811543738, guid: 1eb22939c06e15846b68df393e66789e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -378,38 +351,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 608279083455729607, guid: 1eb22939c06e15846b68df393e66789e, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 7726856879883994453}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eb22939c06e15846b68df393e66789e, type: 3}
---- !u!1 &1256748950948915368 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 608279083455729607, guid: 1eb22939c06e15846b68df393e66789e, type: 3}
-  m_PrefabInstance: {fileID: 1801954532658931567}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7726856879883994453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256748950948915368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: WIND_CHARGE
-  particleVFX: {fileID: 8848207789113497784}
 --- !u!4 &4302145916310609063 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2501079936284834760, guid: 1eb22939c06e15846b68df393e66789e, type: 3}
-  m_PrefabInstance: {fileID: 1801954532658931567}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &8848207789113497784 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7190825850093060055, guid: 1eb22939c06e15846b68df393e66789e, type: 3}
   m_PrefabInstance: {fileID: 1801954532658931567}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1936394998145424047
@@ -601,40 +547,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6827283899063151112, guid: 30a3882055b4e974a8fe362754705e35, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 6941867552837091866}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30a3882055b4e974a8fe362754705e35, type: 3}
 --- !u!4 &3152287998505164295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 891748628220304252, guid: 30a3882055b4e974a8fe362754705e35, type: 3}
   m_PrefabInstance: {fileID: 2873030054083020155}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &7733826056187822523 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5515533290701817024, guid: 30a3882055b4e974a8fe362754705e35, type: 3}
-  m_PrefabInstance: {fileID: 2873030054083020155}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8746112608492646259 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6827283899063151112, guid: 30a3882055b4e974a8fe362754705e35, type: 3}
-  m_PrefabInstance: {fileID: 2873030054083020155}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6941867552837091866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8746112608492646259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: DISS_CHORUS
-  particleVFX: {fileID: 7733826056187822523}
 --- !u!1001 &2900626085439807775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -746,38 +665,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3792993092425730227, guid: cb3ced134ef4d9d4e9b898c8bb903600, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 7930709380657117303}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb3ced134ef4d9d4e9b898c8bb903600, type: 3}
---- !u!1 &2081352496484510124 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3792993092425730227, guid: cb3ced134ef4d9d4e9b898c8bb903600, type: 3}
-  m_PrefabInstance: {fileID: 2900626085439807775}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7930709380657117303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2081352496484510124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: GUARD_SHIELD
-  particleVFX: {fileID: 4440134167618725181}
 --- !u!4 &4299502379084555618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1435520921616450685, guid: cb3ced134ef4d9d4e9b898c8bb903600, type: 3}
-  m_PrefabInstance: {fileID: 2900626085439807775}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4440134167618725181 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1576152728921572386, guid: cb3ced134ef4d9d4e9b898c8bb903600, type: 3}
   m_PrefabInstance: {fileID: 2900626085439807775}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3905380332866481631
@@ -863,40 +755,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6130690872670349763, guid: d9eddd533ca913e43a76b5a8b54445e7, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 5803466770876392272}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9eddd533ca913e43a76b5a8b54445e7, type: 3}
 --- !u!4 &2377375733758833805 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1642846408935053650, guid: d9eddd533ca913e43a76b5a8b54445e7, type: 3}
   m_PrefabInstance: {fileID: 3905380332866481631}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &3849057293052983832 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 240990475891316679, guid: d9eddd533ca913e43a76b5a8b54445e7, type: 3}
-  m_PrefabInstance: {fileID: 3905380332866481631}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7144437876966769692 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6130690872670349763, guid: d9eddd533ca913e43a76b5a8b54445e7, type: 3}
-  m_PrefabInstance: {fileID: 3905380332866481631}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5803466770876392272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7144437876966769692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: WHIRLWIND
-  particleVFX: {fileID: 3849057293052983832}
 --- !u!1001 &4158292209400654571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -968,40 +833,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2236473858041884135, guid: 43a56ce2eef96ae4b872b7f0c84e5012, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 87641661919578296}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43a56ce2eef96ae4b872b7f0c84e5012, type: 3}
---- !u!198 &335466508005034422 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4400836768387556189, guid: 43a56ce2eef96ae4b872b7f0c84e5012, type: 3}
-  m_PrefabInstance: {fileID: 4158292209400654571}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1723589815854042498 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3341199738315712361, guid: 43a56ce2eef96ae4b872b7f0c84e5012, type: 3}
   m_PrefabInstance: {fileID: 4158292209400654571}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2791305587182339852 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2236473858041884135, guid: 43a56ce2eef96ae4b872b7f0c84e5012, type: 3}
-  m_PrefabInstance: {fileID: 4158292209400654571}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &87641661919578296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2791305587182339852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: FELL_WING
-  particleVFX: {fileID: 335466508005034422}
 --- !u!1001 &4779578561910259196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1101,40 +939,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2866529832610705907, guid: 4ca9a8be5065e4e4b96b2d5961667d42, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1409670228436682343}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ca9a8be5065e4e4b96b2d5961667d42, type: 3}
---- !u!198 &1156092869873744174 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5935530144399885522, guid: 4ca9a8be5065e4e4b96b2d5961667d42, type: 3}
-  m_PrefabInstance: {fileID: 4779578561910259196}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3744279324348245023 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8188145924470888931, guid: 4ca9a8be5065e4e4b96b2d5961667d42, type: 3}
   m_PrefabInstance: {fileID: 4779578561910259196}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7319348648891485199 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2866529832610705907, guid: 4ca9a8be5065e4e4b96b2d5961667d42, type: 3}
-  m_PrefabInstance: {fileID: 4779578561910259196}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1409670228436682343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7319348648891485199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: PINION_FIRE
-  particleVFX: {fileID: 1156092869873744174}
 --- !u!1001 &5370634370872338945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1214,38 +1025,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2705024671579636235, guid: 4df713a7be1ce904f817756ed99ad49a, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 2292391308759327170}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4df713a7be1ce904f817756ed99ad49a, type: 3}
 --- !u!4 &6300302994882503402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2154831344454355179, guid: 4df713a7be1ce904f817756ed99ad49a, type: 3}
-  m_PrefabInstance: {fileID: 5370634370872338945}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7999094538372474890 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2705024671579636235, guid: 4df713a7be1ce904f817756ed99ad49a, type: 3}
-  m_PrefabInstance: {fileID: 5370634370872338945}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2292391308759327170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7999094538372474890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: FELL_TELE
-  particleVFX: {fileID: 8983867787574410723}
---- !u!198 &8983867787574410723 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3901612227058931682, guid: 4df713a7be1ce904f817756ed99ad49a, type: 3}
   m_PrefabInstance: {fileID: 5370634370872338945}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5398470001616386912
@@ -1415,38 +1199,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6928322646661119399, guid: 747afcfdffdc8fd439cf50844a362abc, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 6468211982154900316}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 747afcfdffdc8fd439cf50844a362abc, type: 3}
 --- !u!4 &614803476059073617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4783684117912835889, guid: 747afcfdffdc8fd439cf50844a362abc, type: 3}
-  m_PrefabInstance: {fileID: 5398470001616386912}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3084243779997517511 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6928322646661119399, guid: 747afcfdffdc8fd439cf50844a362abc, type: 3}
-  m_PrefabInstance: {fileID: 5398470001616386912}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6468211982154900316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3084243779997517511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: CB_LCHANNEL
-  particleVFX: {fileID: 4175833499747303090}
---- !u!198 &4175833499747303090 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8293587263211652562, guid: 747afcfdffdc8fd439cf50844a362abc, type: 3}
   m_PrefabInstance: {fileID: 5398470001616386912}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6204353132693839432
@@ -1544,40 +1301,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4173976203174307778, guid: 223e42db0086a5443bcaba454af3c6bf, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1473234420650173718}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 223e42db0086a5443bcaba454af3c6bf, type: 3}
 --- !u!4 &1264544275083268299 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5158550237670526595, guid: 223e42db0086a5443bcaba454af3c6bf, type: 3}
   m_PrefabInstance: {fileID: 6204353132693839432}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &6334342089685422885 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 140263446553628013, guid: 223e42db0086a5443bcaba454af3c6bf, type: 3}
-  m_PrefabInstance: {fileID: 6204353132693839432}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8067841875084523914 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4173976203174307778, guid: 223e42db0086a5443bcaba454af3c6bf, type: 3}
-  m_PrefabInstance: {fileID: 6204353132693839432}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1473234420650173718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8067841875084523914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: ROUND_SLASH
-  particleVFX: {fileID: 6334342089685422885}
 --- !u!1001 &6699525152885558907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1767,40 +1497,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2557212092725643233, guid: a6a0b1dcb2de18c43b4256d34d58210c, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 74375505664995275}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6a0b1dcb2de18c43b4256d34d58210c, type: 3}
---- !u!198 &3149735979978334249 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6356888555279390088, guid: a6a0b1dcb2de18c43b4256d34d58210c, type: 3}
-  m_PrefabInstance: {fileID: 8326637130093475233}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5131452585849442979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3798993724178720514, guid: a6a0b1dcb2de18c43b4256d34d58210c, type: 3}
   m_PrefabInstance: {fileID: 8326637130093475233}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5833043892621177408 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2557212092725643233, guid: a6a0b1dcb2de18c43b4256d34d58210c, type: 3}
-  m_PrefabInstance: {fileID: 8326637130093475233}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &74375505664995275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5833043892621177408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: CB_HCHARGE
-  particleVFX: {fileID: 3149735979978334249}
 --- !u!1001 &8482484834780411591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1900,40 +1603,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3370491885447274271, guid: a2a22aa1bc84b25408cb9c0b963bebda, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 4027680759152531167}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2a22aa1bc84b25408cb9c0b963bebda, type: 3}
 --- !u!4 &2199326227140850556 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7724311690998138299, guid: a2a22aa1bc84b25408cb9c0b963bebda, type: 3}
   m_PrefabInstance: {fileID: 8482484834780411591}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &4500833957235652660 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5458920891783220979, guid: a2a22aa1bc84b25408cb9c0b963bebda, type: 3}
-  m_PrefabInstance: {fileID: 8482484834780411591}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6589245095442295256 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3370491885447274271, guid: a2a22aa1bc84b25408cb9c0b963bebda, type: 3}
-  m_PrefabInstance: {fileID: 8482484834780411591}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4027680759152531167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6589245095442295256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: CB_DASH
-  particleVFX: {fileID: 4500833957235652660}
 --- !u!1001 &8753568819204541120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2033,35 +1709,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3641618248749890749, guid: 935fa80f6fd5dda4ea2d7afaf375736e, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 5763013440494316906}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 935fa80f6fd5dda4ea2d7afaf375736e, type: 3}
---- !u!198 &2326307597111363181 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6427296484177398957, guid: 935fa80f6fd5dda4ea2d7afaf375736e, type: 3}
-  m_PrefabInstance: {fileID: 8753568819204541120}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5472802594815374973 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3641618248749890749, guid: 935fa80f6fd5dda4ea2d7afaf375736e, type: 3}
-  m_PrefabInstance: {fileID: 8753568819204541120}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5763013440494316906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5472802594815374973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
-  vfxKey: CB_FELL_CHARGE
-  particleVFX: {fileID: 2326307597111363181}
 --- !u!4 &7005305924378067570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1751114006202009778, guid: 935fa80f6fd5dda4ea2d7afaf375736e, type: 3}

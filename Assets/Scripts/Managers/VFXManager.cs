@@ -77,6 +77,8 @@ public class VFXManager : MonoBehaviour
             return;
         }
 
+        Debug.Log("VFX Stopped: " + fXPlayer.name);
+
         fXPlayer.StopVFX();
     }
 

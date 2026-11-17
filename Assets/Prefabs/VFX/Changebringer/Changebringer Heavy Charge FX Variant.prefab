@@ -61,8 +61,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1485160569904157754, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485160569904157754, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485160569904157754, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1769887666219635110, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
       propertyPath: VelocityModule.y.scalar
@@ -193,12 +201,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: feeaa8ecddf205f418168597f9494b3a, type: 2}
     - target: {fileID: 5032382154311758186, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
+      propertyPath: lengthInSec
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032382154311758186, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
       propertyPath: RotationModule.curve.scalar
       value: 0.5235988
       objectReference: {fileID: 0}
     - target: {fileID: 5032382154311758186, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032382154311758186, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 10.1
       objectReference: {fileID: 0}
     - target: {fileID: 6699485816964929608, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -223,5 +239,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4509126066712224515, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 8252305884171623018}
   m_SourcePrefab: {fileID: 100100000, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
+--- !u!1 &2557212092725643233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4509126066712224515, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
+  m_PrefabInstance: {fileID: 2156846667845395682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8252305884171623018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557212092725643233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
+  vfxKey: CB_HCHARGE
+  particleVFX: {fileID: 6356888555279390088}
+  soundEffects: []
+--- !u!198 &6356888555279390088 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5032382154311758186, guid: f5b3ce5ef63afa440b99497e30f8b7bb, type: 3}
+  m_PrefabInstance: {fileID: 2156846667845395682}
+  m_PrefabAsset: {fileID: 0}

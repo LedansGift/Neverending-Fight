@@ -1,3 +1,4 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -6,6 +7,10 @@ public class CameraTarget : MonoBehaviour
     private const float TARGET_POSITION_CLAMP = 1000f;
 
     private InputManager input;
+    private PlayerManager playerManager;
+
+    [SerializeField]
+    private GameObject targetVFX;
 
     private void Start()
     {
@@ -13,11 +18,15 @@ public class CameraTarget : MonoBehaviour
 
         SetPlayerTarget();
         CinemachineCore.CameraUpdatedEvent.AddListener(OnCameraUpdated);
+
+        targetVFX.SetActive(false);
+        playerManager.OnPlayerActive += ToggleTargetVFX;
     }
 
     private void OnDisable()
     {
         CinemachineCore.CameraUpdatedEvent.RemoveListener(OnCameraUpdated);
+        playerManager.OnPlayerActive -= ToggleTargetVFX;
     }
 
     private void SetPlayerTarget()
@@ -30,7 +39,7 @@ public class CameraTarget : MonoBehaviour
             return;
         }
 
-        PlayerManager playerManager = playerTransform.GetComponent<PlayerManager>();
+        playerManager = playerTransform.GetComponent<PlayerManager>();
 
         playerManager.SetMouseTarget(transform);
     }
@@ -65,6 +74,11 @@ public class CameraTarget : MonoBehaviour
         );
 
         transform.position = cameraTargetPosition;
+    }
+
+    private void ToggleTargetVFX(object sender, bool playerActive)
+    {
+        targetVFX.SetActive(playerActive);
     }
 
     private void OnCameraUpdated(CinemachineBrain arg0)

@@ -62,7 +62,8 @@ public class FormChangeManager : MonoBehaviour
         );
 
         LoadingScreenUI.ToggleLoadingScreen(false);
-        StartFormChangeCutscene(cutsceneIndex);
+
+        TextCutsceneUI.StartTextCutsceneEvent(3, StartTutorialFormChangeCutscene);
     }
 
     private void SetPlayerDefaultPosition(Transform playerStartTransform)
@@ -74,6 +75,12 @@ public class FormChangeManager : MonoBehaviour
         {
             playerMovement.SetPlayerTransform(playerStartTransform);
         }
+    }
+
+    private void StartTutorialFormChangeCutscene()
+    {
+        formCutsceneMap.TryGetValue(BossForm.MAGPIE, out int cutsceneIndex);
+        StartFormChangeCutscene(cutsceneIndex);
     }
 
     private void StartFormChangeCutscene(int cutsceneIndex)

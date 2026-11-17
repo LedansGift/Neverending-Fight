@@ -98,6 +98,11 @@ public class BattleManager : MonoBehaviour
     {
         TogglePlayer(false);
 
+        TextCutsceneUI.StartTextCutsceneEvent(4, StartIntroCutscene);
+    }
+
+    private void StartIntroCutscene()
+    {
         CutsceneManager.Instance.StartCutscene(bossIntroCutscene, StartBossFight);
     }
 }

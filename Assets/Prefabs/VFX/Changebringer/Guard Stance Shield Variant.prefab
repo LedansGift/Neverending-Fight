@@ -163,5 +163,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3858634155156561890, guid: d9c5900c23c5b2249883acfe3fb3f973, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 5066147330297944424}
   m_SourcePrefab: {fileID: 100100000, guid: d9c5900c23c5b2249883acfe3fb3f973, type: 3}
+--- !u!198 &1576152728921572386 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1508823251036541811, guid: d9c5900c23c5b2249883acfe3fb3f973, type: 3}
+  m_PrefabInstance: {fileID: 85555537776744273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3792993092425730227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3858634155156561890, guid: d9c5900c23c5b2249883acfe3fb3f973, type: 3}
+  m_PrefabInstance: {fileID: 85555537776744273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5066147330297944424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792993092425730227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
+  vfxKey: GUARD_SHIELD
+  particleVFX: {fileID: 1576152728921572386}

@@ -16,9 +16,13 @@ public class PlayerGroundCheck : MonoBehaviour
     [SerializeField]
     private PlayerHealth playerHealth;
 
+    [SerializeField]
+    private ParticleSystem floatingVFX;
+
     private void Awake()
     {
         safeGroundTransform = new GameObject("LastPlayerSafePosition").transform;
+        floatingVFX.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -50,7 +54,12 @@ public class PlayerGroundCheck : MonoBehaviour
     {
         bool groundBelow = CheckIfGroundBelow();
 
-        this.groundBelow = groundBelow;
+        if (GetIsGroundBelow() != groundBelow)
+        {
+            this.groundBelow = groundBelow;
+
+            ToggleGroundBelowState(groundBelow);
+        }
 
         if (groundBelow)
         {
@@ -60,6 +69,16 @@ public class PlayerGroundCheck : MonoBehaviour
         {
             //Deal damage
             playerHealth.TakeTickDamage(floatingTickDamage);
+        }
+    }
+
+    private void ToggleGroundBelowState(bool toggle)
+    {
+        floatingVFX.gameObject.SetActive(!toggle);
+
+        if (!toggle)
+        {
+            floatingVFX.Play();
         }
     }
 

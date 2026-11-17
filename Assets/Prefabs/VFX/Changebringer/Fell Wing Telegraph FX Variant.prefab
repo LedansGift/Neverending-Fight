@@ -203,5 +203,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4314362079447017768, guid: da565eab0552cc044913a2b9d6a43d10, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 6149777709973343171}
   m_SourcePrefab: {fileID: 100100000, guid: da565eab0552cc044913a2b9d6a43d10, type: 3}
+--- !u!1 &2705024671579636235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4314362079447017768, guid: da565eab0552cc044913a2b9d6a43d10, type: 3}
+  m_PrefabInstance: {fileID: 2185825716752804643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6149777709973343171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2705024671579636235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
+  vfxKey: FELL_TELE
+  particleVFX: {fileID: 3901612227058931682}
+--- !u!198 &3901612227058931682 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2914061293400751297, guid: da565eab0552cc044913a2b9d6a43d10, type: 3}
+  m_PrefabInstance: {fileID: 2185825716752804643}
+  m_PrefabAsset: {fileID: 0}

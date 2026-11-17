@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ButtonPromptsUI : MonoBehaviour
@@ -30,10 +31,19 @@ public class ButtonPromptsUI : MonoBehaviour
     void OnDisable()
     {
         TutorialFightManager.OnToggleButtonPrompts -= ToggleButtonPrompts;
+
+        StopAllCoroutines();
     }
 
     private void ToggleButtonPrompts(object sender, int promptEnable)
     {
+        StartCoroutine(ButtonPromptEnabler(promptEnable));
+    }
+
+    private IEnumerator ButtonPromptEnabler(int promptEnable)
+    {
+        yield return new WaitForSeconds(2f);
+
         switch (promptEnable)
         {
             case 0:

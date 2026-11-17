@@ -102,11 +102,13 @@ public class BossFormManager : MonoBehaviour
         {
             if (phase.GetBloodRainStart())
             {
-                //Play blood rain cutscene through manager, which when finished goes to InitiateNewBossPhase
-                BloodRainManager.ToggleBloodRainEvent(true);
+                //Play blood rain cutscene through manager, which when finished goes to FinishbloodrainCutscene
+                TextCutsceneUI.StartTextCutsceneEvent(2, FinishBloodRainCutscene);
             }
-
-            InitiateNewBossPhase();
+            else
+            {
+                InitiateNewBossPhase();
+            }
         }
         else
         {
@@ -114,6 +116,12 @@ public class BossFormManager : MonoBehaviour
             Debug.Log("Final Phase Finished");
             OnFinalPhaseFinished?.Invoke();
         }
+    }
+
+    private void FinishBloodRainCutscene()
+    {
+        BloodRainManager.ToggleBloodRainEvent(true);
+        InitiateNewBossPhase();
     }
 
     private void InitiateNewBossPhase()

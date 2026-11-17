@@ -6,9 +6,9 @@ public class BloodRainManager : MonoBehaviour
 {
     private bool rainActive = false;
 
-    private int rainHealAmount = 5;
+    private int rainHealAmount = 1;
     private float rainHealTimer = 0f;
-    private float rainHealDuration = 1f;
+    private float rainHealDuration = 0.2f;
     private PlayerHealth playerHealth;
 
     [SerializeField]

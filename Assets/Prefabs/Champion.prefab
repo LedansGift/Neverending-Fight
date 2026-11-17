@@ -25645,6 +25645,7 @@ Transform:
   - {fileID: 2228804065163516597}
   - {fileID: 8567607463991530574}
   - {fileID: 4939831818545569330}
+  - {fileID: 8119476047150769380}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5861330118676957611
@@ -25697,6 +25698,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   playerHealth: {fileID: 9181845291272610949}
+  floatingVFX: {fileID: 1093166398765397967}
 --- !u!114 &4213124399700755139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25728,7 +25730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3579bfbfaedcea4d9db77b823339ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTimepiece
-  firstTimeRun: 0
 --- !u!114 &2681022547810002137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52941,6 +52942,73 @@ Transform:
 Animator:
   m_CorrespondingSourceObject: {fileID: 1388781855229935358, guid: 0f3e49453f84f8243ae770104e3f7c6c, type: 3}
   m_PrefabInstance: {fileID: 7497963215311665715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7989714142993170506
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5132082217607570884}
+    m_Modifications:
+    - target: {fileID: 2183971889325745326, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2183971889325745326, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2183971889325745326, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2183971889325745326, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2183971889325745326, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2183971889325745326, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2183971889325745326, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2183971889325745326, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2183971889325745326, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2183971889325745326, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5401505178581144779, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+      propertyPath: m_Name
+      value: Champion Levitation VFX Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+--- !u!198 &1093166398765397967 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7046620088208209797, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+  m_PrefabInstance: {fileID: 7989714142993170506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8119476047150769380 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2183971889325745326, guid: 6cacbc5e4e9ebaf458411b81f430ca6e, type: 3}
+  m_PrefabInstance: {fileID: 7989714142993170506}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8471692226114155508
 PrefabInstance:

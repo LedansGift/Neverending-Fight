@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2322928036642245633, guid: c7642db7e38e08d4bb591c3597a55a99, type: 3}
       propertyPath: m_Name
-      value: Changebringer Charge Variant
+      value: Changebringer Charge
       objectReference: {fileID: 0}
     - target: {fileID: 3786959536627490549, guid: c7642db7e38e08d4bb591c3597a55a99, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
@@ -151,5 +151,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2322928036642245633, guid: c7642db7e38e08d4bb591c3597a55a99, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 3927343688332109738}
   m_SourcePrefab: {fileID: 100100000, guid: c7642db7e38e08d4bb591c3597a55a99, type: 3}
+--- !u!1 &3641618248749890749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2322928036642245633, guid: c7642db7e38e08d4bb591c3597a55a99, type: 3}
+  m_PrefabInstance: {fileID: 1348003717249134780}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3927343688332109738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3641618248749890749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
+  vfxKey: CB_FELL_CHARGE
+  particleVFX: {fileID: 6427296484177398957}
+--- !u!198 &6427296484177398957 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5442400195311090705, guid: c7642db7e38e08d4bb591c3597a55a99, type: 3}
+  m_PrefabInstance: {fileID: 1348003717249134780}
+  m_PrefabAsset: {fileID: 0}

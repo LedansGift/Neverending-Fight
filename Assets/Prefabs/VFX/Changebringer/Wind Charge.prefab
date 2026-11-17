@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wind Charge
       objectReference: {fileID: 0}
+    - target: {fileID: 3927343688332109738, guid: 935fa80f6fd5dda4ea2d7afaf375736e, type: 3}
+      propertyPath: vfxKey
+      value: WIND_CHARGE
+      objectReference: {fileID: 0}
     - target: {fileID: 4634895264484023625, guid: 935fa80f6fd5dda4ea2d7afaf375736e, type: 3}
       propertyPath: ShapeModule.m_Scale.y
       value: 0.25

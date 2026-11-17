@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour
     private PlayerAttacker playerAttacker;
     private PlayerTimepiece playerTimepiece;
 
+    public EventHandler<bool> OnPlayerActive;
+
     private void Awake()
     {
         playerCollider = GetComponent<Collider>();
@@ -58,6 +60,8 @@ public class PlayerManager : MonoBehaviour
         playerMovement.ToggleCanMove(playerActive);
         playerAttacker.ToggleCanAttack(playerActive);
         playerMovement.SetWeaponModifier();
+
+        OnPlayerActive?.Invoke(this, playerActive);
 
         UIFadeController.ToggleUI(playerActive);
     }

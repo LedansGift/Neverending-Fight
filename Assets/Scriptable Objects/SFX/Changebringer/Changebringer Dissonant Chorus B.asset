@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3300afc30ca13e74ba03b60a7abb7f07, type: 3}
+  m_Name: Changebringer Dissonant Chorus B
+  m_EditorClassIdentifier: Assembly-CSharp::SFXObject
+  soundEffect:
+    sfxClip: {fileID: 8300000, guid: f63b23a1772ae614b8f4f0d1220b5e90, type: 3}
+    volume: 0.5
+    pitch: 1
