@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SFXObject
   soundEffect:
     sfxClip: {fileID: 8300000, guid: 8534e195d5b2bc045a8629767ef2678a, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1.25

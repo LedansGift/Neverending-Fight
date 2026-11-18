@@ -208,3 +208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
   vfxKey: WHIRLWIND
   particleVFX: {fileID: 240990475891316679}
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: a5393cc57ec34ba40b025513e304ded3, type: 2}
+    sfxDelay: 0

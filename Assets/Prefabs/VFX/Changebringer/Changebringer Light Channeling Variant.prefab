@@ -207,6 +207,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
   vfxKey: CB_LCHANNEL
   particleVFX: {fileID: 8293587263211652562}
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: 205e4e0f2bb0bd6428c6cd391acee44a, type: 2}
+    sfxDelay: 0
+  - sfxObject: {fileID: 11400000, guid: 7e11d8d5966a52f4996fe7675865b6bd, type: 2}
+    sfxDelay: 0
 --- !u!198 &8293587263211652562 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 212469723430319539, guid: e904d38992a5d8b4889a5664225642ca, type: 3}

@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SFXObjectRandom
   soundEffect:
     sfxClip: {fileID: 8300000, guid: 863c45b69e34e834abc9bbebbe74a8e0, type: 3}
-    volume: 0.5
+    volume: 0.9
     pitch: 1
   additionalSFX:
   - sfxClip: {fileID: 8300000, guid: e1c891ba7f7fc614f9e157311c467821, type: 3}
-    volume: 0.5
+    volume: 0.9
     pitch: 1
   - sfxClip: {fileID: 8300000, guid: 17f53b0c80e0c7f4098a066385b3ee49, type: 3}
-    volume: 0.5
+    volume: 0.9
     pitch: 1
   - sfxClip: {fileID: 8300000, guid: aad1536d325a9a542965f066cc53aca5, type: 3}
-    volume: 0.5
+    volume: 0.9
     pitch: 1
   - sfxClip: {fileID: 8300000, guid: e0cd684aad8a65d4593d8e034b4fb00b, type: 3}
-    volume: 0.5
+    volume: 0.9
     pitch: 1

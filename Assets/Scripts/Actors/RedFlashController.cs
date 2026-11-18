@@ -5,7 +5,7 @@ using UnityEngine;
 public class RedFlashController : MonoBehaviour
 {
     private float flashTime = 0f;
-    private float flashDuration = 0.5f;
+    protected float flashDuration = 0.5f;
 
     private float flashVisibleValue = 0f;
 
@@ -68,17 +68,17 @@ public class RedFlashController : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         health.OnTakeDamage += PerformFlash;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         health.OnTakeDamage -= PerformFlash;
     }
 
-    private void PerformFlash()
+    protected virtual void PerformFlash()
     {
         flashTime = 0f;
     }

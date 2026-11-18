@@ -159,6 +159,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
   vfxKey: PINION_FIRE
   particleVFX: {fileID: 5935530144399885522}
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: ff11972ac1d7cce47b54736dbbac0e35, type: 2}
+    sfxDelay: 0
 --- !u!198 &5935530144399885522 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3555048423278318226, guid: 4df10b04de734f947a36beb5aeda4c27, type: 3}

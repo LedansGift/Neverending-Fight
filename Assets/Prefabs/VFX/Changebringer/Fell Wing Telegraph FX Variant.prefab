@@ -227,6 +227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
   vfxKey: FELL_TELE
   particleVFX: {fileID: 3901612227058931682}
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: f313c69fb06af4141876206661694707, type: 2}
+    sfxDelay: 0
 --- !u!198 &3901612227058931682 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2914061293400751297, guid: da565eab0552cc044913a2b9d6a43d10, type: 3}

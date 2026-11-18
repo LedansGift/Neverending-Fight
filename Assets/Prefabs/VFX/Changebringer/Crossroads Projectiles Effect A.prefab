@@ -49,6 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
   vfxKey: CROSS_PROJ_A
   particleVFX: {fileID: 6147532818594932278}
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: 205e4e0f2bb0bd6428c6cd391acee44a, type: 2}
+    sfxDelay: 0
+  - sfxObject: {fileID: 11400000, guid: 7e11d8d5966a52f4996fe7675865b6bd, type: 2}
+    sfxDelay: 0
 --- !u!198 &6147532818594932278
 ParticleSystem:
   m_ObjectHideFlags: 0

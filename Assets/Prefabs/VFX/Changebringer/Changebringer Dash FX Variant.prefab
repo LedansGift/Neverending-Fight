@@ -387,7 +387,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
   vfxKey: CB_DASH
   particleVFX: {fileID: 5458920891783220979}
-  soundEffects: []
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: f9e009eaba61fee42871a5bf807288c4, type: 2}
+    sfxDelay: 0
 --- !u!198 &5458920891783220979 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 632766434434872337, guid: e49b028ed03ee374f8cd90ca7092b9e3, type: 3}

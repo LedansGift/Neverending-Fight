@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 public class BossFellWingState : BossState
 {
@@ -20,6 +23,8 @@ public class BossFellWingState : BossState
     private ChangebringerFellWingPositioner wingPositioner;
 
     private List<int> wingStrikeDirection = new List<int>();
+
+    public static EventHandler<int> OnWingTelegraph;
 
     public BossFellWingState(BossStateMachine stateMachine, int attackVersion = 0)
         : base(stateMachine)
@@ -82,6 +87,8 @@ public class BossFellWingState : BossState
                 telegraphTransform = wingPositioner?.GetRightWingTransform();
             }
         }
+
+        OnWingTelegraph?.Invoke(this, directionTelegraph);
 
         VFXManager.Instance.TryPlayVFX(telegraphKey, telegraphTransform);
     }

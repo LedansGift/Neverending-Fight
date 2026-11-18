@@ -34,10 +34,17 @@ public class WeaponUI : MonoBehaviour
     [SerializeField]
     private Animator abilityAnimator;
 
+    [SerializeField]
+    private SFXObject abilityReadySFX;
+
     private void Awake()
     {
         abilityAnimator.SetBool("full", true);
         lockedOverlay.SetCanvasGroupAlpha(0f);
+    }
+
+    void Start()
+    {
         uiFillMaterial = weaponAbilityUIFill.material;
     }
 
@@ -99,6 +106,7 @@ public class WeaponUI : MonoBehaviour
             abilityAnimator.SetBool("full", true);
             abilityAnimator.SetTrigger("pulse");
             fullyCharged = true;
+            abilityReadySFX.PlaySFX(Camera.main.transform.position);
         }
 
         uiFillMaterial.SetFloat("_YReveal", newCharge);

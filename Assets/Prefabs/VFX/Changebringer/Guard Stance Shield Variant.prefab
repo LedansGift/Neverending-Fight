@@ -192,3 +192,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
   vfxKey: GUARD_SHIELD
   particleVFX: {fileID: 1576152728921572386}
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: 382d9b5a4221d2d438b07271967a6839, type: 2}
+    sfxDelay: 0

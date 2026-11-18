@@ -199,6 +199,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
   vfxKey: FELL_WING
   particleVFX: {fileID: 4400836768387556189}
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: fbe3f90ce16d6b941abe6980e3c857d7, type: 2}
+    sfxDelay: 0
 --- !u!198 &4400836768387556189 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3826730579341701275, guid: 0284cbcce52d27544a38a235cbafd21f, type: 3}

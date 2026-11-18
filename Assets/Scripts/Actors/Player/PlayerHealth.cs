@@ -20,6 +20,9 @@ public class PlayerHealth : Health
     private Coroutine iFrameCoroutine;
 
     [SerializeField]
+    private SFXObject healSFX;
+
+    [SerializeField]
     private CinemachineImpulseSource impulseSource;
 
     public static Action OnPlayerHit;
@@ -154,7 +157,14 @@ public class PlayerHealth : Health
             return;
         }
 
+        if (health >= maxHealth)
+        {
+            return;
+        }
+
         health = Mathf.Min(health + healAmount, maxHealth);
+
+        healSFX.PlaySFX(transform.position);
 
         OnChangePlayerHealth?.Invoke(this, health);
     }

@@ -286,6 +286,7 @@ MonoBehaviour:
   weaponAbilityUIFill: {fileID: 465974583851280891}
   lockedOverlay: {fileID: 95455104727121962}
   abilityAnimator: {fileID: 3571301301619046783}
+  abilityReadySFX: {fileID: 11400000, guid: 1e5fd47819c8e4b4c8788b6212a498f6, type: 2}
 --- !u!95 &3571301301619046783
 Animator:
   serializedVersion: 7

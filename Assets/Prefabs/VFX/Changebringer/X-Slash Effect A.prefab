@@ -4945,6 +4945,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
   vfxKey: X_SLASH_A
   particleVFX: {fileID: 8822094623580560829}
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: f9e009eaba61fee42871a5bf807288c4, type: 2}
+    sfxDelay: 0
+  - sfxObject: {fileID: 11400000, guid: 585f8c13d53618b4dbeafcfe69fb32ae, type: 2}
+    sfxDelay: 3
 --- !u!198 &8822094623580560829
 ParticleSystem:
   m_ObjectHideFlags: 0

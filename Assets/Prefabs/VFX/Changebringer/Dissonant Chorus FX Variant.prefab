@@ -288,3 +288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
   vfxKey: DISS_CHORUS
   particleVFX: {fileID: 5515533290701817024}
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: 3c3869164cec38346b3e97fb97df917d, type: 2}
+    sfxDelay: 0
+  - sfxObject: {fileID: 11400000, guid: 819deffd8886a03479bc7d002a46aae0, type: 2}
+    sfxDelay: 0

@@ -352,3 +352,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
   vfxKey: ROUND_SLASH
   particleVFX: {fileID: 140263446553628013}
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: dfc88220012382e49a14a0b552a1203f, type: 2}
+    sfxDelay: 0

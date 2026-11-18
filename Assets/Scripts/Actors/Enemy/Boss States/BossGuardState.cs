@@ -8,6 +8,7 @@ public class BossGuardState : BossState
     private float damagePoolDecayRate = 4f;
 
     private const string shieldKey = "GUARD_SHIELD";
+    private const string shieldHitKey = "GUARD_HIT";
     private const string guardBreakKey = "GUARD_BREAK";
 
     private BossHealth bossHealth;
@@ -53,6 +54,8 @@ public class BossGuardState : BossState
     private void PoolIncomingDamage(object sender, int incomingDamage)
     {
         damagePool += incomingDamage;
+
+        VFXManager.Instance.TryPlayVFX(shieldHitKey, bossStateMachine.transform);
 
         if (damagePool > guardDamageThreshold)
         {
