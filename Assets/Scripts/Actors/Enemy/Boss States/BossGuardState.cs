@@ -13,6 +13,9 @@ public class BossGuardState : BossState
 
     private BossHealth bossHealth;
 
+    public static EventHandler<bool> OnToggleGuardState;
+    public static EventHandler<float> OnNewGuardValue;
+
     //Guard visual that provides feedback for attacks being guarded against + showing meter of guard break
 
     public BossGuardState(BossStateMachine stateMachine)
@@ -26,12 +29,16 @@ public class BossGuardState : BossState
         damagePool = 0;
         bossHealth?.SetInvincibility(true);
         bossHealth.OnIncomingDamage += PoolIncomingDamage;
+
+        OnToggleGuardState?.Invoke(this, true);
     }
 
     public override void Exit()
     {
         bossHealth?.SetInvincibility(false);
         bossHealth.OnIncomingDamage -= PoolIncomingDamage;
+
+        OnToggleGuardState?.Invoke(this, false);
 
         TryFinishState();
     }
@@ -40,7 +47,9 @@ public class BossGuardState : BossState
     {
         if (damagePool > 0)
         {
-            damagePool -= damagePoolDecayRate * deltaTime;
+            //damagePool -= damagePoolDecayRate * deltaTime;
+
+            SetNewDamagePool(damagePool - (damagePoolDecayRate * deltaTime));
         }
 
         Debug.Log("Damage Pooled: " + damagePool);
@@ -49,11 +58,21 @@ public class BossGuardState : BossState
         //if surpasses threshold, break guard and go through Exit state
     }
 
+    private void SetNewDamagePool(float newDamagePool)
+    {
+        damagePool = newDamagePool;
+
+        float damagePoolRatio = Mathf.Clamp01(damagePool / guardDamageThreshold);
+        OnNewGuardValue?.Invoke(this, damagePoolRatio);
+    }
+
     //on take damage, pool damage
 
     private void PoolIncomingDamage(object sender, int incomingDamage)
     {
-        damagePool += incomingDamage;
+        //damagePool += incomingDamage;
+
+        SetNewDamagePool(damagePool + incomingDamage);
 
         VFXManager.Instance.TryPlayVFX(shieldHitKey, bossStateMachine.transform);
 

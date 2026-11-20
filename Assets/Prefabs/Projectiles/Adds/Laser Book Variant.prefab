@@ -90,6 +90,79 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &31050253761455653
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6542798144039102314}
+    m_Modifications:
+    - target: {fileID: 1159918025265589679, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_Name
+      value: Add Destroyed Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+--- !u!4 &2890142650178748778 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+  m_PrefabInstance: {fileID: 31050253761455653}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3449954163914289300 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3426925964722869937, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+  m_PrefabInstance: {fileID: 31050253761455653}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
 --- !u!1001 &6871453892245399796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -158,6 +231,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser Book Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4845943519755525537, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: deathSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: 03248384628493b41acb811570b07bcd, type: 2}
+    - target: {fileID: 4845943519755525537, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: enemyDeathVFX
+      value: 
+      objectReference: {fileID: 3449954163914289300}
     - target: {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       propertyPath: lifetime
       value: 9
@@ -173,6 +254,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       insertIndex: 0
       addedObject: {fileID: 4985317778510922113}
+    - targetCorrespondingSourceObject: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 2890142650178748778}
     - targetCorrespondingSourceObject: {fileID: 7062402356313507813, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2172205406414352395}
@@ -209,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserBookController
   actionStartDelay: 4
-  entitySpawnVFX: {fileID: 7991251911161297960}
+  entitySpawnVFX: {fileID: 5111110426266634659}
   laserAttack:
     attackDamage: 15
     damageZoneType: 1
@@ -283,8 +367,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4447997308618467361, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
   m_PrefabInstance: {fileID: 8688883935776450976}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &7991251911161297960 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1617844092809745800, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
+--- !u!114 &5111110426266634659 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4502282675304177667, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
   m_PrefabInstance: {fileID: 8688883935776450976}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer

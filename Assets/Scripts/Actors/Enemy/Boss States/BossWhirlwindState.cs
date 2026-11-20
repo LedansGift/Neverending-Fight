@@ -53,6 +53,8 @@ public class BossWhirlwindState : BossState
     {
         PlayerGlaive.OnGlaiveSpecial -= PlayerGlaive_OnGlaiveSpecial;
 
+        VFXManager.Instance.StopVFX(windChargeKey);
+
         TryFinishState();
     }
 

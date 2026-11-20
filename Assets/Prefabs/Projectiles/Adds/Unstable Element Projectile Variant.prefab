@@ -57,16 +57,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
---- !u!198 &1339590460340932349 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1617844092809745800, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
-  m_PrefabInstance: {fileID: 352568077474077557}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4133995702372332372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4447997308618467361, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
   m_PrefabInstance: {fileID: 352568077474077557}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4224307118344944502 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4502282675304177667, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
+  m_PrefabInstance: {fileID: 352568077474077557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
 --- !u!1001 &8915805656451456754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnstableElementController
   actionStartDelay: 4
-  entitySpawnVFX: {fileID: 1339590460340932349}
+  entitySpawnVFX: {fileID: 4224307118344944502}
   bombAttack:
     attackDamage: 15
     damageZoneType: 0

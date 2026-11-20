@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FormChangeManager : MonoBehaviour
 {
+    private int activeCutsceneIndex = 0;
     private BossForm activeFormChange;
 
     public static FormChangeManager Instance { get; private set; }
@@ -35,16 +36,11 @@ public class FormChangeManager : MonoBehaviour
 
         if (formCutsceneMap.TryGetValue(newForm, out int cutsceneIndex))
         {
-            //Make screen go black
-            //Do next form setup stuff (placing player in default position)
-
             StartCoroutine(FormChangeSetup(cutsceneIndex, playerStartTransform));
-
-            //Fade screen back to visible
         }
         else
         {
-            StartCoroutine(FormChange(newForm));
+            StartCoroutine(FormChange(newForm, playerStartTransform));
         }
     }
 
@@ -63,7 +59,20 @@ public class FormChangeManager : MonoBehaviour
 
         LoadingScreenUI.ToggleLoadingScreen(false);
 
-        TextCutsceneUI.StartTextCutsceneEvent(3, StartTutorialFormChangeCutscene);
+        //Temp hack for including TextCutscenes without changing too much structure \/
+
+        formCutsceneMap.TryGetValue(BossForm.MAGPIE, out int magpieIndex);
+
+        activeCutsceneIndex = cutsceneIndex;
+
+        if (magpieIndex == cutsceneIndex)
+        {
+            TextCutsceneUI.StartTextCutsceneEvent(3, StartFormChangeAfterTextCutscene);
+        }
+        else
+        {
+            TextCutsceneUI.StartTextCutsceneEvent(6, StartFormChangeAfterTextCutscene);
+        }
     }
 
     private void SetPlayerDefaultPosition(Transform playerStartTransform)
@@ -77,10 +86,15 @@ public class FormChangeManager : MonoBehaviour
         }
     }
 
-    private void StartTutorialFormChangeCutscene()
+    // private void StartTutorialFormChangeCutscene()
+    // {
+    //     formCutsceneMap.TryGetValue(BossForm.MAGPIE, out int cutsceneIndex);
+    //     StartFormChangeCutscene(cutsceneIndex);
+    // }
+
+    private void StartFormChangeAfterTextCutscene()
     {
-        formCutsceneMap.TryGetValue(BossForm.MAGPIE, out int cutsceneIndex);
-        StartFormChangeCutscene(cutsceneIndex);
+        StartFormChangeCutscene(activeCutsceneIndex);
     }
 
     private void StartFormChangeCutscene(int cutsceneIndex)
@@ -93,7 +107,7 @@ public class FormChangeManager : MonoBehaviour
 
     //Default form change when there's no cutscene
 
-    private IEnumerator FormChange(BossForm newForm)
+    private IEnumerator FormChange(BossForm newForm, Transform playerStartTransform)
     {
         LoadingScreenUI.ToggleLoadingScreen(true);
 
@@ -104,6 +118,7 @@ public class FormChangeManager : MonoBehaviour
         arenaManager.SwitchArena(newForm);
 
         //Set player position to be in set arena position
+        SetPlayerDefaultPosition(playerStartTransform);
 
         LoadingScreenUI.ToggleLoadingScreen(false);
         yield return new WaitForSeconds(2.5f);

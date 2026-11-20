@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum BossForm
 {
@@ -76,12 +77,32 @@ public class BossManager : MonoBehaviour
             //ActivateBossForm(BossForm.MAGUS);
             FormChangeManager.Instance.ChangeBossForm(BossForm.MAGUS, playerDefaultPosition);
         }
+        else if (activeBossForm == BossForm.MAGPIE)
+        {
+            //End fight & reset / end game
+            TextCutsceneUI.StartTextCutsceneEvent(5, ResetScene);
+            PlayerOptions.SetTutorialCompleted(true);
+        }
         else
         {
             //End fight & reset / end game
+            TextCutsceneUI.StartTextCutsceneEvent(7, ResetScene);
         }
 
         DeactivateBossForm();
+    }
+
+    private void ResetScene()
+    {
+        StartCoroutine(DelayedSceneReset());
+    }
+
+    private IEnumerator DelayedSceneReset()
+    {
+        LoadingScreenUI.ToggleLoadingScreen(true);
+        yield return new WaitForSeconds(2.5f);
+
+        SceneManager.LoadScene(1);
     }
 
     public BossForm GetActiveBossForm()

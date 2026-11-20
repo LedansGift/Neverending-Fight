@@ -112,9 +112,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4845943519755525537, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: deathSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: 03248384628493b41acb811570b07bcd, type: 2}
+    - target: {fileID: 4845943519755525537, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       propertyPath: damagedSFX
       value: 
       objectReference: {fileID: 11400000, guid: 7401400896e06264ea0fdac757c9cdd2, type: 2}
+    - target: {fileID: 4845943519755525537, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: enemyDeathVFX
+      value: 
+      objectReference: {fileID: 5722525363046953326}
     - target: {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       propertyPath: damage
       value: 0
@@ -138,6 +146,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       insertIndex: 0
       addedObject: {fileID: 858841623172404729}
+    - targetCorrespondingSourceObject: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 5228982746066600080}
     - targetCorrespondingSourceObject: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 87886409705154244}
@@ -172,10 +183,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedCrowController
   actionStartDelay: 3
-  entitySpawnVFX: {fileID: 2315693236602644560}
+  entitySpawnVFX: {fileID: 588300459110604251}
   projectileFireCooldown: 4
   crowProjectilePrefab: {fileID: 5778775724563257811, guid: d74b9f3bd0714524ead46089b2af61ac, type: 3}
   projectileSpawnPoint: {fileID: 87886409705154244}
+  projectileLaunchSFX: {fileID: 11400000, guid: fc294cc825e857b4ca04186481c4c512, type: 2}
 --- !u!4 &7123049325882769252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7062402356313507813, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
@@ -238,16 +250,95 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
+--- !u!114 &588300459110604251 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4502282675304177667, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
+  m_PrefabInstance: {fileID: 3913982238074224088}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
 --- !u!4 &858841623172404729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4447997308618467361, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
   m_PrefabInstance: {fileID: 3913982238074224088}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &2315693236602644560 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1617844092809745800, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
-  m_PrefabInstance: {fileID: 3913982238074224088}
+--- !u!1001 &6981878484747233247
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 380669405495506719}
+    m_Modifications:
+    - target: {fileID: 1159918025265589679, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_Name
+      value: Add Destroyed Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+--- !u!4 &5228982746066600080 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+  m_PrefabInstance: {fileID: 6981878484747233247}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5722525363046953326 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3426925964722869937, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+  m_PrefabInstance: {fileID: 6981878484747233247}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
 --- !u!1001 &7514748244009897968
 PrefabInstance:
   m_ObjectHideFlags: 0

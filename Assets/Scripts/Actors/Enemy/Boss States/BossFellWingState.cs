@@ -67,6 +67,7 @@ public class BossFellWingState : BossState
 
     public override void Exit()
     {
+        VFXManager.Instance.StopVFX(chargeKey);
         TryFinishState();
     }
 

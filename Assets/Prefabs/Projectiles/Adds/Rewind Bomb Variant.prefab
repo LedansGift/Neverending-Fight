@@ -201,6 +201,8 @@ MonoBehaviour:
   maxHealth: 1
   damagedSFX: {fileID: 0}
   deathSFX: {fileID: 0}
+  enemyHitVFX: {fileID: 0}
+  enemyDeathVFX: {fileID: 0}
   fragmentVisual: {fileID: 5223450060917875459}
 --- !u!65 &6082299949336415263
 BoxCollider:
@@ -631,6 +633,8 @@ MonoBehaviour:
   maxHealth: 1
   damagedSFX: {fileID: 0}
   deathSFX: {fileID: 0}
+  enemyHitVFX: {fileID: 0}
+  enemyDeathVFX: {fileID: 0}
   fragmentVisual: {fileID: 4193196621533743305}
 --- !u!65 &7397174530541069681
 BoxCollider:
@@ -791,6 +795,8 @@ MonoBehaviour:
   maxHealth: 1
   damagedSFX: {fileID: 0}
   deathSFX: {fileID: 0}
+  enemyHitVFX: {fileID: 0}
+  enemyDeathVFX: {fileID: 0}
   fragmentVisual: {fileID: 5131328690834482350}
 --- !u!65 &6384660729543382759
 BoxCollider:
@@ -1041,6 +1047,8 @@ MonoBehaviour:
   maxHealth: 1
   damagedSFX: {fileID: 0}
   deathSFX: {fileID: 0}
+  enemyHitVFX: {fileID: 0}
+  enemyDeathVFX: {fileID: 0}
   fragmentVisual: {fileID: 7786720763727870472}
 --- !u!65 &7600868675371277904
 BoxCollider:
@@ -1201,6 +1209,8 @@ MonoBehaviour:
   maxHealth: 1
   damagedSFX: {fileID: 0}
   deathSFX: {fileID: 0}
+  enemyHitVFX: {fileID: 0}
+  enemyDeathVFX: {fileID: 0}
   fragmentVisual: {fileID: 5849132499184847019}
 --- !u!65 &8386451852355526063
 BoxCollider:
@@ -1371,15 +1381,94 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
---- !u!198 &1199981161921305558 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1617844092809745800, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
+--- !u!114 &4084727607671647837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4502282675304177667, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
   m_PrefabInstance: {fileID: 492172342191541854}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
 --- !u!4 &4282635033702934143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4447997308618467361, guid: a354a39875336c248b36a6e2b76419ef, type: 3}
   m_PrefabInstance: {fileID: 492172342191541854}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2274687013820714446
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5914882901260700026}
+    m_Modifications:
+    - target: {fileID: 1159918025265589679, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_Name
+      value: Add Destroyed Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+--- !u!114 &3467680228512684927 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3426925964722869937, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+  m_PrefabInstance: {fileID: 2274687013820714446}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
+--- !u!4 &4027562419118484097 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2915387413289199439, guid: 47115d6a296a80f4ea900ce6113d7c70, type: 3}
+  m_PrefabInstance: {fileID: 2274687013820714446}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6306478183728744164
 PrefabInstance:
@@ -1477,6 +1566,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4845943519755525537, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: deathSFX
+      value: 
+      objectReference: {fileID: 11400000, guid: 03248384628493b41acb811570b07bcd, type: 2}
+    - target: {fileID: 4845943519755525537, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      propertyPath: enemyDeathVFX
+      value: 
+      objectReference: {fileID: 3467680228512684927}
     - target: {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       propertyPath: damagingProjectile
       value: 0
@@ -1511,6 +1608,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       insertIndex: 0
       addedObject: {fileID: 4282635033702934143}
+    - targetCorrespondingSourceObject: {fileID: 401100569383145374, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 4027562419118484097}
     - targetCorrespondingSourceObject: {fileID: 7062402356313507813, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4636836455605555561}
@@ -1565,7 +1665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RewindBombController
   actionStartDelay: 4
-  entitySpawnVFX: {fileID: 1199981161921305558}
+  entitySpawnVFX: {fileID: 4084727607671647837}
   damageZoneAppearTime: 4
   bombExplodeTime: 4.995
   bombAnimator: {fileID: 3408013306139242206}

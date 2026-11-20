@@ -14,6 +14,9 @@ public class RangedCrowController : ProjectileEntityController
     [SerializeField]
     private Transform projectileSpawnPoint;
 
+    [SerializeField]
+    private SFXObject projectileLaunchSFX;
+
     private void Start()
     {
         if (
@@ -44,6 +47,8 @@ public class RangedCrowController : ProjectileEntityController
             projectileSpawnPoint.position,
             projectileSpawnPoint.forward
         );
+
+        projectileLaunchSFX.PlaySFX(transform.position);
 
         yield return new WaitForSeconds(projectileFireCooldown);
 

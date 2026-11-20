@@ -10,7 +10,10 @@ public class ProjectileEntityController : MonoBehaviour
     protected float actionStartDelay = 4f;
 
     [SerializeField]
-    protected ParticleSystem entitySpawnVFX;
+    protected VFXPlayer entitySpawnVFX;
+
+    // [SerializeField]
+    // protected VFXPlayer entityDestroyedVFX;
     protected Projectile projectile;
 
     private static int projectileEntitiesActive = 0;
@@ -41,13 +44,18 @@ public class ProjectileEntityController : MonoBehaviour
         {
             if (entitySpawnVFX)
             {
-                entitySpawnVFX.Play();
+                entitySpawnVFX.PlayVFX(transform);
             }
 
             StartCoroutine(StartEntityAction());
         }
         else
         {
+            // if (entityDestroyedVFX)
+            // {
+            //     entityDestroyedVFX.PlayVFX(transform);
+            // }
+
             StopAllCoroutines();
         }
 
