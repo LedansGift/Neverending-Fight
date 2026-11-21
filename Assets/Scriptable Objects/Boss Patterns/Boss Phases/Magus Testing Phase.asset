@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern:
   - {fileID: 11400000, guid: fee3c0632ba9d4b4498d8685327a7304, type: 2}
+  - {fileID: 11400000, guid: 7f4daf221dad0114899f419bbc3d72c6, type: 2}
+  - {fileID: 11400000, guid: 4f6a039f1569665459b067014b77dd78, type: 2}
+  - {fileID: 11400000, guid: 4f6a039f1569665459b067014b77dd78, type: 2}
   - {fileID: 11400000, guid: 4510b8d7ead84194992515622fa9f95d, type: 2}
   - {fileID: 11400000, guid: 4f6a039f1569665459b067014b77dd78, type: 2}
   - {fileID: 11400000, guid: c56f58eb38c4e7647b5f0e502f4be120, type: 2}
@@ -27,3 +30,4 @@ MonoBehaviour:
     bossPhase: {fileID: 0}
   battleStatePhaseChange:
     battleStatePrefab: {fileID: 0}
+  bloodRainStart: 0

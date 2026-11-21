@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bdb1d63ab535e24a992127ec5ca3c7c, type: 3}
-  m_Name: Chaotic Stream A
+  m_Name: Chaotic Stream B Testing
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
   animationTrigger: 
   attackName: DefaultName
@@ -20,7 +20,7 @@ MonoBehaviour:
   worldPositionPattern: 1
   patternStartDelay: 0.5
   patternEndDelay: 5
-  projectile: {fileID: 5928545311920999611, guid: 019295b56f7eb0c4083f45ca602a2228, type: 3}
+  projectile: {fileID: 3952327507666381392, guid: 2f2ea97e672a1b347a0898b8d07f308b, type: 3}
   pattern:
     projectileNumber: 2
     timeBetweenSpawns: 1

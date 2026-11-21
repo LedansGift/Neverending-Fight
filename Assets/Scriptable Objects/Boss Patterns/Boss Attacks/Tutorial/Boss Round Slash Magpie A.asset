@@ -10,17 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dbfc2a9137d3b404f9ba2daf00c56a77, type: 3}
-  m_Name: Boss Raidwide
+  m_Name: Boss Round Slash Magpie A
   m_EditorClassIdentifier: Assembly-CSharp::BossMeleeAttack
   animationTrigger: 
   attackName: DefaultName
+  failableAttack: 1
+  attackFX:
+  - fxKey: ROUND_SLASH
+    fxDelay: 3
   empoweredAttack: {fileID: 0}
   attacks:
-  - attackDamage: 10
-    damageZoneType: 3
-    damageZoneArea: {x: 0, y: 0}
-    zoneWarningTime: 2
+  - attackDamage: 20
+    damageZoneType: 0
+    damageZoneArea: {x: 20, y: 1}
+    zoneWarningTime: 3
     attackPosition: {x: 0, y: 0, z: 0}
     attackYRotation: 0
-    relativePosition: 0
+    relativePosition: 1
     delayToNextAttack: 2
+    relativePositionToForward: 0
+    knockbackStrength: 0

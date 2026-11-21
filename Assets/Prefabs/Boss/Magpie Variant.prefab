@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: b667eb03137b7554abaa996accdc086d, type: 2}
+    - target: {fileID: 8371743262379200458, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 7582674296583822720}
     - target: {fileID: 8696608915596584275, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: health
       value: 
@@ -173,8 +177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossMagpieHealth
   isPlayer: 0
   isInvincible: 0
-  maxHealth: 100
-  damagedSFX: {fileID: 0}
+  maxHealth: 300
+  damagedSFX: {fileID: 11400000, guid: 7401400896e06264ea0fdac757c9cdd2, type: 2}
   deathSFX: {fileID: 11400000, guid: 4a1ba8981057adc4397e92c17f1da983, type: 2}
   shieldVisual: {fileID: 4707402745313548895}
 --- !u!114 &7191377923942220268 stripped

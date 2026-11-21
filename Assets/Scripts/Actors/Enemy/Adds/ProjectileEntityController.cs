@@ -38,6 +38,11 @@ public class ProjectileEntityController : MonoBehaviour
         yield return new WaitForSeconds(actionStartDelay);
     }
 
+    protected virtual void StopEntityAction()
+    {
+        StopAllCoroutines();
+    }
+
     protected virtual void ToggleEntityActive(object sender, bool toggle)
     {
         if (toggle)
@@ -56,7 +61,7 @@ public class ProjectileEntityController : MonoBehaviour
             //     entityDestroyedVFX.PlayVFX(transform);
             // }
 
-            StopAllCoroutines();
+            StopEntityAction();
         }
 
         if (toggle == entityActive)

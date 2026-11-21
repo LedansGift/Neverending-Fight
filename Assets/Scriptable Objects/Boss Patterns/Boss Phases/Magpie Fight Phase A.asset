@@ -10,12 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53914625710d5de409d4f333e89c1a9d, type: 3}
-  m_Name: Magpie Fight Phase
+  m_Name: Magpie Fight Phase A
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   bossAttackPattern:
   - {fileID: 11400000, guid: 24da75ecf3a045142bde95bc03b76ed9, type: 2}
-  - {fileID: 11400000, guid: 18f99ecf8e46567409ca5627791c267f, type: 2}
-  endOfPatternPhaseChange: {fileID: 0}
+  - {fileID: 11400000, guid: 75bc9d0c92f01ff41a55f743d5428ad9, type: 2}
+  - {fileID: 11400000, guid: 96dc936e7adb42d4bb672d596f6b6835, type: 2}
+  - {fileID: 11400000, guid: f93f4f2e3115c9b4fad573b4be1d632f, type: 2}
+  - {fileID: 11400000, guid: 08e3935fc88f5d346b12bdc67c7a9530, type: 2}
+  - {fileID: 11400000, guid: d763702dc2f96ad4abd5d84d17861129, type: 2}
+  - {fileID: 11400000, guid: d67927e0667bf3c49ba09f10e8256289, type: 2}
+  - {fileID: 11400000, guid: 82122be6fdc694b429504e9f196b9036, type: 2}
+  endOfPatternPhaseChange: {fileID: 11400000, guid: e1e6f15f1d24cde46947d2b3aec9323a, type: 2}
   healthPhaseChange:
     healthPercentageThreshold: 0
     bossPhase: {fileID: 0}

@@ -25,6 +25,9 @@ public class PlayerGlaive : PlayerWeapon
     private AnimationCurve jumpHeightCurve;
 
     [SerializeField]
+    protected SFXObject weaponPerfectRhythmSFX;
+
+    [SerializeField]
     private GlaiveFlame glaiveFlame;
 
     [SerializeField]
@@ -119,6 +122,8 @@ public class PlayerGlaive : PlayerWeapon
             weaponAnimator.SetTrigger("attack");
             glaiveSlashFX.GlaiveSlash();
         }
+
+        weaponPerfectRhythmSFX.PlaySFX(transform.position);
 
         slashCoroutine = StartCoroutine(GlaiveSlash());
     }

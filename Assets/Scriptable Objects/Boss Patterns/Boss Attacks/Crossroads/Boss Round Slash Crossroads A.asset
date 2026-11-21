@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8de1ff2f4f889ac49af1ffa911caa65c, type: 3}
-  m_Name: Boss Round Slash
+  m_Name: Boss Round Slash Crossroads A
   m_EditorClassIdentifier: Assembly-CSharp::BossComplexAttack
   animationTrigger: 
   attackName: DefaultName
-  empoweredAttack: {fileID: 0}
+  failableAttack: 1
+  attackFX: []
+  empoweredAttack: {fileID: 11400000, guid: 2669b211154442249a52837d05773fe4, type: 2}
   attackNodes:
   - {fileID: 11400000, guid: dd84bdffb37966641aa088d4914f0873, type: 2}
   - {fileID: 11400000, guid: 6c22f49f667a29b4394f45f85e3780ac, type: 2}

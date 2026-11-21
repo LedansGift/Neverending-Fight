@@ -174,6 +174,7 @@ public class BossFormManager : MonoBehaviour
 
         bossFormActive = false;
         bossAttackManager.ToggleAttackManager(false);
+        bossHealth.DeactivateHealth();
     }
 
     public void PlayBossDamagedAnimation()

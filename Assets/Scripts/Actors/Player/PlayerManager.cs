@@ -21,7 +21,10 @@ public class PlayerManager : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerAttacker = GetComponent<PlayerAttacker>();
         playerTimepiece = GetComponent<PlayerTimepiece>();
+    }
 
+    private void Start()
+    {
         TogglePlayer(null, false);
     }
 

@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       propertyPath: lifetime
-      value: 30
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 5552972026594335306, guid: 762294f702086aa4fb03ff302713bca1, type: 3}
       propertyPath: damagingProjectile

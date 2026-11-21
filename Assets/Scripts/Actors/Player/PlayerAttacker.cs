@@ -42,8 +42,6 @@ public class PlayerAttacker : MonoBehaviour
         InputManager.Instance.OnSelectWeaponEvent += SelectWeapon;
 
         TutorialFightManager.OnToggleWeaponLock += UpdateWeaponLock;
-
-        ToggleCanAttack(false);
     }
 
     private void OnDisable()
@@ -188,6 +186,10 @@ public class PlayerAttacker : MonoBehaviour
         if (toggle)
         {
             ChangeWeapon(playerWeapons[0]);
+        }
+        else
+        {
+            ResetWeapons();
         }
     }
 

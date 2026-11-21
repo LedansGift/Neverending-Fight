@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bdb1d63ab535e24a992127ec5ca3c7c, type: 3}
-  m_Name: Rewind Bomb
+  m_Name: Rewind Bomb Crossroads
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
   animationTrigger: 
   attackName: DefaultName

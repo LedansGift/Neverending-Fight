@@ -50,11 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3104099590527898216, guid: f49f285020fefb34c803531d811fa5bc, type: 3}
       propertyPath: m_Name
-      value: Ranged Crow Tutorial Variant Variant
+      value: Ranged Crow Tutorial Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5604880069428716235, guid: f49f285020fefb34c803531d811fa5bc, type: 3}
       propertyPath: lifetime
-      value: 60
+      value: 999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

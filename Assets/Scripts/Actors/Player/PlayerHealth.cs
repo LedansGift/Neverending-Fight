@@ -21,6 +21,7 @@ public class PlayerHealth : Health
 
     [SerializeField]
     private SFXObject healSFX;
+    private AudioSource healAudioSource;
 
     [SerializeField]
     private CinemachineImpulseSource impulseSource;
@@ -164,7 +165,10 @@ public class PlayerHealth : Health
 
         health = Mathf.Min(health + healAmount, maxHealth);
 
-        healSFX.PlaySFX(transform.position);
+        if (!healAudioSource || !healAudioSource.isPlaying)
+        {
+            healAudioSource = healSFX.PlaySFX(transform.position);
+        }
 
         OnChangePlayerHealth?.Invoke(this, health);
     }

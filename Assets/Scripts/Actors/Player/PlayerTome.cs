@@ -29,7 +29,7 @@ public class PlayerTome : PlayerWeapon
     [SerializeField]
     private SFXObject tomeCastFinishSFX;
 
-    private void Start()
+    private void Awake()
     {
         explosionFX.transform.SetParent(null);
     }

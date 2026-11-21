@@ -13,6 +13,7 @@ public class BossMagpieHealth : BossMagusHealth
         if (isUnkillable)
         {
             isInvincible = false;
+            healthActive = true;
 
             if (bossHealth < 0)
             {

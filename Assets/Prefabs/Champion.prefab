@@ -25500,6 +25500,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  weaponPerfectRhythmSFX: {fileID: 11400000, guid: 1bb706c8158ddcb40849e049c1281819, type: 2}
   glaiveFlame: {fileID: 1620968576020322147}
   glaiveHighlight: {fileID: 5478102540215274053}
   glaiveSlashFX: {fileID: 1731844374012294159}
@@ -25862,6 +25863,7 @@ MonoBehaviour:
   maxHealth: 100
   damagedSFX: {fileID: 11400000, guid: 38143704a7e23fc44a4b583bb337ca6a, type: 2}
   deathSFX: {fileID: 0}
+  healSFX: {fileID: 11400000, guid: 531fa4d27007105449e35b59aa8b55a2, type: 2}
   impulseSource: {fileID: 453236234291003103}
 --- !u!1 &3884808745424254355
 GameObject:

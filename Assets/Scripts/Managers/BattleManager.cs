@@ -43,7 +43,10 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
-        timepieceCutsceneTrigger.SetActive(!PlayerOptions.GetTutorialCompleted());
+        if (timepieceCutsceneTrigger)
+        {
+            timepieceCutsceneTrigger.SetActive(!PlayerOptions.GetTutorialCompleted());
+        }
 
         StartCoroutine(SceneStartPlayerEnable());
     }

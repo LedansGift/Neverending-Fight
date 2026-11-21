@@ -41,11 +41,14 @@ public class PlayerBow : PlayerWeapon
     [SerializeField]
     private GameObject shootPointerPerfect;
 
-    private void Start()
+    private void Awake()
     {
         shootPointerShader = shootPointerRenderer.material;
         shootPointerShader.SetFloat("_YReveal", 0f);
+    }
 
+    private void Start()
+    {
         ChargeSpecial(999f);
 
         //Initialise bow projectiles in projectile manager
