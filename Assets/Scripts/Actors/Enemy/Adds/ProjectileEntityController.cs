@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileEntityController : MonoBehaviour
 {
     protected bool entityActive = false;
+    protected string attackSignature;
 
     [SerializeField]
     protected float actionStartDelay = 4f;
@@ -24,11 +25,13 @@ public class ProjectileEntityController : MonoBehaviour
     {
         projectile = GetComponent<Projectile>();
         projectile.OnProjectileActivated += ToggleEntityActive;
+        projectile.OnSetNewSignature += UpdateSignature;
     }
 
     protected virtual void OnDisable()
     {
         projectile.OnProjectileActivated -= ToggleEntityActive;
+        projectile.OnSetNewSignature -= UpdateSignature;
 
         StopAllCoroutines();
     }
@@ -82,5 +85,10 @@ public class ProjectileEntityController : MonoBehaviour
 
         OnNewActiveEntities?.Invoke(this, projectileEntitiesActive);
         Debug.Log("Active Entities: " + projectileEntitiesActive);
+    }
+
+    private void UpdateSignature(object sender, string attackSignature)
+    {
+        this.attackSignature = attackSignature;
     }
 }

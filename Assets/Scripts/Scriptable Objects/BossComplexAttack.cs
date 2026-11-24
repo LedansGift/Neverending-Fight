@@ -53,8 +53,13 @@ public class BossComplexAttack : BossAttackNode
         else if (activeNode.GetType() == typeof(BossMeleeAttack))
         {
             BossMeleeAttack meleeNode = activeNode as BossMeleeAttack;
-            meleeNode.PerformAttackPart(attacker, NodeDelay, damageMultiplier);
+            meleeNode.PerformAttackPart(attacker, NodeDelay, damageMultiplier, GetAttackName());
             //TryPerformNode(attacker, damageMultiplier);
+        }
+        else if (activeNode.GetType() == typeof(BossRangedAttack))
+        {
+            BossRangedAttack rangedNode = activeNode as BossRangedAttack;
+            rangedNode.PerformAttackPart(attacker, NodeDelay, GetAttackName(), damageMultiplier);
         }
         else
         {
@@ -69,7 +74,7 @@ public class BossComplexAttack : BossAttackNode
     {
         if (failableAttack)
         {
-            OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
+            OnAttackFailCheck?.Invoke(this, GetAttackName());
         }
 
         OnAttackFinished();

@@ -36,10 +36,11 @@ public class VFXPlayer : MonoBehaviour
         return vfxKey;
     }
 
-    public void PlayVFX(Transform vfxParent)
+    public void PlayVFX(Vector3 vfxPosition, Quaternion vfxRotation)
     {
-        transform.position = vfxParent.position;
-        transform.rotation = vfxParent.rotation;
+        transform.position = vfxPosition;
+        transform.rotation = vfxRotation;
+
         particleVFX.Play();
 
         activeAudioSources = new List<AudioSource>();
@@ -56,6 +57,11 @@ public class VFXPlayer : MonoBehaviour
                 StartCoroutine(PlayDelayedSFX(sfx));
             }
         }
+    }
+
+    public void PlayVFX(Transform vfxParent)
+    {
+        PlayVFX(vfxParent.position, vfxParent.rotation);
     }
 
     public void StopVFX()

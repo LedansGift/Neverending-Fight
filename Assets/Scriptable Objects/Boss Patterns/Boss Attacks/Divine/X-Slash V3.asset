@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: X-Slash V3
   m_EditorClassIdentifier: Assembly-CSharp::BossComplexAttack
   animationTrigger: 
-  attackName: X-Slash
+  attackName: X-Slash C
+  failableAttack: 1
+  attackFX: []
   empoweredAttack: {fileID: 0}
   attackNodes:
   - {fileID: 11400000, guid: e783c246f738b3143b9a4f335de4f56c, type: 2}

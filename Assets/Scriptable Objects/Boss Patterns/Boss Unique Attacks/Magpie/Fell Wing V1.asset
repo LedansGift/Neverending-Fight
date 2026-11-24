@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Fell Wing V1
   m_EditorClassIdentifier: Assembly-CSharp::BossMagpieUnique
   animationTrigger: 
-  attackName: DefaultName
+  attackName: FellWingA
+  failableAttack: 1
+  attackFX: []
   empoweredAttack: {fileID: 11400000, guid: 3f3a04b6bcf22c747bee0240eeb35ffc, type: 2}
   magpieUniqueAttack: 4

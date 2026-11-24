@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Crossroads Projectiles A
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
   animationTrigger: 
-  attackName: DefaultName
-  failableAttack: 0
+  attackName: Crossroads Projectiles A
+  failableAttack: 1
   attackFX:
   - fxKey: CROSS_PROJ_A
     fxDelay: 0

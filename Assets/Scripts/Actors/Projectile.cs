@@ -5,6 +5,7 @@ public class Projectile : MonoBehaviour
 {
     private bool projectileActive = false;
     private float lifetimeTimer = 0f;
+    private string attackSignature;
 
     [SerializeField]
     private bool enemyProjectile = false;
@@ -37,6 +38,7 @@ public class Projectile : MonoBehaviour
 
     public EventHandler<bool> OnProjectileActivated;
     public EventHandler<float> OnSetProjectileSpeed;
+    public EventHandler<string> OnSetNewSignature;
 
     private void Awake()
     {
@@ -54,10 +56,17 @@ public class Projectile : MonoBehaviour
         projectileHealth.OnDeath -= TryDestroyProjectile;
     }
 
+    public void SetAttackSignature(string attackSignature)
+    {
+        this.attackSignature = attackSignature;
+        OnSetNewSignature?.Invoke(this, attackSignature);
+    }
+
     public virtual void ActivateProjectile()
     {
         projectileActive = true;
         lifetimeTimer = 0f;
+        SetAttackSignature("");
 
         projectileVisual.SetActive(true);
         projectileCollider.enabled = true;
@@ -145,6 +154,12 @@ public class Projectile : MonoBehaviour
             }
 
             health.TakeDamage(damage);
+
+            if (health.GetIsPlayer() && (health is PlayerHealth playerHealth))
+            {
+                playerHealth.SetAttackFailSignature(attackSignature);
+            }
+
             DeactivateProjectile();
         }
     }

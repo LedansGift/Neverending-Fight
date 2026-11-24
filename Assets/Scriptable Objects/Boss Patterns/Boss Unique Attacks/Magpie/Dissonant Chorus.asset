@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Dissonant Chorus
   m_EditorClassIdentifier: Assembly-CSharp::BossMagpieUnique
   animationTrigger: 
-  attackName: DefaultName
-  failableAttack: 0
+  attackName: DissChorus
+  failableAttack: 1
   attackFX:
   - fxKey: CB_HCHARGE
     fxDelay: 0

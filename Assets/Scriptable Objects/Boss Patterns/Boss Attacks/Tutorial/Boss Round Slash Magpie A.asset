@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss Round Slash Magpie A
   m_EditorClassIdentifier: Assembly-CSharp::BossMeleeAttack
   animationTrigger: 
-  attackName: DefaultName
+  attackName: RoundSlashMag
   failableAttack: 1
   attackFX:
   - fxKey: ROUND_SLASH

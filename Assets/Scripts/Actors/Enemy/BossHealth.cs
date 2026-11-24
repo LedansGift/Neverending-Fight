@@ -39,18 +39,18 @@ public class BossHealth : Health
         healthActive = false;
     }
 
-    public override void TakeDamage(int damage, bool arenaWideDamage = false)
+    public override bool TakeDamage(int damage, bool arenaWideDamage = false)
     {
         if (!healthActive)
         {
-            return;
+            return false;
         }
 
         OnIncomingDamage?.Invoke(this, damage);
 
         if (isInvincible)
         {
-            return;
+            return false;
         }
 
         int minimumHealthThreshold = 0;
@@ -74,6 +74,8 @@ public class BossHealth : Health
             OnTakeDamage?.Invoke();
             damagedSFX?.PlaySFX(transform.position);
         }
+
+        return true;
     }
 
     public float GetHealthPercentage()

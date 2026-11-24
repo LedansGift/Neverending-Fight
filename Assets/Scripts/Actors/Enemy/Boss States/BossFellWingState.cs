@@ -139,7 +139,9 @@ public class BossFellWingState : BossState
                 attackTransform = bossStateMachine.transform;
             }
 
-            bossStateMachine.GetMeleeAttacker().PerformMeleeAttacks(attackHolder, damageMult, null);
+            bossStateMachine
+                .GetMeleeAttacker()
+                .PerformMeleeAttacks(attackHolder, damageMult, null, attackSignature);
 
             VFXManager.Instance.TryPlayVFX(
                 attackKey,

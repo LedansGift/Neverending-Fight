@@ -76,7 +76,7 @@ public class BossDramaticLungeState : BossState
 
         bossStateMachine
             .GetMeleeAttacker()
-            .PerformMeleeAttacks(lungerAttackHolder, damageMult, null);
+            .PerformMeleeAttacks(lungerAttackHolder, damageMult, null, attackSignature);
 
         bossStateMachine.GetMover().CancelLockOn();
 

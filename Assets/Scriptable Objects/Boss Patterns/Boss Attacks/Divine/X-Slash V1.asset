@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: X-Slash V1
   m_EditorClassIdentifier: Assembly-CSharp::BossComplexAttack
   animationTrigger: 
-  attackName: X-Slash
+  attackName: X-Slash A
   failableAttack: 1
   attackFX:
   - fxKey: X_SLASH_A

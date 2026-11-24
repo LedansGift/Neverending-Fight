@@ -123,7 +123,8 @@ public class ProjectileManager : MonoBehaviour
     public Projectile SpawnProjectile(
         GameObject projectileType,
         Vector3 spawnPosition,
-        Vector3 flightDirection
+        Vector3 flightDirection,
+        string attackSignature
     )
     {
         if (
@@ -141,20 +142,27 @@ public class ProjectileManager : MonoBehaviour
             projectileSetIndex,
             projectileIndex,
             spawnPosition,
-            flightDirection
+            flightDirection,
+            attackSignature
         );
     }
 
     public Projectile SpawnReflectedProjectile(Vector3 spawnPosition, Vector3 flightDirection)
     {
-        return SpawnProjectile(reflectedProjectilePrefab, spawnPosition, flightDirection);
+        return SpawnProjectile(
+            reflectedProjectilePrefab,
+            spawnPosition,
+            flightDirection,
+            "ReflectedProjectile"
+        );
     }
 
     private Projectile ResolveProjectileSpawn(
         int projectileSetIndex,
         int projectileIndex,
         Vector3 spawnPosition,
-        Vector3 flightDirection
+        Vector3 flightDirection,
+        string attackSignature
     )
     {
         Projectile projectile = projectileSets[projectileSetIndex][projectileIndex];
@@ -163,6 +171,7 @@ public class ProjectileManager : MonoBehaviour
         projectile.transform.forward = flightDirection;
 
         projectile.ActivateProjectile();
+        projectile.SetAttackSignature(attackSignature);
 
         projectileIndeces[projectileSetIndex]++;
 
@@ -180,6 +189,7 @@ public class ProjectileManager : MonoBehaviour
         float patternStartDelay,
         float patternEndDelay,
         Transform spawnTransform,
+        string attackSignature,
         Action OnPatternFinished = null
     )
     {
@@ -204,6 +214,7 @@ public class ProjectileManager : MonoBehaviour
                 patternEndDelay,
                 projectileSetIndex,
                 spawnTransform,
+                attackSignature,
                 OnPatternFinished
             )
         );
@@ -215,6 +226,7 @@ public class ProjectileManager : MonoBehaviour
         float patternEndDelay,
         int projectileSet,
         Transform spawnTransform,
+        string attackSignature,
         Action OnPatternFinished
     )
     {
@@ -240,7 +252,8 @@ public class ProjectileManager : MonoBehaviour
                     projectileSet,
                     projectileIndex,
                     spawnTransform.position + positionOffset,
-                    flightDirection
+                    flightDirection,
+                    attackSignature
                 );
 
                 positionOffset += activePattern.positionChangePerSpawn;

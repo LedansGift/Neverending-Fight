@@ -60,10 +60,12 @@ public class RewindBombController : ProjectileEntityController
 
     private void PerformAttack()
     {
-        AttackHitResolver.HitRaidwideArea(
+        AttackHitResolver.HitArea(
             transform,
             bombAttack,
-            LayerMaskManager.GetAttackLayerMask()
+            DamageZoneType.raidwide,
+            LayerMaskManager.GetAttackLayerMask(),
+            attackSignature
         );
 
         projectile.DeactivateProjectile();

@@ -50,10 +50,12 @@ public class DoomFeatherController : ProjectileEntityController
     {
         featherExplodeVFX.PlayVFX(transform);
 
-        AttackHitResolver.HitCircleArea(
+        AttackHitResolver.HitArea(
             transform,
             featherAttack,
-            LayerMaskManager.GetAttackLayerMask()
+            DamageZoneType.circle,
+            LayerMaskManager.GetAttackLayerMask(),
+            attackSignature
         );
     }
 }

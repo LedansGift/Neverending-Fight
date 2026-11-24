@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de1ff2f4f889ac49af1ffa911caa65c, type: 3}
   m_Name: Boss Round Slash Crossroads A
   m_EditorClassIdentifier: Assembly-CSharp::BossComplexAttack
-  animationTrigger: 
+  animationTrigger: RoundSlashCrossA
   attackName: DefaultName
   failableAttack: 1
   attackFX: []

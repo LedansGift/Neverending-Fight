@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Feathers of Doom
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
   animationTrigger: 
-  attackName: DefaultName
-  failableAttack: 0
+  attackName: Doom Feathers
+  failableAttack: 1
+  attackFX: []
   empoweredAttack: {fileID: 0}
   waitForSpawnsToFinish: 1
   worldPositionPattern: 1

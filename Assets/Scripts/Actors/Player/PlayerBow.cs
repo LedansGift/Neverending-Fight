@@ -262,7 +262,8 @@ public class PlayerBow : PlayerWeapon
         Projectile bowProjectile = ProjectileManager.Instance.SpawnProjectile(
             bowProjectilePrefab,
             bowShootTransform.transform.position,
-            bowShootTransform.forward
+            bowShootTransform.forward,
+            "PlayerProj"
         );
         bowProjectile.SetSpeedAndDamage(projectileSpeed, bowDamage);
     }

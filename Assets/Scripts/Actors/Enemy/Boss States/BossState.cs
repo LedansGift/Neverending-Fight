@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class BossState : State
 {
     protected float damageMult = 1f;
+    protected string attackSignature;
     protected Action OnStateFinished;
     protected BossStateMachine bossStateMachine;
 
@@ -25,9 +26,14 @@ public abstract class BossState : State
         }
     }
 
-    public void SetStateFinished(Action OnStateFinished, float damageMult = 1f)
+    public void SetStateFinished(
+        Action OnStateFinished,
+        string attackSignature,
+        float damageMult = 1f
+    )
     {
         this.OnStateFinished = OnStateFinished;
+        this.attackSignature = attackSignature;
         this.damageMult = damageMult;
     }
 

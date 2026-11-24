@@ -24,7 +24,8 @@ public class BossMeleeAttacker : MonoBehaviour
     public void PerformMeleeAttacks(
         MeleeAttack[] meleeAttacks,
         float damageMultiplier,
-        Action onAttacksFinished
+        Action onAttacksFinished,
+        string attackSignature = ""
     )
     {
         AttackTelegraphManager.Instance.StartAttackPattern(transform, meleeAttacks);
@@ -41,7 +42,14 @@ public class BossMeleeAttacker : MonoBehaviour
             }
 
             StartCoroutine(
-                SetupMeleeAttack(meleeAttacks, i, damageMultiplier, finalAttack, finalAttackEvent)
+                SetupMeleeAttack(
+                    meleeAttacks,
+                    i,
+                    damageMultiplier,
+                    finalAttack,
+                    attackSignature,
+                    finalAttackEvent
+                )
             );
         }
     }
@@ -51,6 +59,7 @@ public class BossMeleeAttacker : MonoBehaviour
         int attackIndex,
         float damageMult,
         bool finalAttack,
+        string attackSignature,
         Action onAttacksFinished
     )
     {
@@ -65,28 +74,14 @@ public class BossMeleeAttacker : MonoBehaviour
 
         yield return new WaitForSeconds(attackDelayTime);
 
-        if (attack.damageZoneType == DamageZoneType.box)
-        {
-            //HitBoxArea(attack, damageMult);
-            AttackHitResolver.HitBoxArea(transform, attack, attackLayerMask, damageMult);
-        }
-        else if (attack.damageZoneType == DamageZoneType.circle)
-        {
-            //HitCircleArea(attack, damageMult);
-            AttackHitResolver.HitCircleArea(transform, attack, attackLayerMask, damageMult);
-        }
-        else if (attack.damageZoneType == DamageZoneType.donut)
-        {
-            AttackHitResolver.HitDonutArea(transform, attack, attackLayerMask, damageMult);
-        }
-        else if (attack.damageZoneType == DamageZoneType.raidwide)
-        {
-            AttackHitResolver.HitRaidwideArea(transform, attack, attackLayerMask, damageMult);
-        }
-        else
-        {
-            Debug.Log("Unknown Damage Zone");
-        }
+        AttackHitResolver.HitArea(
+            transform,
+            attack,
+            attack.damageZoneType,
+            attackLayerMask,
+            attackSignature,
+            damageMult
+        );
 
         if (finalAttack)
         {
@@ -95,28 +90,20 @@ public class BossMeleeAttacker : MonoBehaviour
         }
     }
 
-    public void PerformAttackUntelegraphed(MeleeAttack attack, float damageMult)
+    public void PerformAttackUntelegraphed(
+        MeleeAttack attack,
+        float damageMult,
+        string attackSignature
+    )
     {
-        if (attack.damageZoneType == DamageZoneType.box)
-        {
-            AttackHitResolver.HitBoxArea(transform, attack, attackLayerMask, damageMult);
-        }
-        else if (attack.damageZoneType == DamageZoneType.circle)
-        {
-            AttackHitResolver.HitCircleArea(transform, attack, attackLayerMask, damageMult);
-        }
-        else if (attack.damageZoneType == DamageZoneType.donut)
-        {
-            AttackHitResolver.HitDonutArea(transform, attack, attackLayerMask, damageMult);
-        }
-        else if (attack.damageZoneType == DamageZoneType.raidwide)
-        {
-            AttackHitResolver.HitRaidwideArea(transform, attack, attackLayerMask, damageMult);
-        }
-        else
-        {
-            Debug.Log("Unknown Damage Zone");
-        }
+        AttackHitResolver.HitArea(
+            transform,
+            attack,
+            attack.damageZoneType,
+            attackLayerMask,
+            attackSignature,
+            damageMult
+        );
     }
 
     private void FinishAttacks(Action onAttacksFinished)

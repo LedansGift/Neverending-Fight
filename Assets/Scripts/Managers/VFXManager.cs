@@ -44,14 +44,24 @@ public class VFXManager : MonoBehaviour
         RestartManager.OnResetPhase -= DeactivateAllVFX;
     }
 
-    private IEnumerator PlayVFXDelayed(VFXPlayer player, Transform vfxParent, float playDelay)
+    private IEnumerator PlayVFXDelayed(
+        VFXPlayer player,
+        Vector3 vfxPosition,
+        Quaternion vfxRotation,
+        float playDelay
+    )
     {
         yield return new WaitForSeconds(playDelay);
 
-        player.PlayVFX(vfxParent);
+        player.PlayVFX(vfxPosition, vfxRotation);
     }
 
-    public void TryPlayVFX(string vfxKey, Transform vfxParent, float playDelay = 0f)
+    public void TryPlayVFX(
+        string vfxKey,
+        Vector3 vfxPosition,
+        Quaternion vfxRotation,
+        float playDelay = 0f
+    )
     {
         if (!vfxDictionary.TryGetValue(vfxKey, out VFXPlayer fXPlayer))
         {
@@ -61,12 +71,17 @@ public class VFXManager : MonoBehaviour
 
         if (playDelay <= 0f)
         {
-            fXPlayer.PlayVFX(vfxParent);
+            fXPlayer.PlayVFX(vfxPosition, vfxRotation);
         }
         else
         {
-            StartCoroutine(PlayVFXDelayed(fXPlayer, vfxParent, playDelay));
+            StartCoroutine(PlayVFXDelayed(fXPlayer, vfxPosition, vfxRotation, playDelay));
         }
+    }
+
+    public void TryPlayVFX(string vfxKey, Transform vfxParent, float playDelay = 0f)
+    {
+        TryPlayVFX(vfxKey, vfxParent.position, vfxParent.rotation, playDelay);
     }
 
     public void StopVFX(string vfxKey)

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Rewind Bomb Crossroads
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
   animationTrigger: 
-  attackName: DefaultName
-  failableAttack: 0
+  attackName: Rewind Bomb Cross
+  failableAttack: 1
+  attackFX: []
   empoweredAttack: {fileID: 0}
   waitForSpawnsToFinish: 1
   worldPositionPattern: 0

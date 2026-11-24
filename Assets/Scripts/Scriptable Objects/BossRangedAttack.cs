@@ -63,10 +63,62 @@ public class BossRangedAttack : BossAttackNode
             patternStartDelay,
             patternEndDelay,
             spawnTransform,
+            GetAttackName(),
             patternFinish
         );
 
         this.OnAttackFinished = OnAttackFinished;
+    }
+
+    public void PerformAttackPart(
+        BossAttackManager attacker,
+        Action OnAttackFinished,
+        string attackSignatureOverride,
+        float damageMultiplier = 1f
+    )
+    {
+        CheckAvailableProjectiles();
+
+        Action patternFinish = null;
+        Transform spawnTransform = attacker.transform;
+
+        PlayFX(attacker.transform);
+
+        if (waitForSpawnsToFinish)
+        {
+            patternFinish = OnAttackFinished;
+        }
+        else
+        {
+            ProjectileManager.Instance.StartCoroutine(PartFinishDelay());
+        }
+
+        if (worldPositionPattern)
+        {
+            spawnTransform = ProjectileManager.Instance.transform;
+        }
+
+        ProjectileManager.Instance.SpawnProjectilePattern(
+            projectile,
+            GetActivePattern(),
+            patternStartDelay,
+            patternEndDelay,
+            spawnTransform,
+            attackSignatureOverride,
+            patternFinish
+        );
+
+        this.OnAttackFinished = OnAttackFinished;
+    }
+
+    public override void FinishAttack()
+    {
+        if (failableAttack)
+        {
+            OnAttackFailCheck?.Invoke(this, GetAttackName());
+        }
+
+        base.FinishAttack();
     }
 
     private void FinishProjectilePattern()
@@ -83,6 +135,20 @@ public class BossRangedAttack : BossAttackNode
     {
         yield return new WaitForSeconds(patternEndDelay);
         FinishProjectilePattern();
+    }
+
+    private IEnumerator PartFinishDelay()
+    {
+        yield return new WaitForSeconds(patternEndDelay);
+
+        if (OnAttackFinished != null)
+        {
+            OnAttackFinished();
+        }
+        else
+        {
+            FinishProjectilePattern();
+        }
     }
 
     private void CheckAvailableProjectiles()

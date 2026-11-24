@@ -18,11 +18,11 @@ public class EnemyHealth : Health
         HealToFull();
     }
 
-    public override void TakeDamage(int damage, bool arenaWideDamage = false)
+    public override bool TakeDamage(int damage, bool arenaWideDamage = false)
     {
         if (isInvincible)
         {
-            return;
+            return false;
         }
 
         health = Mathf.Max(0, health - damage);
@@ -49,5 +49,7 @@ public class EnemyHealth : Health
 
             OnTakeDamage?.Invoke();
         }
+
+        return true;
     }
 }

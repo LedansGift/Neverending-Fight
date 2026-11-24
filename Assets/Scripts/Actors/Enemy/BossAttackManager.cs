@@ -170,7 +170,7 @@ public class BossAttackManager : MonoBehaviour
         onIdleFinished();
     }
 
-    private void CheckAttackFailure(object sender, EventArgs eventArgs)
+    private void CheckAttackFailure(object sender, string attackSignature)
     {
         if (!attackManagerActive)
         {
@@ -183,11 +183,10 @@ public class BossAttackManager : MonoBehaviour
             return;
         }
 
-        if (playerHealth.GetAttackFailStatus())
+        if (playerHealth.GetAttackFailStatus(attackSignature))
         {
             Debug.Log("Attack failed: " + sender);
             RegisterAttackFailure(sender as BossAttackNode);
-            playerHealth.ResetAttackFailStatus();
 
             OnAttackFailed?.Invoke(this, true);
         }
@@ -195,6 +194,8 @@ public class BossAttackManager : MonoBehaviour
         {
             OnAttackFailed?.Invoke(this, false);
         }
+
+        playerHealth.ResetAttackFailStatus();
     }
 
     private void ResetAttacker()

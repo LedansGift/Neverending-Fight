@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Forbidden Knowledge
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
   animationTrigger: 
-  attackName: DefaultName
+  attackName: Forbidden Knowledge A
   failableAttack: 0
+  attackFX: []
   empoweredAttack: {fileID: 0}
   waitForSpawnsToFinish: 0
   worldPositionPattern: 1

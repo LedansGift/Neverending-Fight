@@ -58,26 +58,32 @@ public class BossMeleeAttack : BossAttackNode
         PlayFX(attacker.transform);
 
         BossMeleeAttacker meleeAttacker = attacker.GetBossMeleeAttacker();
-        meleeAttacker.PerformMeleeAttacks(attacks, damageMultiplier, FinishAttack);
+        meleeAttacker.PerformMeleeAttacks(attacks, damageMultiplier, FinishAttack, GetAttackName());
     }
 
     public void PerformAttackPart(
         BossAttackManager attacker,
         Action OnAttackFinished,
-        float damageMultiplier = 1f
+        float damageMultiplier = 1f,
+        string attackSignatureOverride = ""
     )
     {
         PlayFX(attacker.transform);
 
         BossMeleeAttacker meleeAttacker = attacker.GetBossMeleeAttacker();
-        meleeAttacker.PerformMeleeAttacks(attacks, damageMultiplier, OnAttackFinished);
+        meleeAttacker.PerformMeleeAttacks(
+            attacks,
+            damageMultiplier,
+            OnAttackFinished,
+            attackSignatureOverride
+        );
     }
 
     public override void FinishAttack()
     {
         if (failableAttack)
         {
-            OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
+            OnAttackFailCheck?.Invoke(this, GetAttackName());
         }
 
         base.FinishAttack();

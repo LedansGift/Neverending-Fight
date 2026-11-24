@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Unstable Elements A
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
   animationTrigger: 
-  attackName: DefaultName
+  attackName: Unstable Elements A
   failableAttack: 1
+  attackFX: []
   empoweredAttack: {fileID: 0}
   waitForSpawnsToFinish: 1
   worldPositionPattern: 0

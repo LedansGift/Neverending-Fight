@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Dark Wave A
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
   animationTrigger: 
-  attackName: DefaultName
-  failableAttack: 0
+  attackName: Dark Wave A
+  failableAttack: 1
+  attackFX: []
   empoweredAttack: {fileID: 0}
   waitForSpawnsToFinish: 1
   worldPositionPattern: 0

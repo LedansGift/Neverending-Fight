@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss Full Arena Attack Magpie
   m_EditorClassIdentifier: Assembly-CSharp::BossComplexAttack
   animationTrigger: 
-  attackName: DefaultName
+  attackName: FullArenaAttackMag
   failableAttack: 1
   attackFX: []
   empoweredAttack: {fileID: 0}

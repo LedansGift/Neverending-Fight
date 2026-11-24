@@ -16,10 +16,12 @@ public class UnstableElementController : ProjectileEntityController
 
         yield return new WaitForSeconds(bombAttack.zoneWarningTime);
 
-        AttackHitResolver.HitCircleArea(
+        AttackHitResolver.HitArea(
             transform,
             bombAttack,
-            LayerMaskManager.GetAttackLayerMask()
+            DamageZoneType.circle,
+            LayerMaskManager.GetAttackLayerMask(),
+            attackSignature
         );
     }
 

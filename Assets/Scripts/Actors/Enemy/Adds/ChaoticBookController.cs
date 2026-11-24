@@ -61,7 +61,8 @@ public class ChaoticBookController : ProjectileEntityController
         ProjectileManager.Instance.SpawnProjectile(
             chaoticProjectilePrefab.gameObject,
             spawnPosition,
-            spawnForward
+            spawnForward,
+            attackSignature
         );
 
         yield return new WaitForSeconds(projectileFireCooldown);

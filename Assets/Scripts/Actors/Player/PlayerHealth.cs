@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -7,7 +8,8 @@ public class PlayerHealth : Health
 {
     private bool isDead = false;
     private bool playerWeakened = false;
-    private bool attackFailTracker = false;
+
+    //private bool attackFailTracker = false;
     private float iFrameDuration = 1f;
 
     private float impulseStrength = 1f;
@@ -16,6 +18,8 @@ public class PlayerHealth : Health
 
     private PlayerStats playerStats;
     private PlayerMovement playerMovement;
+
+    private List<string> attackFailSignatures = new List<string>();
 
     private Coroutine iFrameCoroutine;
 
@@ -86,12 +90,14 @@ public class PlayerHealth : Health
         base.HealToFull();
     }
 
-    public override void TakeDamage(int damage, bool arenaWideDamage = false)
+    public override bool TakeDamage(int damage, bool arenaWideDamage = false)
     {
         if (isDead || (isInvincible && !arenaWideDamage))
         {
-            return;
+            return false;
         }
+
+        bool avoidableAttackHit = false;
 
         int minimumHealthThreshold = 0;
 
@@ -104,7 +110,7 @@ public class PlayerHealth : Health
 
         if (!arenaWideDamage)
         {
-            attackFailTracker = true;
+            avoidableAttackHit = true;
         }
 
         OnPlayerHit?.Invoke();
@@ -123,6 +129,8 @@ public class PlayerHealth : Health
             impulseSource.GenerateImpulse(impulseStrength);
             iFrameCoroutine = StartCoroutine(DamageInvincibility());
         }
+
+        return avoidableAttackHit;
     }
 
     //KNOCKBACKS NEED TO HAPPEN BEFORE DAMAGE
@@ -196,14 +204,25 @@ public class PlayerHealth : Health
         OnChangePlayerHealth?.Invoke(this, health);
     }
 
-    public bool GetAttackFailStatus()
+    public void SetAttackFailSignature(string failSignature)
     {
-        return attackFailTracker;
+        attackFailSignatures.Add(failSignature);
+    }
+
+    public bool GetAttackFailStatus(string attackSignature)
+    {
+        if (attackFailSignatures.Contains(attackSignature))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void ResetAttackFailStatus()
     {
-        attackFailTracker = false;
+        //attackFailTracker = false;
+        attackFailSignatures = new List<string>();
     }
 
     private void SetJumpInvincibility(object sender, bool toggle)

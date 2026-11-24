@@ -80,4 +80,9 @@ public class ProjectileMover : MonoBehaviour
     {
         speed = newSpeed;
     }
+
+    public void SetProjectilePosition(Vector3 newPosition)
+    {
+        projectileRb.position = newPosition;
+    }
 }

@@ -20,15 +20,17 @@ public class TomeAbsorber : Health
         ToggleAbsorber(false);
     }
 
-    public override void TakeDamage(int damageAmount, bool arenaWideDamage = false)
+    public override bool TakeDamage(int damageAmount, bool arenaWideDamage = false)
     {
         if (arenaWideDamage)
         {
-            return;
+            return false;
         }
 
         absorbedDamage = Mathf.Min(absorbedDamage + 1, maxAbsorbedDamage);
         absorbFlameVisual.SetVisualSize((float)absorbedDamage / maxAbsorbedDamage);
+
+        return false;
     }
 
     public void ToggleAbsorber(bool toggle, int maxAbsorb = 10)

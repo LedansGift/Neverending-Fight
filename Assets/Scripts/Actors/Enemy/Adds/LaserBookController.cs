@@ -16,7 +16,13 @@ public class LaserBookController : ProjectileEntityController
 
         yield return new WaitForSeconds(laserAttack.zoneWarningTime);
 
-        AttackHitResolver.HitBoxArea(transform, laserAttack, LayerMaskManager.GetAttackLayerMask());
+        AttackHitResolver.HitArea(
+            transform,
+            laserAttack,
+            DamageZoneType.box,
+            LayerMaskManager.GetAttackLayerMask(),
+            "LaserBook"
+        );
     }
 
     protected override void ToggleEntityActive(object sender, bool toggle)

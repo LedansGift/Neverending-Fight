@@ -88,7 +88,9 @@ public class BossDissonantChorusState : BossState
 
         yield return new WaitForSeconds(attackPreHitDelay);
 
-        bossStateMachine.GetMeleeAttacker().PerformAttackUntelegraphed(chorusAttack, damageMult);
+        bossStateMachine
+            .GetMeleeAttacker()
+            .PerformAttackUntelegraphed(chorusAttack, damageMult, attackSignature);
 
         VFXManager.Instance.TryPlayVFX(chorusAttackKey, bossStateMachine.transform);
 

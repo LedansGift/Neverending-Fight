@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Raven Supression Magpie
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
   animationTrigger: 
-  attackName: DefaultName
-  failableAttack: 0
+  attackName: RavenSuppMag
+  failableAttack: 1
   attackFX: []
   empoweredAttack: {fileID: 0}
   waitForSpawnsToFinish: 0

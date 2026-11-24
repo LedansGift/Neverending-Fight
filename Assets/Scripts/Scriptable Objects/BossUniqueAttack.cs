@@ -24,7 +24,7 @@ public class BossUniqueAttack : BossAttackNode
         if (stateDictionary.TryGetState(uniqueAttackIndex, out State state))
         {
             BossState bossState = state as BossState;
-            bossState.SetStateFinished(DelayedAttackFinish, damageMultiplier);
+            bossState.SetStateFinished(DelayedAttackFinish, GetAttackName(), damageMultiplier);
 
             stateMachine.SwitchState(state);
         }
@@ -40,7 +40,7 @@ public class BossUniqueAttack : BossAttackNode
         if (failableAttack)
         {
             Debug.Log("Attack fail check");
-            OnAttackFailCheck?.Invoke(this, EventArgs.Empty);
+            OnAttackFailCheck?.Invoke(this, GetAttackName());
         }
 
         base.FinishAttack();

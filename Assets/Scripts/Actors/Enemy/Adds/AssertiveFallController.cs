@@ -1,50 +1,37 @@
 using System.Collections;
 using UnityEngine;
 
-public class AssertiveFallController : ProjectileEntityController
+public class AssertiveFallController : PlayerLockOnEntityController
 {
     [SerializeField]
     private MeleeAttack fallAttack;
 
     private DamageZone fallDamageZone;
 
-    [SerializeField]
-    private ObjectFollower follower;
-
     protected override IEnumerator StartEntityAction()
     {
         yield return base.StartEntityAction();
 
         fallDamageZone = AttackTelegraphManager.Instance.StartAttack(transform, fallAttack);
-        follower.ToggleFollow(false);
 
         yield return new WaitForSeconds(fallAttack.zoneWarningTime);
 
-        AttackHitResolver.HitCircleArea(
+        AttackHitResolver.HitArea(
             transform,
             fallAttack,
-            LayerMaskManager.GetAttackLayerMask()
+            DamageZoneType.circle,
+            LayerMaskManager.GetAttackLayerMask(),
+            attackSignature
         );
     }
 
-    protected override void ToggleEntityActive(object sender, bool toggle)
+    protected override void StopEntityAction()
     {
-        if (toggle)
-        {
-            follower.SetFollowTarget(PlayerIdentifier.PlayerTransform);
-            follower.ToggleFollow(true);
+        base.StopEntityAction();
 
-            StartCoroutine(StartEntityAction());
-        }
-        else
+        if (fallDamageZone)
         {
-            if (fallDamageZone)
-            {
-                fallDamageZone.DeactivateZone();
-            }
-            follower.ToggleFollow(false);
-
-            StopAllCoroutines();
+            fallDamageZone.DeactivateZone();
         }
     }
 }

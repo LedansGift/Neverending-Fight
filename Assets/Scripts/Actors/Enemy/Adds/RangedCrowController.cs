@@ -45,7 +45,8 @@ public class RangedCrowController : ProjectileEntityController
         ProjectileManager.Instance.SpawnProjectile(
             crowProjectilePrefab.gameObject,
             projectileSpawnPoint.position,
-            projectileSpawnPoint.forward
+            projectileSpawnPoint.forward,
+            attackSignature
         );
 
         projectileLaunchSFX.PlaySFX(transform.position);

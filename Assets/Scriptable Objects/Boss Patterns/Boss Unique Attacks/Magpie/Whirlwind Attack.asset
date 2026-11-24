@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Whirlwind Attack
   m_EditorClassIdentifier: Assembly-CSharp::BossMagpieUnique
   animationTrigger: 
-  attackName: DefaultName
+  attackName: WhirlwindMag
   failableAttack: 1
   attackFX:
   - fxKey: WIND_CHARGE

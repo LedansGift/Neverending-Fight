@@ -1,14 +1,89 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackHitResolver
 {
     private const float RAIDWIDE_DAMAGE_AREA = 100f;
 
-    public static bool HitBoxArea(
+    public static bool HitArea(
         Transform attackTransform,
         MeleeAttack attack,
+        DamageZoneType damageZoneType,
         LayerMask attackLayerMask,
+        string attackSignature,
         float damageMult = 1f
+    )
+    {
+        Collider[] hitTargets = GetHitTargets(
+            attackTransform,
+            attack,
+            damageZoneType,
+            attackLayerMask,
+            out bool raidwideHit
+        );
+
+        bool targetHit = false;
+
+        foreach (Collider target in hitTargets)
+        {
+            if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
+            {
+                if (attack.knockbackStrength > 0f)
+                {
+                    KnockbackTarget(attackTransform, hitHealth, attack.knockbackStrength);
+                }
+
+                if (
+                    hitHealth.TakeDamage(
+                        Mathf.RoundToInt(attack.attackDamage * damageMult),
+                        raidwideHit
+                    )
+                )
+                {
+                    PlayerHealth playerHealth = hitHealth as PlayerHealth;
+                    playerHealth.SetAttackFailSignature(attackSignature);
+                }
+                //Debug.Log("Damage dealt: " + Mathf.RoundToInt(attack.attackDamage * damageMult));
+                targetHit = true;
+            }
+        }
+
+        return targetHit;
+    }
+
+    private static Collider[] GetHitTargets(
+        Transform attackTransform,
+        MeleeAttack attack,
+        DamageZoneType damageZoneType,
+        LayerMask attackLayerMask,
+        out bool raidwideHit
+    )
+    {
+        raidwideHit = false;
+        switch (damageZoneType)
+        {
+            case DamageZoneType.circle:
+                return HitCircleArea(attackTransform, attack, attackLayerMask);
+
+            case DamageZoneType.box:
+                return HitBoxArea(attackTransform, attack, attackLayerMask);
+
+            case DamageZoneType.donut:
+                return HitDonutArea(attackTransform, attack, attackLayerMask);
+
+            case DamageZoneType.raidwide:
+                raidwideHit = true;
+                return HitRaidwideArea(attackTransform, attack, attackLayerMask);
+
+            default:
+                return HitBoxArea(attackTransform, attack, attackLayerMask);
+        }
+    }
+
+    private static Collider[] HitBoxArea(
+        Transform attackTransform,
+        MeleeAttack attack,
+        LayerMask attackLayerMask
     )
     {
         Vector3 zoneSpawnLocation;
@@ -51,45 +126,13 @@ public class AttackHitResolver
             attackLayerMask
         );
 
-        bool targetHit = false;
-
-        foreach (Collider target in hitTargets)
-        {
-            if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
-            {
-                if (attack.knockbackStrength > 0f)
-                {
-                    KnockbackTarget(attackTransform, hitHealth, attack.knockbackStrength);
-                }
-
-                hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
-                //Debug.Log("Damage dealt: " + Mathf.RoundToInt(attack.attackDamage * damageMult));
-                targetHit = true;
-            }
-        }
-
-        return targetHit;
+        return hitTargets;
     }
 
-    private static void KnockbackTarget(
-        Transform attackTransform,
-        Health hitHealth,
-        float knockbackStrength
-    )
-    {
-        Vector3 knockbackDirection = (
-            hitHealth.transform.position - attackTransform.position
-        ).normalized;
-        knockbackDirection.y = 0;
-
-        hitHealth.Knockback(knockbackDirection, knockbackStrength);
-    }
-
-    public static bool HitCircleArea(
+    private static Collider[] HitCircleArea(
         Transform attackTransform,
         MeleeAttack attack,
-        LayerMask attackLayerMask,
-        float damageMult = 1f
+        LayerMask attackLayerMask
     )
     {
         Vector3 zoneSpawnLocation;
@@ -131,7 +174,7 @@ public class AttackHitResolver
             attackLayerMask
         );
 
-        bool targetHit = false;
+        List<Collider> validTargets = new List<Collider>();
 
         foreach (Collider target in hitTargets)
         {
@@ -160,28 +203,16 @@ public class AttackHitResolver
                 continue;
             }
 
-            if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
-            {
-                // Debug.Log("Collider Direction" + colliderDirection);
-
-                if (attack.knockbackStrength > 0f)
-                {
-                    KnockbackTarget(attackTransform, hitHealth, attack.knockbackStrength);
-                }
-
-                hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
-                targetHit = true;
-            }
+            validTargets.Add(target);
         }
 
-        return targetHit;
+        return validTargets.ToArray();
     }
 
-    public static bool HitDonutArea(
+    private static Collider[] HitDonutArea(
         Transform attackTransform,
         MeleeAttack attack,
-        LayerMask attackLayerMask,
-        float damageMult = 1f
+        LayerMask attackLayerMask
     )
     {
         Vector3 zoneSpawnLocation;
@@ -216,7 +247,7 @@ public class AttackHitResolver
             attackLayerMask
         );
 
-        bool targetHit = false;
+        List<Collider> validTargets = new List<Collider>();
 
         foreach (Collider target in hitTargets)
         {
@@ -232,28 +263,16 @@ public class AttackHitResolver
                 continue;
             }
 
-            if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
-            {
-                // Debug.Log("Collider Direction" + colliderDirection);
-
-                if (attack.knockbackStrength > 0f)
-                {
-                    KnockbackTarget(attackTransform, hitHealth, attack.knockbackStrength);
-                }
-
-                hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult));
-                targetHit = true;
-            }
+            validTargets.Add(target);
         }
 
-        return targetHit;
+        return validTargets.ToArray();
     }
 
-    public static bool HitRaidwideArea(
+    private static Collider[] HitRaidwideArea(
         Transform attackTransform,
         MeleeAttack attack,
-        LayerMask attackLayerMask,
-        float damageMult = 1f
+        LayerMask attackLayerMask
     )
     {
         Vector3 zoneSpawnLocation = attackTransform.position;
@@ -264,22 +283,20 @@ public class AttackHitResolver
             attackLayerMask
         );
 
-        bool targetHit = false;
+        return hitTargets;
+    }
 
-        foreach (Collider target in hitTargets)
-        {
-            if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
-            {
-                if (attack.knockbackStrength > 0f)
-                {
-                    KnockbackTarget(attackTransform, hitHealth, attack.knockbackStrength);
-                }
+    private static void KnockbackTarget(
+        Transform attackTransform,
+        Health hitHealth,
+        float knockbackStrength
+    )
+    {
+        Vector3 knockbackDirection = (
+            hitHealth.transform.position - attackTransform.position
+        ).normalized;
+        knockbackDirection.y = 0;
 
-                hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult), true);
-                targetHit = true;
-            }
-        }
-
-        return targetHit;
+        hitHealth.Knockback(knockbackDirection, knockbackStrength);
     }
 }

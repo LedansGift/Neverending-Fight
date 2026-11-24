@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Feathers of Doom Magpie
   m_EditorClassIdentifier: Assembly-CSharp::BossRangedAttack
   animationTrigger: 
-  attackName: DefaultName
-  failableAttack: 0
+  attackName: DoomFeathersMag
+  failableAttack: 1
   attackFX: []
   empoweredAttack: {fileID: 0}
   waitForSpawnsToFinish: 0

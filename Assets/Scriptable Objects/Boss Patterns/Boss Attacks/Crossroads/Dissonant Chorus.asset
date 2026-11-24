@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dissonant Chorus
   m_EditorClassIdentifier: Assembly-CSharp::BossComplexAttack
   animationTrigger: 
-  attackName: DefaultName
+  attackName: Diss Chorus
   failableAttack: 1
   attackFX: []
   empoweredAttack: {fileID: 0}

@@ -18,7 +18,7 @@ public abstract class BossAttackNode : BossNode
 
     [SerializeField]
     private BossAttackNode empoweredAttack;
-    public static EventHandler OnAttackFailCheck;
+    public static EventHandler<string> OnAttackFailCheck;
 
     protected void PlayFX(Transform attackerTransform)
     {
