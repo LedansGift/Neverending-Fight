@@ -24,31 +24,57 @@ public class AttackHitResolver
 
         bool targetHit = false;
 
+        if (raidwideHit)
+        {
+            Health playerHealth = PlayerIdentifier.PlayerTransform.GetComponent<Health>();
+
+            ResolveTargetHit(
+                attackTransform,
+                attack,
+                attackSignature,
+                damageMult,
+                playerHealth,
+                raidwideHit
+            );
+
+            targetHit = true;
+        }
+
         foreach (Collider target in hitTargets)
         {
             if (target.TryGetComponent<Health>(out Health hitHealth) && hitHealth.GetIsPlayer())
             {
-                if (attack.knockbackStrength > 0f)
-                {
-                    KnockbackTarget(attackTransform, hitHealth, attack.knockbackStrength);
-                }
+                ResolveTargetHit(attackTransform, attack, attackSignature, damageMult, hitHealth);
 
-                if (
-                    hitHealth.TakeDamage(
-                        Mathf.RoundToInt(attack.attackDamage * damageMult),
-                        raidwideHit
-                    )
-                )
-                {
-                    PlayerHealth playerHealth = hitHealth as PlayerHealth;
-                    playerHealth.SetAttackFailSignature(attackSignature);
-                }
-                //Debug.Log("Damage dealt: " + Mathf.RoundToInt(attack.attackDamage * damageMult));
                 targetHit = true;
             }
         }
 
         return targetHit;
+    }
+
+    private static void ResolveTargetHit(
+        Transform attackTransform,
+        MeleeAttack attack,
+        string attackSignature,
+        float damageMult,
+        Health hitHealth,
+        bool raidwide = false
+    )
+    {
+        if (attack.knockbackStrength > 0f)
+        {
+            KnockbackTarget(attackTransform, hitHealth, attack.knockbackStrength);
+        }
+
+        //Debug.Log("Raidwide Hit: " + raidwideHit);
+
+        if (hitHealth.TakeDamage(Mathf.RoundToInt(attack.attackDamage * damageMult), raidwide))
+        {
+            PlayerHealth playerHealth = hitHealth as PlayerHealth;
+            playerHealth.SetAttackFailSignature(attackSignature);
+        }
+        //Debug.Log("Damage dealt: " + Mathf.RoundToInt(attack.attackDamage * damageMult));
     }
 
     private static Collider[] GetHitTargets(
@@ -282,6 +308,8 @@ public class AttackHitResolver
             RAIDWIDE_DAMAGE_AREA,
             attackLayerMask
         );
+
+        Debug.Log("Hit targets: " + hitTargets.Length);
 
         return hitTargets;
     }

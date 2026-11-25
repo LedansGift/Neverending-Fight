@@ -5,7 +5,8 @@ public enum MagusUniqueAttacks
     DiffShieldOn,
     DiffShieldOff,
     ElementalCardinalsSingle,
-    ElementalCardinalsDouble
+    ElementalCardinalsDouble,
+    Godslayer
 }
 
 public class MagusStateDictionary : StateDictionary
@@ -27,6 +28,10 @@ public class MagusStateDictionary : StateDictionary
         stateDictionary.Add(
             (int)MagusUniqueAttacks.ElementalCardinalsDouble,
             new BossElementalCardinalsState(stateMachine as BossStateMachine, 1)
+        );
+        stateDictionary.Add(
+            (int)MagusUniqueAttacks.Godslayer,
+            new BossGodslayerState(stateMachine as BossStateMachine)
         );
     }
 }
