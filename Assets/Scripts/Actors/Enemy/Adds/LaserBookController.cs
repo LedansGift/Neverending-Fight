@@ -21,7 +21,7 @@ public class LaserBookController : ProjectileEntityController
             laserAttack,
             DamageZoneType.box,
             LayerMaskManager.GetAttackLayerMask(),
-            "LaserBook"
+            attackSignature
         );
     }
 
