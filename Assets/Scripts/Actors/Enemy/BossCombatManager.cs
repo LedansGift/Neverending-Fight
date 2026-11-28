@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossCombatManager : MonoBehaviour
@@ -6,6 +7,7 @@ public class BossCombatManager : MonoBehaviour
     private int attackPatternIndex = 0;
     private BossFormManager bossFormManager;
     private BossNode[] activeAttackPattern;
+    private Queue<BossNode> activeInterrupts = new Queue<BossNode>();
     private BossPhase activeEndOfPatternPhaseChange;
     private HealthThresholdPhaseChange activeHealthPhaseChange;
     private BattleStatePhaseChange activeBattleStatePhaseChange;
@@ -26,6 +28,7 @@ public class BossCombatManager : MonoBehaviour
     {
         attackPatternIndex = 0;
         activeAttackPattern = newAttackPattern;
+        activeInterrupts = new Queue<BossNode>();
         activeEndOfPatternPhaseChange = endOfPatternPhaseChange;
         activeHealthPhaseChange = healthPhaseChange;
         activeBattleStatePhaseChange = battleStatePhaseChange;
@@ -58,6 +61,11 @@ public class BossCombatManager : MonoBehaviour
         bossAttacker.PerformAttackNode(currentAttack, ResolveAttack);
     }
 
+    private void PerformInterruptAttack(BossNode interruptAttack)
+    {
+        bossAttacker.PerformAttackNode(interruptAttack, ResolveAttack);
+    }
+
     private void ResolveAttack()
     {
         //Debug.Log("Attack Finished");
@@ -85,6 +93,19 @@ public class BossCombatManager : MonoBehaviour
             return;
         }
 
+        //Debug.Log("Combat Reached");
+
+        CheckAvailableInterrupts();
+
+        if (activeInterrupts.TryDequeue(out BossNode interruptNode))
+        {
+            PerformInterruptAttack(interruptNode);
+
+            Debug.Log("INTERRUPT NODE: " + interruptNode.GetAttackName());
+
+            return;
+        }
+
         attackPatternIndex++;
 
         if (attackPatternIndex >= activeAttackPattern.Length)
@@ -103,6 +124,16 @@ public class BossCombatManager : MonoBehaviour
         }
 
         PerformNextAttack();
+    }
+
+    private void CheckAvailableInterrupts()
+    {
+        List<BossNode> availableInterrupts = bossFormManager.GetInterruptNodes();
+
+        foreach (BossNode interrupt in availableInterrupts)
+        {
+            activeInterrupts.Enqueue(interrupt);
+        }
     }
 
     public void SetFormManager(BossFormManager bossFormManager)

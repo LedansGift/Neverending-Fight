@@ -19,6 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 18f99ecf8e46567409ca5627791c267f, type: 2}
   - {fileID: 11400000, guid: 94d40ed16fa4cf3469784ea01713ee90, type: 2}
   - {fileID: 11400000, guid: 00af5162fd3d2204885654302d528e84, type: 2}
+  availableInterruptIndeces: 00000000
   endOfPatternPhaseChange: {fileID: 0}
   healthPhaseChange:
     healthPercentageThreshold: 0

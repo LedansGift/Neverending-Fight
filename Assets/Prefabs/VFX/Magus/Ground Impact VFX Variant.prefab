@@ -511,5 +511,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4436189847340448404, guid: ae7cd35c4b3fe95418f04d6a703a7bc0, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 7661076784284164633}
   m_SourcePrefab: {fileID: 100100000, guid: ae7cd35c4b3fe95418f04d6a703a7bc0, type: 3}
+--- !u!198 &6934011453260581343 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2879613619086619458, guid: ae7cd35c4b3fe95418f04d6a703a7bc0, type: 3}
+  m_PrefabInstance: {fileID: 5173791519741491869}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8817059404000346121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4436189847340448404, guid: ae7cd35c4b3fe95418f04d6a703a7bc0, type: 3}
+  m_PrefabInstance: {fileID: 5173791519741491869}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7661076784284164633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817059404000346121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77c86fa01ee4dd4db5f80d4be345e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VFXPlayer
+  vfxKey: GROUND_IMPACT
+  particleVFX: {fileID: 6934011453260581343}
+  soundEffects:
+  - sfxObject: {fileID: 11400000, guid: 6a15e2729f4d94143aca2b358b74c86e, type: 2}
+    sfxDelay: 0

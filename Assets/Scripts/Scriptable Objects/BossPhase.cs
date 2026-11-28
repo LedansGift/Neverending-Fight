@@ -2,11 +2,14 @@ using System;
 using UnityEngine;
 
 [Serializable]
-[CreateAssetMenu(fileName = "New Boss Phase", menuName = "Boss Phase", order = 0)]
+[CreateAssetMenu(fileName = "New Boss Phase", menuName = "Boss Phase/Normal Phase", order = 0)]
 public class BossPhase : ScriptableObject
 {
     [SerializeField]
     protected BossNode[] bossAttackPattern;
+
+    [SerializeField]
+    protected int[] availableInterruptIndeces;
 
     [SerializeField]
     protected BossPhase endOfPatternPhaseChange;
@@ -23,6 +26,11 @@ public class BossPhase : ScriptableObject
     public virtual BossNode[] GetAttackPattern()
     {
         return bossAttackPattern;
+    }
+
+    public virtual int[] GetInterruptIndeces()
+    {
+        return availableInterruptIndeces;
     }
 
     public virtual BossPhase GetEndOfPatternPhaseChange()

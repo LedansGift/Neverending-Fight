@@ -61,6 +61,12 @@ public class VFXPlayer : MonoBehaviour
 
     public void PlayVFX(Transform vfxParent)
     {
+        if (vfxParent == null)
+        {
+            PlayVFX(transform.position, transform.rotation);
+            return;
+        }
+
         PlayVFX(vfxParent.position, vfxParent.rotation);
     }
 

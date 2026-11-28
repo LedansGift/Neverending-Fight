@@ -8,6 +8,9 @@ public class AssertiveFallController : PlayerLockOnEntityController
 
     private DamageZone fallDamageZone;
 
+    [SerializeField]
+    private VFXPlayer attackFX;
+
     protected override IEnumerator StartEntityAction()
     {
         yield return base.StartEntityAction();
@@ -15,6 +18,8 @@ public class AssertiveFallController : PlayerLockOnEntityController
         fallDamageZone = AttackTelegraphManager.Instance.StartAttack(transform, fallAttack);
 
         yield return new WaitForSeconds(fallAttack.zoneWarningTime);
+
+        attackFX.PlayVFX(transform.position, transform.rotation);
 
         AttackHitResolver.HitArea(
             transform,

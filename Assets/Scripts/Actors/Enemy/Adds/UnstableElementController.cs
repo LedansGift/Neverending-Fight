@@ -8,6 +8,9 @@ public class UnstableElementController : ProjectileEntityController
 
     private DamageZone bombDamageZone;
 
+    [SerializeField]
+    private VFXPlayer attackFX;
+
     protected override IEnumerator StartEntityAction()
     {
         yield return base.StartEntityAction();
@@ -15,6 +18,8 @@ public class UnstableElementController : ProjectileEntityController
         bombDamageZone = AttackTelegraphManager.Instance.StartAttack(transform, bombAttack);
 
         yield return new WaitForSeconds(bombAttack.zoneWarningTime);
+
+        attackFX.PlayVFX(transform);
 
         AttackHitResolver.HitArea(
             transform,

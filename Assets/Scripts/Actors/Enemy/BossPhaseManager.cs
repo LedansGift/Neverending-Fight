@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossPhaseManager : MonoBehaviour
@@ -6,20 +7,23 @@ public class BossPhaseManager : MonoBehaviour
     private BossPhase activePhase;
 
     [SerializeField]
-    private BossPhase[] bossPhases;
+    private BossPhase[] phases;
 
     [SerializeField]
-    private BossConditionalManager bossConditionalManager;
+    private BossInterruptManager interruptManager;
+
+    [SerializeField]
+    private BossConditionalManager conditionalManager;
 
     public bool TryGetPhase(out BossPhase currentPhase)
     {
         currentPhase = null;
-        if (phaseTracker >= bossPhases.Length)
+        if (phaseTracker >= phases.Length)
         {
             return false;
         }
 
-        currentPhase = bossPhases[phaseTracker];
+        currentPhase = phases[phaseTracker];
 
         return true;
     }
@@ -39,13 +43,15 @@ public class BossPhaseManager : MonoBehaviour
     public void ResetCurrentPhase()
     {
         activePhase.ResetPhase();
-        bossConditionalManager.ResetConditionals();
+        conditionalManager.ResetConditionals();
+        interruptManager.ResetInterrupts();
     }
 
     public void AdvancePhaseTracker()
     {
         phaseTracker++;
-        bossConditionalManager.SaveConditionals();
+        conditionalManager.SaveConditionals();
+        interruptManager.SaveInterrupts();
     }
 
     public int GetCurrentPhaseIndex()
@@ -55,11 +61,39 @@ public class BossPhaseManager : MonoBehaviour
 
     public int GetTotalPhases()
     {
-        return bossPhases.Length;
+        return phases.Length;
+    }
+
+    public List<BossNode> GetInterruptNodes()
+    {
+        int[] activeInterrupts = activePhase.GetInterruptIndeces();
+
+        List<BossNode> interruptNodes = new List<BossNode>();
+
+        foreach (int interruptIndex in activeInterrupts)
+        {
+            if (
+                interruptManager.ResolveInterrupt(
+                    interruptIndex,
+                    out BossInterruptPhase interruptPhase
+                ) && (interruptPhase != null)
+            )
+            {
+                interruptNodes.AddRange(interruptPhase.GetAttackPattern());
+            }
+        }
+
+        return interruptNodes;
     }
 
     public BossConditionalManager GetConditionalManager()
     {
-        return bossConditionalManager;
+        return conditionalManager;
+    }
+
+    public void TogglePhaseManagerActive(bool toggle)
+    {
+        conditionalManager.ToggleBossActive(toggle);
+        interruptManager.ToggleBossActive(toggle);
     }
 }

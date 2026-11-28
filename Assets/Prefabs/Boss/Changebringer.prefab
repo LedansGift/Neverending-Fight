@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 8371743262379200458}
   - component: {fileID: 8761823577968525310}
   - component: {fileID: 6109488810009923894}
+  - component: {fileID: 4630540753851937106}
   - component: {fileID: 5725062810706316359}
   - component: {fileID: 4223425634845952058}
   - component: {fileID: 5181029723768449880}
@@ -107,6 +108,7 @@ Transform:
   m_Children:
   - {fileID: 965845195788046185}
   - {fileID: 1214124684743403272}
+  - {fileID: 6568191710213922168}
   - {fileID: 7296107072413448871}
   - {fileID: 2037283570719149488}
   - {fileID: 7813670293382071833}
@@ -222,9 +224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce59192dacf96d4e9ad8fa9e96fbf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPhaseManager
-  bossPhases:
-  - {fileID: 11400000, guid: cb839e10cb970734f98dce8014e531b7, type: 2}
-  bossConditionalManager: {fileID: 6109488810009923894}
+  phases: []
+  interruptManager: {fileID: 4630540753851937106}
+  conditionalManager: {fileID: 6109488810009923894}
 --- !u!114 &8371743262379200458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +269,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossConditionalManager
   conditionals: []
+--- !u!114 &4630540753851937106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338314440487284039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6775411acffcfe34bbe5570662755c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossInterruptManager
+  bossInterrupts: []
 --- !u!114 &5725062810706316359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,6 +839,37 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3987431476654748235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6568191710213922168}
+  m_Layer: 6
+  m_Name: Boss Interrupts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6568191710213922168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3987431476654748235}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2049012174118989149}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4048691392813834508
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,10 @@ public class BossElementalCardinalsState : BossState
 
     private const string chargeKey = "CB_FELL_CHARGE";
     private const string telegraphKey = "FELL_TELE";
-    private const string attackKey = "FELL_WING";
+    private const string attackNorthKey = "ELEMENTAL_EARTH";
+    private const string attackEastKey = "ELEMENTAL_FIRE";
+    private const string attackWestKey = "ELEMENTAL_WIND";
+    private const string attackSouthKey = "ELEMENTAL_WATER";
 
     private MeleeAttack northSlash;
     private MeleeAttack westSlash;
@@ -159,31 +162,37 @@ public class BossElementalCardinalsState : BossState
         for (int i = 0; i < strikeDirection.Count; i++)
         {
             MeleeAttack activeAttack;
+            string attackFXKey;
             Vector3 attackRotation = Vector3.zero;
 
             switch (strikeDirection[i])
             {
                 case 0:
                     activeAttack = northSlash;
+                    attackFXKey = attackNorthKey;
                     break;
 
                 case 1:
                     activeAttack = eastSlash;
+                    attackFXKey = attackEastKey;
                     attackRotation.y = 90f;
                     break;
 
                 case 2:
                     activeAttack = southSlash;
+                    attackFXKey = attackSouthKey;
                     attackRotation.y = 180f;
                     break;
 
                 case 3:
                     activeAttack = westSlash;
+                    attackFXKey = attackWestKey;
                     attackRotation.y = 270f;
                     break;
 
                 default:
                     activeAttack = northSlash;
+                    attackFXKey = attackNorthKey;
                     break;
             }
 
@@ -194,7 +203,7 @@ public class BossElementalCardinalsState : BossState
                 .PerformMeleeAttacks(attackHolder, damageMult, null, attackSignature);
 
             VFXManager.Instance.TryPlayVFX(
-                attackKey,
+                attackFXKey,
                 bossStateMachine.transform.position,
                 Quaternion.Euler(attackRotation),
                 activeAttack.zoneWarningTime

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossFormManager : MonoBehaviour
@@ -54,6 +55,7 @@ public class BossFormManager : MonoBehaviour
 
         if (!bossPhaseManager.TryGetPhase(out BossPhase phase))
         {
+            Debug.Log("No Phase Found");
             return;
         }
 
@@ -159,6 +161,7 @@ public class BossFormManager : MonoBehaviour
     {
         bossFormActive = true;
         bossAttackManager.ToggleAttackManager(true);
+        bossPhaseManager.TogglePhaseManagerActive(true);
         OnNewPhaseStart?.Invoke();
         InitialiseBoss();
     }
@@ -174,12 +177,18 @@ public class BossFormManager : MonoBehaviour
 
         bossFormActive = false;
         bossAttackManager.ToggleAttackManager(false);
+        bossPhaseManager.TogglePhaseManagerActive(false);
         bossHealth.DeactivateHealth();
     }
 
     public void PlayBossDamagedAnimation()
     {
         bossAnimator.SetTrigger("bigdamage");
+    }
+
+    public List<BossNode> GetInterruptNodes()
+    {
+        return bossPhaseManager.GetInterruptNodes();
     }
 
     public BossAttackManager GetBossAttackManager()

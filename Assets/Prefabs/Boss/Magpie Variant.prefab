@@ -53,6 +53,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5943755932644677658, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: phases.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5943755932644677658, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: 'phases.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 46f1f756fbdbce64dad79406e4a2218f, type: 2}
+    - target: {fileID: 5943755932644677658, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
+      propertyPath: 'phases.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bd732eb22dcc2454a9256da4f7f0bfa3, type: 2}
+    - target: {fileID: 5943755932644677658, guid: 6c76775dbaae8154dbebab0f585b5fa3, type: 3}
       propertyPath: bossPhases.Array.size
       value: 2
       objectReference: {fileID: 0}

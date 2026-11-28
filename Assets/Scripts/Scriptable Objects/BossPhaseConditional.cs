@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 [CreateAssetMenu(
     fileName = "New Boss Phase Conditional",
-    menuName = "Boss Phase Conditional",
+    menuName = "Boss Phase/Phase Conditional",
     order = 1
 )]
 public class BossPhaseConditional : BossPhase
@@ -26,6 +26,18 @@ public class BossPhaseConditional : BossPhase
         else
         {
             return alternatePhases[phaseConditionalResult - 1].GetAttackPattern();
+        }
+    }
+
+    public override int[] GetInterruptIndeces()
+    {
+        if (phaseConditionalResult == 0)
+        {
+            return base.GetInterruptIndeces();
+        }
+        else
+        {
+            return alternatePhases[phaseConditionalResult - 1].GetInterruptIndeces();
         }
     }
 
